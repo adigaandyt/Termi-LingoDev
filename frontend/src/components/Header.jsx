@@ -20,23 +20,38 @@ function Header(){
 
     return (
         <>
-        
-        <ul className='nav justify-content-end bg-dark  ' style={{"height":"70px"}}>
+        <nav className="navbar navbar-expand-lg navbar-light bg-warning  ">
+        <Link to='/' className=" navbar-brand text-light mx-3"> Termi</Link>
+        <button className="navbar-toggler bg-none mx-2 text-light" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span className="navbar-toggler-icon "></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className='navbar-nav'>
+                <li className='nav-item mx-1'>
+                    <Link className="nav-link text-light" to='/profile' >Profile</Link>
+                </li>
+                <li className='nav-item mx-1'>
+                    <Link className="nav-link text-light" to='/about' >About</Link>
+                </li>
+
+            </ul>
+            <div className='flex-container   mx-3'>
             {!user?<>
-            <li className="nav-item px-2 py-3">
-                <button onClick={onLogin} type='submit' className='btn btn-light '>Login</button>
-            </li>
-            <li className="nav-item px-2 py-3">
-                <button onClick={onRegister}  type='submit' className='btn btn-light '>Rgister</button>
-            </li>
+                <button onClick={onLogin} type='submit' className='btn btn-outline-light mx-1'>Login</button>
+                <button onClick={onRegister}  type='submit' className='btn btn-outline-light mx-1'>Rgister</button>
            </>:<>
-           <li className="nav-item px-2 py-3">
-                <button onClick={onLogout}  type='submit' className='btn btn-dark '>Logout</button>
-            </li>
+                <button onClick={onLogout}  type='submit' className='btn btn-outline-dark mx-1'>Logout</button>
            </>
            
             }
-        </ul>
+                
+            </div>
+        </div>
+        
+        </nav>
+        
+
+        
         
         </>
     )

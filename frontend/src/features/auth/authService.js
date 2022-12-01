@@ -24,10 +24,16 @@ const login =async (userData)=>{
 //Logout user
 const logout=()=>localStorage.removeItem('user')
 
+//reset password
+const resetPassword =async (formData)=>{
+    const response=await axios.post(API_URL+'/reset/password',formData)
+    
+    return response.data
+}
 const authService={
     register,
     logout,
-    login
+    login,resetPassword
     
 }
 

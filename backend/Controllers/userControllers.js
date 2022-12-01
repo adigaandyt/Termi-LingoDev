@@ -12,7 +12,7 @@ const generateToken=(id)=>{
 
 
 //@desc register a new user
-//@route POST /api/users
+//@route POST /api/users  http://localhost:5000/api/users
 //@access public
 const registrUser=asyncHandler( async (req,res)=>{
     
@@ -66,7 +66,7 @@ const registrUser=asyncHandler( async (req,res)=>{
  )
  
  //@desc login with existing user
-//@route POST /api/users/login
+//@route POST /api/users/login http://localhost:5000/api/users/login
 //@access publice
 const loginUser=asyncHandler( async (req,res)=>{
    const {email,password}=req.body
@@ -104,8 +104,47 @@ const getMe=asyncHandler( async(req,res)=>{
     res.status(200).json(req.user)
 })
 
+
+ //@desc reset password 
+//@route GET /api/users/reset/password
+//@access private
+const resetPassword=asyncHandler(async (req,res)=>{
+    console.log(req.body)
+    // const {password,password1,password2} =req.body
+    // const userId=req.user.id
+
+    
+    // try {
+    //     const user=await User.findById(userId)
+    //     //check if the user is exit and the current password that user included is correct 
+    //     if(user && (await bcrypt.compare(password,user.password))){
+    //         if(password1!==password2){
+    //             res.status(400)
+    //             throw new Error("You must to include a same passwords !")
+    //         }
+    //         //hash the new password
+    //         const salt=await bcrypt.genSalt(10)
+    //         const hashPassword = await bcrypt.hash(password1,salt) 
+
+    //         //change  password in the database
+    //         const isSuccess= await  User.updateOne({_id:user._id} ,{password:hashPassword})
+    //         res.status(200).json(isSuccess)
+            
+    //     }else{
+    //         res.status(500)
+    //         throw new Error('Incorrect password')
+    //     }
+    // } catch (error) {
+    //     res.status(500)
+    //     throw new Error(error)
+    // }
+
+})
+
+
 module.exports={
     registrUser,
     loginUser,
     getMe,
+    resetPassword
 }

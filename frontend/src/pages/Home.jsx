@@ -6,7 +6,7 @@ function Home(){
     return (
         <div>
             <div className='mt-5 py-5 text-center'>
-               
+               <h1> home </h1>
                {user&&<h3 className='text-success'>You are connected with {user.email}</h3>}
             </div>
         </div>

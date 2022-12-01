@@ -1,9 +1,9 @@
 import { useState,useEffect } from "react"
-import {Link,useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import {useSelector ,useDispatch} from 'react-redux'
 import {register ,reset} from '../features/auth/authSlice'
-import Alert from "../components/Alert"
-import { Audio } from 'react-loader-spinner'
+import Spinner from "../components/Spinner"
+import { toast } from "react-toastify"
 
 function Register(){
     const dispatch=useDispatch()
@@ -13,8 +13,11 @@ function Register(){
         if(user){
             navigate('/')
         }
+        if(isError){
+            toast.error(message)
+        }
         dispatch(reset())
-    },[isSuccess])
+    },[isSuccess,isError])
     const [formData,setFormData]=useState({
         name:'',
         email:'',
@@ -40,26 +43,12 @@ function Register(){
         })
        }
        if(isLoading){
-        return (
-            <div style={{"textAlign":"center"}}>
-                <Audio
-            height="80"
-            width="80"
-            radius="15"
-            color="green"
-            ariaLabel="loading"
-            wrapperStyle
-            wrapperClass
-            />
-            </div>
-            
-        )
+        return (<Spinner/> )
        }
     return (
         <>
-            {isError&&<Alert/>}
             <div className='container mt-5 ' style={{"textAlign":"center"}} >
-            <h1 className="my-5">Login</h1>
+            <h1 className="my-5">Register</h1>
             <form onSubmit={onSubmit}>
             <div className='col  profile-data mr-4' >
             <div className='row-sm mt-4'>
@@ -127,7 +116,7 @@ function Register(){
                     
                  />
                 </div>
-                 <button className='btn btn-dark text-light btn-profile btn-profile-login mt-5' type='submit'>login</button>
+                 <button className='btn btn-dark text-light btn-profile btn-profile-login mt-5' type='submit'>Register</button>
                
                  
 

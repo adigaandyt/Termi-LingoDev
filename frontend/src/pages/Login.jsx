@@ -2,8 +2,9 @@ import { useState,useEffect } from "react"
 import {useNavigate} from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
 import {login,reset} from '../features/auth/authSlice'
-import {Audio} from 'react-loader-spinner'
-import Alert from '../components/Alert'
+
+import Spinner from "../components/Spinner"
+import {toast} from 'react-toastify'
 
 function Login(){
     const dispatch=useDispatch()
@@ -19,8 +20,11 @@ function Login(){
         if(user){
             navigate('/')
         }
+        if(isError){
+            toast.error(message)
+        }
         dispatch(reset())
-    },[isSuccess])
+    },[isError,isSuccess])
    const onSubmit=(e)=>{
     e.preventDefault()
     dispatch(login(formData))
@@ -36,26 +40,12 @@ function Login(){
     })
    }
    if(isLoading){
-    return(
-        <>
-            <div style={{"textAlign":"center"}}>
-                <Audio
-            height="80"
-            width="80"
-            radius="15"
-            color="red"
-            ariaLabel="loading"
-            wrapperStyle
-            wrapperClass
-            />
-            </div>
-        </>
-    )
+    return (<Spinner/> )
    }
 
     return (
         <>
-            {isError&&<Alert/>}
+            
             <div className='container mt-5 ' style={{"textAlign":"center"}} >
             <h1 className="my-5">Login</h1>
             <form onSubmit={onSubmit}>

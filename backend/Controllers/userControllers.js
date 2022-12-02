@@ -109,35 +109,37 @@ const getMe=asyncHandler( async(req,res)=>{
 //@route GET /api/users/reset/password
 //@access private
 const resetPassword=asyncHandler(async (req,res)=>{
-    console.log(req.body)
-    // const {password,password1,password2} =req.body
-    // const userId=req.user.id
+    
+    
+
+    const {password,password1,password2} =req.body
+    const userId=req.user.id
 
     
-    // try {
-    //     const user=await User.findById(userId)
-    //     //check if the user is exit and the current password that user included is correct 
-    //     if(user && (await bcrypt.compare(password,user.password))){
-    //         if(password1!==password2){
-    //             res.status(400)
-    //             throw new Error("You must to include a same passwords !")
-    //         }
-    //         //hash the new password
-    //         const salt=await bcrypt.genSalt(10)
-    //         const hashPassword = await bcrypt.hash(password1,salt) 
+    try {
+        const user=await User.findById(userId)
+        //check if the user is exit and the current password that user included is correct 
+        if(user && (await bcrypt.compare(password,user.password))){
+            if(password1!==password2){
+                res.status(400)
+                throw new Error("You must to include a same passwords !")
+            }
+            //hash the new password
+            const salt=await bcrypt.genSalt(10)
+            const hashPassword = await bcrypt.hash(password1,salt) 
 
-    //         //change  password in the database
-    //         const isSuccess= await  User.updateOne({_id:user._id} ,{password:hashPassword})
-    //         res.status(200).json(isSuccess)
+            //change  password in the database
+            const isSuccess= await  User.updateOne({_id:user._id} ,{password:hashPassword})
+            res.status(200).json(isSuccess)
             
-    //     }else{
-    //         res.status(500)
-    //         throw new Error('Incorrect password')
-    //     }
-    // } catch (error) {
-    //     res.status(500)
-    //     throw new Error(error)
-    // }
+        }else{
+            res.status(500)
+            throw new Error('Incorrect password')
+        }
+    } catch (error) {
+        res.status(500)
+        throw new Error(error)
+    }
 
 })
 

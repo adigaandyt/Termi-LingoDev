@@ -1,9 +1,25 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {CgPassword} from 'react-icons/cg'
-import {useDispatch} from 'react-redux'
-import {resetPassword} from '../features/auth/authSlice'
+import {useDispatch,useSelector} from 'react-redux'
+import {resetPassword ,reset} from '../features/auth/authSlice'
+import {toast} from 'react-toastify'
+import Spinner from '../components/Spinner'
 function ResetPassword(){
+    const navigate=useNavigate()
+
     const dispatch=useDispatch()
+    const {isError,isSuccess,message,isLoading}=useSelector(state=>state.auth)
+    useEffect(()=>{
+        if(isError){
+            toast.error(message)
+        }
+        if(isSuccess){
+            toast.success('Successfuly reset password')
+            navigate('/profile')
+        }
+        dispatch(reset())
+    },[isError,isSuccess,message])
     const [formData,setFormData]=useState({
         password:'',
         password1:'',
@@ -22,6 +38,9 @@ function ResetPassword(){
     const onSubmit=(e)=>{
         e.preventDefault()
         dispatch(resetPassword(formData))
+    }
+    if(isLoading){
+        return <Spinner/>
     }
     return(<>
         <div className=" container text-center mt-5 pt-5 ">

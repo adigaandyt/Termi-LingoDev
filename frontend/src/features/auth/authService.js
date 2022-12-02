@@ -25,8 +25,13 @@ const login =async (userData)=>{
 const logout=()=>localStorage.removeItem('user')
 
 //reset password
-const resetPassword =async (formData)=>{
-    const response=await axios.post(API_URL+'/reset/password',formData)
+const resetPassword =async (formData,token)=>{
+    const config ={
+        headers:{
+            authorization:`Bearer ${token}`
+        }
+    }
+    const response=await axios.post(API_URL+'/reset/password',formData ,config)
     
     return response.data
 }

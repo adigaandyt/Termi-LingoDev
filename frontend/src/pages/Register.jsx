@@ -4,6 +4,7 @@ import {useSelector ,useDispatch} from 'react-redux'
 import {register ,reset} from '../features/auth/authSlice'
 import Spinner from "../components/Spinner"
 import { toast } from "react-toastify"
+import {AiOutlineUserAdd} from 'react-icons/ai'
 
 function Register(){
     const dispatch=useDispatch()
@@ -48,10 +49,15 @@ function Register(){
     return (
         <>
             <div className='container mt-5 ' style={{"textAlign":"center"}} >
-            <h1 className="my-5">Register</h1>
+                <label className="text-secondary mb-5" style={{"fontSize":"250%"}}>
+                    <h1>
+                    <AiOutlineUserAdd    style={{"fontSize":"145%"}}/>
+                    Register
+                    </h1>
+                    </label>
             <form onSubmit={onSubmit}>
             <div className='col  profile-data mr-4' >
-            <div className='row-sm mt-4'>
+            <div className='row-sm '>
                     <label className="text-dark d-none d-lg-inline" disabled>name:</label>
                     <input
                     type='name'

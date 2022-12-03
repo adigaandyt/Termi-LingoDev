@@ -9,6 +9,9 @@ const colors=require('colors');
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
+
+
+
 connectDB()
 
 //Routes

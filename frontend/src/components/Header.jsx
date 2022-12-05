@@ -1,13 +1,17 @@
 import {Link,useNavigate} from 'react-router-dom'
 import {useSelector,useDispatch} from 'react-redux'
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import {logout} from '../features/auth/authSlice'
+
+
+
 function Header(){
     const {user}=useSelector(state=>state.auth)
     const dispatch=useDispatch()
     const navigate=useNavigate()
     
-    const [language,setLanguage]=useState('')
+    const [language,setLanguage]=useState('English')
+   
     const onLogin=()=>{
         navigate('/login')
     }
@@ -20,6 +24,12 @@ function Header(){
         dispatch(logout())
         navigate('/')
 
+    }
+    
+    const onLanguageChange=(e)=>{
+        e.preventDefault()
+        setLanguage(e.target.value)
+       
     }
 
     return (
@@ -42,7 +52,7 @@ function Header(){
             <div className='flex-container   mx-3'>
             
             
-                <select className='btn btn-outline-secondary' name='product' id='product' aria-labelledby="dropdownMenuButton">
+                <select className='btn btn-outline-secondary' value={language} name='language' id='language' onChange={onLanguageChange}>
                     <option value="English">English</option>
                     <option value="עברית">עברית</option>
                     <option value="العربيه">العربيه</option>
@@ -68,5 +78,6 @@ function Header(){
         </>
     )
 }
+
 
 export default Header

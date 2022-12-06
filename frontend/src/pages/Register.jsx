@@ -61,7 +61,7 @@ function Register(){
                     </label>
             <form onSubmit={onSubmit}>
             <div className='col  profile-data   ' >
-            <div className='row-sm '>
+            <div className='row-sm my-3'>
                     <input
                     type='name'
                     placeholder={t('name')}
@@ -73,7 +73,7 @@ function Register(){
                     
                  />
                 </div>
-                <div className='row-sm mt-1'>
+                <div className='row-sm  my-3'>
                      <input
                         type='email'
                         placeholder={t('email')}
@@ -85,7 +85,7 @@ function Register(){
                     
                     />
                 </div>
-                <div className='row-sm '>
+                <div className='row-sm  my-3'>
                     <input
                     type='password'
                     placeholder={t('password')}
@@ -97,7 +97,7 @@ function Register(){
                     
                  />
                 </div>
-                <div className='row-sm'>
+                <div className='row-sm  my-3'>
                     <input
                     type='password'
                     placeholder={t('confirm_password')}
@@ -109,7 +109,7 @@ function Register(){
                     
                  />
                 </div>
-                <div className='row-sm '>
+                <div className='row-sm  my-1'>
                     <input
                     type='phoneNumber'
                     placeholder={t('phone')}

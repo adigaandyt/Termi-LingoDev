@@ -52,17 +52,18 @@ function Register(){
        }
     return (
         <>
-            <div className='container mt-5 ' style={{"textAlign":"center"}} >
-                <label className="text-secondary mb-5" style={{"fontSize":"250%"}}>
+            <div className='container  mt-5   ' style={{"textAlign":"center"}} >
+                <label className="text-secondary mb-25" style={{"fontSize":"250%"}}>
                     <h1>
                     <AiOutlineUserAdd    style={{"fontSize":"145%"}}/>
                     {t('register')}
                     </h1>
                     </label>
             <form onSubmit={onSubmit}>
-            <div className='col  profile-data mr-4' >
+            <div className='col  profile-data   ' >
             <div className='row-sm '>
-                    <label className="text-dark d-none d-lg-inline mx-1" disabled>{t('name')}</label>
+                    <label className="text-dark text-start d-none d-lg-inline mx-1" disabled>{t('name')}</label>
+                    <br/>
                     <input
                     type='name'
                     placeholder={t('name')}
@@ -74,8 +75,10 @@ function Register(){
                     
                  />
                 </div>
-                <div className='row-sm mt-4'>
-                    <label className="text-dark d-none d-lg-inline mx-1" disabled>{t('email')}</label>
+                <div className='row-sm mt-1'>
+                    <label className="text-dark d-none d-lg-inline " disabled>{t('email')}</label>
+                  
+                    <br/>
                      <input
                         type='email'
                         placeholder={t('email')}
@@ -87,8 +90,9 @@ function Register(){
                     
                     />
                 </div>
-                <div className='row-sm mt-4'>
-                    <label className="text-dark d-none d-lg-inline mx-1" disabled>{t('password')}</label>
+                <div className='row-sm '>
+                    <label className="text-dark d-none d-lg-inline " disabled>{t('password')}</label>
+                    <br/>
                     <input
                     type='password'
                     placeholder={t('password')}
@@ -100,8 +104,10 @@ function Register(){
                     
                  />
                 </div>
-                <div className='row-sm mt-4'>
-                    <label className="text-dark d-none d-lg-inline mx-1" disabled>{t('password')}</label>
+                <div className='row-sm'>
+                    <label className="text-dark d-none d-lg-inline " disabled>{t('password')}</label>
+                    <br/>
+
                     <input
                     type='password'
                     placeholder={t('confirm_password')}
@@ -113,8 +119,10 @@ function Register(){
                     
                  />
                 </div>
-                <div className='row-sm mt-4'>
-                    <label className="text-dark d-none d-lg-inline mx-1" disabled>{t('phone')}</label>
+                <div className='row-sm '>
+                    <label className="text-dark d-none d-lg-inline" disabled>{t('phone')}</label>
+                    <br/>
+
                     <input
                     type='phoneNumber'
                     placeholder={t('phone')}

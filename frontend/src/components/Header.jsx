@@ -4,6 +4,8 @@ import {useState,useEffect} from 'react'
 import {logout} from '../features/auth/authSlice'
 import { useTranslation } from "react-i18next"
 import cookies from 'js-cookie'
+import "/node_modules/flag-icons/css/flag-icons.min.css";
+import {MdLanguage} from 'react-icons/md'
 
 
 
@@ -36,7 +38,7 @@ function Header(){
     
     const onLanguageChange=(e)=>{
         e.preventDefault()
-        i18n.changeLanguage(e.target.value)
+        i18n.changeLanguage(e.target.name)
         if(cookies.get('i18next')==='en'){
             document.body.dir='ltr';
         }
@@ -67,14 +69,28 @@ function Header(){
             </ul>
             <div className='flex-container   mx-3'>
             
-            
-                <select className='btn btn-outline-secondary'  name='language' id='language' onChange={onLanguageChange}>
-                
+            {/* <span class="fi fi-sa"></span><span class="fi fi-sa fis"></span>
+                <select className='btn btn-outline-light' name='language' id='language' onChange={onLanguageChange}>
+
+                    <div>
+                    <option value="hb">עברית</option>
+                    <span class="fi fi-sa"></span>
+                    </div>
                     <option value="en">English</option>
                     <option value="hb">עברית</option>
                     <option value="ar">العربيه</option>
                     
-                </select>
+                </select> */}
+                <div className="dropdown">
+                <button className="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <MdLanguage className='text-secondary' style={{"fontSize":"180%"}}/>
+                </button>
+                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a className="dropdown-item" name='en' onClick={onLanguageChange}><span class="fi fi-us"></span> English</a>
+                    <a className="dropdown-item" name='hb' onClick={onLanguageChange}><span class="fi fi-il"></span> עברית</a>
+                    <a className="dropdown-item" name='ar' onClick={onLanguageChange}><span class="fi fi-sa"></span> العربية</a>
+                </div>
+                </div>
             
             {!user?<>
                 <button onClick={onLogin} type='submit' className='btn btn-outline-secondary mx-1'>{t('login')}</button>

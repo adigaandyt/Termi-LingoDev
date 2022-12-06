@@ -19,6 +19,12 @@ const userSchema=mongoose.Schema({
         type:String,
         required:[true,'Please add a phone number']
     },
+    language:{
+        type:String,
+        required:[true,'Please select a language'],
+        enum:['English','עברית', 'العربية' ],
+        default:'English'
+       },
     isAdmin:{
         type:Boolean,
         required:true,

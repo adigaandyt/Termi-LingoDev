@@ -5,9 +5,10 @@ import {register ,reset} from '../features/auth/authSlice'
 import Spinner from "../components/Spinner"
 import { toast } from "react-toastify"
 import {AiOutlineUserAdd} from 'react-icons/ai'
-import { t } from "i18next"
+import { useTranslation } from "react-i18next"
 
 function Register(){
+    const {t}=useTranslation()
     const dispatch=useDispatch()
     const {user,isLoading,isSuccess,isError,message}=useSelector((state)=>state.auth)
     const navigate=useNavigate()
@@ -18,9 +19,11 @@ function Register(){
         if(isError){
             toast.error(message)
         }
+        
+
         dispatch(reset())
     },[isSuccess,isError])
-    const [formData,setFormData]=useState({
+    const [formData,setFormData,]=useState({
         name:'',
         email:'',
         password:'',

@@ -1,8 +1,9 @@
-import { t } from 'i18next'
+import { useTranslation } from 'react-i18next'
 import {useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 
 function Profile(){
+    const {t}=useTranslation()
     const {user}=useSelector(state=>state.auth)
     const {email,name,phoneNumber}=user
     return(<>

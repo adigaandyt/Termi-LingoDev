@@ -1,0 +1,15 @@
+{
+    "language":"עברית",
+    "title":"טרמי",
+    "profile":"פרופיל",
+    "about":"עלינו",
+    "login":"התחבר",
+    "register":"הרשמה",
+    "logout":"התנתק",
+    "email":"שם משתמש",
+    "password":"סיסמה",
+    "confirm_password":"אמת סיסמה",
+    "reset_password":"לאפס את הסיסמה",
+    "phone":"מספר נייד",
+    "name":"שם"
+}

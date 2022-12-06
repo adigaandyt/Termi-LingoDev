@@ -5,6 +5,7 @@ import {register ,reset} from '../features/auth/authSlice'
 import Spinner from "../components/Spinner"
 import { toast } from "react-toastify"
 import {AiOutlineUserAdd} from 'react-icons/ai'
+import { t } from "i18next"
 
 function Register(){
     const dispatch=useDispatch()
@@ -52,16 +53,16 @@ function Register(){
                 <label className="text-secondary mb-5" style={{"fontSize":"250%"}}>
                     <h1>
                     <AiOutlineUserAdd    style={{"fontSize":"145%"}}/>
-                    Register
+                    {t('register')}
                     </h1>
                     </label>
             <form onSubmit={onSubmit}>
             <div className='col  profile-data mr-4' >
             <div className='row-sm '>
-                    <label className="text-dark d-none d-lg-inline" disabled>name:</label>
+                    <label className="text-dark d-none d-lg-inline mx-1" disabled>{t('name')}</label>
                     <input
                     type='name'
-                    placeholder='name'
+                    placeholder={t('name')}
                     id='name'
                     name='name'
                     value={name}
@@ -71,10 +72,10 @@ function Register(){
                  />
                 </div>
                 <div className='row-sm mt-4'>
-                    <label className="text-dark d-none d-lg-inline" disabled>email:</label>
+                    <label className="text-dark d-none d-lg-inline mx-1" disabled>{t('email')}</label>
                      <input
                         type='email'
-                        placeholder='Email'
+                        placeholder={t('email')}
                         id='email'
                         name='email'
                         value={email}
@@ -84,10 +85,10 @@ function Register(){
                     />
                 </div>
                 <div className='row-sm mt-4'>
-                    <label className="text-dark d-none d-lg-inline" disabled>pass:</label>
+                    <label className="text-dark d-none d-lg-inline mx-1" disabled>{t('password')}</label>
                     <input
                     type='password'
-                    placeholder='Password'
+                    placeholder={t('password')}
                     id='password'
                     name='password'
                     value={password}
@@ -97,10 +98,10 @@ function Register(){
                  />
                 </div>
                 <div className='row-sm mt-4'>
-                    <label className="text-dark d-none d-lg-inline" disabled>pass:</label>
+                    <label className="text-dark d-none d-lg-inline mx-1" disabled>{t('password')}</label>
                     <input
                     type='password'
-                    placeholder='Confirm Password'
+                    placeholder={t('confirm_password')}
                     id='password2'
                     name='password2'
                     value={password2}
@@ -110,10 +111,10 @@ function Register(){
                  />
                 </div>
                 <div className='row-sm mt-4'>
-                    <label className="text-dark d-none d-lg-inline" disabled>phone:</label>
+                    <label className="text-dark d-none d-lg-inline mx-1" disabled>{t('phone')}</label>
                     <input
                     type='phoneNumber'
-                    placeholder='Phone Number'
+                    placeholder={t('phone')}
                     id='phoneNumber'
                     name='phoneNumber'
                     value={phoneNumber}
@@ -122,7 +123,7 @@ function Register(){
                     
                  />
                 </div>
-                 <button className='btn btn-dark text-light btn-profile btn-profile-login mt-5' type='submit'>Register</button>
+                 <button className='btn btn-dark text-light btn-profile btn-profile-login mt-5' type='submit'>{t('register')}</button>
                
                  
 

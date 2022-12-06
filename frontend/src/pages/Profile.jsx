@@ -1,3 +1,4 @@
+import { t } from 'i18next'
 import {useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 
@@ -6,8 +7,8 @@ function Profile(){
     const {email,name,phoneNumber}=user
     return(<>
         <div className="container mt-5 py-5 text-center">
-            <h1>Profile</h1>
-            <Link to='/reset' className='btn btn-warning '>Reset Password</Link>
+            <h1>{t('profile')}</h1>
+            <Link to='/reset' className='btn btn-warning '>{t('reset_password')}</Link>
             <form>
                 <ul className='mt-4'>
                     <li className='my-1'>

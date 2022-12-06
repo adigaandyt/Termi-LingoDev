@@ -1,0 +1,17 @@
+{
+    "language":"English",
+    "title":"Termi",
+    "profile":"Profile",
+    "about":"About",
+    "login":"Login",
+    "register":"Register",
+    "logout":"Logout",
+    "email":"Email",
+    "password":"Password",
+    "confirm_password":"Confirm Password",
+    "reset_password":"Reset Password",
+    "phone":"Phone Number",
+    "name":"Name"
+
+
+}

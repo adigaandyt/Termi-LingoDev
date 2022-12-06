@@ -1,0 +1,16 @@
+{
+    "language":"العربية",
+    "title":"ترمي",
+    "profile":"بروفيل",
+    "about":"عنا",
+    "login":"دخول",
+    "register":"تسجيل",
+    "logout":"خروج",
+    "email":"البرید الالكتروني",
+    "password":"كلمه السر",
+    "confirm_password":"اعادة كلمة السر",
+    "reset_password":"إعادة تعيين كلمة المرور",
+    "phone":"رقم الجوال",
+    "name":"الاسم"
+
+}

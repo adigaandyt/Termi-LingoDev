@@ -16,8 +16,7 @@ const generateToken=(id)=>{
 //@access public
 const registrUser=asyncHandler( async (req,res)=>{
     
-     const {email, password ,password2 ,name, phoneNumber}=req.body.formData
-
+     const {email, password ,password2 ,name, phoneNumber ,language}=req.body.formData;
     if(password!==password2){
         res.status(500)
         throw new Error("You must to include a same passwords")
@@ -39,7 +38,8 @@ const registrUser=asyncHandler( async (req,res)=>{
         const user=await User.create({
             name,
             email,
-            phoneNumber, 
+            phoneNumber,
+            language, 
             password:hashPassword
         })
         if(user){
@@ -50,6 +50,7 @@ const registrUser=asyncHandler( async (req,res)=>{
                 email:user.email,
                 password:user.password,
                 phoneNumber:user.phone_number,
+                language:user.language,
                 token:generateToken(user._id)
     
 
@@ -80,6 +81,7 @@ const loginUser=asyncHandler( async (req,res)=>{
                 isAdmin:user.isAdmin,
                 email:user.email,
                 password:user.password,
+                language:user.language,
                 phoneNumber:user.phoneNumber,
                 token:generateToken(user._id)
     

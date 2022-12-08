@@ -69,18 +69,7 @@ function Header(){
             </ul>
             <div className='flex-container   mx-3'>
             
-            {/* <span class="fi fi-sa"></span><span class="fi fi-sa fis"></span>
-                <select className='btn btn-outline-light' name='language' id='language' onChange={onLanguageChange}>
-
-                    <div>
-                    <option value="hb">עברית</option>
-                    <span class="fi fi-sa"></span>
-                    </div>
-                    <option value="en">English</option>
-                    <option value="hb">עברית</option>
-                    <option value="ar">العربيه</option>
-                    
-                </select> */}
+           
                 <div className="dropdown">
                 <button className="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <MdLanguage className='text-secondary' style={{"fontSize":"180%"}}/>

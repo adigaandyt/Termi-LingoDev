@@ -8,7 +8,7 @@ import Spinner from "../components/Spinner"
 import {toast} from 'react-toastify'
 
 function Login(){
-    const {t}=useTranslation();
+    const {t,i18n}=useTranslation();
     const dispatch=useDispatch()
     const navigate=useNavigate()
     const {user,isLoading,isSuccess,isError,message}=useSelector((state)=>state.auth)
@@ -20,6 +20,29 @@ function Login(){
 
     useEffect(()=>{
         if(user){
+            switch(user.language){
+                case 'English':{
+                    i18n.changeLanguage('en')
+                    document.body.dir='ltr';
+                    break;
+                }
+                case 'עברית':{
+                    i18n.changeLanguage('hb')
+                    document.body.dir='rtl';
+                    break;
+
+                }
+                case 'العربية':{
+                    i18n.changeLanguage('ar')
+                    document.body.dir='rtl';
+                    break;
+
+                }
+                default:{
+                    break;
+
+                }
+            }
             navigate('/')
         }
         if(isError){

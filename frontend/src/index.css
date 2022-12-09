@@ -92,3 +92,7 @@ li {
     transform: rotate(360deg);
   }
 }
+.input-search{
+  width:18rem;
+  padding-right: 5px;
+}

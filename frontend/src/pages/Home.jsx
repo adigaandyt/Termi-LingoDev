@@ -1,15 +1,28 @@
 import Header  from '../components/Header'
 import {useSelector,useDispatch} from 'react-redux'
-import { useState } from 'react'
-import {getConcepts} from '../features/concepts/conceptSlice'
+import { useEffect, useState } from 'react'
+import {getConcepts,getConceptsNames} from '../features/concepts/conceptSlice'
+import {GiArchiveResearch} from 'react-icons/gi'
+import { useTranslation } from 'react-i18next'
 
 
 
 function Home(){
+    const {t}=useTranslation()
+
     const [textSearch,setTextSearch]=useState('')
+    const [conceptSearch,setConceptSearch]=useState('')
+
     const dispatch=useDispatch()
     const {user} =useSelector(state=>state.auth)
-    const {concepts}=useSelector(state=>state.concept)
+    const {concepts,names}=useSelector(state=>state.concept)
+
+
+    useEffect(()=>{
+        dispatch(getConceptsNames())
+        console.log(names)
+    },[])
+
     const onChange=async (e)=>{
         e.preventDefault()
         setTextSearch(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))
@@ -22,24 +35,30 @@ function Home(){
        console.log(concepts[0]._id)
     }
     return (
-        <div>
-            <div className='mt-5 py-5 text-center'>
-               <h1> home </h1>
-               <input onChange={onChange} />
-               <button onClick={onClick}>sub</button>
-               <div>
-                {concepts&&
-                    concepts.map((concept)=>{
-                        return(
-                            <p>{concept.conceptName.hebrew}</p>
-                        )
-                        
-                    })
-                }
-               </div>
+    
+            <div className='mt-5 py-5 container text-center bg-waring '>
+                <label className='d-inline '>
+                    
+                    <h4 className='text-secondary text-center'>
+                    <GiArchiveResearch className='text-primary' style={{"fontSize":"250%"}}/>   {t("search_for_a_concept_to_show_its_definition")}</h4>
+                </label>
+               
+               <input list="brow" className='input-search mt-4' onChange={(e)=>{setConceptSearch(e.target.value)}}/>
+                    <datalist className='bg-warning' id="brow">
+                    {(names && conceptSearch.length >= 3 )&&
+                    names.map((name)=>
+                    {
+                        return(<>
+                                <option  value={name.conceptName.arabic}/>
+                                <option value={name.conceptName.english}/>
+                                <option value={name.conceptName.hebrew}/>
+                            </>)})}
+                    </datalist> 
+
+
                {user&&<h3 className='text-success'>You are connected with {user.email}</h3>}
             </div>
-        </div>
+        
     )
 }
 export default Home

@@ -11,5 +11,6 @@
     "confirm_password":"אמת סיסמה",
     "reset_password":"לאפס את הסיסמה",
     "phone":"מספר נייד",
-    "name":"שם"
+    "name":"שם",
+    "search_for_a_concept_to_show_its_definition":"חפש מושג כדי להראות את ההגדרה שלו"
 }

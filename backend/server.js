@@ -16,6 +16,7 @@ connectDB()
 
 //Routes
 app.use('/api/users', require('./Routes/userRoutes'))
+app.use('/api/concepts',require('./Routes/conceptRoutes'))
 
 // use the errorHandler function for manage error events 
 app.use(errorHandler)

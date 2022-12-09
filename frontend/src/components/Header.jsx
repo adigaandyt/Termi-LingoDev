@@ -53,7 +53,7 @@ function Header(){
     return (
         <>
         <nav className="navbar navbar-expand-lg navbar-light bg-warning  ">
-            <Link to='/' className=" navbar-brand text-dark mx-3 font-weight-bold"> {t("title")}</Link>
+            <Link to='/' className=" navbar-brand text-dark mx-3 font-weight-bold"> Termi</Link>
             <button className="navbar-toggler bg-none mx-2 text-light" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon "></span>
         </button>

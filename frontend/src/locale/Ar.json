@@ -12,6 +12,9 @@
     "reset_password":"إعادة تعيين كلمة المرور",
     "phone":"رقم الجوال",
     "name":"الاسم",
-    "search_for_a_concept_to_show_its_definition":"ابحث عن مصطلح لإظهار تعريفه"
+    "search_for_a_concept_to_show_its_definition":"ابحث عن مصطلح لإظهار تعريفه",
+    "long_definition":"تعريف طويل",
+    "short_definition":"تعريف قصير",
+    "search":"بحث"
 
 }

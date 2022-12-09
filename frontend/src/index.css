@@ -92,7 +92,12 @@ li {
     transform: rotate(360deg);
   }
 }
-.input-search{
-  width:18rem;
+.home-search{
+  width:17rem;
+  height: 35px;
   padding-right: 5px;
+}
+.button-group{
+border-radius: 0%;
+
 }

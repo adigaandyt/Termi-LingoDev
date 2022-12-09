@@ -12,7 +12,10 @@
     "reset_password":"Reset Password",
     "phone":"Phone Number",
     "name":"Name",
-    "search_for_a_concept_to_show_its_definition":"Search for a concept to show its definition"
+    "search_for_a_concept_to_show_its_definition":"Search for a concept to show its definition",
+    "long_definition":"Long definition",
+    "short_definition":"Short definition",
+    "search":"Search"
 
 
 }

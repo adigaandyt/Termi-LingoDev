@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next"
 
 import Spinner from "../components/Spinner"
 import {toast} from 'react-toastify'
+import "../styles/Inputs.css"
 
 function Login(){
     const {t,i18n}=useTranslation();
@@ -72,44 +73,37 @@ function Login(){
         <>
             
             <div className='container mt-5 ' style={{"textAlign":"center"}} >
-            <h1 className="my-5">{t('login')}</h1>
-            <form onSubmit={onSubmit}>
-            <div className='col  profile-data mr-4' >
-                <div className='row-sm mt-4'>
-                    <label className="text-dark d-none d-lg-inline mx-1" disabled>{t('email')}</label>
-                     <input
-                        type='email'
-                        placeholder={t('email')}
-                        id='email'
-                        name='email'
-                        value={email}
-                        onChange={onChange}
-                        required
-                    
-                    />
-                </div>
-                <div className='row-sm mt-4'>
-                    <label className="text-dark d-none d-lg-inline mx-1" disabled>{t('password')}</label>
+                <h1 className="my-5">{t('login')}</h1>
+            
+                <form className="form1" onSubmit={onSubmit}>
+                    <div class="form-group mt-3"> 
                     <input
-                    type='password'
-                    placeholder={t('password')}
-                    id='password'
-                    name='password'
-                    value={password}
-                    onChange={onChange}
-                    required
-                    
-                 />
-                </div>
-                 <button className='btn btn-dark text-light btn-profile btn-profile-login mt-5' type='submit'>{t('login')}</button>
-               
-                 
-
-
-
-            </div>
-
-        </form>
+                                className="form-control"
+                                type='email'
+                                placeholder={t('email')}
+                                id='email'
+                                name='email'
+                                value={email}
+                                onChange={onChange}
+                                required
+                             />
+                    </div>
+                    <div class="form-group mt-3"> 
+                    <input
+                            type='password'
+                            placeholder={t('password')}
+                            id='password'
+                            name='password'
+                            value={password}
+                            onChange={onChange}
+                            required
+                            
+                         />
+                    </div>
+                    {/* <button className='btn btn-dark text-light btn-profile btn-profile-login mt-5' type='submit'>{t('login')}</button> */}
+                    <button className="btn btn-dark" type='submit'><span></span><span></span><span></span><span></span>{t('login')}</button>
+                
+                </form>
             </div>
         </>
     )

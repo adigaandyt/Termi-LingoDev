@@ -3,6 +3,7 @@ import conceptService from './conceptService'
 const initialState={ 
     concepts:null,
     concept:null,
+    names:null,
     isSuccess:false,
     isError:false,
     isLoading:false,
@@ -15,6 +16,21 @@ export const getConcepts=createAsyncThunk(
      async(searchText,thunkAPI)=>{
         try {
             return await conceptService.getConcepts(searchText)
+        } catch (error) {
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
+//get concepts names
+export const getConceptsNames=createAsyncThunk(
+    'concepts/names',
+     async(thunkAPI)=>{
+        try {
+            return await conceptService.getConceptsNames()
         } catch (error) {
             const message=(error.response&&error.response.data&&error.response.data.message)
             ||error.message
@@ -54,6 +70,13 @@ export const conceptSlice=createSlice({
             state.isLoading=false
             state.isSuccess=true
             state.concepts=action.payload
+        })
+        .addCase(getConceptsNames.fulfilled,(state,action)=>{
+            state.names=action.payload
+        })
+        .addCase(getConceptsNames.rejected,(state,action)=>{
+            state.message=action.payload
+           state.names=null
         })
     }
 

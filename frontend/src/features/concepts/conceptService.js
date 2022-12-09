@@ -9,10 +9,18 @@ const getConcepts =async (textSearch)=>{
     return response.data
 }
 
+//get all concepts names 
+const getConceptsNames =async ()=>{
+    const response=await axios.get(API_URL+'/get/names')
+    
+    return response.data
+}
+
 
 
 const conceptService={
-    getConcepts
+    getConcepts,
+    getConceptsNames
     
 }
 

@@ -11,7 +11,8 @@
     "confirm_password":"Confirm Password",
     "reset_password":"Reset Password",
     "phone":"Phone Number",
-    "name":"Name"
+    "name":"Name",
+    "search_for_a_concept_to_show_its_definition":"Search for a concept to show its definition"
 
 
 }

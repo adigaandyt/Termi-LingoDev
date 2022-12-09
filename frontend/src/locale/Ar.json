@@ -11,6 +11,7 @@
     "confirm_password":"تثبيت كلمة السر",
     "reset_password":"إعادة تعيين كلمة المرور",
     "phone":"رقم الجوال",
-    "name":"الاسم"
+    "name":"الاسم",
+    "search_for_a_concept_to_show_its_definition":"ابحث عن مصطلح لإظهار تعريفه"
 
 }

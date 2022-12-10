@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next"
 
 import Spinner from "../components/Spinner"
 import {toast} from 'react-toastify'
+import {AiOutlineUser} from 'react-icons/ai'
 import "../styles/Inputs.css"
 
 function Login(){
@@ -73,7 +74,7 @@ function Login(){
         <>
             
             <div className='container mt-5 ' style={{"textAlign":"center"}} >
-                <h1 className="my-5">{t('login')}</h1>
+                <h1 className="text-secondary my-5"><AiOutlineUser style={{"fontSize":"145%"}}/>{t('login')}</h1>
             
                 <form className="form1" onSubmit={onSubmit}>
                     <div class="form-group mt-3"> 
@@ -88,8 +89,9 @@ function Login(){
                                 required
                              />
                     </div>
-                    <div class="form-group mt-3"> 
+                    <div className="form-group mt-3"> 
                     <input
+                            className="form-control"
                             type='password'
                             placeholder={t('password')}
                             id='password'
@@ -101,7 +103,7 @@ function Login(){
                          />
                     </div>
                     {/* <button className='btn btn-dark text-light btn-profile btn-profile-login mt-5' type='submit'>{t('login')}</button> */}
-                    <button className="btn btn-dark" type='submit'><span></span><span></span><span></span><span></span>{t('login')}</button>
+                    <button id="rgbtn" className="btn btn-dark" type='submit'><span></span><span></span><span></span><span></span>{t('login')}</button>
                 
                 </form>
             </div>

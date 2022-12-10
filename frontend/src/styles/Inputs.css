@@ -52,7 +52,7 @@
 .form1:hover::before {
     transform: scaleX(1) skewX(35deg);
 }  */
-.form1 button {
+.form1 #rgbtn {
     position: relative;
     display: inline-block;
     padding: 10px 20px;
@@ -67,7 +67,7 @@
     letter-spacing: 4px
   }
   
-  .form1 button:hover {
+  .form1 #rgbtn:hover {
     background: #ffc107;
     color: #fff;
     border-radius: 5px;
@@ -77,12 +77,12 @@
                 0 0 100px #03e9f4; */
   }
   
-  .form1 button span {
+  .form1 #rgbtn span {
     position: absolute;
     display: block;
   }
   
-  .form1 button span:nth-child(1) {
+  .form1 #rgbtn span:nth-child(1) {
     top: 0;
     left: -100%;
     width: 100%;
@@ -99,7 +99,7 @@
     }
   }
   
-  .form1 button span:nth-child(2) {
+  .form1 #rgbtn span:nth-child(2) {
     top: -100%;
     right: 0;
     width: 2px;
@@ -118,7 +118,7 @@
     }
   }
   
-  .form1 button span:nth-child(3) {
+  .form1 #rgbtn span:nth-child(3) {
     bottom: 0;
     right: -100%;
     width: 100%;
@@ -137,7 +137,7 @@
     }
   }
   
-  .form1 button span:nth-child(4) {
+  .form1 #rgbtn span:nth-child(4) {
     bottom: -100%;
     left: 0;
     width: 2px;
@@ -154,4 +154,7 @@
     50%,100% {
       bottom: 100%;
     }
+  }
+  .dropdown {
+    border: none;
   }

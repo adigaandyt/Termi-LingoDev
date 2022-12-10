@@ -11,11 +11,11 @@ const initialState={
 }
 
 //get concepts
-export const getConcepts=createAsyncThunk(
+export const getConcept=createAsyncThunk(
     'concepts/get',
      async(searchText,thunkAPI)=>{
         try {
-            return await conceptService.getConcepts(searchText)
+            return await conceptService.getConcept(searchText)
         } catch (error) {
             const message=(error.response&&error.response.data&&error.response.data.message)
             ||error.message
@@ -56,20 +56,20 @@ export const conceptSlice=createSlice({
     },
     extraReducers:(builder)=>{
         builder
-        .addCase(getConcepts.pending,(state)=>{
+        .addCase(getConcept.pending,(state)=>{
             state.isLoading=true
         })
-        .addCase(getConcepts.rejected,(state,action)=>{
+        .addCase(getConcept.rejected,(state,action)=>{
             state.isLoading=false
             state.isError=true
-            state.concepts=null
+            state.concept=null
             state.message=action.payload
             
         })
-        .addCase(getConcepts.fulfilled,(state,action)=>{
+        .addCase(getConcept.fulfilled,(state,action)=>{
             state.isLoading=false
             state.isSuccess=true
-            state.concepts=action.payload
+            state.concept=action.payload
         })
         .addCase(getConceptsNames.fulfilled,(state,action)=>{
             state.names=action.payload

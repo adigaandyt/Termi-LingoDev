@@ -2,10 +2,9 @@ import axios from 'axios'
 
 const API_URL='/api/concepts'
 
-//get concepts by  search text
-const getConcepts =async (textSearch)=>{
-    const response=await axios.post(API_URL,textSearch)
-    
+//get single concept by  search text
+const getConcept =async (textSearch)=>{
+    const response=await axios.post(API_URL+'/get/concept',textSearch)
     return response.data
 }
 
@@ -19,7 +18,7 @@ const getConceptsNames =async ()=>{
 
 
 const conceptService={
-    getConcepts,
+    getConcept,
     getConceptsNames
     
 }

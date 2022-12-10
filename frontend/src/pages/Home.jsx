@@ -1,7 +1,8 @@
 import Header  from '../components/Header'
+import {toast} from 'react-toastify'
 import {useSelector,useDispatch} from 'react-redux'
 import { useEffect, useState } from 'react'
-import {getConcepts,getConceptsNames} from '../features/concepts/conceptSlice'
+import {getConcept,getConceptsNames} from '../features/concepts/conceptSlice'
 import {GiArchiveResearch} from 'react-icons/gi'
 import { useTranslation } from 'react-i18next'
 import Definitions from '../components/Definitions'
@@ -23,24 +24,14 @@ function Home(){
 
     const dispatch=useDispatch()
     const {user} =useSelector(state=>state.auth)
-    const {concepts,names}=useSelector(state=>state.concept)
+    const {concepts,names,concept}=useSelector(state=>state.concept)
 
 
     useEffect(()=>{
         dispatch(getConceptsNames())
     },[])
 
-    const onChange=async (e)=>{
-        e.preventDefault()
-        setTextSearch(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))
-        console.log(textSearch) 
-        dispatch(getConcepts({textSearch:textSearch}))
-    //    const response= await fetch('http://localhost:5000/api/concepts')
-    //    console.log(response)
-    }
-    const onClick=()=>{
-       console.log(concepts[0]._id)
-    }
+    
 
     const onChangeLanguage=(e)=>{
         setLanguageChoosed((prev)=>{
@@ -52,6 +43,13 @@ function Home(){
             })
         })
 
+    }
+    const onSearchClick=()=>{
+        if(conceptSearch.length>3){
+          dispatch(getConcept({textSearch:conceptSearch}))  
+        }
+        
+      
     }
     return (
     
@@ -94,9 +92,10 @@ function Home(){
                                         <option value={name.conceptName.hebrew}/>
                                     </>)})}
                             </datalist> 
-                            <button className='btn btn-success mx-1'>{t("search")}</button>
+                            <button onClick={onSearchClick}  className='btn btn-success mx-1'>{t("search")}</button>
+                            {(conceptSearch.length < 4)&&<p className='text-danger'>Type four or more letters</p>}
                     </div>
-                    <Definitions/>
+                    <Definitions languageChoosed={languageChoosed} concept={concept}/>
 
                {user&&<h3 className='text-success'>You are connected with {user.email}</h3>}
             </div>

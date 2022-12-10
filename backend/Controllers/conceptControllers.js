@@ -4,7 +4,7 @@ const Concept=require('../Models/conceptsModel')
 
 
  //@desc testing in postman !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//@route GET /api/concepts
+//@route GET /api/concepts 
 //@access private
 const testConcept=asyncHandler( async(req,res)=>{
     
@@ -19,18 +19,19 @@ const concept=await Concept.find().select("conceptName -_id" )
 
 
 
- //@desc get concepts for aauto complete
-//@route GET /api/concepts
+ //@desc get single concept
+//@route GET /api/concepts/get/concept
 //@access private
 const getConcept=asyncHandler( async(req,res)=>{
     
     let concept
-    const textSearch=req.body.textSearch
+    const textSearch=req.body.textSearch.replaceAll(')',"\\$&").replaceAll('(',"\\$&")
+
     try {
-         concept=await Concept.find({$or:[
-            {"conceptName.arabic":{ $regex:new RegExp(textSearch)}},
-            {"conceptName.english":{ $regex:new RegExp(textSearch)}},
-            {"conceptName.hebrew":{ $regex:new RegExp(textSearch)}}
+         concept=await Concept.findOne({$or:[
+            {"conceptName.arabic":{ $regex:new RegExp(textSearch), "$options" : "iu"}},
+            {"conceptName.english":{ $regex:new RegExp(textSearch), "$options" : "iu"}},
+            {"conceptName.hebrew":{ $regex:new RegExp(textSearch), "$options" : "iu"}}
         ]}).limit(7)
     } catch (error) {
         res.status(500)

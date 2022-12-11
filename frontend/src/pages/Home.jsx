@@ -101,7 +101,11 @@ function Home(){
 
 
                     {(conceptSearch.length < 4)&&<p className='text-danger'>Type four or more letters</p>}
+<<<<<<< HEAD
                     
+=======
+                    <br/>
+>>>>>>> 80a1ebc96c777dc27a07187e94191bbe0bf70cd6
                     <button onClick={onSearchClick}  className='btn btn-dark  mx-1 my-2'>{t("search")}</button>
                     <button onClick={()=>dispatch(resetConcept())}  className='btn btn-secondary  mx-1 my-2'>{t("reset")}</button>
                     <Definitions languageChoosed={languageChoosed} concept={concept}/>

@@ -13,7 +13,6 @@ import "../styles/home.css"
 function Home(){
     const {t}=useTranslation()
 
-    const [textSearch,setTextSearch]=useState('')
     const [conceptSearch,setConceptSearch]=useState('')
     const [languageChoosed,setLanguageChoosed]=useState({
         english:true,
@@ -52,6 +51,11 @@ function Home(){
         
       
     }
+    const onReset=()=>{
+        dispatch(resetConcept())
+        setConceptSearch('')
+
+    }
     return (
     
             <div className='mt-2 py-5 container text-center bg-waring '>
@@ -87,7 +91,7 @@ function Home(){
                 </div>
                 <br/>
                 <div id='searchbtn' className='text-center'>
-                    <input id="searchinput" list="brow" className='home-search mt-4' placeholder='translate your concept' onChange={(e)=>{setConceptSearch(e.target.value)}}/>
+                    <input value={conceptSearch} id="searchinput" list="brow" className='home-search mt-4' placeholder={t('type_your_concept_here')} onChange={(e)=>{setConceptSearch(e.target.value)}}/>
                     <datalist className='bg-warning' id="brow">
                             {(names && conceptSearch.length >= 3 )&&
                                              names.map((name)=>
@@ -100,15 +104,15 @@ function Home(){
                     </datalist> 
 
 
-                    {(conceptSearch.length < 4)&&<p className='text-danger'>Type four or more letters</p>}
-<<<<<<< HEAD
-                    
-=======
+                    {(conceptSearch.length < 4)&&<p className='text-danger'>{t('type_four_or_more_letters')}</p>}
                     <br/>
->>>>>>> 80a1ebc96c777dc27a07187e94191bbe0bf70cd6
                     <button onClick={onSearchClick}  className='btn btn-dark  mx-1 my-2'>{t("search")}</button>
-                    <button onClick={()=>dispatch(resetConcept())}  className='btn btn-secondary  mx-1 my-2'>{t("reset")}</button>
-                    <Definitions languageChoosed={languageChoosed} concept={concept}/>
+                    <button onClick={onReset}  className='btn btn-secondary  mx-1 my-2'>{t("reset")}</button>
+                    <Definitions languageChoosed={languageChoosed} concept={concept}/><br/>
+                    <br/>
+                    
+                   {concept&& <a className='text-primary mt-5' target='_blank' href={concept&&concept.readMore}>{t('get_more_informations')}</a>}
+                    <br/>
                 </div>
                 
 

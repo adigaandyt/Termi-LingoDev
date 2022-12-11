@@ -5,7 +5,7 @@ import "../styles/Inputs.css"
 function Definitions({concept,languageChoosed}){
     const { t }=useTranslation();
     
-    const [showLong,setShowLong]=useState(false)
+    const [showLong,setShowLong]=useState(true)
     const [showShort,setShowShort]=useState(true)
     const [conceptName,setConceptName]=useState('')
     const onLongchange=()=>{
@@ -86,11 +86,11 @@ function Definitions({concept,languageChoosed}){
             <div className="row">
                 <div className="col-sm  text-start">
                     <p onClick={onShortchange}> {t("short_definition")} {showShort?<BiShow/>:<BiHide/>}</p>
-                    <textarea id="definitionarea" value={concept&&getDefinition(false)}  className={showShort?"w-100 d-inline":"w-100 d-none"}  disabled/>
+                    <textarea id="definitionarea" value={concept?getDefinition(false):""}  className={showShort?"w-100 d-inline":"w-100 d-none"}  disabled/>
                 </div>
                 <div className="col-sm text-start">
                     <p onClick={onLongchange}> {t("long_definition")} {showLong?<BiShow/>:<BiHide/>}</p>
-                    <textarea id="definitionarea" value={concept&&getDefinition(true)} className={showLong?"w-100 h-100 d-inline":"w-100 d-none"} disabled />
+                    <textarea id="definitionarea" value={concept?getDefinition(true):""} className={showLong?"w-100 h-100 d-inline":"w-100 d-none"} disabled />
                 </div>
             </div>
         </div>

@@ -9,8 +9,17 @@ const initialState={
     isLoading:false,
     message:''
 }
+//reset concept
+export const resetConcept=createAsyncThunk(
+    'concept/reset',
+     async(thunkAPI)=>{
+        // the concept will reset in the state
+        return
+     }
 
-//get concepts
+)
+
+//get concept
 export const getConcept=createAsyncThunk(
     'concepts/get',
      async(searchText,thunkAPI)=>{
@@ -77,6 +86,9 @@ export const conceptSlice=createSlice({
         .addCase(getConceptsNames.rejected,(state,action)=>{
             state.message=action.payload
            state.names=null
+        })
+        .addCase(resetConcept.fulfilled,(state)=>{
+            state.concept=null;
         })
     }
 

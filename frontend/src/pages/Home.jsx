@@ -2,7 +2,7 @@ import Header  from '../components/Header'
 import {toast} from 'react-toastify'
 import {useSelector,useDispatch} from 'react-redux'
 import { useEffect, useState } from 'react'
-import {getConcept,getConceptsNames} from '../features/concepts/conceptSlice'
+import {getConcept,getConceptsNames,resetConcept} from '../features/concepts/conceptSlice'
 import {GiArchiveResearch} from 'react-icons/gi'
 import { useTranslation } from 'react-i18next'
 import Definitions from '../components/Definitions'
@@ -98,8 +98,11 @@ function Home(){
                                                         <option value={name.conceptName.hebrew}/>
                                                     </>)})}
                     </datalist> 
-                    <button onClick={onSearchClick}  className='btn btn-secondary  mx-1 mb-1'>{t("search")}</button>
+
+
                     {(conceptSearch.length < 4)&&<p className='text-danger'>Type four or more letters</p>}
+                    <button onClick={onSearchClick}  className='btn btn-dark  mx-1 mb-1'>{t("search")}</button>
+                    <button onClick={onSearchClick}  className='btn btn-secondary  mx-1 mb-1'>{t("reset")}</button>
                     <Definitions languageChoosed={languageChoosed} concept={concept}/>
                 </div>
                 

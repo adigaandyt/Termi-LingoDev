@@ -6,12 +6,12 @@ function Definitions({concept,languageChoosed}){
     
     const [showLong,setShowLong]=useState(true)
     const [showShort,setShowShort]=useState(true)
+    const [conceptName,setConceptName]=useState('')
     const onLongchange=()=>{
         if (showLong) {
             setShowLong(false)
         } else {
             setShowLong(true)
-            
         }
     }
     const onShortchange=()=>{
@@ -19,7 +19,6 @@ function Definitions({concept,languageChoosed}){
             setShowShort(false)
         } else {
             setShowShort(true)
-            
         }
     }
     const getDefinition=(isLong)=>{
@@ -55,18 +54,42 @@ function Definitions({concept,languageChoosed}){
         return definition
         
     }
+    const getConceptName =()=>{
+        
+        switch(true){
+            case languageChoosed.english :{
+                return concept.conceptName.english
+                break;
+            }
+            case languageChoosed.arabic :{
+                return concept.conceptName.arabic
+               
+                break;
+            }
+            case languageChoosed.hebrew :{
+                return concept.conceptName.hebrew
+               
+                break;
+            }
+
+            default:break
+        }
+      
+        
+    }
 
     return(<>
-    <div className=" py-5 ">
+    <div className=" py-3 ">
         <div className="container">
+            <h3 className="text-dark my-1">{concept&&getConceptName()}</h3>
             <div className="row">
                 <div className="col-sm  text-start">
                     <p onClick={onShortchange}> {t("short_definition")} {showShort?<BiShow/>:<BiHide/>}</p>
-                    <textarea value={concept&&getDefinition(false)}  className={showShort?"w-100 d-inline":"w-100 d-none"}  disabled/>
+                    <textarea value={concept?getDefinition(false):""}  className={showShort?"w-100 d-inline":"w-100 d-none"}  disabled/>
                 </div>
                 <div className="col-sm text-start">
                 <p onClick={onLongchange}> {t("long_definition")} {showLong?<BiShow/>:<BiHide/>}</p>
-                <textarea value={concept&&getDefinition(true)} className={showLong?"w-100 d-inline":"w-100 d-none"} disabled />
+                <textarea value={concept?getDefinition(true):""} className={showLong?"w-100 d-inline":"w-100 d-none"} disabled />
 
                 </div>
             </div>

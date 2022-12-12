@@ -16,6 +16,9 @@
     "long_definition":"تعريف طويل",
     "short_definition":"تعريف قصير",
     "search":"بحث",
-    "reset":"مسح"
+    "reset":"مسح",
+    "get_more_informations":"للمزید من المعلومات اضغط هنا",
+    "type_four_or_more_letters":"ادخل 4 احرف او اكثر !",
+    "type_your_concept_here":"اګتب مصطلحك هنا"
 
 }

@@ -1,8 +1,11 @@
 #titlestyle{
     font-family: georgia;
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: bold;
 }
 #textstyle{
     font-size: 1.2rem;
+    width: max-content;/* Important , do not delete it */
+    
+   
 }

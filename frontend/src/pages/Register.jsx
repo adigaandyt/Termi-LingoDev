@@ -1,3 +1,4 @@
+import {React} from 'react'
 import { useState,useEffect } from "react"
 import {useNavigate} from 'react-router-dom'
 import {useSelector ,useDispatch} from 'react-redux'
@@ -7,6 +8,7 @@ import { toast } from "react-toastify"
 import {AiOutlineUserAdd} from 'react-icons/ai'
 import { useTranslation } from "react-i18next"
 import {MdLanguage} from 'react-icons/md'
+import cookies from 'js-cookie'
 import "../styles/Inputs.css"
 
 
@@ -60,8 +62,7 @@ function Register(){
         language:'English'
     })
 
-    const {name,email,password,password2,phoneNumber,language}=formData
-
+    const {name,email,password,password2,phoneNumber,language}=formData;
 
 
     const onSubmit=(e)=>{
@@ -77,13 +78,15 @@ function Register(){
             })
         })
        }
+       
        const onLanguageChange=(e)=>{
         setFormData((prevState)=>{
             return({
                 ...prevState,
-                [e.target.name]:e.target.id
+                language:e.target.value
             })
         })
+      
 
        }
        if(isLoading){
@@ -98,7 +101,7 @@ function Register(){
                     {t('register')}
                     </h1>
                     </label>
-            
+            <h1>{t('saleh')}</h1>
         <form className="form1" onSubmit={onSubmit}>
             <div className="form-group mt-3"> 
                 <input className="form-control" type="name" placeholder={t('name')}  name="name" id="name"  value={name} onChange={onChange} required/>
@@ -115,18 +118,15 @@ function Register(){
             <div className="form-group mt-3"> 
                 <input className="form-control" type='phoneNumber' placeholder={t('phone')} id='phoneNumber' name='phoneNumber' value={phoneNumber} onChange={onChange} required/>  
             </div>
-            <div className="form-group mt-3">
-                    <div className="dropdown bg-red">
-                        <button className=" dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <input className="form-control" placeholder="language" value={language} disabled />
-                        </button>
-                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a className="dropdown-item text-secondary" id="English"  name='language' onClick={onLanguageChange}><span class="fi fi-us"></span> English</a>
-                            <a className="dropdown-item text-secondary" id="עברית" name='language' onClick={onLanguageChange}><span class="fi fi-il"></span> עברית</a>
-                            <a className="dropdown-item text-secondary" id="العربية" name='language' onClick={onLanguageChange}><span class="fi fi-sa"></span> العربية</a>
-                        </div>
-                    </div>
+            
+            <div className="form-group  mt-3">
+                <select className="select-languages" name='product' id='product'  onChange={onLanguageChange}>
+                    <option value="English">English</option>
+                    <option value="العربية">العربية</option>
+                    <option value="עברית">עברית</option>
+                </select>
             </div>
+
             <button id="rgbtn" className='btn btn-dark' type='submit'>
             <span></span>
             <span></span>

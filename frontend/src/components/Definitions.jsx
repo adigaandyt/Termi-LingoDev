@@ -5,7 +5,7 @@ import "../styles/Inputs.css"
 function Definitions({concept,languageChoosed}){
     const { t }=useTranslation();
     
-    const [showLong,setShowLong]=useState(true)
+    const [showLong,setShowLong]=useState(false)
     const [showShort,setShowShort]=useState(true)
     const [conceptName,setConceptName]=useState('')
     const onLongchange=()=>{

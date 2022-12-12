@@ -113,9 +113,10 @@ function Home(){
                     <button onClick={onReset}  className='btn btn-secondary  mx-1 my-2'>{t("reset")}</button>
                     <Definitions languageChoosed={languageChoosed} concept={concept}/><br/>
                     <br/>
-
-                   {concept&& <a className='text-primary mt-5' target='_blank' href={concept&&concept.readMore}>{t('get_more_informations')}</a>}
                     <br/>
+                    <div className="pb-2">
+                        {concept&& <a className='text-primary mt-5 p-5' target='_blank' href={concept&&concept.readMore}>{t('get_more_informations')}</a>}
+                    </div>
                 </div>
                 
 

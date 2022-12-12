@@ -9,72 +9,46 @@
     
 }
 .form1 input{
-  /* border: 1px solid rgba(252, 252, 252, 0.4); */
-  /* background-color: #a0a0a0; */
   width: 250px;
   border-radius: 10px;
   font-family: "Source Sans Pro", sans-serif;
   padding: 10px 15px;
   margin: 5px auto 10px auto;
   display: block;
-  /* text-align: center; */
   font-size: 18px;
-  /* color: white; */
   font-weight: 300;
 }
-/* .form1 button{
-    position: relative;
-    display: inline-block;
-    text-decoration: none;
-    text-transform: uppercase;
-    color: #fff ;
-    outline: 2px solid #7EFFB2;
-    padding: 30px 60px;
-    overflow: hidden;
-    transition: color 1s;
+#dropdownLanguage{
+  /*width: 250px;*/
+  border-radius: 10px;
+  font-family: "Source Sans Pro", sans-serif;
+  padding: 10px 15px;
+  /*margin: 5px auto 10px auto;*/
+  /*display: block;*/
+  font-size: 18px;
+  font-weight: 300;
+  /*text-align: left*/
 }
-.form1 button:hover {
-    color: #090909;
-}
-.form1 button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -50px;
-    z-index: -1;
-    width: 150%;
-    height: 100%;
-    background-color: #7EFFB2;
-    transform: scaleX(0) skewX(35deg);
-    transform-origin: left;
-    transition: transform 1s;
-}
-.form1:hover::before {
-    transform: scaleX(1) skewX(35deg);
-}  */
+
 .form1 #rgbtn {
     position: relative;
-    display: inline-block;
-    padding: 10px 20px;
+    /*display: inline-block;*/
+    /*padding: 10px 20px;*/
     /* color: #03e9f4; */
-    color: #fff;
-    font-size: 16px;
-    text-decoration: none;
+    /*color: #fff;*/
+    /*font-size: 16px;*/
+    /*text-decoration: none;*/
     text-transform: uppercase;
     overflow: hidden;
     transition: .5s;
     margin-top: 40px;
-    letter-spacing: 4px
+    /*letter-spacing: 4px*/
   }
   
   .form1 #rgbtn:hover {
     background: #ffc107;
     color: #fff;
     border-radius: 5px;
-    /* box-shadow: 0 0 5px #03e9f4,
-                0 0 25px #03e9f4,
-                0 0 50px #03e9f4,
-                0 0 100px #03e9f4; */
   }
   
   .form1 #rgbtn span {
@@ -87,7 +61,6 @@
     left: -100%;
     width: 100%;
     height: 2px;
-    /* background: linear-gradient(90deg, transparent, #03e9f4); */
     background: linear-gradient(90deg, transparent, #fff);
     animation: btn-anim1 1s linear infinite;
   }@keyframes btn-anim1 {
@@ -161,4 +134,15 @@
   #definitionarea{
     border-radius: 10px;
     border: 2px solid;
+  }
+  .select-languages{
+     width: 250px;
+     color: black;
+  border-radius: 10px;
+  font-family: "Source Sans Pro", sans-serif;
+  padding: 10px 15px;
+  margin: 5px auto 10px auto;
+  display: block;
+  font-size: 18px;
+  font-weight: 300;
   }

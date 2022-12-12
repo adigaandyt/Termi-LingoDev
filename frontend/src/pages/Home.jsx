@@ -24,7 +24,7 @@ function Home(){
 
     const dispatch=useDispatch()
     const {user} =useSelector(state=>state.auth)
-    const {concepts,names,concept}=useSelector(state=>state.concept)
+    const {concepts,names,concept,isLoading}=useSelector(state=>state.concept)
 
 
     useEffect(()=>{
@@ -106,11 +106,20 @@ function Home(){
 
                     {(conceptSearch.length < 4)&&<p className='text-danger'>{t('type_four_or_more_letters')}</p>}
                     <br/>
-                    <button onClick={onSearchClick}  className='btn btn-dark  mx-1 my-2'>{t("search")}</button>
+                    
+                    <button onClick={onSearchClick}  className='btn btn-dark d-inline mx-1 my-2'>
+                    
+                    {isLoading&& <span class="spinner-border spinner-border-sm " role="status" aria-hidden="true"></span> }
+                    <span class="sr-only "> {t("search")}</span>
+                    
+                    
+                    
+                    
+                    </button>
                     <button onClick={onReset}  className='btn btn-secondary  mx-1 my-2'>{t("reset")}</button>
                     <Definitions languageChoosed={languageChoosed} concept={concept}/><br/>
                     <br/>
-                    
+
                    {concept&& <a className='text-primary mt-5' target='_blank' href={concept&&concept.readMore}>{t('get_more_informations')}</a>}
                     <br/>
                 </div>

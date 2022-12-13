@@ -85,10 +85,10 @@ function Register(){
                 ...prevState,
                 language:e.target.value
             })
-        })
-      
-
-       }
+        })}
+        const onCategoryChange=(e)=>{
+            console.log(e.target.value)
+        }
        if(isLoading){
         return (<Spinner/> )
        }
@@ -101,7 +101,6 @@ function Register(){
                     {t('register')}
                     </h1>
                     </label>
-            <h1>{t('saleh')}</h1>
         <form className="form1" onSubmit={onSubmit}>
             <div className="form-group mt-3"> 
                 <input className="form-control" type="name" placeholder={t('name')}  name="name" id="name"  value={name} onChange={onChange} required/>
@@ -120,10 +119,18 @@ function Register(){
             </div>
             
             <div className="form-group  mt-3">
-                <select className="select-languages" name='product' id='product'  onChange={onLanguageChange}>
+                <select className="select-input" onChange={onLanguageChange}>
                     <option value="English">English</option>
                     <option value="العربية">العربية</option>
                     <option value="עברית">עברית</option>
+                </select>
+            </div>
+            <div className="form-group  mt-3">
+                <select className="select-input" name='product' id='product'  onChange={onCategoryChange}>
+                    <option value="Software">{t('software')}</option>
+                    <option value="Human Resources">{t('human_resources')}</option>
+                    <option value="Football">{t('football')}</option>
+                    <option value="Medicine">{t('medicine')}</option>
                 </select>
             </div>
 

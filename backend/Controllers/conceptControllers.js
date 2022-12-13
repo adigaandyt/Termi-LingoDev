@@ -4,16 +4,25 @@ const Concept=require('../Models/conceptsModel')
 
 
  //@desc testing in postman !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//@route GET /api/concepts 
+//@route GET /api/concepts/test 
 //@access private
 const testConcept=asyncHandler( async(req,res)=>{
     
-const concept=await Concept.find().select("conceptName -_id" )
+    let concept
+    // const textSearch=req.body.textSearch.replaceAll(')',"\\$&").replaceAll('(',"\\$&")
+    const textSearch=req.body.textSearch
 
-
-
-// res.send(concept)
- res.status(200).json(concept)
+    try {
+         concept=await Concept.findOne({$or:[
+            {"conceptName.arabic": textSearch},
+            {"conceptName.english":textSearch},
+            {"conceptName.hebrew": textSearch}
+        ]}).limit(7)
+    } catch (error) {
+        res.status(500)
+        throw new Error("Some thing is wrong !" )
+    }
+     res.status(200).json(concept)
 
 })
 
@@ -38,6 +47,9 @@ const getConcept=asyncHandler( async(req,res)=>{
         throw new Error("Some thing is wrong !" )
     }
      res.status(200).json(concept)
+
+
+   
     
     })
 

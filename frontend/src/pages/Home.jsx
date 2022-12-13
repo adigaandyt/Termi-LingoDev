@@ -1,5 +1,6 @@
 import Header  from '../components/Header'
 import {toast} from 'react-toastify'
+import { useNavigate , Link } from 'react-router-dom'
 import {useSelector,useDispatch} from 'react-redux'
 import { useEffect, useState } from 'react'
 import {getConcept,getConceptsNames,resetConcept} from '../features/concepts/conceptSlice'
@@ -12,6 +13,7 @@ import "../styles/home.css"
 
 function Home(){
     const {t}=useTranslation()
+    const navigate=useNavigate()
 
     const [conceptSearch,setConceptSearch]=useState('')
     const [languageChoosed,setLanguageChoosed]=useState({
@@ -46,10 +48,10 @@ function Home(){
     }
     const onSearchClick=()=>{
         if(conceptSearch.length>3){
-          dispatch(getConcept({textSearch:conceptSearch}))  
+          dispatch(getConcept({textSearch:conceptSearch}))
+
         }
         
-      
     }
     const onReset=()=>{
         dispatch(resetConcept())
@@ -103,13 +105,14 @@ function Home(){
                                                     </>)})}
                     </datalist> 
 
-
+                    <div>
                     {(conceptSearch.length < 4)&&<p className='text-danger'>{t('type_four_or_more_letters')}</p>}
-                    <br/>
-                    <button onClick={onSearchClick}  className='btn btn-dark d-inline mx-1 my-2'>
+                    </div>
+                    <button onClick={onSearchClick}  className='btn btn-success d-inline mx-1 my-2'>
                     {isLoading&& <span class="spinner-border spinner-border-sm " role="status" aria-hidden="true"></span> }
                     <span class="sr-only "> {t("search")}</span>
                     </button>
+                    <button onClick={()=>{navigate('/new/concept')}} className='btn btn-dark d-inline mx-1 my-2'>{t('add_new_concept')}</button>
                     <button onClick={onReset}  className='btn btn-secondary  mx-1 my-2'>{t("reset")}</button>
                     <Definitions languageChoosed={languageChoosed} concept={concept}/><br/>
                     <br/>

@@ -41,7 +41,7 @@ const getConcept=asyncHandler( async(req,res)=>{
             {"conceptName.arabic":{ $regex:new RegExp(textSearch), "$options" : "iu"}},
             {"conceptName.english":{ $regex:new RegExp(textSearch), "$options" : "iu"}},
             {"conceptName.hebrew":{ $regex:new RegExp(textSearch), "$options" : "iu"}}
-        ]}).limit(7)
+        ]})
     } catch (error) {
         res.status(500)
         throw new Error("Some thing is wrong !" )

@@ -12,6 +12,7 @@ import {BrowserRouter as Router , Routes , Route} from 'react-router-dom'
 import About from './pages/About';
 import Profile from './pages/Profile';
 import ResetPassword from './pages/ResetPassword';
+import NewConcept from './pages/NewConcept';
 
 function App() {
   return (
@@ -24,13 +25,17 @@ function App() {
             <Route path='/login' element={<Login/>} />
             <Route path='/register' element={<Register/>} />
             <Route path='/about' element={<About/>} />
-
+            
             <Route path='/profile' element={<PrivateRoute/>}>
               <Route path='/profile' element={<Profile/>}/>
             </Route>
             <Route path='/reset' element={<PrivateRoute/>}>
                 <Route path='/reset' element={<ResetPassword/>}/>
             </Route>
+            <Route path='/new/concept' element={<PrivateRoute/>}>
+              <Route path='/new/concept' element={<NewConcept/>}/>
+            </Route>
+
             
 
           </Routes>

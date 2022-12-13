@@ -78,7 +78,7 @@ function Register(){
             })
         })
        }
-       
+       //on the the user selcted language  for it self
        const onLanguageChange=(e)=>{
         setFormData((prevState)=>{
             return({
@@ -86,9 +86,15 @@ function Register(){
                 language:e.target.value
             })
         })
+       }
+       
+        //on the user select category for it self
+        const onCategoryChange=(e)=>{
+        console.log(e.target.value)
+        }
       
 
-       }
+       
        if(isLoading){
         return (<Spinner/> )
        }
@@ -120,7 +126,7 @@ function Register(){
             </div>
             
             <div className="form-group  mt-3">
-                <select className="select-languages" name='product' id='product'  onChange={onLanguageChange}>
+                <select className="select-input" name='product' id='product'  onChange={onLanguageChange}>
                     <option value="English">English</option>
                     <option value="العربية">العربية</option>
                     <option value="עברית">עברית</option>

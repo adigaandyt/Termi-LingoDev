@@ -20,7 +20,11 @@
     "get_more_informations":"For more information click here",
     "type_four_or_more_letters":"Type four or more letters !",
     "type_your_concept_here":"Type yor concept here",
-    "home":"Home"
+    "home":"Home",
+    "software":"Software",
+    "human_resources":"Homan Resources",
+    "football":"Football",
+    "medicine":"Medicine"
 
 
 }

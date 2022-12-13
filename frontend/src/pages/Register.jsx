@@ -59,7 +59,8 @@ function Register(){
         password:'',
         password2:'',
         phoneNumber:'',
-        language:'English'
+        language:'English',
+        category:''
     })
 
     const {name,email,password,password2,phoneNumber,language}=formData;
@@ -67,7 +68,7 @@ function Register(){
 
     const onSubmit=(e)=>{
         e.preventDefault()
-
+        console.log(formData)
         dispatch(register({formData}))
     }
     const onChange=(e)=>{
@@ -80,6 +81,9 @@ function Register(){
        }
        //on the the user selcted language  for it self
        const onLanguageChange=(e)=>{
+        console.log(e.target.value)
+        console.log(e.target.name)
+
         setFormData((prevState)=>{
             return({
                 ...prevState,
@@ -88,6 +92,8 @@ function Register(){
         })}
         const onCategoryChange=(e)=>{
             console.log(e.target.value)
+            console.log(e.target.name)
+
         }
        if(isLoading){
         return (<Spinner/> )
@@ -119,14 +125,14 @@ function Register(){
             </div>
             
             <div className="form-group  mt-3">
-                <select className="select-input" onChange={onLanguageChange}>
+                <select className="select-input" name='language' onChange={onChange}>
                     <option value="English">English</option>
                     <option value="العربية">العربية</option>
                     <option value="עברית">עברית</option>
                 </select>
             </div>
             <div className="form-group  mt-3">
-                <select className="select-input" name='product' id='product'  onChange={onCategoryChange}>
+                <select className="select-input" name='category' onChange={onChange}>
                     <option value="Software">{t('software')}</option>
                     <option value="Human Resources">{t('human_resources')}</option>
                     <option value="Football">{t('football')}</option>

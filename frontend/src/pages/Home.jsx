@@ -1,5 +1,3 @@
-import Header  from '../components/Header'
-import {toast} from 'react-toastify'
 import { useNavigate , Link } from 'react-router-dom'
 import {useSelector,useDispatch} from 'react-redux'
 import { useEffect, useState } from 'react'
@@ -8,6 +6,7 @@ import {GiArchiveResearch} from 'react-icons/gi'
 import { useTranslation } from 'react-i18next'
 import Definitions from '../components/Definitions'
 import "../styles/home.css"
+import NoConceptResultModal from '../components/NoConceptResultModal'
 
 
 
@@ -121,6 +120,9 @@ function Home(){
                         {concept&& <a className='text-primary mt-5 p-5' target='_blank' href={concept&&concept.readMore}>{t('get_more_informations')}</a>}
                     </div>
                 </div>
+                <NoConceptResultModal/>
+                
+
                 
 
                {user&&<h3 className='text-success'>You are connected with {user.email}</h3>}

@@ -113,7 +113,7 @@ function Home(){
                     </div>
                     
                     
-                    <button onClick={onSearchClick}  className='btn btn-dark d-inline mx-1 my-2'>
+                    <button onClick={onSearchClick}  className='btn btn-success d-inline mx-1 my-2'>
                     {isLoading&& <span class="spinner-border spinner-border-sm " role="status" aria-hidden="true"></span> }
                     <span class="sr-only "> {t("search")}</span>
                     </button>

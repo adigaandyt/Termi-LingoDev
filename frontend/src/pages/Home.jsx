@@ -13,8 +13,10 @@ import NoConceptResultModal from '../components/NoConceptResultModal'
 function Home(){
     const {t}=useTranslation()
     const navigate=useNavigate()
-
+    const [isStart,setIsStart]=useState(true)
     const [conceptSearch,setConceptSearch]=useState('')
+    const [modalIsOpen,setModalIsOpen]=useState(true)
+
     const [languageChoosed,setLanguageChoosed]=useState({
         english:true,
         hebrew:false,
@@ -30,6 +32,7 @@ function Home(){
 
     useEffect(()=>{
         dispatch(getConceptsNames())
+        
     },[])
 
     
@@ -48,7 +51,8 @@ function Home(){
     const onSearchClick=()=>{
         if(conceptSearch.length>3){
           dispatch(getConcept({textSearch:conceptSearch}))
-
+          setIsStart(false)
+        
         }
         
     }
@@ -107,7 +111,9 @@ function Home(){
                     <div>
                     {(conceptSearch.length < 4)&&<p className='text-danger'>{t('type_four_or_more_letters')}</p>}
                     </div>
-                    <button onClick={onSearchClick}  className='btn btn-success d-inline mx-1 my-2'>
+                    
+                    
+                    <button onClick={onSearchClick}  className='btn btn-dark d-inline mx-1 my-2'>
                     {isLoading&& <span class="spinner-border spinner-border-sm " role="status" aria-hidden="true"></span> }
                     <span class="sr-only "> {t("search")}</span>
                     </button>
@@ -120,7 +126,7 @@ function Home(){
                         {concept&& <a className='text-primary mt-5 p-5' target='_blank' href={concept&&concept.readMore}>{t('get_more_informations')}</a>}
                     </div>
                 </div>
-                <NoConceptResultModal/>
+                {(!isStart&&!concept&&!isLoading)&&<NoConceptResultModal/>}
                 
 
                 

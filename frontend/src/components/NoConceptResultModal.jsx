@@ -48,9 +48,10 @@ function NoConceptResultModal(){
     <div className="text-center ">
 
     
-            <Modal  isOpen={modalIsOpen} onRequestClose ={closeModal} style={customStyles} contentLabel='add new concept' >
+            <Modal ariaHideApp={false}  isOpen={modalIsOpen} onRequestClose ={closeModal} style={customStyles} contentLabel='add new concept' >
+            <button className='btn-close text-end' onClick={closeModal}>X</button>
             <h2>{t('concept_not_found')}</h2>
-            <button className='btn-close' onClick={closeModal}>X</button>
+            
             <p>{t('concept_not_found_desc')}</p>
             <Link className='btn btn-success mt-4 mx-1'>{t('add_concept')}</Link>
             <Link onClick={'close the modal'} className='btn btn-danger mt-4 mx-1'>{t('cancel')}</Link>

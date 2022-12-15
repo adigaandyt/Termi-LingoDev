@@ -107,13 +107,7 @@ function Home(){
                     <div>
                     {(conceptSearch.length < 4)&&<p className='text-danger'>{t('type_four_or_more_letters')}</p>}
                     </div>
-<<<<<<< HEAD
-                    
-                    
-                    <button onClick={onSearchClick}  className='btn btn-dark d-inline mx-1 my-2'>
-=======
                     <button onClick={onSearchClick}  className='btn btn-success d-inline mx-1 my-2'>
->>>>>>> 3fc6934e0c95399596f0ce91b8d614d9d8ba4a40
                     {isLoading&& <span class="spinner-border spinner-border-sm " role="status" aria-hidden="true"></span> }
                     <span class="sr-only "> {t("search")}</span>
                     </button>

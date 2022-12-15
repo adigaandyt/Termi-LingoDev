@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react"
-import {useNavigate} from 'react-router-dom'
+import {useNavigate,Link} from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
 import {login,reset} from '../features/auth/authSlice'
 import { useTranslation } from "react-i18next"
@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next"
 import Spinner from "../components/Spinner"
 import {toast} from 'react-toastify'
 import {AiOutlineUser} from 'react-icons/ai'
+import {TiArrowBackOutline} from 'react-icons/ti'
 import "../styles/Inputs.css"
 
 function Login(){
@@ -75,8 +76,10 @@ function Login(){
             
             <div className='container mt-5 ' style={{"textAlign":"center"}} >
                 <h1 className="text-secondary my-5"><AiOutlineUser style={{"fontSize":"145%"}}/>{t('login')}</h1>
-            
-                <form className="form1" onSubmit={onSubmit}>
+                <div className='form1 text-start'>
+                    <Link to='/register' className='btn btn-outline-dark' ><TiArrowBackOutline style={{"fontSize":"150%"}}/> {t('register')}</Link>
+                </div>
+                <form className="form1 " onSubmit={onSubmit}>
                     <div class="form-group mt-3"> 
                     <input
                                 className="form-control"

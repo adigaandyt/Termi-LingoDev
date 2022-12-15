@@ -1,11 +1,12 @@
 import {React} from 'react'
 import { useState,useEffect } from "react"
-import {useNavigate} from 'react-router-dom'
+import {useNavigate,Link} from 'react-router-dom'
 import {useSelector ,useDispatch} from 'react-redux'
 import {register ,reset} from '../features/auth/authSlice'
 import Spinner from "../components/Spinner"
 import { toast } from "react-toastify"
 import {AiOutlineUserAdd} from 'react-icons/ai'
+import {TiArrowBackOutline} from 'react-icons/ti'
 import { useTranslation } from "react-i18next"
 import {MdLanguage} from 'react-icons/md'
 import cookies from 'js-cookie'
@@ -107,6 +108,9 @@ function Register(){
                     {t('register')}
                     </h1>
                     </label>
+            <div className='form1 text-start'>
+                    <Link to='/login' className='btn btn-outline-dark' ><TiArrowBackOutline style={{"fontSize":"150%"}}/> {t('login')}</Link>
+                </div>
         <form className="form1" onSubmit={onSubmit}>
             <div className="form-group mt-3"> 
                 <input className="form-control" type="name" placeholder={t('name')}  name="name" id="name"  value={name} onChange={onChange} required/>

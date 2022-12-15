@@ -13,15 +13,19 @@ import About from './pages/About';
 import Profile from './pages/Profile';
 import ResetPassword from './pages/ResetPassword';
 import NewConcept from './pages/NewConcept';
+import Footer from './components/Footer'
 
 function App() {
   return (
     <>
       <Router>
         <div>
-        <Header/>
+        <Header clas/>
           <Routes>
-            <Route path='/' element={<Home/>}/>
+
+            {/*<Route path='/' element={<PrivateRoute/>}>*/}
+              <Route path='/' element={<Home/>}/>
+            {/*</Route>*/}
             <Route path='/login' element={<Login/>} />
             <Route path='/register' element={<Register/>} />
             <Route path='/about' element={<About/>} />
@@ -39,6 +43,7 @@ function App() {
             
 
           </Routes>
+          <Footer/>
         </div>
       </Router>
       <ToastContainer/>

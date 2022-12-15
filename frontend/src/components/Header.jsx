@@ -6,6 +6,9 @@ import { useTranslation } from "react-i18next"
 import cookies from 'js-cookie'
 import "/node_modules/flag-icons/css/flag-icons.min.css";
 import {MdLanguage} from 'react-icons/md'
+import {ImExit,ImUserPlus} from 'react-icons/im'
+import {GoSignIn} from 'react-icons/go'
+// import {AiOutlineUserAdd} from 'react-icons/ai'
 import "../styles/Header.css"
 
 
@@ -86,10 +89,10 @@ function Header(){
                 </div>
             
             {!user?<>
-                <button onClick={onLogin} type='submit' className='btn btn-outline-secondary mx-1'>{t('login')}</button>
-                <button onClick={onRegister}  type='submit' className='btn btn-outline-secondary mx-1'>{t('register')}</button>
+                <button onClick={onLogin} type='submit' className='btn btn-outline-secondary mx-1'><GoSignIn/> {t('login')}</button>
+                <button onClick={onRegister}  type='submit' className='btn btn-outline-secondary mx-1'><ImUserPlus/> {t('register')}</button>
            </>:<>
-                <button onClick={onLogout}  type='submit' className='btn btn-outline-dark mx-1'>{t('logout')}</button>
+                <button onClick={onLogout}  type='submit' className='btn btn-outline-dark mx-1'><ImExit/> {t('logout')}</button>
            </>
            
             }

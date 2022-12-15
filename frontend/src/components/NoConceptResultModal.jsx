@@ -53,8 +53,8 @@ function NoConceptResultModal(){
             <h2>{t('concept_not_found')}</h2>
             
             <p>{t('concept_not_found_desc')}</p>
-            <Link className='btn btn-success mt-4 mx-1'>{t('add_concept')}</Link>
-            <Link onClick={'close the modal'} className='btn btn-danger mt-4 mx-1'>{t('cancel')}</Link>
+            <Link to='/new/concept' className='btn btn-success mt-4 mx-1'>{t('add_concept')}</Link>
+            <Link onClick={()=>{setModalIsOpen(false)}} className='btn btn-danger mt-4 mx-1'>{t('cancel')}</Link>
 
             
 

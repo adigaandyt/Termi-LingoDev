@@ -2,6 +2,7 @@ import {useTranslation} from 'react-i18next'
 import { useState } from "react"
 import Modal from 'react-modal'
 import {Link} from 'react-router-dom'
+import {BiError} from 'react-icons/bi'
 import '../styles/NoConceptResultModal.css'
 
 // width:'600px',
@@ -50,7 +51,7 @@ function NoConceptResultModal(){
     
             <Modal ariaHideApp={false}  isOpen={modalIsOpen} onRequestClose ={closeModal} style={customStyles} contentLabel='add new concept' >
             <button className='btn-close text-end' onClick={closeModal}>X</button>
-            <h2>{t('concept_not_found')}</h2>
+            <h2 ><BiError className='text-warning' style={{"fontSize":"150%"}}/> {t('concept_not_found')}</h2>
             
             <p>{t('concept_not_found_desc')}</p>
             <Link to='/new/concept' className='btn btn-success mt-4 mx-1'>{t('add_concept')}</Link>

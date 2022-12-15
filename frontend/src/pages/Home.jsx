@@ -1,5 +1,4 @@
-import Header  from '../components/Header'
-import {toast} from 'react-toastify'
+import { useNavigate , Link } from 'react-router-dom'
 import {useSelector,useDispatch} from 'react-redux'
 import { useEffect, useState } from 'react'
 import {getConcept,getConceptsNames,resetConcept} from '../features/concepts/conceptSlice'
@@ -7,11 +6,13 @@ import {GiArchiveResearch} from 'react-icons/gi'
 import { useTranslation } from 'react-i18next'
 import Definitions from '../components/Definitions'
 import "../styles/home.css"
+import NoConceptResultModal from '../components/NoConceptResultModal'
 
 
 
 function Home(){
     const {t}=useTranslation()
+    const navigate=useNavigate()
 
     const [conceptSearch,setConceptSearch]=useState('')
     const [languageChoosed,setLanguageChoosed]=useState({
@@ -46,10 +47,10 @@ function Home(){
     }
     const onSearchClick=()=>{
         if(conceptSearch.length>3){
-          dispatch(getConcept({textSearch:conceptSearch}))  
+          dispatch(getConcept({textSearch:conceptSearch}))
+
         }
         
-      
     }
     const onReset=()=>{
         dispatch(resetConcept())
@@ -106,12 +107,17 @@ function Home(){
                     <div>
                     {(conceptSearch.length < 4)&&<p className='text-danger'>{t('type_four_or_more_letters')}</p>}
                     </div>
+<<<<<<< HEAD
                     
                     
                     <button onClick={onSearchClick}  className='btn btn-dark d-inline mx-1 my-2'>
+=======
+                    <button onClick={onSearchClick}  className='btn btn-success d-inline mx-1 my-2'>
+>>>>>>> 3fc6934e0c95399596f0ce91b8d614d9d8ba4a40
                     {isLoading&& <span class="spinner-border spinner-border-sm " role="status" aria-hidden="true"></span> }
                     <span class="sr-only "> {t("search")}</span>
                     </button>
+                    <button onClick={()=>{navigate('/new/concept')}} className='btn btn-dark d-inline mx-1 my-2'>{t('add_new_concept')}</button>
                     <button onClick={onReset}  className='btn btn-secondary  mx-1 my-2'>{t("reset")}</button>
                     <Definitions languageChoosed={languageChoosed} concept={concept}/><br/>
                     <br/>
@@ -120,6 +126,9 @@ function Home(){
                         {concept&& <a className='text-primary mt-5 p-5' target='_blank' href={concept&&concept.readMore}>{t('get_more_informations')}</a>}
                     </div>
                 </div>
+                <NoConceptResultModal/>
+                
+
                 
 
                {user&&<h3 className='text-success'>You are connected with {user.email}</h3>}

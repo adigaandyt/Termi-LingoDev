@@ -24,7 +24,12 @@
     "software":"Software",
     "human_resources":"Homan Resources",
     "football":"Football",
-    "medicine":"Medicine"
+    "medicine":"Medicine",
+    "add_new_concept":"Add New Concept",
+    "concept_not_found":"Concept Not Found !",
+    "concept_not_found_desc":"The concept you are looking for does not exist in our database, if you want to add it click on Add Concept.",
+    "add_concept":"Add Concept",
+    "cancel":"Cancel"
 
 
 }

@@ -53,7 +53,11 @@ function Header(){
 
     return (
         <>
+<<<<<<< HEAD
         <nav className="navbar navbar-expand-lg navbar-light bg-warning">
+=======
+        <nav className="navbar navbar-expand-lg navbar-light bg-warning  w-100">
+>>>>>>> 3fc6934e0c95399596f0ce91b8d614d9d8ba4a40
             <Link to='/' id='titlestyle' className="navbar-brand text-secondary mx-3"> Termi</Link>
             <button className="navbar-toggler bg-none mx-2 text-light" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon "></span>

@@ -24,5 +24,10 @@
     "software":"תוכנה",
     "human_resources":"משאבי אינוש",
     "football":"כדורגל",
-    "medicine":"רפואה"
+    "medicine":"רפואה",
+    "add_new_concept":"הוספת מושג חדש",
+    "concept_not_found":"המושג לא נמצא !",
+    "concept_not_found_desc":"המושג שאתה מחפש לא קיים במסד הנתונים שלנו, אם אתה רוצה להוסיף אותו לחץ על הוסף מושג.",
+    "add_concept":"הוסף מושג",
+    "cancel":"ביטול"
 }

@@ -12,7 +12,11 @@ import {BrowserRouter as Router , Routes , Route} from 'react-router-dom'
 import About from './pages/About';
 import Profile from './pages/Profile';
 import ResetPassword from './pages/ResetPassword';
+<<<<<<< HEAD
 // import Footer from './components/Footer';
+=======
+import NewConcept from './pages/NewConcept';
+>>>>>>> 3fc6934e0c95399596f0ce91b8d614d9d8ba4a40
 
 function App() {
   return (
@@ -20,6 +24,7 @@ function App() {
       <Router>
         <div>
         <Header/>
+<<<<<<< HEAD
             <Routes>
               <Route path='/' element={<Home/>}/>
               <Route path='/login' element={<Login/>} />
@@ -35,6 +40,27 @@ function App() {
               
             </Routes>
           
+=======
+          <Routes>
+            <Route path='/' element={<Home/>}/>
+            <Route path='/login' element={<Login/>} />
+            <Route path='/register' element={<Register/>} />
+            <Route path='/about' element={<About/>} />
+            
+            <Route path='/profile' element={<PrivateRoute/>}>
+              <Route path='/profile' element={<Profile/>}/>
+            </Route>
+            <Route path='/reset' element={<PrivateRoute/>}>
+                <Route path='/reset' element={<ResetPassword/>}/>
+            </Route>
+            <Route path='/new/concept' element={<PrivateRoute/>}>
+              <Route path='/new/concept' element={<NewConcept/>}/>
+            </Route>
+
+            
+
+          </Routes>
+>>>>>>> 3fc6934e0c95399596f0ce91b8d614d9d8ba4a40
         </div>
       </Router>
       <ToastContainer/>

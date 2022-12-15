@@ -140,7 +140,7 @@ function Register(){
                 </select>
             </div>
 
-            <button id="rgbtn" className='btn btn-dark' type='submit'>
+            <button id="rgbtn" className='btn btn-dark mt-5' type='submit'>
             <span></span>
             <span></span>
             <span></span>

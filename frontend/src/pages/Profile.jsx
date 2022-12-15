@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 function Profile(){
     const {t}=useTranslation()
     const {user}=useSelector(state=>state.auth)
-    const {email,name,phoneNumber}=user
+    const {email,name,phoneNumber,language,category}=user
     return(<>
         <div className="container mt-5 py-5 text-center">
             <h1>{t('profile')}</h1>

@@ -103,7 +103,7 @@ function Login(){
                          />
                     </div>
                     {/* <button className='btn btn-dark text-light btn-profile btn-profile-login mt-5' type='submit'>{t('login')}</button> */}
-                    <button id="rgbtn" className="btn btn-dark" type='submit'><span></span><span></span><span></span><span></span>{t('login')}</button>
+                    <button id="rgbtn" className="btn btn-dark mt-3" type='submit'><span></span><span></span><span></span><span></span>{t('login')}</button>
                 
                 </form>
             </div>

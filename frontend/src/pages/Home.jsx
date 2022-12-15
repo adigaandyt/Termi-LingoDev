@@ -103,9 +103,11 @@ function Home(){
                                                     </>)})}
                     </datalist> 
 
-
+                    <div>
                     {(conceptSearch.length < 4)&&<p className='text-danger'>{t('type_four_or_more_letters')}</p>}
-                    <br/>
+                    </div>
+                    
+                    
                     <button onClick={onSearchClick}  className='btn btn-dark d-inline mx-1 my-2'>
                     {isLoading&& <span class="spinner-border spinner-border-sm " role="status" aria-hidden="true"></span> }
                     <span class="sr-only "> {t("search")}</span>

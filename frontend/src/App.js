@@ -20,7 +20,7 @@ function App() {
     <>
       <Router>
         <div>
-        <Header clas/>
+        <Header/>
           <Routes>
 
             {/*<Route path='/' element={<PrivateRoute/>}>*/}

@@ -63,7 +63,7 @@ function Home(){
     }
     return (
     
-            <div className='mt-2 py-5 container text-center bg-waring '>
+            <div className='mt-2 mb-5 py-5 container text-center bg-waring '>
                 <div id='t1'>
                     <label className='d-inline '>
                         <h4 className='text-secondary '>

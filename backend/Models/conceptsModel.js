@@ -1,10 +1,11 @@
 const mongoose=require('mongoose')
 
 const conceptSchema=mongoose.Schema({
-    categories:{
-        type:Array, 
-        default:[0]
-    },
+    categories:[{
+        type:mongoose.Schema.Types.ObjectId,
+        required:true,
+        ref:'Category'
+    }],
     shortDefinition:{
         type:Object,
         // required:[true,'Please add short definition'],
@@ -51,6 +52,10 @@ const conceptSchema=mongoose.Schema({
         type:String,
 
     },
+    accepted:{
+        type:Boolean,
+        default:false
+    }
     
 
 })

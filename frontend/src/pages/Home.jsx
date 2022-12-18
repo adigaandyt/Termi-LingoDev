@@ -152,7 +152,7 @@ function Home(){
                     
                     <button onClick={onSearchClick}  className='btn btn-success d-inline mx-1 my-2'>
                     {isLoading&& <span class="spinner-border spinner-border-sm " role="status" aria-hidden="true"></span> }
-                    <span class="sr-only "> {t("search")}</span>
+                    <span class=""> {t("search")}</span>
                     </button>
                     <button onClick={()=>{navigate('/new/concept')}} className='btn btn-dark d-inline mx-1 my-2'>{t('add_new_concept')}</button>
                     <button onClick={onReset}  className='btn btn-secondary  mx-1 my-2'>{t("reset")}</button>

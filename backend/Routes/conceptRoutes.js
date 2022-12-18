@@ -3,7 +3,7 @@ const { getConcept ,testConcept, getConceptsNames} = require('../Controllers/con
 const router=express.Router()
 const {protect}=require("../middleware/authMiddleware")
 
-router.post('/get/concept',getConcept)
+router.post('/get/concept/:categoryId',getConcept)
 router.post('/test',testConcept)
 router.get('/get/names',getConceptsNames)
 

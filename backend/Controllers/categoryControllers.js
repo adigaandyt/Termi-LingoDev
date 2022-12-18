@@ -19,8 +19,8 @@ const testCategories=asyncHandler( async(req,res)=>{
     }
 
 })
-//@desc testing in postman !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//@route GET /api/categories
+//@desc get all categories from th DB
+//@route GET /api/categories/get/all
 //@access private
 const getAllCategories=asyncHandler( async(req,res)=>{
     const response=await Category.find()

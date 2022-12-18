@@ -42,10 +42,8 @@ const getConcept=asyncHandler( async(req,res)=>{
     
     let concept
     const textSearch=req.body.textSearch.replaceAll(')',"\\$&").replaceAll('(',"\\$&")
-
     try {
-        const category=await Category.findById('639e49f8dfabd615c821584f')
-        console.log(category)
+        const category=await Category.findById(req.params.categoryId)
         if(!category){
             res.status(404)
             throw new Error("you have to choose Category")

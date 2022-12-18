@@ -2,6 +2,7 @@ import { useNavigate , Link } from 'react-router-dom'
 import {useSelector,useDispatch} from 'react-redux'
 import { useEffect, useState } from 'react'
 import {getConcept,getConceptsNames,resetConcept} from '../features/concepts/conceptSlice'
+import {getCategories} from '../features/categories/categorySlice'
 import {GiArchiveResearch} from 'react-icons/gi'
 import { useTranslation } from 'react-i18next'
 import Definitions from '../components/Definitions'
@@ -28,10 +29,12 @@ function Home(){
     const dispatch=useDispatch()
     const {user} =useSelector(state=>state.auth)
     const {concepts,names,concept,isLoading}=useSelector(state=>state.concept)
+    const {categories}=useSelector(state=>state.category)
 
 
     useEffect(()=>{
         dispatch(getConceptsNames())
+        dispatch(getCategories())
         
     },[])
 
@@ -60,6 +63,19 @@ function Home(){
         dispatch(resetConcept())
         setConceptSearch('')
 
+    }
+    const getCategoryName=(categoryNames)=>{
+        switch(true){
+            case english:{
+                return categoryNames.english
+            }
+            case hebrew:{
+                return categoryNames.hebrew
+            }
+            case arabic:{
+                return categoryNames.arabic
+            }
+        }
     }
     return (
     
@@ -96,7 +112,20 @@ function Home(){
                 </div>
                 <br/>
                 <div id='searchbtn' className='text-center'>
-                    <input value={conceptSearch} id="searchinput" list="brow" className='home-search mt-4' placeholder={t('type_your_concept_here')} onChange={(e)=>{setConceptSearch(e.target.value)}}/>
+                    <select className="select-input mt-5" name='language' >
+                        {(categories)&&
+                            categories.map(category=>{
+                                    {/* category.accepted&&<option></option> */}
+                                    return(category.accepted&&<option value={category.id}>{getCategoryName(category.categoryName)}</option>)
+                                    
+                                 
+                            })
+                        }
+                        {/* <option value="English">English</option>
+                        <option value="العربية">العربية</option>
+                        <option value="עברית">עברית</option> */}
+                    </select>
+                    <input value={conceptSearch} id="searchinput" list="brow" className='select-input mt-2' placeholder={t('type_your_concept_here')} onChange={(e)=>{setConceptSearch(e.target.value)}}/>
                     <datalist className='bg-warning' id="brow">
                             {(names && conceptSearch.length >= 3 )&&
                                              names.map((name)=>

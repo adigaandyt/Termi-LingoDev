@@ -17,6 +17,7 @@ import '../styles/NoConceptResultModal.css'
 const customStyles={
     content:{
         position: 'absolute',
+        width:'320px',
         height:'280px',
         top: '30%',
         left: '8%',

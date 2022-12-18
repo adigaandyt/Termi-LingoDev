@@ -6,6 +6,7 @@ import {getCategories} from '../features/categories/categorySlice'
 import {GiArchiveResearch} from 'react-icons/gi'
 import { useTranslation } from 'react-i18next'
 import Definitions from '../components/Definitions'
+import cookies from 'js-cookie'
 import "../styles/home.css"
 import NoConceptResultModal from '../components/NoConceptResultModal'
 
@@ -17,6 +18,7 @@ function Home(){
     const [isStart,setIsStart]=useState(true)
     const [conceptSearch,setConceptSearch]=useState('')
     const [modalIsOpen,setModalIsOpen]=useState(true)
+    const CategoryId=useState()
 
     const [languageChoosed,setLanguageChoosed]=useState({
         english:true,
@@ -30,6 +32,7 @@ function Home(){
     const {user} =useSelector(state=>state.auth)
     const {concepts,names,concept,isLoading}=useSelector(state=>state.concept)
     const {categories}=useSelector(state=>state.category)
+    const [categoryId,setCategoryId]=useState('639e49f8dfabd615c821584f')
 
 
     useEffect(()=>{
@@ -53,7 +56,7 @@ function Home(){
     }
     const onSearchClick=()=>{
         if(conceptSearch.length>3){
-          dispatch(getConcept({textSearch:conceptSearch}))
+          dispatch(getConcept({textSearch:conceptSearch,categoryId:categoryId}))
           setIsStart(false)
         
         }
@@ -65,17 +68,21 @@ function Home(){
 
     }
     const getCategoryName=(categoryNames)=>{
-        switch(true){
-            case english:{
+        switch(cookies.get('i18next')){
+            case 'en':{
                 return categoryNames.english
             }
-            case hebrew:{
+            case 'hb':{
                 return categoryNames.hebrew
             }
-            case arabic:{
+            case 'ar':{
                 return categoryNames.arabic
             }
         }
+    }
+    const OnSelectedCategory=(e)=>{
+        console.log(e.target.value)
+        setCategoryId(e.target.value)
     }
     return (
     
@@ -112,22 +119,12 @@ function Home(){
                 </div>
                 <br/>
                 <div id='searchbtn' className='text-center'>
-                    <select className="select-input mt-5" name='language' >
-                        {(categories)&&
-                            categories.map(category=>{
-                                    {/* category.accepted&&<option></option> */}
-                                    return(category.accepted&&<option value={category.id}>{getCategoryName(category.categoryName)}</option>)
-                                    
-                                 
-                            })
-                        }
-                        {/* <option value="English">English</option>
-                        <option value="العربية">العربية</option>
-                        <option value="עברית">עברית</option> */}
-                    </select>
-                    <input value={conceptSearch} id="searchinput" list="brow" className='select-input mt-2' placeholder={t('type_your_concept_here')} onChange={(e)=>{setConceptSearch(e.target.value)}}/>
-                    <datalist className='bg-warning' id="brow">
-                            {(names && conceptSearch.length >= 3 )&&
+                        <div className='row'>
+
+                            <div className='col-sm-6'>
+                            <input value={conceptSearch} id="searchinput" list="brow" className='select-input w-75  mt-2' placeholder={t('type_your_concept_here')} onChange={(e)=>{setConceptSearch(e.target.value)}}/>
+                            <datalist className='bg-warning' id="brow">
+                                    {(names && conceptSearch.length >= 3 )&&
                                              names.map((name)=>
                                              {
                                                return(<>
@@ -135,11 +132,22 @@ function Home(){
                                                         <option value={name.conceptName.english}/>
                                                         <option value={name.conceptName.hebrew}/>
                                                     </>)})}
-                    </datalist> 
+                            </datalist> 
+                            {(conceptSearch.length < 4)&&<p className='text-danger'>{t('type_four_or_more_letters')}</p>}
+                            </div>
+                            <div className='col-sm-6'>
+                            <select className="select-input w-75 mt-2" name='language' onChange={OnSelectedCategory}>
+                                <option value='639e49f8dfabd615c821584f'>{t('all')}</option>
 
-                    <div>
-                    {(conceptSearch.length < 4)&&<p className='text-danger'>{t('type_four_or_more_letters')}</p>}
-                    </div>
+                                {(categories)&&
+                                    categories.map(category=>{
+                                            return(category.accepted&&<option value={category._id}>{getCategoryName(category.categoryName)}</option>)
+                                    })
+                                }
+                                <option value='639e49f8dfabd615c821584f'>{t('other')}</option>
+                            </select>
+                            </div>
+                        </div>
                     
                     
                     <button onClick={onSearchClick}  className='btn btn-success d-inline mx-1 my-2'>

@@ -22,9 +22,9 @@ export const resetConcept=createAsyncThunk(
 //get concept
 export const getConcept=createAsyncThunk(
     'concepts/get',
-     async(searchText,thunkAPI)=>{
+     async(data,thunkAPI)=>{
         try {
-            return await conceptService.getConcept(searchText)
+            return await conceptService.getConcept(data)
         } catch (error) {
             const message=(error.response&&error.response.data&&error.response.data.message)
             ||error.message

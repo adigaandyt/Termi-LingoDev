@@ -39,7 +39,6 @@ const testConcept=asyncHandler( async(req,res)=>{
 //@route GET /api/concepts/get/concept
 //@access private
 const getConcept=asyncHandler( async(req,res)=>{
-    
     let concept
     const textSearch=req.body.textSearch.replaceAll(')',"\\$&").replaceAll('(',"\\$&")
     try {

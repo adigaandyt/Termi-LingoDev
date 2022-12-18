@@ -7,6 +7,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import Spinner from './components/Spinner';
+import $ from 'jquery';
 
 
 const container = document.getElementById('root');

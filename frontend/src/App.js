@@ -14,10 +14,15 @@ import Profile from './pages/Profile';
 import ResetPassword from './pages/ResetPassword';
 import NewConcept from './pages/NewConcept';
 import Footer from './components/Footer'
+import $ from 'jquery';
+
+import loadable from "@loadable/component";
+const Loader = loadable(()=>import("./styles/loader"));
 
 function App() {
   return (
     <>
+    <Loader/>
       <Router>
         <div>
         <Header/>
@@ -43,7 +48,7 @@ function App() {
             
 
           </Routes>
-          <Footer/>
+          
         </div>
       </Router>
       <ToastContainer/>

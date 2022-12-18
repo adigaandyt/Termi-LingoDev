@@ -6,10 +6,12 @@ import { useTranslation } from "react-i18next"
 import cookies from 'js-cookie'
 import "/node_modules/flag-icons/css/flag-icons.min.css";
 import {MdLanguage} from 'react-icons/md'
-import {ImExit,ImUserPlus} from 'react-icons/im'
+import {ImExit,ImUserPlus, ImProfile} from 'react-icons/im'
 import {GoSignIn} from 'react-icons/go'
+import $ from 'jquery'
 // import {AiOutlineUserAdd} from 'react-icons/ai'
 import "../styles/Header.css"
+
 
 
 
@@ -55,52 +57,43 @@ function Header(){
     }
 
     return (
+        
         <>
-        <nav className="navbar navbar-expand-lg navbar-light bg-warning">
-            <Link to='/' id='titlestyle' className="navbar-brand text-secondary mx-3"> Termi</Link>
-            <button className="navbar-toggler bg-none mx-2 text-light" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon "></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className='navbar-nav '>
-                <li className='nav-item mx-1 '>
-                    <Link id='textstyle' className="nav-link text-secondary " to='/' >{t('home')}</Link>
-                </li>
-                <li className='nav-item mx-1 '>
-                    <Link id='textstyle' className="nav-link text-secondary " to='/profile' >{t('profile')}</Link>
-                </li>
-                <li className='nav-item mx-1'>
-                    <Link id='textstyle' className="nav-link text-secondary" to='/about' >{t('about')}</Link>
-                </li>
-
-            </ul>
-            <div className='flex-container   mx-3'>
-            
-           
-                <div className="dropdown">
-                <button className="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <MdLanguage className='text-secondary' style={{"fontSize":"180%"}}/>
-                </button>
-                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a className="dropdown-item" name='en' onClick={onLanguageChange}><span class="fi fi-us"></span> English</a>
-                    <a className="dropdown-item" name='hb' onClick={onLanguageChange}><span class="fi fi-il"></span> עברית</a>
-                    <a className="dropdown-item" name='ar' onClick={onLanguageChange}><span class="fi fi-sa"></span> العربية</a>
+      
+        <div className='' style={{"height":"100px"}}>s</div>
+        <div dir='ltr' className="nav1">
+            <div className="content">
+                <div className="text">
+                    <Link to='/' id='titlestyle' className="navbar-brand text-secondary mx-3"> Termi</Link>
                 </div>
-                </div>
-            
-            {!user?<>
-                <button onClick={onLogin} type='submit' className='btn btn-outline-secondary mx-1'><GoSignIn/> {t('login')}</button>
-                <button onClick={onRegister}  type='submit' className='btn btn-outline-secondary mx-1'><ImUserPlus/> {t('register')}</button>
-           </>:<>
-                <button onClick={onLogout}  type='submit' className='btn btn-outline-dark mx-1'><ImExit/> {t('logout')}</button>
-           </>
-           
-            }
-                
+                <div className="btnb"><span></span></div>
+            </div>
+            <div className="box">
+                <i  className="lan">
+                    <div className="dropdown dropleft">
+                        <button className="lan" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <MdLanguage />
+                        </button>
+                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a className="dropdown-item" name='en' onClick={onLanguageChange}><span class="fi fi-us"></span> English</a>
+                            <a className="dropdown-item" name='hb' onClick={onLanguageChange}><span class="fi fi-il"></span> עברית</a>
+                            <a className="dropdown-item" name='ar' onClick={onLanguageChange}><span class="fi fi-sa"></span> العربية</a>
+                        </div>
+                    </div>
+                </i>
+                {!user?(
+                    <>
+                    <i className="log"><button onClick={onLogin} type="button"><GoSignIn/></button></i>
+                    <i className="plus"><button onClick={onRegister} type="button"><ImUserPlus/></button></i>
+                    </>
+                ):(
+                    <>
+                    <i className="exit"><button onClick={onLogout} type="button"><ImExit/></button></i>
+                    <i className="prof "><Link className='log' to='/profile' onClick={onLogin} type="button"><ImProfile/></Link></i>
+                    </>
+                )}
             </div>
         </div>
-        
-        </nav>
         
 
         

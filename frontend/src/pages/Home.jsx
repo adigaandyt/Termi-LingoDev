@@ -3,10 +3,10 @@ import {useSelector,useDispatch} from 'react-redux'
 import { useEffect, useState } from 'react'
 import {getConcept,getConceptsNames,resetConcept} from '../features/concepts/conceptSlice'
 import {getCategories} from '../features/categories/categorySlice'
-import {GiArchiveResearch} from 'react-icons/gi'
+import {BsTranslate} from 'react-icons/bs'
 import { useTranslation } from 'react-i18next'
 import Definitions from '../components/Definitions'
-import cookies from 'js-cookie'
+import {getCategoryName} from '../hooks/ExportsFunctions'
 import "../styles/home.css"
 import NoConceptResultModal from '../components/NoConceptResultModal'
 
@@ -67,30 +67,17 @@ function Home(){
         setConceptSearch('')
 
     }
-    const getCategoryName=(categoryNames)=>{
-        switch(cookies.get('i18next')){
-            case 'en':{
-                return categoryNames.english
-            }
-            case 'hb':{
-                return categoryNames.hebrew
-            }
-            case 'ar':{
-                return categoryNames.arabic
-            }
-        }
-    }
+    
     const OnSelectedCategory=(e)=>{
-        console.log(e.target.value)
         setCategoryId(e.target.value)
     }
     return (
     
             <div className='mt-2 mb-5 py-5 container text-center bg-waring '>
-                <div id='t1'>
+                <div dir='ltr' id='t1'>
                     <label className='d-inline '>
                         <h4 className='text-secondary '>
-                        <GiArchiveResearch className='text-primary' style={{"fontSize":"250%"}}/>{t("search_for_a_concept_to_show_its_definition")}</h4>
+                        <BsTranslate className='text-warning' style={{"fontSize":"250%"}}/> SEARCH FOR A CONCEPT TO SHOW IT'S DEFIFNITION</h4>
                     </label>
                 </div>
 

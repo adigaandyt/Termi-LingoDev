@@ -18,7 +18,7 @@ export const logout=createAsyncThunk('auth/logout', async()=>{
 export const register=createAsyncThunk(
     'auth/register',
      async(user,thunkAPI)=>{
-        try {
+        try { 
             return await authService.register(user)
         } catch (error) {
             const message=(error.response&&error.response.data&&error.response.data.message)

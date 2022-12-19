@@ -25,10 +25,10 @@ const userSchema=mongoose.Schema({
         enum:['English','עברית', 'العربية' ],
         default:'English'
        },
-    category:{
-        type:String,
+    categoryId:{
+        type:mongoose.Schema.Types.ObjectId,
         required:[true,'Please select a category'],
-        enum:['Software','Human Resources', 'Football','Medicine' ],
+        ref:"Category"
        },
     isAdmin:{
         type:Boolean,

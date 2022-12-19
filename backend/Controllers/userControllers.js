@@ -1,6 +1,7 @@
 const asyncHandler =require('express-async-handler')
 const bcrypt=require('bcryptjs')
 const User=require('../Models/usersModel')
+const Category=require('../Models/categoriesModel')
 const jwt =require('jsonwebtoken')
 
 
@@ -12,18 +13,27 @@ const generateToken=(id)=>{
 
 
 //@desc register a new user
-//@route POST /api/users  http://localhost:5000/api/users
+//@route POST /api/users/register/:CategoryId  http://localhost:5000/api/users/:categoryId
 //@access public
 const registrUser=asyncHandler( async (req,res)=>{
-    
-     const {email, password ,password2 ,name, phoneNumber ,language,category}=req.body.formData;
+    const categoryId=req.params.categoryId
+     const {email, password ,password2 ,name, phoneNumber ,language}=req.body;
+
+    if(!categoryId){
+        res.status(500)
+        throw new Error("You have to choose category , if there is a category choosen , try to switch it to other category and get back to category you want tot choose")
+    }
     if(password!==password2){
         res.status(500)
         throw new Error("You must to include a same passwords")
     }
     
     try {
-        
+        const category=await Category.findById(categoryId)
+        if(!category){
+            res.status(500)
+            throw new Error("You have to choose category , if there is a category choosen , try to switch it to other category and get back to category you want tot choose")
+        }
         const userExist=await User.findOne({email})
         //check if the user is exists by email
         if(userExist){
@@ -40,7 +50,7 @@ const registrUser=asyncHandler( async (req,res)=>{
             email,
             phoneNumber,
             language, 
-            category,
+            categoryId,
             password:hashPassword
         })
         if(user){
@@ -52,7 +62,7 @@ const registrUser=asyncHandler( async (req,res)=>{
                 password:user.password,
                 phoneNumber:user.phone_number,
                 language:user.language,
-                category:user.category,
+                categoryId:user.categoryId,
                 token:generateToken(user._id)
     
 

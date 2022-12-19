@@ -1,8 +1,9 @@
-import {React} from 'react'
+import {React,useContext} from 'react'
 import { useState,useEffect } from "react"
 import {useNavigate,Link} from 'react-router-dom'
 import {useSelector ,useDispatch} from 'react-redux'
 import {register ,reset} from '../features/auth/authSlice'
+import { getCategories } from '../features/categories/categorySlice'
 import Spinner from "../components/Spinner"
 import { toast } from "react-toastify"
 import {AiOutlineUserAdd} from 'react-icons/ai'
@@ -10,6 +11,7 @@ import {TiArrowBackOutline} from 'react-icons/ti'
 import { useTranslation } from "react-i18next"
 import {MdLanguage} from 'react-icons/md'
 import cookies from 'js-cookie'
+import {getCategoryName} from '../hooks/ExportsFunctions'
 import "../styles/Inputs.css"
 
 
@@ -18,8 +20,12 @@ function Register(){
     const {t,i18n}=useTranslation()
     const dispatch=useDispatch()
     const {user,isLoading,isSuccess,isError,message}=useSelector((state)=>state.auth)
+    const {categories}=useSelector(state=>state.category)
+    const [categoryId,setCategoryId]=useState('639e49f8dfabd615c821584f')
+
     const navigate=useNavigate()
     useEffect(()=>{
+        dispatch(getCategories())
         if(user){
             switch(user.language){
                 case 'English':{
@@ -61,7 +67,6 @@ function Register(){
         password2:'',
         phoneNumber:'',
         language:'English',
-        category:''
     })
 
     const {name,email,password,password2,phoneNumber,language}=formData;
@@ -69,8 +74,7 @@ function Register(){
 
     const onSubmit=(e)=>{
         e.preventDefault()
-        console.log(formData)
-        dispatch(register({formData}))
+        dispatch(register({formData:formData,categoryId:categoryId}))
     }
     const onChange=(e)=>{
         setFormData((prevState)=>{
@@ -82,8 +86,6 @@ function Register(){
        }
        //on the the user selcted language  for it self
        const onLanguageChange=(e)=>{
-        console.log(e.target.value)
-        console.log(e.target.name)
 
         setFormData((prevState)=>{
             return({
@@ -92,8 +94,6 @@ function Register(){
             })
         })}
         const onCategoryChange=(e)=>{
-            console.log(e.target.value)
-            console.log(e.target.name)
 
         }
        if(isLoading){
@@ -112,39 +112,47 @@ function Register(){
                     <Link to='/login' className='btn btn-outline-dark' ><TiArrowBackOutline style={{"fontSize":"150%"}}/> {t('login')}</Link>
                 </div>
         <form className="form1" onSubmit={onSubmit}>
-            <div className="form-group mt-3"> 
+            <div className="form-group mt-2"> 
                 <input className="form-control" type="name" placeholder={t('name')}  name="name" id="name"  value={name} onChange={onChange} required/>
             </div>
-            <div className="form-group mt-3"> 
+            <div className="form-group mt-2"> 
                 <input className="form-control" type='email' placeholder={t('email')} id='email' name='email' value={email} onChange={onChange} required/>
             </div>
-            <div className="form-group mt-3"> 
+            <div className="form-group mt-2"> 
                 <input className="form-control" type='password' placeholder={t('password')} id='password' name='password' value={password} onChange={onChange} required/>
             </div>
-            <div className="form-group mt-3"> 
+            <div className="form-group mt-2"> 
                 <input className="form-control" type='password' placeholder={t('confirm_password')} id='password2' name='password2' value={password2} onChange={onChange} required/>
             </div>
-            <div className="form-group mt-3"> 
+            <div className="form-group mt-2"> 
                 <input className="form-control" type='phoneNumber' placeholder={t('phone')} id='phoneNumber' name='phoneNumber' value={phoneNumber} onChange={onChange} required/>  
             </div>
             
-            <div className="form-group  mt-3">
+            <div className="form-group  mt-2">
                 <select className="select-input" name='language' onChange={onChange}>
                     <option value="English">English</option>
                     <option value="العربية">العربية</option>
                     <option value="עברית">עברית</option>
                 </select>
             </div>
-            <div className="form-group  mt-3">
-                <select className="select-input" name='category' onChange={onChange}>
+            <div className="form-group  mt-2">
+                {/* <select className="select-input" name='categoryId' onChange={onChange}>
                     <option value="Software">{t('software')}</option>
                     <option value="Human Resources">{t('human_resources')}</option>
                     <option value="Football">{t('football')}</option>
                     <option value="Medicine">{t('medicine')}</option>
+                </select> */}
+                <select className="select-input w-75 mt-2" name='categoryId' onChange={(e)=>{setCategoryId(e.target.value)}}>
+                                {(categories)&&
+                                    categories.map(category=>{
+                                            return(category.accepted&&<option value={category._id}>{getCategoryName(category.categoryName)}</option>)
+                                    })
+                                }
+                                <option value='639e49f8dfabd615c821584f'>{t('other')}</option>
                 </select>
             </div>
 
-            <button id="rgbtn" className='btn btn-dark mt-5' type='submit'>
+            <button id="rgbtn" className='btn btn-dark mt-3' type='submit'>
             <span></span>
             <span></span>
             <span></span>

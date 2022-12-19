@@ -80,7 +80,7 @@ function Login(){
                     <Link to='/register' className='btn btn-outline-dark' ><TiArrowBackOutline style={{"fontSize":"150%"}}/> {t('register')}</Link>
                 </div>
                 <form className="form1 " onSubmit={onSubmit}>
-                    <div class="form-group mt-3"> 
+                    <div className="form-group mt-3"> 
                     <input
                                 className="form-control"
                                 type='email'

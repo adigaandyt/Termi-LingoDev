@@ -136,13 +136,7 @@ function Register(){
                 </select>
             </div>
             <div className="form-group  mt-2">
-                {/* <select className="select-input" name='categoryId' onChange={onChange}>
-                    <option value="Software">{t('software')}</option>
-                    <option value="Human Resources">{t('human_resources')}</option>
-                    <option value="Football">{t('football')}</option>
-                    <option value="Medicine">{t('medicine')}</option>
-                </select> */}
-                <select className="select-input w-75 mt-2" name='categoryId' onChange={(e)=>{setCategoryId(e.target.value)}}>
+                <select className="select-input  mt-2" name='categoryId' onChange={(e)=>{setCategoryId(e.target.value)}}>
                                 {(categories)&&
                                     categories.map(category=>{
                                             return(category.accepted&&<option value={category._id}>{getCategoryName(category.categoryName)}</option>)

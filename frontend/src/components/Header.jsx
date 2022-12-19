@@ -75,9 +75,9 @@ function Header(){
                             <MdLanguage />
                         </button>
                         <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a className="dropdown-item" name='en' onClick={onLanguageChange}><span class="fi fi-us"></span> English</a>
-                            <a className="dropdown-item" name='hb' onClick={onLanguageChange}><span class="fi fi-il"></span> עברית</a>
-                            <a className="dropdown-item" name='ar' onClick={onLanguageChange}><span class="fi fi-sa"></span> العربية</a>
+                            <a className="dropdown-item" name='en' onClick={onLanguageChange}><span className="fi fi-us"></span> English</a>
+                            <a className="dropdown-item" name='hb' onClick={onLanguageChange}><span className="fi fi-il"></span> עברית</a>
+                            <a className="dropdown-item" name='ar' onClick={onLanguageChange}><span className="fi fi-sa"></span> العربية</a>
                         </div>
                     </div>
                 </i>

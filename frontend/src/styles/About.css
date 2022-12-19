@@ -1,0 +1,126 @@
+@media (max-width: 600px) {
+  .about-container {
+    /* Add styles for small screens here */
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .about-header {
+    flex-direction: column;
+  }
+
+  .about-title {
+    text-align: center;
+  }
+
+  .about-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .about-description {
+    text-align: center;
+  }
+
+  .about-features-list {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 601px) {
+  .about-container {
+    /* Add styles for larger screens here */
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+.about-container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  background: linear-gradient(to right, #FFC371, #FF5F6D);
+  color: white;
+  padding: 1em;
+  border-radius: 5px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.about-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+
+.about-title {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: bold;
+}
+
+.about-logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  object-fit: cover;
+  object-position: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.about-description {
+  font-size: 1.2em;
+  line-height: 1.5;
+  margin-bottom: 1em;
+  font-style: italic;
+}
+
+.about-features-title {
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: bold;
+}
+
+.about-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.about-feature {
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+  margin: 0.5em;
+  flex: 0 0 auto;
+}
+
+.about-feature-icon {
+  width: 25px;
+  height: 25px;
+  margin-right: 0.5em;
+  filter: grayscale(100%);
+  transition: filter 0.3s;
+}
+
+.about-feature:hover .about-feature-icon {
+  filter: grayscale(0%);
+}
+
+.about-feature-text {
+  flex: 1;
+}
+
+.about-credits {
+  font-size: 1.2em;
+  margin-top: 2em;
+  font-style: italic;
+}

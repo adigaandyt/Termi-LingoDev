@@ -14,7 +14,7 @@ import Profile from './pages/Profile';
 import ResetPassword from './pages/ResetPassword';
 import NewConcept from './pages/NewConcept';
 import Footer from './components/Footer'
-import $ from 'jquery';
+// import $ from 'jquery';
 
 import loadable from "@loadable/component";
 const Loader = loadable(()=>import("./styles/loader"));
@@ -44,11 +44,8 @@ function App() {
             <Route path='/new/concept' element={<PrivateRoute/>}>
               <Route path='/new/concept' element={<NewConcept/>}/>
             </Route>
-
-            
-
           </Routes>
-          
+          <Footer/>
         </div>
       </Router>
       <ToastContainer/>

@@ -89,7 +89,7 @@ function Header(){
                 ):(
                     <>
                     <i className="exit"><button onClick={onLogout} type="button"><ImExit/></button></i>
-                    <i className="prof "><Link className='log' to='/profile' onClick={onLogin} type="button"><ImProfile/></Link></i>
+                    <i className="prof "><button onClick={() => navigate('/profile')} type="button"><ImProfile/></button></i>
                     </>
                 )}
             </div>

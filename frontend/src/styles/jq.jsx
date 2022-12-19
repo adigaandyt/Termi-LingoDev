@@ -7,7 +7,7 @@ $('.btnb').click( function(){
 })
 
 $('.log').click( function(){
-    $(this).toggleClass('active');
+    $(this).toggleClass('nactive');
     $('.box').toggleClass('close');
 })
 

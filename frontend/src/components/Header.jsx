@@ -60,7 +60,7 @@ function Header(){
         
         <>
       
-        <div className='' style={{"height":"100px"}}>s</div>
+        
         <div dir='ltr' className="nav1">
             <div className="content">
                 <div className="text">

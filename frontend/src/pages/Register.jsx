@@ -101,7 +101,7 @@ function Register(){
        }
     return (
         <>
-            <div className='container mt-5 mb-5  ' style={{"textAlign":"center"}} >
+            <div className='container mb-5  ' style={{"textAlign":"center"}} >
                 <label className="text-secondary mb-25" style={{"fontSize":"250%"}}>
                     <h1>
                     <AiOutlineUserAdd    style={{"fontSize":"145%"}}/>

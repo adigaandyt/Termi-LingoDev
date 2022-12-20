@@ -1,5 +1,5 @@
 import React from 'react'
-import './jq.jsx'
+import './jq.js'
 
 
 export default class Loader extends React.Component {

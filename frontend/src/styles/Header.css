@@ -31,6 +31,7 @@
     background-color: #fafafa;
     box-shadow: 0 0 1rem #babbbc;
     animation: show-profile 0.5s forwards ease-in-out;
+    z-index: 99999;
   }
   @keyframes show-profile {
     0% {

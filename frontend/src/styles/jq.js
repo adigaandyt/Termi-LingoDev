@@ -6,8 +6,3 @@ $('.btnb').click( function(){
     $('.box').toggleClass('open');
 })
 
-$('.log').click( function(){
-    $(this).toggleClass('nactive');
-    $('.box').toggleClass('close');
-})
-

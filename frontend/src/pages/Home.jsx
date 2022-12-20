@@ -77,7 +77,7 @@ function Home(){
                 <div dir='ltr' id='t1'>
                     <label className='d-inline '>
                         <h4 className='text-secondary '>
-                        <BsTranslate className='text-warning' style={{"fontSize":"250%"}}/> SEARCH FOR A CONCEPT TO SHOW IT'S DEFIFNITION</h4>
+                        <BsTranslate className='text-warning capitalized' style={{"fontSize":"250%"}}/> SEARCH FOR A CONCEPT TO SHOW IT'S DEFIFNITION</h4>
                     </label>
                 </div>
 

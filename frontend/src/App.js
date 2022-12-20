@@ -15,8 +15,10 @@ import ResetPassword from './pages/ResetPassword';
 import NewConcept from './pages/NewConcept';
 import Footer from './components/Footer'
 import $ from 'jquery';
+import TestComponent from './pages/TestComponent'
 import loadable from "@loadable/component";
 const Loader = loadable(()=>import("./styles/loader"));
+
 
 function App() {
   return (
@@ -35,6 +37,7 @@ function App() {
               <Route path='/' element={<Home/>}/>
             {/*</Route>*/}
             <Route path='/login' element={<Login/>} />
+            <Route path='/testcom' element={<TestComponent/>} />
             <Route path='/register' element={<Register/>} />
             <Route path='/about' element={<About/>} />
             

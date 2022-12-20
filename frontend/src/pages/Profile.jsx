@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import {useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
@@ -6,6 +7,9 @@ function Profile(){
     const {t}=useTranslation()
     const {user}=useSelector(state=>state.auth)
     const {email,name,phoneNumber,language,category}=user
+    useEffect(()=>{
+        console.log(user)
+    },[user])
     return(<>
         <div className="container mt-5 py-5 text-center">
             <h1>{t('profile')}</h1>

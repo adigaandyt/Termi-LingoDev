@@ -1,3 +1,6 @@
+.capitalized {
+	text-transform: uppercase;
+  }
 #t1{
 	border-radius: 20px;
 	padding: 4px;

@@ -1,0 +1,22 @@
+.sun {
+    position: relative;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background-color: yellow;
+    transition: transform 1s ease-out;
+  }
+  
+  .sun-rising {
+    transform: translateY(-200px);
+  }
+  
+  .sun-setting {
+    transform: translateY(200px);
+  }
+  
+  .fa-sun {
+    font-size: 80px;
+    color: orange;
+  }
+  

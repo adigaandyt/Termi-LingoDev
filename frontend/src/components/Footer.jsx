@@ -1,15 +1,23 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom'
 import "../styles/Footer.css"
+import {ImExit,ImUserPlus, ImProfile} from 'react-icons/im'
+import {CgProfile, CgGames} from 'react-icons/cg'
+import {AiOutlineHome, AiOutlineSetting} from 'react-icons/ai'
+import {FcAbout} from 'react-icons/fc'
+import {TbPlaylistAdd} from 'react-icons/tb'
+
 
 export default function Footer(){
     const navigate = useNavigate();
     
     return(
-        <nav className="footer1">
-            <input type= "radio" name="nav-item" id="m-search"/><label onClick={() => console.log('/search')} id="l1" htmlFor="m-search"/>
-            <input type= "radio" name="nav-item" id="m-home"/><label onClick={() => navigate('/')} id="l2" htmlFor="m-home"/>
-            <input type= "radio" name="nav-item" id="m-profile"/><label onClick={() => navigate('/profile')} id="l3" htmlFor="m-profile"/>
+        <nav  dir='ltr'  className="footer1">
+            <input type= "radio" name="nav-item" id="m-home"/><label onClick={() => navigate('/')} id="l1"><AiOutlineHome/></label>
+            <input type= "radio" name="nav-item" id="m-search"/><label onClick={() => console.log('/games')} id="l2"><CgGames/></label>
+            <input type= "radio" name="nav-item" id="m-home"/><label onClick={() => console.log('/add')} id="l3"><TbPlaylistAdd/></label>
+            <input type= "radio" name="nav-item" id="m-home"/><label onClick={() => navigate('/about')} id="l4"><FcAbout/></label>
+            <input type= "radio" name="nav-item" id="m-profile"/><label onClick={() => console.log('/setting')} id="l5"><AiOutlineSetting/></label>
             
         </nav>  
     )

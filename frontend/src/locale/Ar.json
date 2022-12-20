@@ -31,7 +31,9 @@
     "add_concept":"إضافة مصطلح",
     "cancel":"الغاء",
     "other":"اخر",
-    "all":"الكل"
+    "all":"الكل",
+    "home_title":"ابحث عن مصطلح لإظهار",
+    "its_definition":"تعريفه"
    
 
 }

@@ -22,10 +22,9 @@ nav.footer1{
     position: absolute;
     left: 0;
     bottom: 0;
-    border-radius: 20px;
     z-index: -1;
     box-shadow: 1px 1px 2px 0px #fff;
-    background: #cdced0;
+    background:#6b6b69;
 }
 input{
     display: none;
@@ -34,9 +33,9 @@ label{
     text-decoration: none;
     font-family: sans-serif;
     text-transform: uppercase;
-    font-size: 14px;
+    font-size: 40px;
 	min-width: 100px;
-	height: 60px;
+	height: 20px;
 	margin: 10px 10px 20px;
 	text-align: center;
 	display: inline-grid;
@@ -100,89 +99,89 @@ label:hover {
 /*}*/
 
 /*** ICONS ***/
-label:before,
-label:after {
-	content: "";
-	position: absolute;
-	box-sizing: border-box;
-	transition: all 0.5s ease 0s;
-}
+/*label:before,*/
+/*label:after {*/
+/*	content: "";*/
+/*	position: absolute;*/
+/*	box-sizing: border-box;*/
+/*	transition: all 0.5s ease 0s;*/
+/*}*/
 
-label:hover:before,
-label:hover:after {
-	filter: brightness(1.5) drop-shadow(0px 0px 4px #ffc107);
-	transition: all 0.5s ease 0s;
-}
+/*label:hover:before,*/
+/*label:hover:after {*/
+/*	filter: brightness(1.5) drop-shadow(0px 0px 4px #ffc107);*/
+/*	transition: all 0.5s ease 0s;*/
+/*}*/
 
-input:checked + label:before, 
-input:checked + label:after {
-	filter: brightness(1.5) drop-shadow(0px 0px 2px var(--sel));
-	transition: all 0.5s ease 0s;
-}
-
-
-label[for=m-home]:before {
-	width: 30px;
-	height: 30px;
-	left: 30px;
-	top: 50px;
-	transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s;
-	border-radius: 2px;
-	background: 
-		conic-gradient(from 90deg at 65% 60%, var(--icon) 0 25%, #fff0 0 100%),
-		conic-gradient(from 180deg at 35% 60%, var(--icon) 0 25%, #fff0 0 100%),
-		conic-gradient(from 135deg at 50% 0%, var(--icon) 0 25%, #fff0 0 100%);
-	background-repeat: no-repeat;
-	background-size: 100% 100%, 100% 100%, 100% 27px;
-}
-
-label[for=m-home]:after {
-	width: 30px;
-	height: 30px;
-	left: 30px;
-	top: 44px;
-	border: 6px solid var(--icon);
-	border-right-width: 0;
-	border-bottom-width: 0;
-	transform: rotate(45deg);
-	border-radius: 5px;
-	transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s;
-}
+/*input:checked + label:before, */
+/*input:checked + label:after {*/
+/*	filter: brightness(1.5) drop-shadow(0px 0px 2px var(--sel));*/
+/*	transition: all 0.5s ease 0s;*/
+/*}*/
 
 
-label[for=m-search]:before {
-	width: 30px;
-	height: 30px;
-	left: 10px;
-	top: 39px;
-	border: 6px solid var(--icon);
-	border-radius: 100%;
-	transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s;
-}
+/*label[for=m-home]:before {*/
+/*	width: 30px;*/
+/*	height: 30px;*/
+/*	left: 30px;*/
+/*	top: 50px;*/
+/*	transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s;*/
+/*	border-radius: 2px;*/
+/*	background: */
+/*		conic-gradient(from 90deg at 65% 60%, var(--icon) 0 25%, #fff0 0 100%),*/
+/*		conic-gradient(from 180deg at 35% 60%, var(--icon) 0 25%, #fff0 0 100%),*/
+/*		conic-gradient(from 135deg at 50% 0%, var(--icon) 0 25%, #fff0 0 100%);*/
+/*	background-repeat: no-repeat;*/
+/*	background-size: 100% 100%, 100% 100%, 100% 27px;*/
+/*}*/
 
-label[for=m-search]:after {
-	width: 22px;
-	height: 9px;
-	left: 42px;
-	top: 63px;
-	transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s;
-	background: var(--icon);
-	transform-origin: left top;
-	transform: rotate(45deg);
-	border-radius: 0 10px 10px 0;
-}
+/*label[for=m-home]:after {*/
+/*	width: 30px;*/
+/*	height: 30px;*/
+/*	left: 30px;*/
+/*	top: 44px;*/
+/*	border: 6px solid var(--icon);*/
+/*	border-right-width: 0;*/
+/*	border-bottom-width: 0;*/
+/*	transform: rotate(45deg);*/
+/*	border-radius: 5px;*/
+/*	transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s;*/
+/*}*/
 
 
-label[for=m-profile]:before {
-	width: 42px;
-	height: 49px;
-	top: 36px;
-	background: 
-		radial-gradient(circle at 50% 15px, var(--icon) 0 12px, #fff0 13px 100%),
-		radial-gradient(circle at 50% 100%, var(--icon) 0 22px, #fff0 23px 100%);
-	left: 25px;
-	border-radius: 8px;
-}
+/*label[for=m-search]:before {*/
+/*	width: 30px;*/
+/*	height: 30px;*/
+/*	left: 10px;*/
+/*	top: 39px;*/
+/*	border: 6px solid var(--icon);*/
+/*	border-radius: 100%;*/
+/*	transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s;*/
+/*}*/
+
+/*label[for=m-search]:after {*/
+/*	width: 22px;*/
+/*	height: 9px;*/
+/*	left: 42px;*/
+/*	top: 63px;*/
+/*	transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s;*/
+/*	background: var(--icon);*/
+/*	transform-origin: left top;*/
+/*	transform: rotate(45deg);*/
+/*	border-radius: 0 10px 10px 0;*/
+/*}*/
+
+
+/*label[for=m-profile]:before {*/
+/*	width: 42px;*/
+/*	height: 49px;*/
+/*	top: 36px;*/
+/*	background: */
+/*		radial-gradient(circle at 50% 15px, var(--icon) 0 12px, #fff0 13px 100%),*/
+/*		radial-gradient(circle at 50% 100%, var(--icon) 0 22px, #fff0 23px 100%);*/
+/*	left: 25px;*/
+/*	border-radius: 8px;*/
+/*}*/
 
 
 input:checked + label {
@@ -202,9 +201,9 @@ input:checked + label[for=m-profile] {
 }
 
 
-@media only screen and (orientation: portrait) {
-	label { color: transparent !important; text-shadow: none !important;}
-}
+/*@media only screen and (orientation: portrait) {*/
+/*	label { color: transparent !important; text-shadow: none !important;}*/
+/*}*/
 
 @media only screen and (max-width: 450px){
 	/*#m-home:checked ~ .selector {*/
@@ -224,14 +223,18 @@ input:checked + label[for=m-profile] {
 	/*}*/
 	#l1 {
 		margin-left: -20px;
-		
 	}
 	#l2{
-		margin-left: 30px;
-		
+		margin-left: -25px;
 	}
 	#l3{
-		margin-left: 30px;
+		margin-left: -25px;
+	}
+	#l4{
+		margin-left: -25px;
+	}
+	#l5{
+		margin-left: -25px;
 	}
 
 }

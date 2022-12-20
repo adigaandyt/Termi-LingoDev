@@ -73,15 +73,23 @@ function Home(){
     }
     return (
     
-            <div className='mt-2 mb-5 py-5 container text-center bg-waring '>
-                <div dir='ltr' id='t1'>
+        <div className=' row  text-center mx-3 bg-waring'>
+          
+            <div id='back-img' className='col-sm-6' >
+                <div className='' id='t1'>
                     <label className='d-inline '>
-                        <h4 className='text-secondary '>
-                        <BsTranslate className='text-warning capitalized' style={{"fontSize":"250%"}}/> SEARCH FOR A CONCEPT TO SHOW IT'S DEFIFNITION</h4>
+                        <h4 className='text-secondary warp-text '>
+                        <BsTranslate className='text-warning capitalized' style={{"fontSize":"180%"}}/> {t('home_title')} <span className="text-warning">{t('its_definition')}</span> </h4>
                     </label>
                 </div>
+               
+            </div>
+            <div className='col-sm-6 mt-sm-5' >
+            
+            
 
-                <div className='btn-group home-search px-5' >
+
+                <div className='btn-group home-search ' >
                     <div id="lbtn">
                         <button
                         onClick={onChangeLanguage}
@@ -109,7 +117,7 @@ function Home(){
                         <div className='row'>
 
                             <div className='col-sm-6'>
-                            <input value={conceptSearch} id="searchinput" list="brow" className='select-input w-75  mt-2' placeholder={t('type_your_concept_here')} onChange={(e)=>{setConceptSearch(e.target.value)}}/>
+                            <input value={conceptSearch} id="searchinput" list="brow" className='select-input   mt-2' placeholder={t('type_your_concept_here')} onChange={(e)=>{setConceptSearch(e.target.value)}}/>
                             <datalist className='bg-warning' id="brow">
                                     {(names && conceptSearch.length >= 3 )&&
                                              names.map((name)=>
@@ -123,7 +131,7 @@ function Home(){
                             {(conceptSearch.length < 4)&&<p className='text-danger'>{t('type_four_or_more_letters')}</p>}
                             </div>
                             <div className='col-sm-6'>
-                            <select className="select-input w-75 mt-2" name='language' onChange={OnSelectedCategory}>
+                            <select className="select-input  mt-2 " id="searchinput" name='language' onChange={OnSelectedCategory}>
                                 <option value='639e49f8dfabd615c821584f'>{t('all')}</option>
 
                                 {(categories)&&
@@ -145,7 +153,6 @@ function Home(){
                     <button onClick={onReset}  className='btn btn-secondary  mx-1 my-2'>{t("reset")}</button>
                     <Definitions languageChoosed={languageChoosed} concept={concept}/><br/>
                     <br/>
-                    <br/>
                     <div className="pb-2">
                         {concept&& <a className='text-primary mt-5 p-5' target='_blank' href={concept&&concept.readMore}>{t('get_more_informations')}</a>}
                     </div>
@@ -156,7 +163,8 @@ function Home(){
                 
 
                {user&&<h3 className='text-success'>You are connected with {user.email}</h3>}
-            </div>
+           </div>
+        </div>
         
     )
 }

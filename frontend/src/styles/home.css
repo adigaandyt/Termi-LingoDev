@@ -3,8 +3,7 @@
   }
 #t1{
 	border-radius: 20px;
-	padding: 4px;
-	margin-bottom: 30px;
+	
 }
 #lbtn {
     position: relative;
@@ -19,7 +18,7 @@
 }
 #lbtn button{
     
-    margin-left: 10px;
+   
 	top: 0;
 	left: 0;
 	width: 100px;
@@ -39,11 +38,25 @@
 #searchbtn{
 	box-shadow: inset 0px 0px 10px 0px rgba(0.4, 0, 0, 0.4);
 	border-radius: 20px;
-	margin-top: 40px;
+	/*margin-top: 40px;*/
 }
 #searchbtn button{
 	justify-content: center;
 	align-items: center;
 	border-radius: 30px;
 }
-
+.warp-text {
+  color: white;
+  font-size: 30px;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  /*box-shadow: inset 0 0 0 3px white;*/
+}
+#searchinput{
+	width:90%;
+	
+	
+}
+/*#back-img{*/
+/*	background-image: url('');*/
+/*	margin-top: 30px;*/
+/*}*/

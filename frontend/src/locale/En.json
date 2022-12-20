@@ -31,7 +31,9 @@
     "add_concept":"Add Concept",
     "cancel":"Cancel",
     "other":"Other",
-    "all":"All"
+    "all":"All",
+    "home_title":"SEARCH FOR A CONCEPT TO SHOW IT'S",
+    "its_definition":"DEFINITION"
 
 
 }

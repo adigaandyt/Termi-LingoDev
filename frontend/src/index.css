@@ -9,6 +9,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-style: oblique;
   background-color: #f8f6f5;
+  height: 75rem;
 }
 
 code {

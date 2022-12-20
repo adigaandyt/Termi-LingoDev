@@ -59,9 +59,9 @@ function Header(){
     return (
         
         <>
-      
         
-        <div dir='ltr' className="nav1">
+        <div className='headers'>s</div>
+        <div dir='ltr' className="nav1 ">
             <div className="content">
                 <div className="text">
                     <Link to='/' id='titlestyle' className="navbar-brand text-secondary mx-3"> Termi</Link>

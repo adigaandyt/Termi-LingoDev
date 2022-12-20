@@ -80,7 +80,7 @@ function Definitions({concept,languageChoosed}){
     }
 
     return(<>
-    <div className=" py-3 ">
+    <div className="  ">
         <div className="container">
             <h3 className="text-dark my-1">{concept&&getConceptName()}</h3>
             <div className="row">

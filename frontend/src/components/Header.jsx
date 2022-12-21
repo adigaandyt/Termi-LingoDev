@@ -60,7 +60,7 @@ function Header(){
         
         <>
         
-        <div className='headers'>s</div>
+        
         <div dir='ltr' className="nav1 ">
             <div className="content">
                 <div className="text">

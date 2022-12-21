@@ -1,11 +1,10 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'
-import "../styles/Footer.css"
-import {ImExit,ImUserPlus, ImProfile} from 'react-icons/im'
-import {CgProfile, CgGames} from 'react-icons/cg'
-import {AiOutlineHome, AiOutlineSetting} from 'react-icons/ai'
-import {FcAbout} from 'react-icons/fc'
-import {TbPlaylistAdd} from 'react-icons/tb'
+import { useNavigate } from 'react-router-dom';
+import "../styles/Footer.css";
+import {CgGames} from 'react-icons/cg';
+import {AiOutlineHome, AiOutlineSetting} from 'react-icons/ai';
+import {FcAbout} from 'react-icons/fc';
+import {TbPlaylistAdd} from 'react-icons/tb';
 
 
 export default function Footer(){
@@ -20,5 +19,5 @@ export default function Footer(){
             <input type= "radio" name="nav-item" id="m-profile"/><label onClick={() => console.log('/setting')} id="l5"><AiOutlineSetting/></label>
             
         </nav>  
-    )
+    );
 }

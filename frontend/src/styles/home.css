@@ -1,6 +1,9 @@
 .capitalized {
 	text-transform: uppercase;
   }
+#ho{
+	margin-top: 80px;
+}  
 #t1{
 	border-radius: 20px;
 	
@@ -17,8 +20,6 @@
 	align-items: center;
 }
 #lbtn button{
-    
-   
 	top: 0;
 	left: 0;
 	width: 100px;
@@ -52,10 +53,19 @@
   /*box-shadow: inset 0 0 0 3px white;*/
 }
 #searchinput{
-	width:90%;
-	
+	width:50%;
 	
 }
+@media only screen and (max-width: 450px) {
+	#searchinput{
+		width: 75%;
+		
+	}
+	#btns{
+		width: 100%;
+	}
+}
+
 /*#back-img{*/
 /*	background-image: url('');*/
 /*	margin-top: 30px;*/

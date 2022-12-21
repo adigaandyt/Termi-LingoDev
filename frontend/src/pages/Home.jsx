@@ -73,9 +73,9 @@ function Home(){
     }
     return (
     
-        <div className=' row  text-center mx-3 bg-waring'>
+        <div id="ho" className='text-center mx-3'>
           
-            <div id='back-img' className='col-sm-6' >
+           
                 <div className='' id='t1'>
                     <label className='d-inline '>
                         <h4 className='text-secondary warp-text '>
@@ -83,13 +83,10 @@ function Home(){
                     </label>
                 </div>
                
-            </div>
-            <div className='col-sm-6 mt-sm-5' >
             
+            <div className='' >
             
-
-
-                <div className='btn-group home-search ' >
+                <div className='btn-group home-search' id="btns">
                     <div id="lbtn">
                         <button
                         onClick={onChangeLanguage}
@@ -117,13 +114,13 @@ function Home(){
                         <div className='row'>
 
                             <div className='col-sm-6'>
-                            <input value={conceptSearch} id="searchinput" list="brow" className='select-input   mt-2' placeholder={t('type_your_concept_here')} onChange={(e)=>{setConceptSearch(e.target.value)}}/>
+                            <input value={conceptSearch} id="searchinput" list="brow" className='select-input mt-2' placeholder={t('type_your_concept_here')} onChange={(e)=>{setConceptSearch(e.target.value)}}/>
                             <datalist className='bg-warning' id="brow">
                                     {(names && conceptSearch.length >= 3 )&&
                                              names.map((name)=>
                                              {
                                                return(<>
-                                                        <option  value={name.conceptName.arabic}/>
+                                                        <option value={name.conceptName.arabic}/>
                                                         <option value={name.conceptName.english}/>
                                                         <option value={name.conceptName.hebrew}/>
                                                     </>)})}
@@ -131,7 +128,7 @@ function Home(){
                             {(conceptSearch.length < 4)&&<p className='text-danger'>{t('type_four_or_more_letters')}</p>}
                             </div>
                             <div className='col-sm-6'>
-                            <select className="select-input  mt-2 " id="searchinput" name='language' onChange={OnSelectedCategory}>
+                            <select className="select-input mt-2 " id="searchinput" name='language' onChange={OnSelectedCategory}>
                                 <option value='639e49f8dfabd615c821584f'>{t('all')}</option>
 
                                 {(categories)&&

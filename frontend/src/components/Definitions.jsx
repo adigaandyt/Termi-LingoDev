@@ -3,10 +3,8 @@ import { useTranslation } from "react-i18next"
 import {BiShow,BiHide} from 'react-icons/bi'
 import React, { useState } from 'react';
 import "../styles/Inputs.css"
-
 function Definitions({concept,languageChoosed}){
     const { t }=useTranslation();
-    
     const getDefinition=(isLong)=>{
         let definition=""
         switch(true){
@@ -74,7 +72,6 @@ function Definitions({concept,languageChoosed}){
       setShowLongDefinition(!showLongDefinition);
     };
     return(<>
-    
     <div className='text-center'>
         <h3 className="text-dark my-3">{concept&&getConceptName()}</h3>
         {concept&&

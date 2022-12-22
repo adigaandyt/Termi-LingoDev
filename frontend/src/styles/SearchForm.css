@@ -7,11 +7,16 @@
     }
     #formSearch-item
     {
-    
        width: 65%;
-       text-align: center;
-       
-        
+       text-align: center;  
+    }
+    #parent{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #child{
+        width: 65%;
     }
     
 }

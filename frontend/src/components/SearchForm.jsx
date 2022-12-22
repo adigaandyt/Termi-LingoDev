@@ -54,8 +54,9 @@ import '../styles/SearchForm.css'
                         value={conceptSearch}
                         type="search" 
                         id="form1" 
+                        style={(conceptSearch.length <= 3&&conceptSearch.length >0)?({"border":"2px solid red"}) :({"border":"1px solid #6c757d"}) }
                         list='brow' 
-                        class="form-control border border-secondary "
+                        class="form-control  "
                         autoComplete='on'
                         onChange={(e)=>{setConceptSearch(e.target.value)}}
                         />
@@ -78,8 +79,6 @@ import '../styles/SearchForm.css'
                 
                     </datalist> 
                 </div>
-        
-                {(conceptSearch.length < 4)&&<p className='text-danger '>{t('type_four_or_more_letters')}</p>}
             </div>
             <div className=' mt-2' id='formSearch-item'>
                 <select className="form-select border-secondary" aria-label="Default select example" onChange={OnSelectedCategory}>

@@ -8,8 +8,10 @@ import { useTranslation } from 'react-i18next'
 import Definitions from '../components/Definitions'
 import {getCategoryName} from '../hooks/ExportsFunctions'
 import SearchForm from '../components/SearchForm'
+import ConceptCard from '../components/ConceptCard'
 import "../styles/home.css"
 import NoConceptResultModal from '../components/NoConceptResultModal'
+import ConceptCardsList from '../components/ConceptCardsList'
 
 
 
@@ -98,7 +100,7 @@ function Home(){
                 <br/>
                 <SearchForm/>
                 <Definitions languageChoosed={languageChoosed} concept={concept}/>
-                
+                <ConceptCardsList/>
 
                 
 

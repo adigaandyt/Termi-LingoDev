@@ -85,6 +85,29 @@ const getConceptsNames=asyncHandler( async(req,res)=>{
     
     })
 
+//@desc get concepts that user search for 
+//@route GET /api/concepts/get/concepts/:textsearch
+//@access private
+const getConcepts=asyncHandler( async(req,res)=>{
+    
+    let concepts
+    const textSearch=req.params.textsearch.replaceAll(')',"\\$&").replaceAll('(',"\\$&")
+    try {
+            concepts=await Concept.find({$or:[
+            {"conceptName.arabic":{ $regex:new RegExp(textSearch), "$options" : "iu"}},
+            {"conceptName.english":{ $regex:new RegExp(textSearch), "$options" : "iu"}},
+            {"conceptName.hebrew":{ $regex:new RegExp(textSearch), "$options" : "iu"}}
+        ]})
+         
+    } catch (error) {
+        res.status(500)
+        throw new Error("Some thing is wrong !" )
+    }
+    
+     res.status(200).json(concepts)
+    
+    })
+
 
 
 
@@ -94,5 +117,6 @@ const getConceptsNames=asyncHandler( async(req,res)=>{
 module.exports={
    getConcept,
    testConcept,
-   getConceptsNames
+   getConceptsNames,
+   getConcepts
 }

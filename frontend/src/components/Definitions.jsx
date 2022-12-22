@@ -1,27 +1,12 @@
+import { MDBCollapse, MDBBtn, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import { useTranslation } from "react-i18next"
 import {BiShow,BiHide} from 'react-icons/bi'
-import { useState } from "react";
+import React, { useState } from 'react';
 import "../styles/Inputs.css"
+
 function Definitions({concept,languageChoosed}){
     const { t }=useTranslation();
     
-    const [showLong,setShowLong]=useState(false)
-    const [showShort,setShowShort]=useState(true)
-    const [conceptName,setConceptName]=useState('')
-    const onLongchange=()=>{
-        if (showLong) {
-            setShowLong(false)
-        } else {
-            setShowLong(true)
-        }
-    }
-    const onShortchange=()=>{
-        if (showShort) {
-            setShowShort(false)
-        } else {
-            setShowShort(true)
-        }
-    }
     const getDefinition=(isLong)=>{
         let definition=""
         switch(true){
@@ -78,23 +63,45 @@ function Definitions({concept,languageChoosed}){
       
         
     }
-
+    const [showShortDefinition, setShowShortDefinition] = useState(false);
+    const [showLongDefinition, setShowLongDefinition] = useState(false);
+  
+    const toggleLongDefinition = () => setShowShortDefinition(!showShortDefinition);
+    const toggleShortDefinition = () => setShowLongDefinition(!showLongDefinition);
+  
+    const toggleBothDefinitions = () => {
+      setShowShortDefinition(!showShortDefinition);
+      setShowLongDefinition(!showLongDefinition);
+    };
     return(<>
-    <div className="  ">
-        <div className="container">
-            <h3 className="text-dark my-1">{concept&&getConceptName()}</h3>
-            <div className="row">
-                <div className="col-sm  text-start">
-                    <p onClick={onShortchange}> {t("short_definition")} {showShort?<BiShow/>:<BiHide/>}</p>
-                    <textarea id="definitionarea" value={concept?getDefinition(false):""}  className={showShort?"w-100 d-inline":"w-100 d-none"}  disabled/>
-                </div>
-                <div className="col-sm text-start">
-                    <p onClick={onLongchange}> {t("long_definition")} {showLong?<BiShow/>:<BiHide/>}</p>
-                    <textarea id="definitionarea" value={concept?getDefinition(true):""} className={showLong?"w-100 h-100 d-inline":"w-100 d-none"} disabled />
-                </div>
-            </div>
+    
+    <div className='text-center'>
+        <h3 className="text-dark my-3">{concept&&getConceptName()}</h3>
+        {concept&&
+        <div>
+            <button onClick={toggleLongDefinition} className='btn btn-primary m-1'>{showShortDefinition?<BiShow style={{"fontSize":"180%"}}/>:<BiHide style={{"fontSize":"180%"}}/>} {t('short_definition')}</button>
+            <button onClick={toggleShortDefinition} className='btn btn-primary m-1'>{showLongDefinition?<BiShow style={{"fontSize":"180%"}}/>:<BiHide style={{"fontSize":"180%"}}/>}  {t('long_definition')}</button>
+            <button onClick={toggleBothDefinitions} className='btn btn-dark m-1'>{t('show_both_definitions')}</button>
+        </div>}
+      <MDBRow className='row'>
+      <div  className='col-sm-6'>
+
+        <MDBCol>
+          <MDBCollapse show={showShortDefinition} className='mt-3'>
+          {concept?getDefinition(false):""}
+          </MDBCollapse>
+        </MDBCol>
         </div>
-    </div>
+        <div  className='col-sm-6'>
+        <MDBCol>
+          <MDBCollapse show={showLongDefinition} className='mt-3'>
+          {concept?getDefinition(true):""}
+          </MDBCollapse>
+        </MDBCol>
+        </div>
+      </MDBRow>
+      {(concept&&showLongDefinition)&& <a className='text-primary mt-5 p-5' target='_blank' href={concept&&concept.readMore}>{t('get_more_informations')}</a>}
+      </div>
     </>)
 }
 export default Definitions

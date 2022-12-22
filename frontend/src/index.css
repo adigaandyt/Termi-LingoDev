@@ -9,7 +9,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-style: oblique;
   background-color: #f8f6f5;
-  height: 75rem;
+  height: 66rem;
 }
 
 code {
@@ -97,7 +97,7 @@ li {
 .home-search{
   /*width:17rem;*/
   /*height: 35px;*/
-  padding-right: 5px;
+  /* padding-right: 5px; */
 }
 .button-group{
 border-radius: 0%;

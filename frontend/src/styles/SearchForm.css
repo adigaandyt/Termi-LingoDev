@@ -1,0 +1,18 @@
+
+@media only screen and (min-width: 800px) {
+	#formsearch{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #formSearch-item
+    {
+        /* position: absolute; */
+    
+       width: 60%;
+       text-align: center;
+       
+        
+    }
+    
+}

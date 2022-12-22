@@ -21,16 +21,11 @@ const Loader = loadable(()=>import("./styles/loader"));
 function App() {
   return (
     <>
-
-   
-
-   
     <Loader/>
       <Router>
         <div>
         <Header/>
           <Routes>
-
             {/*<Route path='/' element={<PrivateRoute/>}>*/}
               <Route path='/' element={<Home/>}/>
             {/*</Route>*/}

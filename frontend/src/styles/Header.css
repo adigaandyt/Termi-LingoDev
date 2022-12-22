@@ -173,9 +173,9 @@
   .nav1 .box button{
     background-color: #ececec;
     border-radius: 50px;
-    height: 50px;
+    height: 100%;
     border: #ececec;
-    width: 30px;
+    width: 100%;
     margin-right: 8px;
     margin-top: -10px
   }
@@ -224,7 +224,8 @@
       .nav1 .box button{
           /*border: red solid;*/
           padding-left: 10px;
-          height: 50px;
+          height: 100%;
+          width: 100%;
           color: black;
           /*margin-right: 15px;*/
       }

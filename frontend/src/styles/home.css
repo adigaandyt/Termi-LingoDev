@@ -4,10 +4,7 @@
 #ho{
 	margin-top: 80px;
 }  
-#t1{
-	border-radius: 20px;
-	
-}
+
 #lbtn {
     position: relative;
 	top: 0;
@@ -30,12 +27,8 @@
 	border-radius: 30px;
 	text-decoration: none;
 }
-.text-center {
-    margin-top: 30px;
-}
-.btn-group{
-    width: 400px;
-}
+
+
 #searchbtn{
 	box-shadow: inset 0px 0px 10px 0px rgba(0.4, 0, 0, 0.4);
 	border-radius: 20px;

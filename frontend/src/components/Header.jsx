@@ -8,8 +8,6 @@ import "/node_modules/flag-icons/css/flag-icons.min.css";
 import {MdLanguage} from 'react-icons/md'
 import {ImExit,ImUserPlus, ImProfile} from 'react-icons/im'
 import {GoSignIn} from 'react-icons/go'
-import $ from 'jquery'
-// import {AiOutlineUserAdd} from 'react-icons/ai'
 import "../styles/Header.css"
 
 
@@ -55,7 +53,6 @@ function Header(){
         
        
     }
-
     return (
         
         <>
@@ -66,7 +63,8 @@ function Header(){
                 <div className="text">
                     <Link to='/' id='titlestyle' className="navbar-brand text-secondary mx-3"> Termi</Link>
                 </div>
-                <div className="btnb"><span></span></div>
+                <div className="btnb" ><span></span></div>
+
             </div>
             <div className="box">
                 <i  className="lan">
@@ -97,7 +95,7 @@ function Header(){
         
 
         
-        
+       
         </>
     )
 }

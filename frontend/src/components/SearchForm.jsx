@@ -6,6 +6,7 @@ import {getCategories} from '../features/categories/categorySlice'
 import {getConcept,getConceptsNames,resetConcept} from '../features/concepts/conceptSlice'
 import {useTranslation} from 'react-i18next'
 import {getCategoryName} from '../hooks/ExportsFunctions'
+import NoConceptResultModal from './NoConceptResultModal'
 import '../styles/SearchForm.css'
 
 
@@ -16,6 +17,7 @@ import '../styles/SearchForm.css'
  function SearchForm(){
     const {t}=useTranslation()
     const dispatch =useDispatch();
+    const [isStart,setIsStart]=useState(true);
     const {concepts,names,concept,isLoading}=useSelector(state=>state.concept);
     const {categories}=useSelector(state=>state.category);
 
@@ -29,7 +31,7 @@ import '../styles/SearchForm.css'
         e.preventDefault()
         if(conceptSearch.length>3){
           dispatch(getConcept({textSearch:conceptSearch,categoryId:categoryId}))
-        //   setIsStart(false)
+          setIsStart(false)
         } 
     }
     const OnSelectedCategory=(e)=>{
@@ -42,7 +44,7 @@ import '../styles/SearchForm.css'
     }
 
     return(<>
-       
+       {(!isStart&&!concept&&!isLoading)&&<NoConceptResultModal/>}
         <form onSubmit={onSearchClick}>
         <div className='row ' id='formsearch'>
             <div className='' id='formSearch-item'>
@@ -62,7 +64,7 @@ import '../styles/SearchForm.css'
                     <button type="button" className="btn btn-warning" onClick={onSearchClick}>
                         <i class="fas fa-search"></i>
                     </button>
-                    <button onClick={onReset} type='button' className='btn btn-secondary'>{t('reset')}</button>
+                    <button onClick={onReset} type='button' className='btn btn-secondary'> Reset</button>
 
                     <datalist className='bg-light w-100' id="brow">
                         {(names && conceptSearch.length >= 3 )&&

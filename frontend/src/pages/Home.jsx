@@ -16,7 +16,6 @@ import NoConceptResultModal from '../components/NoConceptResultModal'
 function Home(){
     const {t}=useTranslation()
     const navigate=useNavigate()
-    const [isStart,setIsStart]=useState(true)
     const [conceptSearch,setConceptSearch]=useState('')
     const [modalIsOpen,setModalIsOpen]=useState(true)
 
@@ -54,12 +53,7 @@ function Home(){
         })
 
     }
-    const onSearchClick=()=>{
-        if(conceptSearch.length>3){
-          dispatch(getConcept({textSearch:conceptSearch,categoryId:categoryId}))
-          setIsStart(false)
-        } 
-    }
+
     const onReset=()=>{
         dispatch(resetConcept())
         setConceptSearch('')
@@ -71,12 +65,13 @@ function Home(){
     
         <div id="ho" className=' mx-3'>
           
-           
+               
                 <div className='' id='t1'>
                     <label className='d-inline '>
                         <h4 className='text-secondary warp-text '>
                         <BsTranslate className='text-warning capitalized' style={{"fontSize":"180%"}}/> {t('home_title')} <span className="text-warning">{t('its_definition')}</span> </h4>
                     </label>
+                    
                 </div>
               
             
@@ -103,8 +98,6 @@ function Home(){
                 <br/>
                 <SearchForm/>
                 <Definitions languageChoosed={languageChoosed} concept={concept}/>
-               
-                {(!isStart&&!concept&&!isLoading)&&<NoConceptResultModal/>}
                 
 
                 

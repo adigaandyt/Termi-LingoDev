@@ -52,13 +52,11 @@ function Home(){
             })
         })
     }
-    if(isLoading){
-       return <Spinner/>
-    }
+  
     return (
     
         <div id="ho" className=' mx-3'>
-          
+          {isLoading&&<Spinner/>}
                
                 <div className='' id='t1'>
                     <label className='d-inline '>

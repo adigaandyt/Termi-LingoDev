@@ -58,7 +58,7 @@
     width: 230px;
     height: 150px;
     background-color: #ffc107;
-    left: 0;
+    left: -5px;
     top: -20px;
     z-index: -1;
     transform: rotate(-8deg);
@@ -148,7 +148,6 @@
     height: 90px;
     opacity: 0;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.7);
     position: absolute;
     top: 50%;
     right: 0%;
@@ -193,15 +192,6 @@
   .nav1 .box.open i {
     left: 60px;
   }
-  /* .profile .box.open i:nth-of-type(1) {
-    transform: rotate(-90deg) translateX(120px) rotate(90deg);
-    transition-delay: 0s;
-    display: none;
-  } */
-  /* .profile .box.open i:nth-of-type(2) {
-    transform: rotate(-45deg) translateX(120px) rotate(45deg);
-    transition-delay: 0.1s;
-  } */
   .nav1 .box.open i:nth-of-type(1) {                                  
     transform: rotate(190deg) translateX(170px) rotate(170deg);
     transition-delay: 0.2s;
@@ -215,19 +205,12 @@
     transform: rotate(160deg) translateX(130px) rotate(-160deg);
     transition-delay: 0.4s;
   }
-  /* .profile .box.open i:nth-of-type(4) {
-    transform: rotate(100deg) translateX(60px) rotate(-100deg);
-    transition-delay: 0.2s;
-    
-  } */
   @media only screen and (max-width: 450px) {
       .nav1 .box button{
-          /*border: red solid;*/
           padding-left: 10px;
           height: 100%;
           width: 100%;
           color: black;
-          /*margin-right: 15px;*/
       }
       .nav1 .box{
           right: -10%;

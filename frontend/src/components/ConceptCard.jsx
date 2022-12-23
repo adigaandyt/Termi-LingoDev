@@ -40,6 +40,7 @@ function ConceptCard({concept,languageChoosed}){
 
                 </div>
             </div>
+          
         </div>
     </>)
 }

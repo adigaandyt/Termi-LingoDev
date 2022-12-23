@@ -90,6 +90,10 @@ function Home(){
                 <br/>
                 <SearchForm/>
                 <Definitions languageChoosed={languageChoosed} concept={concept}/>
+                <div>
+                <hr className='my-5  dashed'/>
+                </div>
+                
                 <ConceptCardsList languageChoosed={languageChoosed}/>
 
                 

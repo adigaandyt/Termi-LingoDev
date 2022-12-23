@@ -20,7 +20,7 @@
     bottom: 0;
     z-index: -1;
     box-shadow: 1px 1px 2px 0px #fff;
-    background:#6b6b69;
+    background: #6c757d;
 }
 input{
     display: none;

@@ -3,7 +3,7 @@ import { Input } from 'mdb-ui-kit'; // module
 import { useEffect,useState } from 'react';
 import {useSelector,useDispatch} from 'react-redux'
 import {getCategories} from '../features/categories/categorySlice'
-import {getConcept,getConceptsNames,resetConcept} from '../features/concepts/conceptSlice'
+import {getConcept,getConceptsNames,resetConcept,getConcepts} from '../features/concepts/conceptSlice'
 import {useTranslation} from 'react-i18next'
 import {getCategoryName} from '../hooks/ExportsFunctions'
 import NoConceptResultModal from './NoConceptResultModal'
@@ -31,6 +31,7 @@ import '../styles/SearchForm.css'
         e.preventDefault()
         if(conceptSearch.length>3){
           dispatch(getConcept({textSearch:conceptSearch,categoryId:categoryId}))
+          dispatch(getConcepts({data:conceptSearch}))
           setIsStart(false)
         } 
     }
@@ -40,6 +41,7 @@ import '../styles/SearchForm.css'
     const onReset=()=>{
         dispatch(resetConcept())
         setConceptSearch('')
+        setIsStart(true)
 
     }
 

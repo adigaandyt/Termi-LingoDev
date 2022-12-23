@@ -34,7 +34,10 @@
     "other":"Other",
     "all":"All",
     "home_title":"SEARCH FOR A CONCEPT TO SHOW IT'S",
-    "its_definition":"DEFINITION"
+    "its_definition":"DEFINITION",
+    "accepted_by_admin":"Accepted by admin",
+    "not_accepted_by_admin_yet":"Not Accepted by admin yet",
+    "choose":"Choose"
 
 
 }

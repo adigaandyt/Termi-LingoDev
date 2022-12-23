@@ -49,6 +49,21 @@ export const getConceptsNames=createAsyncThunk(
      }
 
 )
+//get Concepts that are close to the textSearch
+export const getConcepts=createAsyncThunk(
+    'get/concepts',
+     async(data,thunkAPI)=>{
+        try {
+            return await conceptService.getConcepts(data)
+        } catch (error) {
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
 
 
 
@@ -89,6 +104,22 @@ export const conceptSlice=createSlice({
         })
         .addCase(resetConcept.fulfilled,(state)=>{
             state.concept=null;
+            state.concepts=null;
+        })
+        .addCase(getConcepts.pending,(state)=>{
+            state.isLoading=true
+        })
+        .addCase(getConcepts.rejected,(state,action)=>{
+            state.isLoading=false
+            state.isError=true
+            state.concept=null
+            state.message=action.payload
+            
+        })
+        .addCase(getConcepts.fulfilled,(state,action)=>{
+            state.isLoading=false
+            state.isSuccess=true
+            state.concepts=action.payload
         })
     }
 

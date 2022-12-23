@@ -15,11 +15,20 @@ const getConceptsNames =async ()=>{
     return response.data
 }
 
+//get concepts the close to textSearch 
+const getConcepts =async (data)=>{
+    console.log(data)
+    const response=await axios.get(API_URL+`/get/concepts/${data.data}`) 
+    
+    return response.data
+}
+
 
 
 const conceptService={
     getConcept,
-    getConceptsNames
+    getConceptsNames,
+    getConcepts
     
 }
 

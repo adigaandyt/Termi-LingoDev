@@ -2,14 +2,15 @@ import { MDBCollapse, MDBBtn, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import { useTranslation } from "react-i18next"
 import {BiShow,BiHide} from 'react-icons/bi'
 import React, { useState } from 'react';
+import { getConceptName } from '../hooks/ExportsFunctions';
 import "../styles/Inputs.css"
 function Definitions({concept,languageChoosed}){
     const { t }=useTranslation();
     const getDefinition=(isLong)=>{
-        let definition=""
+        let definition="" 
         switch(true){
             case languageChoosed.english :{
-                if(isLong){
+                if(isLong){ 
                     definition=concept.longDefinition.english
                 }else{
                     definition=concept.shortDefinition.english 
@@ -38,29 +39,7 @@ function Definitions({concept,languageChoosed}){
         return definition
         
     }
-    const getConceptName =()=>{
-        
-        switch(true){
-            case languageChoosed.english :{
-                return concept.conceptName.english
-                break;
-            }
-            case languageChoosed.arabic :{
-                return concept.conceptName.arabic
-               
-                break;
-            }
-            case languageChoosed.hebrew :{
-                return concept.conceptName.hebrew
-               
-                break;
-            }
 
-            default:break
-        }
-      
-        
-    }
     const [showShortDefinition, setShowShortDefinition] = useState(false);
     const [showLongDefinition, setShowLongDefinition] = useState(false);
   
@@ -73,7 +52,7 @@ function Definitions({concept,languageChoosed}){
     };
     return(<>
     <div className='text-center'>
-        <h3 className="text-dark my-3">{concept&&getConceptName()}</h3>
+        <h3 className="text-dark my-3">{concept&&getConceptName(languageChoosed,concept)}</h3>
         {concept&&
         <div>
             <button onClick={toggleLongDefinition} className='btn btn-primary m-1'>{showShortDefinition?<BiShow style={{"fontSize":"180%"}}/>:<BiHide style={{"fontSize":"180%"}}/>} {t('short_definition')}</button>

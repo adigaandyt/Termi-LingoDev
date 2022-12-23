@@ -12,14 +12,12 @@ import ConceptCard from '../components/ConceptCard'
 import "../styles/home.css"
 import NoConceptResultModal from '../components/NoConceptResultModal'
 import ConceptCardsList from '../components/ConceptCardsList'
+import Spinner from '../components/Spinner'
 
 
 
 function Home(){
     const {t}=useTranslation()
-    const navigate=useNavigate()
-    const [conceptSearch,setConceptSearch]=useState('')
-    const [modalIsOpen,setModalIsOpen]=useState(true)
 
     const [languageChoosed,setLanguageChoosed]=useState({
         english:true,
@@ -53,16 +51,10 @@ function Home(){
                 [e.target.name]:true
             })
         })
-
     }
-
-    const onReset=()=>{
-        dispatch(resetConcept())
-        setConceptSearch('')
-
+    if(isLoading){
+       return <Spinner/>
     }
-    
- 
     return (
     
         <div id="ho" className=' mx-3'>
@@ -100,7 +92,7 @@ function Home(){
                 <br/>
                 <SearchForm/>
                 <Definitions languageChoosed={languageChoosed} concept={concept}/>
-                <ConceptCardsList/>
+                <ConceptCardsList languageChoosed={languageChoosed}/>
 
                 
 

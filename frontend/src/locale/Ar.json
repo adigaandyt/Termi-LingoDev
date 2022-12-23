@@ -34,7 +34,10 @@
     "other":"اخر",
     "all":"الكل",
     "home_title":"ابحث عن مصطلح لإظهار",
-    "its_definition":"تعريفه"
+    "its_definition":"تعريفه",
+    "accepted_by_admin":"تم الموافقه عليه ",
+    "not_accepted_by_admin_yet":"لم يتم الموافقه عليه بعد",
+    "choose":"أختر"
    
 
 }

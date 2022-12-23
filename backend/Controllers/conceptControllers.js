@@ -89,7 +89,7 @@ const getConceptsNames=asyncHandler( async(req,res)=>{
 //@route GET /api/concepts/get/concepts/:textsearch
 //@access private
 const getConcepts=asyncHandler( async(req,res)=>{
-    
+    console.log(req.params)
     let concepts
     const textSearch=req.params.textsearch.replaceAll(')',"\\$&").replaceAll('(',"\\$&")
     try {

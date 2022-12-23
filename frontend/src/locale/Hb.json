@@ -34,5 +34,8 @@
     "other":"אחר",
     "all":"הכל",
     "home_title":"חפש מושג כדי להראות את ",
-    "its_definition":"ההגדרתו"
+    "its_definition":"ההגדרתו",
+    "accepted_by_admin":"מושג מאושר",
+    "not_accepted_by_admin_yet":"לא אושר עדיין",
+    "choose":"בחר"
 }

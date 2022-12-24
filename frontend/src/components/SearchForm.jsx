@@ -50,22 +50,22 @@ import '../styles/SearchForm.css'
         <form onSubmit={onSearchClick}>
         <div className='row ' id='formsearch'>
             <div className='' id='formSearch-item'>
-                <div class="input-group">
-                    <div id="search-autocomplete " class="form-outline">
+                <div className="input-group">
+                    <div id="search-autocomplete " className="form-outline">
                         <input
                         value={conceptSearch}
                         type="search" 
                         id="form1" 
                         style={(conceptSearch.length <= 3&&conceptSearch.length >0)?({"border":"2px solid red"}) :({"border":"1px solid #6c757d"}) }
                         list='brow' 
-                        class="form-control  "
+                        className="form-control  "
                         autoComplete='on'
                         onChange={(e)=>{setConceptSearch(e.target.value)}}
                         />
-                        <label class="form-label" htmlfor="form1">Search</label>
+                        <label className="form-label" htmlfor="form1">Search</label>
                     </div>
                     <button type="button" className="btn btn-warning" onClick={onSearchClick}>
-                        <i class="fas fa-search"></i>
+                        <i className="fas fa-search"></i>
                     </button>
                     <button onClick={onReset} type='button' className='btn btn-secondary'> Reset</button>
 

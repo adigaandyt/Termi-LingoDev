@@ -7,7 +7,7 @@ import {toast} from 'react-toastify'
 import Spinner from '../components/Spinner'
 function ResetPassword(){
     const navigate=useNavigate()
-
+    const {user}=useSelector(state=>state.auth)
     const dispatch=useDispatch()
     const {isError,isSuccess,message,isLoading}=useSelector(state=>state.auth)
     useEffect(()=>{
@@ -42,8 +42,8 @@ function ResetPassword(){
     if(isLoading){
         return <Spinner/>
     }
-    return(<>
-        <div className=" container text-center mt-5 pt-5 ">
+    return(<> 
+        <div className="  text-center mt-5 pt-5 ">
             <label className="text-secondary mb-5" style={{"fontSize":"250%"}}>
              <h1  className='text-warning'>
              Reset 
@@ -53,7 +53,7 @@ function ResetPassword(){
              </label>
 
              <form onSubmit={onSubmit}>
-             <div className='row-sm mt-3'>
+             <div className='row-sm mt-3 text-center'>
                 <input
                 name='password'
                 type='password'
@@ -79,7 +79,6 @@ function ResetPassword(){
             </div>
             <div className='row-sm mt-3'>
                 <input
-                
                 name='password2'
                 type='password'
                 placeholder='Confirm Password'
@@ -96,6 +95,9 @@ function ResetPassword(){
              </form>
             
         </div>
+
+       
+
     </>)
 }
 export default ResetPassword

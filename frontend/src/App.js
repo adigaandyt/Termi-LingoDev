@@ -26,9 +26,9 @@ function App() {
         <div>
         <Header/>
           <Routes>
-            {/*<Route path='/' element={<PrivateRoute/>}>*/}
+            <Route path='/' element={<PrivateRoute/>}>
               <Route path='/' element={<Home/>}/>
-            {/*</Route>*/}
+            </Route>
             <Route path='/login' element={<Login/>} />
             <Route path='/register' element={<Register/>} />
             <Route path='/about' element={<About/>} />
@@ -39,6 +39,7 @@ function App() {
             <Route path='/reset' element={<PrivateRoute/>}>
                 <Route path='/reset' element={<ResetPassword/>}/>
             </Route>
+
             <Route path='/new/concept' element={<PrivateRoute/>}>
               <Route path='/new/concept' element={<NewConcept/>}/>
             </Route>

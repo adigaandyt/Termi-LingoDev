@@ -22,9 +22,7 @@ const testConcept=asyncHandler( async(req,res)=>{
     let concept
 
     try {
-       concept=await Concept.updateMany(
-        {},
-        {$push:{"categories":"639e49f8dfabd615c821584f"}})
+    //    concept=await Concept.updateMany({}, { $set: { accepted: true } });
     } catch (error) {
         res.status(500)
         throw new Error("Some thing is wrong !" )

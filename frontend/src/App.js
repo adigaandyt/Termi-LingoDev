@@ -23,7 +23,7 @@ function App() {
     <>
     <Loader/>
       <Router>
-        <div>
+        <div className='mb-150'>
         <Header/>
           <Routes>
             <Route path='/' element={<PrivateRoute/>}>

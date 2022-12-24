@@ -55,10 +55,10 @@ function Home(){
   
     return (
     
-        <div id="ho" className=' mx-3'>
+        <div id="ho" className='mt-150 mx-3'>
           {isLoading&&<Spinner/>}
                
-                <div className='' id='t1'>
+                <div className='text-center ' id='t1'>
                     <label className='d-inline '>
                         <h4 className='text-secondary warp-text '>
                         <BsTranslate className='text-warning capitalized' style={{"fontSize":"180%"}}/> {t('home_title')} <span className="text-warning">{t('its_definition')}</span> </h4>

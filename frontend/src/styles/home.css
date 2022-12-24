@@ -1,8 +1,11 @@
 .capitalized {
 	text-transform: uppercase;
   }
-#ho{
-	margin-top: 80px;
+.mt-150{
+	margin-top:150px;
+}
+.mb-150{
+	margin-bottom:150px ;
 }  
 
 #lbtn {

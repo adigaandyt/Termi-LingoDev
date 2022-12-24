@@ -56,13 +56,13 @@ import '../styles/SearchForm.css'
                         value={conceptSearch}
                         type="search" 
                         id="form1" 
-                        style={(conceptSearch.length <= 3&&conceptSearch.length >0)?({"border":"2px solid red"}) :({"border":"1px solid #6c757d"}) }
+                        style={(conceptSearch.length <= 3&&conceptSearch.length >0)?({"border":"2px solid red"}) :({"backgroundColor":"white"}) }
                         list='brow' 
                         className="form-control  "
                         autoComplete='on'
                         onChange={(e)=>{setConceptSearch(e.target.value)}}
                         />
-                        <label className="form-label" htmlfor="form1">Search</label>
+                        <label className="form-label" htmlfor="form1">{t('search_for_concept')}</label>
                     </div>
                     <button type="button" className="btn btn-warning" onClick={onSearchClick}>
                         <i className="fas fa-search"></i>

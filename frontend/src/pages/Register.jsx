@@ -24,7 +24,7 @@ function Register(){
     const {user,isLoading,isSuccess,isError,message}=useSelector((state)=>state.auth)
     const {categories}=useSelector(state=>state.category)
     const [categoryId,setCategoryId]=useState('639e49f8dfabd615c821584f')
-    const [imageUrl,setImageUrl]=useState()
+    // const [imageUrl,setImageUrl]=useState('https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png')
 
 
     const navigate=useNavigate()
@@ -70,10 +70,11 @@ function Register(){
         password:'',
         password2:'',
         phoneNumber:'',
+        profile_image:'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png',
         language:'English',
     })
 
-    const {name,email,password,password2,phoneNumber,language}=formData;
+    const {name,email,password,password2,phoneNumber,profile_image}=formData;
 
 
     const onSubmit=(e)=>{
@@ -105,10 +106,26 @@ function Register(){
             const formdata=new FormData()
             formdata.append('profileImage',event.target.files[0])
             axios.post('/api/users/upload/image',formdata)
-            .then(response => setImageUrl(response.data))
+            .then(response => {
+                setFormData((prevState)=>{
+                    return({
+                        ...prevState,
+                        profile_image:response.data
+                    })
+                })
+                //  setImageUrl(response.data)
+            })
+                
+                // setImageUrl(response.data))
             .catch(error => {
                 toast.error(error.message+', maybe the image is not supprted')
-                setImageUrl(null)
+                setFormData((prevState)=>{
+                    return({
+                        ...prevState,
+                        profile_image:'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png'
+                    })
+                })
+                // setImageUrl('https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png')
             });
             }
                 
@@ -131,7 +148,7 @@ function Register(){
         <form className="form1" onSubmit={onSubmit}>
 
             <div className='form-group mt-2'>
-            <img  className='register-image ' src={imageUrl?imageUrl:'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png'}></img>
+            <img  className='register-image ' src={profile_image?profile_image:'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png'}></img>
             </div>
             <div className='form-group' >
                 <label className='btn btn-sm btn-secondary mt-2  ml-5 ' > Choose Image

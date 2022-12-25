@@ -12,7 +12,9 @@ import { useTranslation } from "react-i18next"
 import {MdLanguage} from 'react-icons/md'
 import cookies from 'js-cookie'
 import {getCategoryName} from '../hooks/ExportsFunctions'
+import axios from 'axios'
 import "../styles/Inputs.css"
+import '../styles/Images.css'
 
 
 
@@ -22,6 +24,8 @@ function Register(){
     const {user,isLoading,isSuccess,isError,message}=useSelector((state)=>state.auth)
     const {categories}=useSelector(state=>state.category)
     const [categoryId,setCategoryId]=useState('639e49f8dfabd615c821584f')
+    const [imageUrl,setImageUrl]=useState()
+
 
     const navigate=useNavigate()
     useEffect(()=>{
@@ -96,6 +100,19 @@ function Register(){
         const onCategoryChange=(e)=>{
 
         }
+        const onUploadImage = event => {
+            if(event.target.files[0]){
+            const formdata=new FormData()
+            formdata.append('profileImage',event.target.files[0])
+            axios.post('/api/users/upload/image',formdata)
+            .then(response => setImageUrl(response.data))
+            .catch(error => {
+                toast.error(error.message+', maybe the image is not supprted')
+                setImageUrl(null)
+            });
+            }
+                
+            }
        if(isLoading){
         return (<Spinner/> )
        }
@@ -108,10 +125,19 @@ function Register(){
                     {t('register')}
                     </h1>
                     </label>
-            <div className='form1 text-start'>
+                 <div className='form1 text-start'>
                     <Link to='/login' className='btn btn-outline-dark' ><TiArrowBackOutline style={{"fontSize":"150%"}}/> {t('login')}</Link>
                 </div>
         <form className="form1" onSubmit={onSubmit}>
+
+            <div className='form-group mt-2'>
+            <img  className='register-image ' src={imageUrl?imageUrl:'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png'}></img>
+            </div>
+            <div className='form-group' >
+                <label className='btn btn-sm btn-secondary mt-2  ml-5 ' > Choose Image
+                <input   style={{"position":"relative" ,"left":"15%","display":"none"}} onChange={onUploadImage}  type="file" accept="image/*"/>
+            </label>
+            </div>
             <div className="form-group mt-2"> 
                 <input className="form-control" type="name" placeholder={t('name')}  name="name" id="name"  value={name} onChange={onChange} required/>
             </div>

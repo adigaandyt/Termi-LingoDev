@@ -17,7 +17,7 @@ const generateToken=(id)=>{
 //@access public
 const registrUser=asyncHandler( async (req,res)=>{
     const categoryId=req.params.categoryId
-     const {email, password ,password2 ,name, phoneNumber ,language}=req.body;
+    const {email, password ,password2 ,name, phoneNumber ,language}=req.body;
 
     if(!categoryId){
         res.status(500)
@@ -51,6 +51,7 @@ const registrUser=asyncHandler( async (req,res)=>{
             phoneNumber,
             language, 
             categoryId,
+            profile_image:req.file&&req.file.location,
             password:hashPassword
         })
         if(user){
@@ -59,10 +60,10 @@ const registrUser=asyncHandler( async (req,res)=>{
                 _id:user._id,
                 name:user.name,
                 email:user.email,
-                password:user.password,
                 phoneNumber:user.phone_number,
                 language:user.language,
                 categoryId:user.categoryId,
+                profile_image:user.profile_image,
                 token:generateToken(user._id)
     
 
@@ -87,19 +88,16 @@ const loginUser=asyncHandler( async (req,res)=>{
         const user =await User.findOne({email})
         
         if(user && (await bcrypt.compare(password,user.password))){
-            res.status(200).json({
-                _id:user._id,
+          const  userData={ _id:user._id,
                 name:user.name,
                 isAdmin:user.isAdmin,
                 email:user.email,
-                password:user.password,
                 language:user.language,
-                category:user.category,
+                categoryId:user.categoryId,
                 phoneNumber:user.phoneNumber,
-                token:generateToken(user._id)
-    
-    
-            })
+                profile_image:user.profile_image,
+                token:generateToken(user._id)}
+            res.status(200).json(userData)
         }else{
             res.status(401)
             throw new Error('validation faild')
@@ -157,11 +155,36 @@ const resetPassword=asyncHandler(async (req,res)=>{
     }
 
 })
+//@desc upload image to s3 bucket and save the url in the data base
+//@route post /api/users/upload/image/:id
+//@access private 
+const uploadImage =asyncHandler(async(req,res)=>{ 
+   console.log(req.file.location)
+    try{
+        // const imageMimeType=req.file.mimetype.split('/')[0]  
+   
+        // const dataUpdated=await User.findByIdAndUpdate(req.params.id,{profile_image:req.file.location},{new:true})
+        // console.log(dataUpdated)
+        res.status(200).json(req.file.location)
+       
+       
+    }catch(err){
+        // const imageMimeType=req.file.mimetype.split('/')[0]
+        // if(imageMimeType!=="image"){
+            res.status(500)
+            throw new Error("Invalide authorization")
+       
+        
+       
+    }
+    
+ })
 
 
 module.exports={
     registrUser,
     loginUser,
     getMe,
-    resetPassword
+    resetPassword,
+    uploadImage
 }

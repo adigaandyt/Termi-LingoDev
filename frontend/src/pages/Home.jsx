@@ -58,7 +58,7 @@ function Home(){
         <div id="ho" className='mt-150 mx-3'>
           {isLoading&&<Spinner/>}
                
-                <div className='text-center ' id='t1'>
+                <div className='text-center mb-4 ' id='t1'>
                     <label className='d-inline '>
                         <h4 className='text-secondary warp-text '>
                         <BsTranslate className='text-warning capitalized' style={{"fontSize":"180%"}}/> {t('home_title')} <span className="text-warning">{t('its_definition')}</span> </h4>
@@ -96,7 +96,8 @@ function Home(){
                 </div>}
                 
                 <ConceptCardsList languageChoosed={languageChoosed}/>
-
+                
+                {/* <img src='https://profile-images-barbershop-app.s3.us-east-1.amazonaws.com/LingoDev/image-1671932670605.png'/> */}
                 
 
                {user&&<h3 className='text-success'>You are connected with {user.email}</h3>}

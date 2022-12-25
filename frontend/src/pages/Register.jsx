@@ -135,16 +135,8 @@ function Register(){
        }
     return (
         <>
-            <div className='container mb-5  ' style={{"textAlign":"center"}} >
-                <label className="text-secondary mb-25" style={{"fontSize":"250%"}}>
-                    <h1>
-                    <AiOutlineUserAdd    style={{"fontSize":"145%"}}/>
-                    {t('register')}
-                    </h1>
-                    </label>
-                 <div className='form1 text-start'>
-                    <Link to='/login' className='btn btn-outline-dark' ><TiArrowBackOutline style={{"fontSize":"150%"}}/> {t('login')}</Link>
-                </div>
+            <div className=' mt-150 mb-5  ' style={{"textAlign":"center"}} >
+
         <form className="form1" onSubmit={onSubmit}>
 
             <div className='form-group mt-2'>

@@ -4,7 +4,7 @@ const {registrUser,loginUser,getMe,resetPassword,uploadImage}=require('../Contro
 const {protect}=require("../middleware/authMiddleware")
 const {upload} =require('../config/S3')
 
-router.post('/register/:categoryId',upload.single("profileImage"),registrUser)
+router.post('/register/:categoryId',registrUser)
 router.get('/me',protect,getMe) 
 router.post('/login',loginUser)
 router.post('/upload/image',upload.single("profileImage"), uploadImage)

@@ -17,7 +17,7 @@ const generateToken=(id)=>{
 //@access public
 const registrUser=asyncHandler( async (req,res)=>{
     const categoryId=req.params.categoryId
-    const {email, password ,password2 ,name, phoneNumber ,language}=req.body;
+    const {email, password ,password2 ,name, phoneNumber ,language,profile_image}=req.body;
 
     if(!categoryId){
         res.status(500)
@@ -51,7 +51,7 @@ const registrUser=asyncHandler( async (req,res)=>{
             phoneNumber,
             language, 
             categoryId,
-            profile_image:req.file&&req.file.location,
+            profile_image:profile_image,
             password:hashPassword
         })
         if(user){

@@ -135,7 +135,7 @@ function Register(){
        }
     return (
         <>
-            <div className=' mt-150 mb-5  ' style={{"textAlign":"center"}} >
+            <div className=' mt-130 mb-5  ' style={{"textAlign":"center"}} >
 
         <form className="form1" onSubmit={onSubmit}>
 
@@ -143,7 +143,7 @@ function Register(){
             <img  className='register-image ' src={profile_image?profile_image:'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png'}></img>
             </div>
             <div className='form-group' >
-                <label className='btn btn-sm btn-secondary mt-2  ml-5 ' > Choose Image
+                <label className='btn btn-sm btn-secondary mt-2  ml-5 ' > {t('select_image')}
                 <input   style={{"position":"relative" ,"left":"15%","display":"none"}} onChange={onUploadImage}  type="file" accept="image/*"/>
             </label>
             </div>

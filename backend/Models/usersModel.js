@@ -1,3 +1,4 @@
+const { urlencoded } = require('express')
 const mongoose=require('mongoose')
 
 const userSchema=mongoose.Schema({
@@ -35,6 +36,10 @@ const userSchema=mongoose.Schema({
         required:true,
         default:false
     },
+    profile_image:{
+        type:String,
+        default:'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png'
+    }
     
 
 })

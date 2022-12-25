@@ -156,7 +156,7 @@ const resetPassword=asyncHandler(async (req,res)=>{
 
 })
 //@desc upload image to s3 bucket and save the url in the data base
-//@route post /api/users/upload/image/:id
+//@route post /api/users/upload/image
 //@access private 
 const uploadImage =asyncHandler(async(req,res)=>{ 
    console.log(req.file.location)

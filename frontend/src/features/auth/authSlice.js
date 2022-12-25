@@ -6,11 +6,28 @@ const user =JSON.parse(localStorage.getItem('user'))
 
 const initialState={ 
     user:user?user:null,
+    image_url:null,
     isSuccess:false,
     isError:false,
     isLoading:false,
+    isImageLoading:false,
     message:''
 }
+// Upload image to s3
+export const uploadImage=createAsyncThunk(
+    'upload/image',
+     async(formdata,thunkAPI)=>{
+        try { 
+            return await authService.uploadImage(formdata)
+        } catch (error) {
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
 
 //logout user
 export const logout=createAsyncThunk('auth/logout', async()=>{
@@ -74,6 +91,7 @@ export const authSlice=createSlice({
             state.isLoading=false
             state.isError=false
             state.isSuccess=false
+            state.isImageLoading=false
             state.message=''
         }
     },
@@ -122,6 +140,19 @@ export const authSlice=createSlice({
             state.isLoading=false
             state.isError=true
             state.message=action.payload
+        })
+        .addCase(uploadImage.pending,(state)=>{
+            state.isImageLoading=true
+        })
+        .addCase(uploadImage.rejected,(state,action)=>{
+            state.isImageLoading=false
+            state.image_url=null
+            state.message=action.payload
+            
+        })
+        .addCase(uploadImage.fulfilled,(state,action)=>{
+            state.isImageLoading=false
+            state.image_url=action.payload
         })
     }
 

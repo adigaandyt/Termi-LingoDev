@@ -2,7 +2,7 @@ import {React,useContext} from 'react'
 import { useState,useEffect } from "react"
 import {useNavigate,Link} from 'react-router-dom'
 import {useSelector ,useDispatch} from 'react-redux'
-import {register ,reset} from '../features/auth/authSlice'
+import {register ,reset,uploadImage} from '../features/auth/authSlice'
 import { getCategories } from '../features/categories/categorySlice'
 import Spinner from "../components/Spinner"
 import { toast } from "react-toastify"
@@ -21,13 +21,21 @@ import '../styles/Images.css'
 function Register(){
     const {t,i18n}=useTranslation()
     const dispatch=useDispatch()
-    const {user,isLoading,isSuccess,isError,message}=useSelector((state)=>state.auth)
+    const {user,isLoading,isSuccess,isError,message,image_url,isImageLoading}=useSelector((state)=>state.auth)
     const {categories}=useSelector(state=>state.category)
     const [categoryId,setCategoryId]=useState('639e49f8dfabd615c821584f')
-    // const [imageUrl,setImageUrl]=useState('https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png')
 
 
     const navigate=useNavigate()
+    const [formData,setFormData,]=useState({
+        name:'',
+        email:'',
+        password:'',
+        password2:'',
+        phoneNumber:'',
+        profile_image:'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png',
+        language:'English',
+    })
     useEffect(()=>{
         dispatch(getCategories())
         if(user){
@@ -60,19 +68,19 @@ function Register(){
         if(isError){
             toast.error(message)
         }
+        if(image_url){
+            setFormData((prevState)=>{
+                return({
+                    ...prevState,
+                    profile_image:image_url
+                })
+            })
+        }
         
 
         dispatch(reset())
-    },[isSuccess,isError])
-    const [formData,setFormData,]=useState({
-        name:'',
-        email:'',
-        password:'',
-        password2:'',
-        phoneNumber:'',
-        profile_image:'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png',
-        language:'English',
-    })
+    },[isSuccess,isError,isImageLoading,image_url])
+
 
     const {name,email,password,password2,phoneNumber,profile_image}=formData;
 
@@ -98,35 +106,30 @@ function Register(){
                 language:e.target.value
             })
         })}
-        const onCategoryChange=(e)=>{
-
-        }
         const onUploadImage = event => {
             if(event.target.files[0]){
             const formdata=new FormData()
             formdata.append('profileImage',event.target.files[0])
-            axios.post('/api/users/upload/image',formdata)
-            .then(response => {
-                setFormData((prevState)=>{
-                    return({
-                        ...prevState,
-                        profile_image:response.data
-                    })
-                })
-                //  setImageUrl(response.data)
-            })
-                
-                // setImageUrl(response.data))
-            .catch(error => {
-                toast.error(error.message+', maybe the image is not supprted')
-                setFormData((prevState)=>{
-                    return({
-                        ...prevState,
-                        profile_image:'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png'
-                    })
-                })
-                // setImageUrl('https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png')
-            });
+            dispatch(uploadImage(formdata))
+            // axios.post('/api/users/upload/image',formdata)
+            // .then(response => {
+            //     setFormData((prevState)=>{
+            //         return({
+            //             ...prevState,
+            //             profile_image:response.data
+            //         })
+            //     })
+            // })
+            // .catch(error => {
+            //     toast.error(error.message+', maybe the image is not supprted')
+            //     setFormData((prevState)=>{
+            //         return({
+            //             ...prevState,
+            //             profile_image:'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png'
+            //         })
+            //     })
+            //     // setImageUrl('https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png')
+            // });
             }
                 
             }
@@ -140,10 +143,13 @@ function Register(){
         <form className="form1" onSubmit={onSubmit}>
 
             <div className='form-group mt-2'>
-            <img  className='register-image ' src={profile_image?profile_image:'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png'}></img>
+            <img  className='register-image ' src={image_url?image_url:'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png'}></img>
             </div>
             <div className='form-group' >
-                <label className='btn btn-sm btn-secondary mt-2  ml-5 ' > {t('select_image')}
+                <label className='btn btn-sm btn-secondary mt-2  ml-5 ' > 
+                {isImageLoading&&<div class="spinner-grow spinner-grow-sm" role="status">
+                <span class="sr-only">Loading...</span>
+                </div>} {t('select_image')}
                 <input   style={{"position":"relative" ,"left":"15%","display":"none"}} onChange={onUploadImage}  type="file" accept="image/*"/>
             </label>
             </div>

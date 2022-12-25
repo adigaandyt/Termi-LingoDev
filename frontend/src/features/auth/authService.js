@@ -3,6 +3,16 @@ import axios from 'axios'
 
 const API_URL='/api/users'
 
+//upload image to s3
+const uploadImage =async (formdata)=>{
+    console.log(formdata)
+    const response=await axios.post(API_URL+'/upload/image',formdata)
+    if(response.data){
+        localStorage.setItem('user',JSON.stringify(response.data))
+    }
+    return response.data
+}
+
 //register user
 const register =async (Data)=>{
     const response=await axios.post(API_URL+`/register/${Data.categoryId}`,Data.formData)
@@ -39,7 +49,9 @@ const resetPassword =async (formData,token)=>{
 const authService={
     register,
     logout,
-    login,resetPassword
+    login,
+    resetPassword,
+    uploadImage
     
 }
 

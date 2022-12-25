@@ -147,9 +147,9 @@ function Register(){
             </div>
             <div className='form-group' >
                 <label className='btn btn-sm btn-secondary mt-2  ml-5 ' > 
-                {isImageLoading&&<div class="spinner-grow spinner-grow-sm" role="status">
+                {isImageLoading&&(<div class="spinner-grow spinner-grow-sm" role="status">
                 <span class="sr-only">Loading...</span>
-                </div>} {t('select_image')}
+                </div>)} {t('select_image')}
                 <input   style={{"position":"relative" ,"left":"15%","display":"none"}} onChange={onUploadImage}  type="file" accept="image/*"/>
             </label>
             </div>

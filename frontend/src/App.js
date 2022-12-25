@@ -47,7 +47,11 @@ function App() {
           <Footer/>
         </div>
       </Router>
+<<<<<<< HEAD
       <ToastContainer />
+=======
+      <ToastContainer/>
+>>>>>>> 84ab5e4844876fe2c05d39e3e4495a01bb2e594e
      
     </>
   );

@@ -1,0 +1,11 @@
+@media only screen and (min-width: 800px){
+    
+  
+}
+.bar {
+    width: 0px;
+    /* background-color: blue; */
+    height:500px;
+    margin: 10px;
+    border: solid 1px blue;
+  }

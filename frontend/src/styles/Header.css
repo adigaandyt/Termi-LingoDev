@@ -3,23 +3,6 @@
     font-size: 2.5rem;
     font-weight: bold;
 }
-/*#textstyle{*/
-/*    font-size: 1.2rem;*/
-/*    width: max-content;   Important , do not delete it */
-    
-/*}*/
-/*footer{*/
-/*    position: fixed;*/
-/*    font-family: georgia;*/
-/*    width: 100%;*/
-/*    text-align: center;*/
-/*    font-weight: bold;*/
-/*    bottom:0;*/
-    
-/*}*/
-/*footer p {*/
-/*    padding-top: 10px;*/
-/*}*/
 .headers{
   margin-bottom: 70px;
 }
@@ -27,7 +10,7 @@
     width: 100%;
     height: 95px;
     top: 5%;
-    position:absolute;
+    position:fixed;
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 5px;
@@ -185,9 +168,6 @@
   .nav1 .box.open {
     opacity: 1;
   }
-  /*.nav1 .box.close {*/
-  /*  opacity: 0;*/
-  /*}*/
   
   .nav1 .box.open i {
     left: 60px;

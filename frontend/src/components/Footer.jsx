@@ -13,7 +13,7 @@ export default function Footer(){
     
     return(
         <nav  dir='ltr'  className="footer1">
-            <div class="d-flex justify-content-between"> 
+            <div className="d-flex justify-content-between"> 
 
                 <div className='mx-1 flex-item text-center'>
                     <input type= "radio" name="nav-item" id="m-home"/><label onClick={() => console.log('/add')} id="l3"><TbPlaylistAdd/></label>

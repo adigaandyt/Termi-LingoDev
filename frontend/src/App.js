@@ -47,7 +47,7 @@ function App() {
           <Footer/>
         </div>
       </Router>
-      <ToastContainer className='mt-150'/>
+      <ToastContainer/>
      
     </>
   );

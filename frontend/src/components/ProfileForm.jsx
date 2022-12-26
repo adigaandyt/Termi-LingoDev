@@ -15,7 +15,7 @@ function ProfileForm({isEdit,setIsEdit}){
         newLanguage:language,
         newCategoryId:categoryId
     });
-    const {newEmail,newName,newLanguage,newPhoneNumber}=formData;
+    const {newEmail,newName,newLanguage,newPhoneNumber}=formData; 
 
     const onChange=(e)=>{
         e.preventDefault()

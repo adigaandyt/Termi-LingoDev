@@ -1,19 +1,3 @@
-<<<<<<< HEAD
-import { useSelector } from 'react-redux';
-import ProfileForm from '../components/ProfileForm';
-import {FcAddImage} from 'react-icons/fc';
-import '../styles/Profile.css';
-import { useState } from 'react';
-
-
-function Profile(){
-  const {profile_image}=useSelector(state=>state.auth.user);
-  const [isEdit,setIsEdit]=useState(false);
-
-  return(<>
-        
-    <h3 id="myprofile" className='mt-130 mx-5'>My Profile:</h3>
-=======
 import { useSelector } from 'react-redux'
 import ProfileForm from '../components/ProfileForm'
 import {FcAddImage} from 'react-icons/fc'
@@ -28,7 +12,6 @@ function Profile(){
   return(<>
         {isLoading&&<Spinner/>}
     <h3 className='mt-130 mx-5'>My Profile:</h3>
->>>>>>> 4924f5af71394ecd4186f5f187990c21cb67c9b6
     <div className="  border-top row" id='profilePage'>
       <div className=" col-sm-4 border-start px-5 border-top ">
         <div className='row '>

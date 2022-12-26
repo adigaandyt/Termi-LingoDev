@@ -58,10 +58,7 @@ function App() {
           <Footer/>
         </div>
       </Router>
-<<<<<<< HEAD
-=======
 
->>>>>>> 4924f5af71394ecd4186f5f187990c21cb67c9b6
       <ToastContainer />
      
     </>

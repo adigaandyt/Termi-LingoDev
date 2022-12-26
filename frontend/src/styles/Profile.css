@@ -1,11 +1,12 @@
-@media only screen and (min-width: 800px){
-    
-  
+#profilePageImage{
+  width: 200px;
+  height: 200px;
+  border-radius: 2%;
+  background-size: cover;
 }
-.bar {
-    width: 0px;
-    /* background-color: blue; */
-    height:500px;
-    margin: 10px;
-    border: solid 1px blue;
-  }
+
+/* .light-background:hover{
+  background-color: #fafafa;
+  box-shadow: 0 0 2rem #babbbc;
+  animation: show-profile 0.75s forwards
+} */

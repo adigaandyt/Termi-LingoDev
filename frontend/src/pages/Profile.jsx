@@ -33,14 +33,10 @@ function Profile(){
         </div>
           </div>
           <div className='col-sm-5 col-6  text-sm-end '>
-          <button disabled={isEdit} onClick={()=>setIsEdit(!isEdit)} className='btn btn-primary btn-sm text-end mt-lg-3 mb-3'>Edit Profile</button>
+          <button id="editbtn" disabled={isEdit} onClick={()=>setIsEdit(!isEdit)} className='btn btn-primary btn-sm text-end mt-lg-3 mb-3'>Edit Profile</button>
 
           </div>
         </div>
-        
-
-
-
 
       </div>
       <div className=" col-sm-8 border-start border-top">

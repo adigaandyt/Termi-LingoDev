@@ -4,15 +4,17 @@
   border-radius: 2%;
   background-size: cover;
 }
+<<<<<<< HEAD
 .image-circle{
   width: 100%;
   height: 100%;
   border-radius: 50%;
   background-size: cover;
 }
+=======
+#editbtn {
+  text-transform: lowercase;
+  letter-spacing: 2px;
+>>>>>>> b48e142a498da419952a5c014ba4ead8797b8c94
 
-/* .light-background:hover{
-  background-color: #fafafa;
-  box-shadow: 0 0 2rem #babbbc;
-  animation: show-profile 0.75s forwards
-} */
+}

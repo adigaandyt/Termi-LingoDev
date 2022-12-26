@@ -18,6 +18,7 @@ import Profile from './pages/Profile';
 import ResetPassword from './pages/ResetPassword';
 import NewConcept from './pages/NewConcept';
 import Footer from './components/Footer';
+import TestComponent from './pages/TestComponent';
 import $ from 'jquery';
 import loadable from "@loadable/component";
 const Loader = loadable(()=>import("./styles/loader"));
@@ -57,15 +58,8 @@ function App() {
           <Footer/>
         </div>
       </Router>
-<<<<<<< HEAD
 
       <ToastContainer />
-
-      <ToastContainer/>
-
-=======
-      <ToastContainer />
->>>>>>> 7bc63cd3c74fdc5401418b615d1a20c283770e76
      
     </>
   );

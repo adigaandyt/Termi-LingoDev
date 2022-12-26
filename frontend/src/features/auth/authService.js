@@ -46,12 +46,26 @@ const resetPassword =async (formData,token)=>{
     
     return response.data
 }
+//update user
+const updateUser =async (formData,token)=>{
+    const config ={
+        headers:{
+            authorization:`Bearer ${token}`
+        }
+    }
+    const response=await axios.post(API_URL+'/update/user',formData ,config)
+    if(response.data){
+        localStorage.setItem('user',JSON.stringify(response.data))
+    }
+    return response.data
+}
 const authService={
     register,
     logout,
     login,
     resetPassword,
-    uploadImage
+    uploadImage,
+    updateUser
     
 }
 

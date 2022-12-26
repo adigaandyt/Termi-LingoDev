@@ -16,8 +16,10 @@ function Profile(){
       <div className=" col-sm-4 border-start px-5 border-top ">
         <div className='row '>
         <div className='col-7'>
-          <div id='profilePageImage' className=' text-end mt-3' style={{"backgroundImage":`url(${profile_image})`,"fontSize":"190%"}}>
+          <div id='profilePageImage' className=' text-end mt-3' >
+            <div className='image-circle' style={{"backgroundImage":`url(${profile_image})`,"fontSize":"190%"}}>
             <label className='text-buttom mt-150 mx-2'><FcAddImage className='light-background'/></label>
+            </div>
           </div>
           <div className='mt-3' >
           <h6 className="d-inline-block">{name}</h6>

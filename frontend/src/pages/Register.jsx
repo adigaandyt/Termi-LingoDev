@@ -97,39 +97,13 @@ function Register(){
             })
         })
        }
-       //on the the user selcted language  for it self
-       const onLanguageChange=(e)=>{
-
-        setFormData((prevState)=>{
-            return({
-                ...prevState,
-                language:e.target.value
-            })
-        })}
+ 
         const onUploadImage = event => {
             if(event.target.files[0]){
             const formdata=new FormData()
             formdata.append('profileImage',event.target.files[0])
             dispatch(uploadImage(formdata))
-            // axios.post('/api/users/upload/image',formdata)
-            // .then(response => {
-            //     setFormData((prevState)=>{
-            //         return({
-            //             ...prevState,
-            //             profile_image:response.data
-            //         })
-            //     })
-            // })
-            // .catch(error => {
-            //     toast.error(error.message+', maybe the image is not supprted')
-            //     setFormData((prevState)=>{
-            //         return({
-            //             ...prevState,
-            //             profile_image:'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png'
-            //         })
-            //     })
-            //     // setImageUrl('https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png')
-            // });
+
             }
                 
             }
@@ -171,7 +145,7 @@ function Register(){
             
             <div className="form-group  mt-2">
                 <select className="select-input" name='language' onChange={onChange}>
-                    <option value="English">English</option>
+                    <option value="English">English</option> 
                     <option value="العربية">العربية</option>
                     <option value="עברית">עברית</option>
                 </select>

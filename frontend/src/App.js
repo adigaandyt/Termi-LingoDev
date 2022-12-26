@@ -1,4 +1,8 @@
 import React from 'react';
+import { useEffect } from 'react';
+import { useSelector,useDispatch } from 'react-redux';
+import { getCategories} from './features/categories/categorySlice';
+import {getConceptsNames} from './features/concepts/conceptSlice'
 import './App.css';
 import './index.css'
 import {ToastContainer } from "react-toastify"
@@ -19,6 +23,12 @@ import loadable from "@loadable/component";
 const Loader = loadable(()=>import("./styles/loader"));
 
 function App() {
+  const dispatch=useDispatch()
+  useEffect(()=>{
+    dispatch(getConceptsNames())
+    dispatch(getCategories())
+    
+},[])
   return (
     <>
     <Loader/>
@@ -47,11 +57,15 @@ function App() {
           <Footer/>
         </div>
       </Router>
+<<<<<<< HEAD
 
       <ToastContainer />
 
       <ToastContainer/>
 
+=======
+      <ToastContainer />
+>>>>>>> 7bc63cd3c74fdc5401418b615d1a20c283770e76
      
     </>
   );

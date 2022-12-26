@@ -54,6 +54,25 @@ export const getCategoryName1=(categoryNames,languageChoosed)=>{
       
         
     }
+    export const getCategoryNameById=(categories,categoryId)=>{
+    if(categories){
+        const mycateg = categories.find(object => object._id === categoryId);
+        switch(cookies.get('i18next')){
+            case 'en':{
+                return mycateg.categoryName.english
+            }
+            case 'hb':{
+                return mycateg.categoryName.hebrew
+            }
+            case 'ar':{ 
+                return mycateg.categoryName.arabic 
+            }
+        }
+    }
+
+    
+    }
+    
 
 
 

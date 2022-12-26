@@ -1,19 +1,19 @@
-import { useSelector } from "react-redux"
-import {getCategoryName} from '../hooks/ExportsFunctions'
-import { useState} from 'react'
-import {getCategoryNameById} from '../hooks/ExportsFunctions'
+import { useSelector } from "react-redux";
+import {getCategoryName} from '../hooks/ExportsFunctions';
+import { useState} from 'react';
+import {getCategoryNameById} from '../hooks/ExportsFunctions';
 
 function ProfileForm({isEdit,setIsEdit}){
-    const {categories}=useSelector(state=>state.category)
-    const {name,email,phoneNumber,language,categoryId} =useSelector(state=>state.auth.user)
+    const {categories}=useSelector(state=>state.category);
+    const {name,email,phoneNumber,language,categoryId} =useSelector(state=>state.auth.user);
     const [formData,setFormData,]=useState({
         newName:name,
         newEmail:email,
         newPhoneNumber:phoneNumber,
         newLanguage:language,
         newCategoryId:categoryId
-    })
-    const {newEmail,newName,newLanguage,newPhoneNumber}=formData
+    });
+    const {newEmail,newName,newLanguage,newPhoneNumber}=formData;
 
     const onChange=(e)=>{
         e.preventDefault()

@@ -4,9 +4,8 @@
   border-radius: 2%;
   background-size: cover;
 }
+#editbtn {
+  text-transform: lowercase;
+  letter-spacing: 2px;
 
-/* .light-background:hover{
-  background-color: #fafafa;
-  box-shadow: 0 0 2rem #babbbc;
-  animation: show-profile 0.75s forwards
-} */
+}

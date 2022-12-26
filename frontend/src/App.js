@@ -57,15 +57,7 @@ function App() {
           <Footer/>
         </div>
       </Router>
-<<<<<<< HEAD
-
       <ToastContainer />
-
-      <ToastContainer/>
-
-=======
-      <ToastContainer />
->>>>>>> 7bc63cd3c74fdc5401418b615d1a20c283770e76
      
     </>
   );

@@ -1,15 +1,17 @@
-import { useSelector } from 'react-redux'
-import ProfileForm from '../components/ProfileForm'
-import {FcAddImage} from 'react-icons/fc'
-import '../styles/Profile.css'
-import { useState } from 'react'
+import { useSelector } from 'react-redux';
+import ProfileForm from '../components/ProfileForm';
+import {FcAddImage} from 'react-icons/fc';
+import '../styles/Profile.css';
+import { useState } from 'react';
+
+
 function Profile(){
-  const {profile_image}=useSelector(state=>state.auth.user)
-  const [isEdit,setIsEdit]=useState(false)
+  const {profile_image}=useSelector(state=>state.auth.user);
+  const [isEdit,setIsEdit]=useState(false);
 
   return(<>
         
-    <h3 className='mt-130 mx-5'>My Profile:</h3>
+    <h3 id="myprofile" className='mt-130 mx-5'>My Profile:</h3>
     <div className="  border-top row" id='profilePage'>
       <div className=" col-sm-4 border-start px-5 border-top ">
         <div className='row '>
@@ -30,14 +32,10 @@ function Profile(){
           {/* <img className='mt-3' src={profile_image&&profile_image}/> */}
           </div>
           <div className='col-sm-5 col-6  text-sm-end '>
-          <button disabled={isEdit} onClick={()=>setIsEdit(!isEdit)} className='btn btn-primary btn-sm text-end mt-lg-3 mb-3'>Edit Profile</button>
+          <button id="editbtn" disabled={isEdit} onClick={()=>setIsEdit(!isEdit)} className='btn btn-primary btn-sm text-end mt-lg-3 mb-3'>Edit Profile</button>
 
           </div>
         </div>
-        
-
-
-
 
       </div>
       <div className=" col-sm-8 border-start border-top">

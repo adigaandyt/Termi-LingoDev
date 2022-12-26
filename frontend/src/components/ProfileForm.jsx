@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useSelector } from "react-redux";
 import {getCategoryName} from '../hooks/ExportsFunctions';
 import { useState} from 'react';
@@ -6,6 +7,18 @@ import {getCategoryNameById} from '../hooks/ExportsFunctions';
 function ProfileForm({isEdit,setIsEdit}){
     const {categories}=useSelector(state=>state.category);
     const {name,email,phoneNumber,language,categoryId} =useSelector(state=>state.auth.user);
+=======
+import { useSelector,useDispatch } from "react-redux"
+import { updateUser } from "../features/auth/authSlice"
+import {getCategoryName} from '../hooks/ExportsFunctions'
+import { useState} from 'react'
+import {getCategoryNameById} from '../hooks/ExportsFunctions'
+
+function ProfileForm({isEdit,setIsEdit}){
+  const dispatch=useDispatch();
+    const {categories}=useSelector(state=>state.category)
+    const {name,email,phoneNumber,language,categoryId} =useSelector(state=>state.auth.user)
+>>>>>>> 4924f5af71394ecd4186f5f187990c21cb67c9b6
     const [formData,setFormData,]=useState({
         newName:name,
         newEmail:email,
@@ -26,6 +39,8 @@ function ProfileForm({isEdit,setIsEdit}){
     }
     const onSave=(e)=>{
         e.preventDefault()
+        dispatch(updateUser(formData))
+        setIsEdit(false)
 
     }
     const onCanceled=()=>{

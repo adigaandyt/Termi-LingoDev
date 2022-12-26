@@ -159,7 +159,6 @@ const resetPassword=asyncHandler(async (req,res)=>{
 //@route post /api/users/upload/image
 //@access private 
 const uploadImage =asyncHandler(async(req,res)=>{ 
-   console.log(req.file.location)
     try{
         // const imageMimeType=req.file.mimetype.split('/')[0]  
    
@@ -179,6 +178,52 @@ const uploadImage =asyncHandler(async(req,res)=>{
     }
     
  })
+  //@desc update details by user 
+//@route GET /api/users/update/user
+//@access public
+const updateUser=asyncHandler(async (req,res)=>{
+const {newCategoryId,newLanguage,newPhoneNumber,newEmail,newName}=req.body
+
+let newUser;
+let user;
+try {
+  
+  newUser =await User.findByIdAndUpdate({_id:req.user._id},{
+    name:newName,
+    email:newEmail,
+    phoneNumber:newPhoneNumber,
+    language:newLanguage,
+    categoryId:newCategoryId
+
+
+ })  
+} catch (error) {
+    res.status(401)
+    throw new Error('user not updated')
+}
+try {
+     user =await User.findById(req.user._id)
+} catch (error) {
+    res.status(401)
+    // throw new Error(error.message)
+    throw new Error('Somthing is Wrong, try to Logout and login again')
+}
+if(user){
+    res.status(200).json({
+        _id:user._id,
+        name:user.name,
+        email:user.email,
+        phoneNumber:user.phoneNumber,
+        language:user.language,
+        categoryId:user.categoryId,
+        profile_image:user.profile_image,
+        isAdmin:user.isAdmin,
+        token:generateToken(user._id)
+    })
+}else{
+    throw new Error('Somthing is Wrong, try to Logout and login again')
+}
+})
 
 
 module.exports={
@@ -186,5 +231,6 @@ module.exports={
     loginUser,
     getMe,
     resetPassword,
-    uploadImage
+    uploadImage,
+    updateUser
 }

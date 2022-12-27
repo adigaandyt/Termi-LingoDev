@@ -113,7 +113,6 @@ function ProfileForm({isEdit,setIsEdit}){
 
 
 </form> 
-<TestComponent/>
     </>)
 }
 export default ProfileForm

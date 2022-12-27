@@ -1,15 +1,17 @@
-import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import {CgPassword} from 'react-icons/cg'
-import {useDispatch,useSelector} from 'react-redux'
-import {resetPassword ,reset} from '../features/auth/authSlice'
-import {toast} from 'react-toastify'
-import Spinner from '../components/Spinner'
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import {CgPassword} from 'react-icons/cg';
+import {useDispatch,useSelector} from 'react-redux';
+import {resetPassword ,reset} from '../features/auth/authSlice';
+import {toast} from 'react-toastify';
+import Spinner from '../components/Spinner';
+import { useTranslation } from 'react-i18next';
 function ResetPassword(){
-    const navigate=useNavigate()
-    const {user}=useSelector(state=>state.auth)
-    const dispatch=useDispatch()
-    const {isError,isSuccess,message,isLoading}=useSelector(state=>state.auth)
+    const navigate=useNavigate();
+    const {t}=useTranslation();
+    const {user}=useSelector(state=>state.auth);
+    const dispatch=useDispatch();
+    const {isError,isSuccess,message,isLoading}=useSelector(state=>state.auth);
     useEffect(()=>{
         if(isError){
             toast.error(message)
@@ -45,11 +47,11 @@ function ResetPassword(){
     return(<> 
         <div className="  text-center mt-5 pt-5 ">
             <label className="text-secondary mb-5" style={{"fontSize":"250%"}}>
-             <h1  className='text-warning'>
-             Reset 
-             <span className='text-secondary'>Password </span>
-             <CgPassword className='text-secondary' style={{"fontSize":"150%"}}/>
-             </h1>
+                 <h1  className='text-warning'>
+                 Reset 
+                 <span className='text-secondary'>Password </span>
+                 <CgPassword className='text-secondary' style={{"fontSize":"150%"}}/>
+                 </h1>
              </label>
 
              <form onSubmit={onSubmit}>
@@ -57,7 +59,7 @@ function ResetPassword(){
                 <input
                 name='password'
                 type='password'
-                placeholder='Current Password'
+                placeholder={t('current password')}
                 id='password'
                 value={password}
                 onChange={onChange}
@@ -69,7 +71,7 @@ function ResetPassword(){
                 <input
                 name='password1'
                 type='password'
-                placeholder='New Password'
+                placeholder={t('new password')}
                 id='password1'
                 value={password1}
                 onChange={onChange}
@@ -81,7 +83,7 @@ function ResetPassword(){
                 <input
                 name='password2'
                 type='password'
-                placeholder='Confirm Password'
+                placeholder={t('confirm password')}
                 id='password2'
                 value={password2}
                 onChange={onChange}
@@ -90,7 +92,7 @@ function ResetPassword(){
                  />
             </div>
 
-            <button className='btn btn-online-secondary mt-3'>Reset</button>
+            <button className='btn btn-online-secondary mt-3'>{t('reset')}</button>
                  
              </form>
             

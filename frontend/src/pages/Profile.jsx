@@ -30,15 +30,11 @@ function Profile(){
         <div className='col-7 '>
           <div id='profilePageImage' className=' text-end mt-3 ' >
             <div className='image-circle' style={{"backgroundImage":`url(${profile_image})`,"fontSize":"190%"}}>
-            <div className=' '>
-            {isImageLoading&&<div class="spinner-border  text-light " id='spinner-grow' role="status">
-              {<span class="sr-only">Loading...</span>}
-
-            </div>}
-
-            </div>
-
-
+              <div className=' '>
+                  {isImageLoading&&<div class="spinner-border  text-light " id='spinner-grow' role="status">
+                    {<span class="sr-only">Loading...</span>}
+                  </div>}
+              </div>
             </div>
             <div className=' text-end w-75'>
              <label className='text-buttom  mx-2 '>
@@ -59,7 +55,7 @@ function Profile(){
           </div>
           <div className='col-sm-5 col-6  text-sm-end '>
           <div>
-          <button id="editbtn" disabled={isEdit} onClick={()=>setIsEdit(!isEdit)} className='btn btn-primary btn-sm text-end mt-lg-3 d-inline-block'>Edit Profile</button>
+          <button id="editbtn" disabled={isEdit} onClick={()=>setIsEdit(!isEdit)} className='btn btn-primary btn-sm text-end mt-lg-3 d-inline-block'>{t('edit')}</button>
           <Link to='/reset' id="editbtn" className='btn btn-dark btn-sm text-end mt-1 mb-3 d-inline-block'>{t('reset_password')}</Link>            
           </div>
 

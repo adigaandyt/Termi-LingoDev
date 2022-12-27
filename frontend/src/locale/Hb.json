@@ -9,9 +9,9 @@
     "email":"שם משתמש",
     "password":"סיסמה",
     "confirm_password":"אמת סיסמה",
-    "reset_password":"לאפס את הסיסמה",
+    "reset_password":"איפוס סיסמה",
     "phone":"מספר נייד",
-    "name":"שם",
+    "name":"שם פרטי",
     "search_for_a_concept_to_show_its_definition":"חפש מושג כדי להראות את ההגדרה שלו",
     "long_definition":"הגדרה ארוכה",
     "short_definition":"הגדרה קצרה",
@@ -41,5 +41,11 @@
     "suggestions_for_you":"הצעות בשבילך",
     "search_for_concept":"חפש מושג",
     "select_image":"בחר תמונה",
-    "email_adress":"דואר אלקטרוני"
+    "email_adress":"דואר אלקטרוני",
+    "language1":"שפה",
+    "context":"קטיגוריה",
+    "edit":"עריכה",
+    "current password": "סיסמה נוכחית",
+    "new password": "סיסמה חדשה",
+    "confirm password": "אמת סיסמה"
 }

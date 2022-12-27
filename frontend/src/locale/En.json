@@ -41,7 +41,14 @@
     "suggestions_for_you":"Suggestions for you",
     "search_for_concept":"Search For Concept",
     "select_image":"Select Image",
-    "email_adress":"Email Adress"
+    "email_adress":"Email Adress",
+    "language1":"Language",
+    "context":"Category",
+    "edit":"Edit profile",
+    "current password": "Current password",
+    "new password":"New password",
+    "confirm password": "Confirm password"
+    
 
 
 }

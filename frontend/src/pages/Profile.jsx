@@ -24,16 +24,18 @@ function Profile(){
   return(<> 
         {isLoading&&<Spinner/>}
     <h3 className='mt-130 mx-2'>My Profile:</h3>
-    <div className="  border-top row" id='profilePage'>
-      <div className=" col-sm-4 border-start px-3 border-top ">
-        <div className='row '>
-        <div className='col-7'>
-          <div id='profilePageImage' className=' text-end mt-3' >
+    <div className="  border-top row " id='profilePage'>
+      <div className=" col-sm-4 border-start px-3 border-top   ">
+        <div className='row'>
+        <div className='col-7 '>
+          <div id='profilePageImage' className=' text-end mt-3 ' >
             <div className='image-circle' style={{"backgroundImage":`url(${profile_image})`,"fontSize":"190%"}}>
             <div className=' '>
-            {isImageLoading&&<div class="spinner-border  text-light " id='spinner-grow'role="status">
-              <span class="sr-only">Loading...</span>
-            </div>}       
+            {isImageLoading&&<div class="spinner-border  text-light " id='spinner-grow' role="status">
+              {<span class="sr-only">Loading...</span>}
+
+            </div>}
+
             </div>
 
 

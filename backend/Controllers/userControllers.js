@@ -206,6 +206,12 @@ const {newCategoryId,newLanguage,newPhoneNumber,newEmail,newName}=req.body
 
 let newUser;
 try {
+    const userExist=await User.findOne({newEmail})
+    //check if the user is exists by email
+    if(userExist&& newEmail!==req.user.email){
+        res.status(400)
+        throw new Error('Email already exist!')
+    }
   
   newUser =await User.findByIdAndUpdate({_id:req.user._id},{
     name:newName,

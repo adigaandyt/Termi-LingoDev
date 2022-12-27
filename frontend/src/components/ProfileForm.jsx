@@ -1,13 +1,25 @@
 import { useSelector,useDispatch } from "react-redux"
-import { updateUser } from "../features/auth/authSlice"
+import { updateUser ,reset } from "../features/auth/authSlice"
 import {getCategoryName} from '../hooks/ExportsFunctions'
-import { useState} from 'react'
+import { useEffect, useState} from 'react'
 import {getCategoryNameById} from '../hooks/ExportsFunctions'
+import {toast} from 'react-toastify'
+
 
 function ProfileForm({isEdit,setIsEdit}){
   const dispatch=useDispatch();
     const {categories}=useSelector(state=>state.category)
     const {name,email,phoneNumber,language,categoryId} =useSelector(state=>state.auth.user)
+    const {isError,isSuccess,message,user} =useSelector(state=>state.auth)
+    useEffect(()=>{
+      if(isError){
+        toast.error(message)
+      }
+      if(isSuccess){
+        toast.success("Detailes Updated")
+        dispatch(reset())
+      }
+    },[isError,isSuccess,message,dispatch,user])
     const [formData,setFormData,]=useState({
         newName:name,
         newEmail:email,

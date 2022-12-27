@@ -4,6 +4,7 @@ import {getCategoryName} from '../hooks/ExportsFunctions'
 import { useEffect, useState} from 'react'
 import {getCategoryNameById} from '../hooks/ExportsFunctions'
 import {toast} from 'react-toastify'
+import TestComponent from '../pages/TestComponent'
 
 
 function ProfileForm({isEdit,setIsEdit}){
@@ -112,6 +113,7 @@ function ProfileForm({isEdit,setIsEdit}){
 
 
 </form> 
+<TestComponent/>
     </>)
 }
 export default ProfileForm

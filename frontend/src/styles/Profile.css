@@ -1,14 +1,12 @@
 #profilePageImage{
   width: 223px;
   height:223px;
-  border-radius: 2%;
-  background-size: cover;
 }
 .image-circle{
   width: 87%;
   height: 87%;
   border-radius: 50%;
-  background-size: cover;
+  background-size:cover;
 }
 
 #editbtn {
@@ -23,26 +21,3 @@
 }
 
 
-
-/* #profilePageImage{
-  width: 100%;
-  border-radius: 2%;
-  background-size: cover;
-}
-.image-circle{
-  width:194px;
-  height: 194px;
-  border-radius: 50%;
-  background-size: cover;
-}
-
-#editbtn {
-  text-transform: lowercase;
-  letter-spacing: 1px;
-}
-
-#spinner-grow{
-  width:194px;
-  height: 194px;
-  
-} */

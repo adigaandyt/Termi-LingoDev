@@ -28,6 +28,22 @@ export const uploadImage=createAsyncThunk(
      }
 
 )
+// Upload image to s3 and store in database
+export const updateUserImage=createAsyncThunk(
+    'update/image',
+     async(formdata,thunkAPI)=>{
+        const token=thunkAPI.getState().auth.user.token 
+        try { 
+            return await authService.updateUserImage(formdata,token)
+        } catch (error) {
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
 
 //logout user
 export const logout=createAsyncThunk('auth/logout', async()=>{
@@ -183,6 +199,20 @@ export const authSlice=createSlice({
         .addCase(uploadImage.fulfilled,(state,action)=>{
             state.isImageLoading=false
             state.image_url=action.payload
+        })
+        .addCase(updateUserImage.pending,(state)=>{
+            state.isImageLoading=true
+        })
+        .addCase(updateUserImage.rejected,(state,action)=>{
+            state.isImageLoading=false
+            state.isError=true
+            state.message=action.payload
+            
+        })
+        .addCase(updateUserImage.fulfilled,(state,action)=>{
+            state.isImageLoading=false
+            state.isSuccess=true
+            state.user=action.payload
         })
     }
 

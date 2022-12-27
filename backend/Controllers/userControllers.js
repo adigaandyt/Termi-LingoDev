@@ -160,13 +160,7 @@ const resetPassword=asyncHandler(async (req,res)=>{
 //@access private 
 const uploadImage =asyncHandler(async(req,res)=>{ 
     try{
-        // const imageMimeType=req.file.mimetype.split('/')[0]  
-   
-        // const dataUpdated=await User.findByIdAndUpdate(req.params.id,{profile_image:req.file.location},{new:true})
-        // console.log(dataUpdated)
-        res.status(200).json(req.file.location)
-       
-       
+        res.status(200).json(req.file.location) 
     }catch(err){
         // const imageMimeType=req.file.mimetype.split('/')[0]
         // if(imageMimeType!=="image"){
@@ -178,14 +172,39 @@ const uploadImage =asyncHandler(async(req,res)=>{
     }
     
  })
+ //@desc upload image to s3 and update user image field with it URL
+//@route post /api/users/update/image
+//@access private 
+const updateUserImage =asyncHandler(async(req,res)=>{ 
+    // console.log(req.user.id)
+    // console.log(req.file.location) 
+    try{
+        const newUser=await User.findByIdAndUpdate(req.user.id,{profile_image:req.file.location},{new:true})
+        console.log(newUser)
+        res.status(200).json({
+            _id:newUser._id,
+            name:newUser.name,
+            email:newUser.email,
+            phoneNumber:newUser.phoneNumber,
+            language:newUser.language,
+            categoryId:newUser.categoryId,
+            profile_image:newUser.profile_image,
+            isAdmin:newUser.isAdmin,
+            token:generateToken(newUser._id)
+        })
+    }catch(err){
+            res.status(500)
+            throw new Error("Invalide authorization")  
+    }
+    
+ })
   //@desc update details by user 
 //@route GET /api/users/update/user
 //@access public
-const updateUser=asyncHandler(async (req,res)=>{
+const updateUserDetails=asyncHandler(async (req,res)=>{
 const {newCategoryId,newLanguage,newPhoneNumber,newEmail,newName}=req.body
 
 let newUser;
-let user;
 try {
   
   newUser =await User.findByIdAndUpdate({_id:req.user._id},{
@@ -196,29 +215,23 @@ try {
     categoryId:newCategoryId
 
 
- })  
+ },{new:true})  
 } catch (error) {
     res.status(401)
-    throw new Error('user not updated')
+    throw new Error('User not updated')
 }
-try {
-     user =await User.findById(req.user._id)
-} catch (error) {
-    res.status(401)
-    // throw new Error(error.message)
-    throw new Error('Somthing is Wrong, try to Logout and login again')
-}
-if(user){
+
+if(newUser){
     res.status(200).json({
-        _id:user._id,
-        name:user.name,
-        email:user.email,
-        phoneNumber:user.phoneNumber,
-        language:user.language,
-        categoryId:user.categoryId,
-        profile_image:user.profile_image,
-        isAdmin:user.isAdmin,
-        token:generateToken(user._id)
+        _id:newUser._id,
+        name:newUser.name,
+        email:newUser.email,
+        phoneNumber:newUser.phoneNumber,
+        language:newUser.language,
+        categoryId:newUser.categoryId,
+        profile_image:newUser.profile_image,
+        isAdmin:newUser.isAdmin,
+        token:generateToken(newUser._id)
     })
 }else{
     throw new Error('Somthing is Wrong, try to Logout and login again')
@@ -232,5 +245,6 @@ module.exports={
     getMe,
     resetPassword,
     uploadImage,
-    updateUser
+    updateUserDetails,
+    updateUserImage
 }

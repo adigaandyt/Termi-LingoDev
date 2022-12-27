@@ -8,6 +8,19 @@ const uploadImage =async (formdata)=>{
     console.log(formdata)
     const response=await axios.post(API_URL+'/upload/image',formdata)
     if(response.data){
+        localStorage.setItem('image',JSON.stringify(response.data))
+    }
+    return response.data
+}
+//upload image to s3 and store it URL in hte database
+const updateUserImage =async (formdata,token)=>{
+    const config ={
+        headers:{
+            authorization:`Bearer ${token}`
+        }
+    }
+    const response=await axios.post(API_URL+'/update/image',formdata,config)
+    if(response.data){
         localStorage.setItem('user',JSON.stringify(response.data))
     }
     return response.data
@@ -65,7 +78,8 @@ const authService={
     login,
     resetPassword,
     uploadImage,
-    updateUser
+    updateUser,
+    updateUserImage,
     
 }
 

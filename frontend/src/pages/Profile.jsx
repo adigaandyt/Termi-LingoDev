@@ -1,25 +1,48 @@
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 import ProfileForm from '../components/ProfileForm'
 import {FcAddImage} from 'react-icons/fc'
 import '../styles/Profile.css'
 import { useState } from 'react'
+import { updateUserImage } from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
+import { useTranslation } from 'react-i18next'
 function Profile(){
+  const dispatch=useDispatch();
+  const {t}=useTranslation();
   const {name,email,profile_image} =useSelector(state=>state.auth.user)
-  const {isLoading} =useSelector(state=>state.auth)
+  const {isLoading,isImageLoading} =useSelector(state=>state.auth)
   const [isEdit,setIsEdit]=useState(false)
+  const onselectImage=(event)=>{
+    if(event.target.files[0]){
+      const formdata=new FormData()
+      formdata.append('profileImage',event.target.files[0])
+      dispatch(updateUserImage(formdata))
 
-  return(<>
+      }
+  }
+  return(<> 
         {isLoading&&<Spinner/>}
-    <h3 className='mt-130 mx-5'>My Profile:</h3>
+    <h3 className='mt-130 mx-2'>My Profile:</h3>
     <div className="  border-top row" id='profilePage'>
-      <div className=" col-sm-4 border-start px-5 border-top ">
+      <div className=" col-sm-4 border-start px-3 border-top ">
         <div className='row '>
         <div className='col-7'>
           <div id='profilePageImage' className=' text-end mt-3' >
             <div className='image-circle' style={{"backgroundImage":`url(${profile_image})`,"fontSize":"190%"}}>
-            <label className='text-buttom mt-150 mx-2'><FcAddImage className='light-background'/></label>
+            <div className=' '>
+            {isImageLoading&&<div class="spinner-border  text-light " id='spinner-grow'role="status">
+              <span class="sr-only">Loading...</span>
+            </div>}       
             </div>
+
+
+            </div>
+            <div className=' text-end w-75'>
+             <label className='text-buttom  mx-2 '>
+            <input   style={{"position":"relative" ,"left":"15%","display":"none"}} onChange={onselectImage}  type="file" accept="image/*"/>
+            <FcAddImage style={{"fontSize":"40px"}} className='light-background'/></label>               
+            </div>            
           </div>
           <div className='mt-3' >
           <h6 className="d-inline-block">{name}</h6>
@@ -33,7 +56,11 @@ function Profile(){
         </div>
           </div>
           <div className='col-sm-5 col-6  text-sm-end '>
-          <button id="editbtn" disabled={isEdit} onClick={()=>setIsEdit(!isEdit)} className='btn btn-primary btn-sm text-end mt-lg-3 mb-3'>Edit Profile</button>
+          <div>
+          <button id="editbtn" disabled={isEdit} onClick={()=>setIsEdit(!isEdit)} className='btn btn-primary btn-sm text-end mt-lg-3 d-inline-block'>Edit Profile</button>
+          <Link to='/reset' id="editbtn" className='btn btn-dark btn-sm text-end mt-1 mb-3 d-inline-block'>{t('reset_password')}</Link>            
+          </div>
+
 
           </div>
         </div>

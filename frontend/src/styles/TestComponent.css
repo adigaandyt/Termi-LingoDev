@@ -1,25 +1,23 @@
-/* .sun {
-    position: relative;
-    height: 100px;
-    width: 100px;
+/* saleh */
+  #comp-img2{
+    position: absolute;
+    background-color:red;
+   }
+
+  #image2{
+    position: fixed;
+    width: 194px;
+    height: 194px;
     border-radius: 50%;
-    background-color: yellow;
-    transition: transform 1s ease-out;
+    background-color: black;
+    z-index: -1;
+    
   }
-  
-  .sun-rising {
-    transform: translateY(-200px);
+  #img-icon2{
+    
+    font-size: 250%;
+    top:-50px; 
+    
+    
   }
-  
-  .sun-setting {
-    transform: translateY(200px);
-  }
-  
-  .fa-sun {
-    font-size: 80px;
-    color: orange;
-  }
-   */
-
-
-  
+  /* yahia */

@@ -4,10 +4,12 @@ import {getCategoryName} from '../hooks/ExportsFunctions'
 import { useEffect, useState} from 'react'
 import {getCategoryNameById} from '../hooks/ExportsFunctions'
 import {toast} from 'react-toastify'
+import { useTranslation } from 'react-i18next'
 import TestComponent from '../pages/TestComponent'
 
 
 function ProfileForm({isEdit,setIsEdit}){
+  const {t}=useTranslation()
   const dispatch=useDispatch();
     const {categories}=useSelector(state=>state.category)
     const {name,email,phoneNumber,language,categoryId} =useSelector(state=>state.auth.user)
@@ -64,7 +66,7 @@ function ProfileForm({isEdit,setIsEdit}){
   <div className="col-md-6">
     <div className="form-floating">
       <input disabled={!isEdit} onChange={onChange} name='newEmail' value={newEmail} type="email" className="form-control" id="floatingInputGrid" placeholder={newEmail} />
-      <label for="floatingInputGrid">Email address</label>
+      <label for="floatingInputGrid">{t('email_adress')}</label>
     </div>
   </div>
   <div className="col-md-6">

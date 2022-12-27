@@ -50,6 +50,7 @@ function App() {
             <Route path='/reset' element={<PrivateRoute/>}>
                 <Route path='/reset' element={<ResetPassword/>}/>
             </Route>
+            <Route path='/test' element={<TestComponent/>}/>
 
             <Route path='/new/concept' element={<PrivateRoute/>}>
               <Route path='/new/concept' element={<NewConcept/>}/>

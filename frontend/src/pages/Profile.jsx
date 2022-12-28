@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { updateUserImage } from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
 import { useTranslation } from 'react-i18next'
+import TestComponent from './TestComponent'
 function Profile(){
   const dispatch=useDispatch();
   const {t}=useTranslation();
@@ -28,7 +29,8 @@ function Profile(){
       <div className=" col-sm-4 border-start px-3 border-top   ">
         <div className='row'>
         <div className='col-7 '>
-          <div id='profilePageImage' className=' text-end mt-3 ' >
+        <TestComponent/>
+          {/* <div id='profilePageImage' className=' text-end mt-3 ' >
             <div className='image-circle' style={{"backgroundImage":`url(${profile_image})`,"fontSize":"190%"}}>
               <div className=' '>
                   {isImageLoading&&<div class="spinner-border  text-light " id='spinner-grow' role="status">
@@ -41,7 +43,7 @@ function Profile(){
             <input   style={{"position":"relative" ,"left":"15%","display":"none"}} onChange={onselectImage}  type="file" accept="image/*"/>
             <FcAddImage style={{"fontSize":"40px"}} className='light-background'/></label>               
             </div>            
-          </div>
+          </div> */}
           <div className='mt-3' >
           <h6 className="d-inline-block">{name}</h6>
         </div>

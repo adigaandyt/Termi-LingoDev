@@ -1,23 +1,53 @@
 /* saleh */
+  /*#comp-img2{*/
+  /*  position: absolute;*/
+  /*  background-color:red;*/
+  /* }*/
+
+  /*#image2{*/
+  /*  position: fixed;*/
+  /*  width: 194px;*/
+  /*  height: 194px;*/
+  /*  border-radius: 50%;*/
+  /*  background-color: black;*/
+  /*  z-index: -1;*/
+    
+  /*}*/
+  /*#img-icon2{*/
+    
+  /*  font-size: 250%;*/
+  /*  top:-50px; */
+    
+    
+  /*}*/
+  /* yahia */
   #comp-img2{
-    position: absolute;
-    background-color:red;
+    position: relative;
+    /*margin-right:1200px;*/
+    top: 100px;
+    /*border: red solid;*/
+    width: 200px;
    }
 
   #image2{
-    position: fixed;
+    
     width: 194px;
     height: 194px;
     border-radius: 50%;
     background-color: black;
-    z-index: -1;
+    /*z-index: -1;*/
+    text-align: right;
+    /*border: red solid;*/
     
   }
   #img-icon2{
-    
+    position: absolute;
     font-size: 250%;
-    top:-50px; 
+    bottom: 12px;
+    right: 10px;
+    /*left:5px;*/
+    /* background-color: white; */
+    border-radius: 10px;
     
     
   }
-  /* yahia */

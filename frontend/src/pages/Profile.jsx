@@ -24,7 +24,7 @@ function Profile(){
   return(<> 
         {isLoading&&<Spinner/>}
     <h3 className='mt-130 mx-2'>My Profile:</h3>
-    <div className="  border-top row " id='profilePage'>
+    <div className="border-top row " id='profilePage'>
       <div className=" col-sm-4 border-start px-3 border-top   ">
         <div className='row'>
         <div className='col-7 '>

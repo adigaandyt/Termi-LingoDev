@@ -7,7 +7,7 @@ function TestComponent() {
 
     return (<>
 
-    <div id='comp-img2' className='mt-150 text-center'>
+    <div id='comp-img2' className='text-center'>
       <div id='image2' >
       {true&&<div class="spinner-border  text-light " id='spinner-grow' role="status">
               {<span class="sr-only">Loading...</span>}

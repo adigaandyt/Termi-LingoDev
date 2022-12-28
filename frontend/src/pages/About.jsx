@@ -1,31 +1,36 @@
+import { useTranslation } from 'react-i18next'
+import{ MdFavorite } from 'react-icons/md'
+import{ BsTranslate } from 'react-icons/bs'
+import { BiTransferAlt } from 'react-icons/bi'
+import { SiGoogletranslate } from 'react-icons/si'
 import '../styles/About.css'
+// warning success danger dark light primary
 function About(){
+  const {t}=useTranslation();
     return (<>
     
-    <div className="about-container">
+    <div className="about-container bg-darks">
       <div className="about-header">
-        <h1 className="about-title">About Our App</h1>
-        <img src="/logo.png" alt="App logo" className="about-logo" />
+        <h1 className="about-title">{t('about_app')}</h1>
+        <SiGoogletranslate id='app-logo-about'/>
       </div>
+      
       <p className="about-description">
-        Our app is designed to help users easily translate text from one language to another. 
-        With a simple and intuitive interface, our app makes it easy for users to communicate 
-        with others who speak different languages.
-        We aim to open the door to global business by giving everybody access to the content they need in the language they speak.
+      {t('about_phrase1')}
       </p>
-          <h2 className="about-features-title">Features</h2>
+          <h2 className="about-features-title">{t('features')}</h2>
       <ul className="about-features-list">
         <li className="about-feature">
-          <img src="/language.png" alt="Language icon" className="about-feature-icon" />
-          <span className="about-feature-text">Support for three languages for now : English , Hebrow , Arabic </span>
+         <BsTranslate/>
+          <span className="about-feature-text">{t('support')} </span>
         </li>
         <li className="about-feature">
-          <img src="/translate.png" alt="Translate icon" className="about-feature-icon" />
-          <span className="about-feature-text">Instant translation of text and phrases</span>
+          <BiTransferAlt/>
+          <span className="about-feature-text">{t('instant')}</span>
         </li>
         <li className="about-feature">
-          <img src="/favorite.png" alt="Favorite icon" className="about-feature-icon" />
-          <span className="about-feature-text">Ability to save and organize favorite translations</span>
+          <MdFavorite/>
+          <span className="about-feature-text">{t('ability_to')}</span>
         </li>
       </ul>
       <p className="about-credits">Created by LingoDev team</p>

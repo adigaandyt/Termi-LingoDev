@@ -49,8 +49,13 @@
     "new password":"New password",
     "confirm password": "Confirm password",
     "error_title":" There's nothing here!",
-    "error_discreption":"Sorry, the page you were looking for in this blog does not exist."
-    
+    "error_discreption":"Sorry, the page you were looking for in this blog does not exist.",
+    "about_phrase1":" Our app is designed to help users easily translate text from one language to another. With a simple and intuitive interface, our app makes it easy for users to communicate with others who speak different languages.We aim to open the door to global business by giving everybody access to the content they need in the language they speak.",
+    "about_app":"About Our App",
+    "features": "Features",
+    "support":"Support for three languages for now : English , Hebrow , Arabic",
+    "instant":"Instant translation of text and phrases",
+    "ability_to":"Ability to save and organize favorite translations"
 
 
 }

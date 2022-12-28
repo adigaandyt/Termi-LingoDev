@@ -41,11 +41,12 @@
   margin: 100px auto;
   text-align: center;
   position: relative;
-  background: linear-gradient(to right, #FFC371, #FF5F6D);
+  background: linear-gradient(to right, #652F8F, #b65c32);
   color: white;
   padding: 1em;
   border-radius: 5px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  z-index: -1;
 }
 
 .about-header {
@@ -112,6 +113,9 @@
   transition: filter 0.3s;
 }
 
+#app-logo-about{
+  font-size:250%;
+}
 .about-feature:hover .about-feature-icon {
   filter: grayscale(0%);
 }

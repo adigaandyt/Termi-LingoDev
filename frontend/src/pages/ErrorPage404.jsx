@@ -118,7 +118,7 @@ function ErrorPage404(){
 </svg>
 <h4>{t('error_title')}</h4>
 <p>{t('error_discreption')}</p>
-<a class="homepage" href="https://infokudia.blogspot.com"><i class="fas fa-home"></i>
+<a class="homepage" href="#"><i class="fas fa-home"></i>
 Home</a>
 </div>
     </div>)

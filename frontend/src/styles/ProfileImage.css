@@ -1,3 +1,5 @@
+
+  /* yahia */
   #comp-img2{
     position: relative;
     width: 200px;
@@ -8,14 +10,20 @@
     width: 194px;
     height: 194px;
     border-radius: 50%;
-    background-color: black;
-    text-align: right;
+    background-size:cover;
     
+  }
+  #img-icon2-bg{
+    margin: 10px;
+    background-color: rgb(242, 234, 234);
+    border-radius:50% ;
+    padding: 12px;
   }
   #img-icon2{
     position: absolute;
-    font-size: 250%;
-    bottom: 12px;
-    right: 10px;
-    border-radius: 10px;
+    font-size: 180%;
+    bottom: 0px;
+    right: -8px;
+    
+    
   }

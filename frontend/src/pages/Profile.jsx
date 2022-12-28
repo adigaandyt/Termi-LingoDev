@@ -30,8 +30,8 @@ function Profile(){
       <div className=" col-sm-4 border-start px-3 border-top   ">
         <div className='row'>
         <div className='col-7 '>
-        <ProfileImage/>
-          {/* <div id='profilePageImage' className=' text-end mt-3 ' >
+          {/*<ProfileImage/>*/}
+                    <div id='profilePageImage' className=' text-end mt-3 ' >
             <div className='image-circle' style={{"backgroundImage":`url(${profile_image})`,"fontSize":"190%"}}>
               <div className=' '>
                   {isImageLoading&&<div class="spinner-border  text-light " id='spinner-grow' role="status">
@@ -44,7 +44,7 @@ function Profile(){
             <input   style={{"position":"relative" ,"left":"15%","display":"none"}} onChange={onselectImage}  type="file" accept="image/*"/>
             <FcAddImage style={{"fontSize":"40px"}} className='light-background'/></label>               
             </div>            
-          </div> */}
+          </div>
           <div className='mt-3' >
           <h6 className="d-inline-block">{name}</h6>
         </div>
@@ -56,7 +56,7 @@ function Profile(){
           <h6 className="d-inline-block">0</h6>
         </div>
           </div>
-          <div className='col-sm-5 col-6  text-sm-end '>
+          <div className='col-sm-6 col-6  text-sm-end '>
           <div>
           <button id="editbtn" disabled={isEdit} onClick={()=>setIsEdit(!isEdit)} className='btn btn-primary btn-sm text-end mt-lg-3 d-inline-block'>{t('edit')}</button>
           <Link to='/reset' id="editbtn" className='btn btn-dark btn-sm text-end mt-1 mb-3 d-inline-block'>{t('reset_password')}</Link>            

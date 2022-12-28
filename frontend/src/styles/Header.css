@@ -205,6 +205,18 @@
       }
       
   }
+  @media only screen and (max-width: 820px) {
+      .nav1 .box button{
+          padding-left: 15px;
+          height: 100%;
+          width: 100%;
+          color: black;
+      }
+      .nav1 .box{
+          right: -5%;
+      }
+      
+  }
   .box img{
     position:static;
     margin-bottom: 6px;

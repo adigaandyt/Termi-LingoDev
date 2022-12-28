@@ -1,13 +1,14 @@
-import { useSelector,useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
-import ProfileForm from '../components/ProfileForm'
-import {FcAddImage} from 'react-icons/fc'
-import '../styles/Profile.css'
-import { useState } from 'react'
-import { updateUserImage } from '../features/auth/authSlice'
-import Spinner from '../components/Spinner'
-import { useTranslation } from 'react-i18next'
-import TestComponent from './TestComponent'
+import { useSelector,useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import ProfileForm from '../components/ProfileForm';
+import ProfileImage from '../components/ProfileImage';
+import {FcAddImage} from 'react-icons/fc';
+import '../styles/Profile.css';
+import { useState } from 'react';
+import { updateUserImage } from '../features/auth/authSlice';
+import Spinner from '../components/Spinner';
+import { useTranslation } from 'react-i18next';
+import TestComponent from './TestComponent';
 function Profile(){
   const dispatch=useDispatch();
   const {t}=useTranslation();
@@ -29,7 +30,7 @@ function Profile(){
       <div className=" col-sm-4 border-start px-3 border-top   ">
         <div className='row'>
         <div className='col-7 '>
-        <TestComponent/>
+        <ProfileImage/>
           {/* <div id='profilePageImage' className=' text-end mt-3 ' >
             <div className='image-circle' style={{"backgroundImage":`url(${profile_image})`,"fontSize":"190%"}}>
               <div className=' '>

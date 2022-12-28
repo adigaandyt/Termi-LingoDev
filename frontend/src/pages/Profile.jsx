@@ -24,27 +24,14 @@ function Profile(){
       }
   }
   return(<> 
+  <div dir='ltr'>
         {isLoading&&<Spinner/>}
     <h3 className='mt-130 mx-2'>My Profile:</h3>
     <div className="border-top row " id='profilePage'>
       <div className=" col-sm-4 border-start px-3 border-top   ">
         <div className='row'>
         <div className='col-7 '>
-        <ProfileImage/>
-          {/* <div id='profilePageImage' className=' text-end mt-3 ' >
-            <div className='image-circle' style={{"backgroundImage":`url(${profile_image})`,"fontSize":"190%"}}>
-              <div className=' '>
-                  {isImageLoading&&<div class="spinner-border  text-light " id='spinner-grow' role="status">
-                    {<span class="sr-only">Loading...</span>}
-                  </div>}
-              </div>
-            </div>
-            <div className=' text-end w-75'>
-             <label className='text-buttom  mx-2 '>
-            <input   style={{"position":"relative" ,"left":"15%","display":"none"}} onChange={onselectImage}  type="file" accept="image/*"/>
-            <FcAddImage style={{"fontSize":"40px"}} className='light-background'/></label>               
-            </div>            
-          </div> */}
+        <ProfileImage isImageLoadin={isImageLoading} profile_image={profile_image} />
           <div className='mt-3' >
           <h6 className="d-inline-block">{name}</h6>
         </div>
@@ -73,7 +60,7 @@ function Profile(){
       </div>
 
     </div>
-
+</div>
   </>)
 }
 export default Profile

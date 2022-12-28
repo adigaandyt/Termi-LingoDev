@@ -47,5 +47,7 @@
     "edit":"עריכה",
     "current password": "סיסמה נוכחית",
     "new password": "סיסמה חדשה",
-    "confirm password": "אמת סיסמה"
+    "confirm password": "אמת סיסמה",
+    "error_title":"אין שום דבר כאן!",
+    "error_discreption":"מצטערים , החלון שאתם מחפשים לא נמצא!"
 }

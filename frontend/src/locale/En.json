@@ -47,7 +47,9 @@
     "edit":"Edit profile",
     "current password": "Current password",
     "new password":"New password",
-    "confirm password": "Confirm password"
+    "confirm password": "Confirm password",
+    "error_title":" There's nothing here!",
+    "error_discreption":"Sorry, the page you were looking for in this blog does not exist."
     
 
 

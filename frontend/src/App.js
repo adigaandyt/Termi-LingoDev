@@ -18,6 +18,7 @@ import Profile from './pages/Profile';
 import ResetPassword from './pages/ResetPassword';
 import NewConcept from './pages/NewConcept';
 import Footer from './components/Footer';
+import ErrorPage404 from './pages/ErrorPage404';
 import TestComponent from './pages/TestComponent';
 import $ from 'jquery';
 import loadable from "@loadable/component";
@@ -55,6 +56,8 @@ function App() {
             <Route path='/new/concept' element={<PrivateRoute/>}>
               <Route path='/new/concept' element={<NewConcept/>}/>
             </Route>
+            <Route path='*' element={<ErrorPage404/>}/>
+
           </Routes>
           <Footer/>
         </div>

@@ -100,7 +100,7 @@ function Home(){
                 {/* <img src='https://profile-images-barbershop-app.s3.us-east-1.amazonaws.com/LingoDev/image-1671932670605.png'/> */}
                 
 
-               {user&&<h3 className='text-success'>You are connected with {user.email}</h3>}
+               {/* {user&&<h3 className='text-success'>You are connected with {user.email}</h3>} */}
            
         </div>
         

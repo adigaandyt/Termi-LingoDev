@@ -67,7 +67,7 @@ import '../styles/SearchForm.css'
                     <button type="button" className="btn btn-warning" onClick={onSearchClick}>
                         <i className="fas fa-search"></i>
                     </button>
-                    <button onClick={onReset} type='button' className='btn btn-secondary'> Reset</button>
+                    <button onClick={onReset} type='button' className='btn btn-secondary'>{t('reset')}</button>
 
                     <datalist className='bg-light w-100' id="brow">
                         {(names && conceptSearch.length >= 3 )&&

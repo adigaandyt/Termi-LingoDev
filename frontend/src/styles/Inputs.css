@@ -1,6 +1,4 @@
-.container{
-  margin-top: 100px;
-}
+
 .form1 {
     margin: auto;
     width: 300px;
@@ -15,7 +13,7 @@
   border-radius: 10px;
   font-family: "Source Sans Pro", sans-serif;
   /*padding: 10px 15px;*/
-  margin: 5px auto 10px auto;
+  /* margin: 5px auto 10px auto; */
   /*display: block;*/
   font-size: 18px;
   font-weight: 300;

@@ -1,52 +1,25 @@
-/* saleh */
-  /*#comp-img2{*/
-  /*  position: absolute;*/
-  /*  background-color:red;*/
-  /* }*/
-
-  /*#image2{*/
-  /*  position: fixed;*/
-  /*  width: 194px;*/
-  /*  height: 194px;*/
-  /*  border-radius: 50%;*/
-  /*  background-color: black;*/
-  /*  z-index: -1;*/
-    
-  /*}*/
-  /*#img-icon2{*/
-    
-  /*  font-size: 250%;*/
-  /*  top:-50px; */
-    
-    
-  /*}*/
-  /* yahia */
-  #comp-img2{
-    position: relative;
-    /*margin-right:1200px;*/
-    /* top: 50px; */
-    /*border: red solid;*/
-    width: 200px;
-   }
-
-  #image2{
-    
-    width: 194px;
-    height: 194px;
-    border-radius: 50%;
-    background-color: black;
-    text-align: right;
-    /*border: red solid;*/
-    
-  }
-  #img-icon2{
-    position: absolute;
-    font-size: 250%;
-    bottom: 12px;
-    right: 10px;
-    /*left:5px;*/
-    /* background-color: white; */
-    border-radius: 10px;
-    
-    
-  }
+/* .scrollRL{
+  max-height: 120px;
+  border: 1px solid black;
+  display: flex;
+  overflow-x: scroll;
+}
+.scrollRL::-webkit-scrollbar{
+  overflow: hidden;
+}
+.scrollRL .scrollRL-item{
+  height: 100px;
+  line-height: 110px;
+  text-align: center;
+  background-color: antiquewhite;
+} */
+/*  */
+#carouselExample{
+  height: 300px;
+}
+#home-flages3{
+  font-size: 35px; 
+width:35px;
+height: 35px;
+border-radius: 50%;
+}

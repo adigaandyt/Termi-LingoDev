@@ -74,7 +74,7 @@ function Login(){
     return (
         <>
             
-            <div className='container mb-5' style={{"textAlign":"center"}} >
+            <div className='container mb-3' id="loginpage" style={{"textAlign":"center"}} >
                 <h1 className="text-secondary my-5"><AiOutlineUser style={{"fontSize":"145%"}}/>{t('login')}</h1>
                 <div className='form1 text-start'>
                     <Link to='/register' className='btn btn-outline-dark' ><TiArrowBackOutline style={{"fontSize":"150%"}}/> {t('register')}</Link>

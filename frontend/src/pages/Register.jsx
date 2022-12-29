@@ -112,7 +112,7 @@ function Register(){
        }
     return (
         <>
-            <div className=' mt-130 mb-5  ' style={{"textAlign":"center"}} >
+        <div className=' mt-130 mb-5' id="regpage" style={{"textAlign":"center"}} >
 
         <form className="form1" onSubmit={onSubmit}>
 

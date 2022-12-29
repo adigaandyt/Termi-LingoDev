@@ -24,21 +24,21 @@ function Profile(){
       }
   }
   return(<> 
-  <div dir='ltr'>
+  <div dir='ltr' id="ppage">
         {isLoading&&<Spinner/>}
-    <h3 className='mt-130 mx-2'>My Profile:</h3>
+    <h3 className='mx-2'>My Profile:</h3>
     <div className="border-top row " id='profilePage'>
       <div className=" col-sm-4 border-start px-3 border-top   ">
         <div className='row'>
         <div className='col-7 '>
         <ProfileImage isImageLoadin={isImageLoading} profile_image={profile_image} />
-          <div className='mt-3' >
+          <div className='mt-3 mx-3' >
           <h6 className="d-inline-block">{name}</h6>
         </div>
-        <div className='' >
+        <div className='mx-3' >
           <h6 className="d-inline-block">{email}</h6>
         </div>
-        <div className='' >
+        <div className='mx-3' >
           <p className="d-inline-block">Score: </p>
           <h6 className="d-inline-block">0</h6>
         </div>

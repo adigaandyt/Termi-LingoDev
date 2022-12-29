@@ -63,15 +63,15 @@ function Home(){
                
                 <div className='text-center mb-4' id='t1'>
                     <label className='d-inline '>
-                        <h4 className='text-secondary warp-text '>
-                        <BsTranslate className='text-warning capitalized' /> {t('home_title')} <span className="text-warning">{t('its_definition')}</span> </h4>
+                        <h4 className='text-dark'>
+                        <BsTranslate className='text-sagol capitalized' /> {t('home_title')} <span className="text-warning">{t('its_definition')}</span> </h4>
                     </label>
                     
                 </div>
               
             
           
-                <div className='text-center'>
+                {/* <div className='text-center'>
                     <div className='d-inline-block text-center' >
                         <button
                         onClick={onChangeLanguage}
@@ -89,8 +89,8 @@ function Home(){
                         className={hebrew?'button-group btn btn-dark ':' btn btn-outline-secondary '}>עברית
                         </button>
                     </div>
-                </div>
-                <br/>
+                </div> */}
+                {/* <br/> */}
                 <SearchForm/>
                 {concept&&<CatouselDefinition/>}
                 {/* <Definitions languageChoosed={languageChoosed} concept={concept}/> */}

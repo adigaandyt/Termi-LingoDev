@@ -127,3 +127,15 @@ border-radius: 0%;
   margin-right: 0;
   margin-left: 0;
 }
+.text-sagol{
+  color: #652f8f;
+}
+.text-orange-50{
+  color:#fa976c;
+}
+.btn-sagol{
+background-color:  #652f8f;
+}
+.btn-orange-50{
+  background-color:  #fa976c;
+  }

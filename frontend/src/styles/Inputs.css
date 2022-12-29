@@ -152,3 +152,11 @@
     /*width:500px;*/
     /*margin-top: 200px;*/
   }
+  
+  @media only screen and (max-width: 450px) {
+    #scroll{
+      /*border: red solid;*/
+      height: 150px;
+      overflow-y: scroll;
+    }
+  }

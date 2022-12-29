@@ -51,8 +51,8 @@ function Definitions({concept,languageChoosed}){
       setShowLongDefinition(!showLongDefinition);
     };
     return(<>
-    <div className='text-center'>
-        <h3 className="text-dark my-3">{concept&&getConceptName(languageChoosed,concept)}</h3>
+    <div className='text-center conntainer'>
+        <h3 className="text-dark mb-3">{concept&&getConceptName(languageChoosed,concept)}</h3>
         {concept&&
         <div>
             <button onClick={toggleLongDefinition} className='btn btn-primary m-1'>{showShortDefinition?<BiShow style={{"fontSize":"180%"}}/>:<BiHide style={{"fontSize":"180%"}}/>} {t('short_definition')}</button>

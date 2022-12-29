@@ -88,7 +88,6 @@ function Header(){
                 ):(
                     <>
                     <i className="exit"><button onClick={onLogout} type="button"><ImExit/></button></i>
-                    {/* <i className="prof "><button onClick={() => navigate('/profile')} type="button"><ImProfile/></button></i> */}
                     <i className="prof " onClick={() => navigate('/profile')}><img src={user.profile_image}/></i>
                     </>
                 )}

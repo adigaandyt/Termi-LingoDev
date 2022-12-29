@@ -1,25 +1,22 @@
-
-
 import React, { useState, useEffect,useRef } from 'react';
 import {MdOutlineAddAPhoto} from 'react-icons/md'
 import $ from 'jquery'
-import '../styles/CarouselDefinition.css'
+import '../styles/TestComponent.css'
 import Definitions from '../components/Definitions'
 import {CgScrollH} from 'react-icons/cg'
 import "/node_modules/flag-icons/css/flag-icons.min.css";
 
-import {useSelector,useDispatch} from 'react-redux'
-
-function TestComponent() {
+import {useSelector} from 'react-redux'
+function CatouselDefinition(){
     const {concept}= useSelector(state=>state.concept)
     const [languageChoosed,setLanguageChoosed]=useState({
       english:true,
       hebrew:false,
       arabic:false,
   })
-    return (<>
+    return(<>
 
-    <div className=' mt-150 text-center'>
+<div className='  text-center'>
     <div id="carouselExample" class="carousel slide">
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -67,10 +64,6 @@ function TestComponent() {
 
 
 </div>
-    
-
-    </>)}
-
-
-
-export default TestComponent;
+    </>)
+}
+export default CatouselDefinition

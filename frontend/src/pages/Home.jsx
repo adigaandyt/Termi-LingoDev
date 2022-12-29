@@ -10,8 +10,10 @@ import {getCategoryName} from '../hooks/ExportsFunctions'
 import SearchForm from '../components/SearchForm'
 import ConceptCard from '../components/ConceptCard'
 import "../styles/home.css"
+import "/node_modules/flag-icons/css/flag-icons.min.css";
 import NoConceptResultModal from '../components/NoConceptResultModal'
 import ConceptCardsList from '../components/ConceptCardsList'
+import CatouselDefinition from '../components/CaroselDefinition'
 import Spinner from '../components/Spinner'
 
 
@@ -53,15 +55,16 @@ function Home(){
         })
     }
   
-    return (
-    
-        <div id="ho" className='mt-150 mx-3'>
+    return (<>
+         <div className='row mt-90' > 
+        <div id="ho" className='col-12 col-sm-11 mt-5 '>
+        
           {isLoading&&<Spinner/>}
                
-                <div className='text-center mb-4 ' id='t1'>
+                <div className='text-center mb-4' id='t1'>
                     <label className='d-inline '>
                         <h4 className='text-secondary warp-text '>
-                        <BsTranslate className='text-warning capitalized' style={{"fontSize":"180%"}}/> {t('home_title')} <span className="text-warning">{t('its_definition')}</span> </h4>
+                        <BsTranslate className='text-warning capitalized' /> {t('home_title')} <span className="text-warning">{t('its_definition')}</span> </h4>
                     </label>
                     
                 </div>
@@ -89,21 +92,29 @@ function Home(){
                 </div>
                 <br/>
                 <SearchForm/>
-                <Definitions languageChoosed={languageChoosed} concept={concept}/>
+                <CatouselDefinition/>
+                {/* <Definitions languageChoosed={languageChoosed} concept={concept}/> */}
                 {concepts&&<div className='center'>
                 <hr className='my-3  dashed'/>
                 <h3>{t('suggestions_for_you')}:</h3>
                 </div>}
                 
                 <ConceptCardsList languageChoosed={languageChoosed}/>
-                
-                {/* <img src='https://profile-images-barbershop-app.s3.us-east-1.amazonaws.com/LingoDev/image-1671932670605.png'/> */}
-                
 
-               {/* {user&&<h3 className='text-success'>You are connected with {user.email}</h3>} */}
            
         </div>
-        
-    )
+        <div className='col-2 col-sm-1  '>
+            <div className='text-center'>
+            <span id="home-flages2" className="fi fi-us mt-3"></span>                
+            </div>
+            <div className='text-center'>
+            <span id="home-flages2" className="fi fi-il my-3"></span>                
+            </div>
+            <div className='text-center'>
+            <span id="home-flages2" className="fi fi-sa"></span>                
+            </div>
+            </div>
+        </div>
+        </> )
 }
 export default Home

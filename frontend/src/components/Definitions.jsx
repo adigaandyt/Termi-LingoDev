@@ -1,13 +1,15 @@
 import { MDBCollapse, MDBBtn, MDBRow, MDBCol } from 'mdb-react-ui-kit';
+import { useSelector } from 'react-redux';
 import { useTranslation } from "react-i18next"
 import {BiShow,BiHide} from 'react-icons/bi'
 import React, { useState } from 'react';
-import { getConceptName } from '../hooks/ExportsFunctions';
+import { getConceptName,categoryById } from '../hooks/ExportsFunctions';
 import "../styles/Inputs.css"
 import {GrTextAlignCenter} from 'react-icons/gr'
 import {RxTextAlignCenter} from 'react-icons/rx'
 import {MdMoreHoriz} from 'react-icons/md'
 function Definitions({concept,languageChoosed}){
+    const {categories}=useSelector(state=>state.category)
     const { t }=useTranslation();
     const getDefinition=(isLong)=>{
         let definition="" 
@@ -59,13 +61,39 @@ function Definitions({concept,languageChoosed}){
     return(<>
     <div className='text-center conntainer'>
         <h3 className="text-dark mb-3">{concept&&getConceptName(languageChoosed,concept)}</h3>
+        <h5>{concept&&categoryById(concept.categories[0],languageChoosed,categories)}</h5>
         {concept&&
         <div>
-            <a  target='_blank' href={concept&&concept.readMore} >
-                <MdMoreHoriz  className='mx-3 m-1 text-primary' style={{"fontSize":"200%"}}>{t('show_both_definitions')} </MdMoreHoriz>
-            </a>
-            <RxTextAlignCenter onClick={toggleLongDefinition} className='mx-3 m-1' style={{"fontSize":"200%"}}>{showShortDefinition?<BiShow style={{"fontSize":"180%"}}/>:<BiHide style={{"fontSize":"180%"}}/>} {t('short_definition')}</RxTextAlignCenter>
-            <GrTextAlignCenter onClick={toggleShortDefinition} className='mx-3 m-1' style={{"fontSize":"180%"}}>{showLongDefinition?<BiShow style={{"fontSize":"180%"}}/>:<BiHide style={{"fontSize":"180%"}}/>}  {t('long_definition')}</GrTextAlignCenter>
+
+            <div class="button-container">
+                    <div class="button">
+                    <div class="button-text">
+                    <a  target='_blank' href={concept&&concept.readMore} >
+                    <MdMoreHoriz  className='mx-3 m-1 text-primary' style={{"fontSize":"200%"}}>{t('show_both_definitions')} </MdMoreHoriz>
+                    </a>
+                    </div>
+                    </div>
+                    <div class="button-outline"></div>
+            </div>
+            <div class="button-container">
+                    <div class={showShortDefinition?"button button-clicked":"button"} onClick={toggleLongDefinition}>
+                    <div class="button-text" >
+                    <RxTextAlignCenter  className=' ' style={{"fontSize":"180%"}}/>
+                    </div>
+                    </div>
+                    <div class="button-outline"></div>
+            </div>
+            <div class="button-container">
+                    <div class={showLongDefinition?"button button-clicked":"button"} onClick={toggleShortDefinition}>
+                    <div class="button-text" >
+                    <GrTextAlignCenter id='icon-clicked'  className='mx-3 m-1' style={{"fontSize":"180%"}}/> 
+                    </div>
+                    </div>
+                    <div class="button-outline"></div>
+            </div>
+
+
+
         </div>}
       <MDBRow className='row'>
       <div  className='col-sm-6'>

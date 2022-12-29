@@ -1,4 +1,5 @@
 import cookies from "js-cookie"
+import { useSelector } from "react-redux"
 
 
 //translate the name by cookies
@@ -30,6 +31,13 @@ export const getCategoryName1=(categoryNames,languageChoosed)=>{
             break;
         }
     }}
+//@des search category by id and call another function to get the category name with a specific language
+  export  const categoryById=(id,languageChoosed,categories)=>{
+        if(categories){
+            const result= categories.find((item) => item._id === id);
+            return getCategoryName1(result.categoryName,languageChoosed);
+        }
+    }
 
    export  const getConceptName =(languageChoosed,concept)=>{
         
@@ -54,6 +62,7 @@ export const getCategoryName1=(categoryNames,languageChoosed)=>{
       
         
     }
+    //get categoryname by id with the default language choosed.
     export const getCategoryNameById=(categories,categoryId)=>{
     if(categories){
         const mycateg = categories.find(object => object._id === categoryId);
@@ -73,6 +82,7 @@ export const getCategoryName1=(categoryNames,languageChoosed)=>{
     
     }
     
+
 
 
 

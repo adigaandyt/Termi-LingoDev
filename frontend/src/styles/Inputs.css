@@ -147,8 +147,79 @@
     /*border: red solid;*/
     z-index: 99999;
   }
-  #regpage{
-    /*border: red solid;*/
-    /*width:500px;*/
-    /*margin-top: 200px;*/
+
+  #icon-unclicked{
+    display: inline-block;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background-color: slategray;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    /* border-radius: 50%; */
+   
   }
+  @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+.button {
+  z-index: 99;
+  position: absolute;
+  width: 80%;
+  top: 50%;
+  left: 50%;
+  border-radius: 100%;
+  transform: translate(-50%, -50%);
+  background-color: #e4e9eb;
+  cursor: pointer;
+}
+
+.button:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.button-clicked+ .button-outline {
+  width: 100%;
+}
+
+.button-outline {
+  position: absolute;
+  width: 75%;
+  top: 50%;
+  left: 50%;
+  border-radius: 100%;
+  border: 7px solid #798084;
+  transform: translate(-50%, -50%);
+  transition: all 0.25s cubic-bezier(.7, .11, .32, 2);
+}
+
+.button-outline:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.button-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  /* font-size: 96px; */
+  font-family: "Open Sans", sans-serif;
+  /* color: white; */
+}
+
+.button-container {
+  display: inline-block;
+  position: relative;
+  margin: 0 auto;
+  width: 80px;
+}
+
+.button-container:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}

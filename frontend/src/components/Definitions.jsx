@@ -4,6 +4,9 @@ import {BiShow,BiHide} from 'react-icons/bi'
 import React, { useState } from 'react';
 import { getConceptName } from '../hooks/ExportsFunctions';
 import "../styles/Inputs.css"
+import {GrTextAlignCenter} from 'react-icons/gr'
+import {RxTextAlignCenter} from 'react-icons/rx'
+import {MdMoreHoriz} from 'react-icons/md'
 function Definitions({concept,languageChoosed}){
     const { t }=useTranslation();
     const getDefinition=(isLong)=>{
@@ -55,28 +58,30 @@ function Definitions({concept,languageChoosed}){
         <h3 className="text-dark mb-3">{concept&&getConceptName(languageChoosed,concept)}</h3>
         {concept&&
         <div>
-            <button onClick={toggleLongDefinition} className='btn btn-primary m-1'>{showShortDefinition?<BiShow style={{"fontSize":"180%"}}/>:<BiHide style={{"fontSize":"180%"}}/>} {t('short_definition')}</button>
-            <button onClick={toggleShortDefinition} className='btn btn-primary m-1'>{showLongDefinition?<BiShow style={{"fontSize":"180%"}}/>:<BiHide style={{"fontSize":"180%"}}/>}  {t('long_definition')}</button>
-            <button onClick={toggleBothDefinitions} className='btn btn-dark m-1'>{t('show_both_definitions')}</button>
+        <a  target='_blank' href={concept&&concept.readMore} >
+            <MdMoreHoriz  className='mx-3 m-1 text-primary' style={{"fontSize":"200%"}}>{t('show_both_definitions')} </MdMoreHoriz>
+            </a>
+            <RxTextAlignCenter onClick={toggleLongDefinition} className='mx-3 m-1' style={{"fontSize":"200%"}}>{showShortDefinition?<BiShow style={{"fontSize":"180%"}}/>:<BiHide style={{"fontSize":"180%"}}/>} {t('short_definition')}</RxTextAlignCenter>
+            <GrTextAlignCenter onClick={toggleShortDefinition} className='mx-3 m-1' style={{"fontSize":"180%"}}>{showLongDefinition?<BiShow style={{"fontSize":"180%"}}/>:<BiHide style={{"fontSize":"180%"}}/>}  {t('long_definition')}</GrTextAlignCenter>
         </div>}
       <MDBRow className='row'>
       <div  className='col-sm-6'>
 
         <MDBCol>
-          <MDBCollapse show={showShortDefinition} className='mt-3'>
+          <MDBCollapse id='MDBCollaps' show={showShortDefinition} className='mt-3 '>
           {concept?getDefinition(false):""}
           </MDBCollapse>
         </MDBCol>
         </div>
         <div  className='col-sm-6'>
         <MDBCol>
-          <MDBCollapse show={showLongDefinition} className='mt-3'>
+          <MDBCollapse id='MDBCollaps' show={showLongDefinition} className='mt-3 '>
           {concept?getDefinition(true):""}
           </MDBCollapse>
         </MDBCol>
         </div>
       </MDBRow>
-      {(concept&&showLongDefinition)&& <a className='text-primary mt-5 p-5' target='_blank' href={concept&&concept.readMore}>{t('get_more_informations')}</a>}
+      {/* {(concept&&showLongDefinition)&& <a className='text-primary mt-5 p-5' target='_blank' href={concept&&concept.readMore}>{t('get_more_informations')}</a>} */}
       </div>
     </>)
 }

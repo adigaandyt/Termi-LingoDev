@@ -1,4 +1,9 @@
 
+#MDBCollaps{
+  position: relative; 
+  z-index: 1;
+
+}
 .form1 {
     margin: auto;
     width: 300px;

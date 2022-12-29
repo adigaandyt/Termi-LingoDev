@@ -92,9 +92,9 @@ function Home(){
                 </div>
                 <br/>
                 <SearchForm/>
-                <CatouselDefinition/>
+                {concept&&<CatouselDefinition/>}
                 {/* <Definitions languageChoosed={languageChoosed} concept={concept}/> */}
-                {concepts&&<div className='center'>
+                {concepts&&<div  className='center mt-5'>
                 <hr className='my-3  dashed'/>
                 <h3>{t('suggestions_for_you')}:</h3>
                 </div>}
@@ -103,7 +103,7 @@ function Home(){
 
            
         </div>
-        <div className='col-2 col-sm-1  '>
+        {/* <div className='col-2 col-sm-1  '>
             <div className='text-center'>
             <span id="home-flages2" className="fi fi-us mt-3"></span>                
             </div>
@@ -113,7 +113,7 @@ function Home(){
             <div className='text-center'>
             <span id="home-flages2" className="fi fi-sa"></span>                
             </div>
-            </div>
+            </div> */}
         </div>
         </> )
 }

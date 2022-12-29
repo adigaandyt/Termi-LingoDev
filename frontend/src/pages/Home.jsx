@@ -57,7 +57,7 @@ function Home(){
   
     return (<>
          <div id="home1" className='row mt-90' > 
-        <div id="ho" className='col-12 col-sm-11 mt-5 '>
+        <div id="ho" className='col-12  mt-5 '>
         
           {isLoading&&<Spinner/>}
                
@@ -103,17 +103,7 @@ function Home(){
 
            
         </div>
-        {/* <div className='col-2 col-sm-1  '>
-            <div className='text-center'>
-            <span id="home-flages2" className="fi fi-us mt-3"></span>                
-            </div>
-            <div className='text-center'>
-            <span id="home-flages2" className="fi fi-il my-3"></span>                
-            </div>
-            <div className='text-center'>
-            <span id="home-flages2" className="fi fi-sa"></span>                
-            </div>
-            </div> */}
+
         </div>
         </> )
 }

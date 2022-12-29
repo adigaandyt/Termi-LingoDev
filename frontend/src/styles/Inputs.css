@@ -147,21 +147,6 @@
     /*border: red solid;*/
     z-index: 99999;
   }
-<<<<<<< HEAD
-  #regpage{
-    /*border: red solid;*/
-    /*width:500px;*/
-    /*margin-top: 200px;*/
-  }
-  
-  @media only screen and (max-width: 450px) {
-    #scroll{
-      /*border: red solid;*/
-      height: 150px;
-      overflow-y: scroll;
-    }
-  }
-=======
 
   #icon-unclicked{
     display: inline-block;
@@ -175,7 +160,16 @@
     /* border-radius: 50%; */
    
   }
-  @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+  
+
+  @media only screen and (max-width: 450px) {
+    #scroll{
+      /*border: red solid;*/
+      height: 150px;
+      overflow-y: scroll;
+      
+    }
+  }
 
 .button {
   z-index: 99;
@@ -238,4 +232,3 @@
   display: block;
   padding-bottom: 100%;
 }
->>>>>>> 2102d76db445c2c521fbbf207faeccf2540bdec3

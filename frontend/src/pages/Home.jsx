@@ -92,10 +92,10 @@ function Home(){
                 </div> */}
                 {/* <br/> */}
                 <SearchForm/>
-                {concept&&<CatouselDefinition/>}
+                {concept&&<CatouselDefinition />}
                 {/* <Definitions languageChoosed={languageChoosed} concept={concept}/> */}
                 {concepts&&<div  className='center mt-5'>
-                <hr className='my-3  dashed'/>
+                <hr className=' mt-100 mb-3  '/>
                 <h3>{t('suggestions_for_you')}:</h3>
                 </div>}
                 

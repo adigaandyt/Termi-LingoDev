@@ -46,13 +46,16 @@ function Definitions({concept,languageChoosed}){
     const [showShortDefinition, setShowShortDefinition] = useState(false);
     const [showLongDefinition, setShowLongDefinition] = useState(false);
   
-    const toggleLongDefinition = () => setShowShortDefinition(!showShortDefinition);
-    const toggleShortDefinition = () => setShowLongDefinition(!showLongDefinition);
+    const toggleLongDefinition = () =>{
+         setShowShortDefinition(!showShortDefinition)
+         setShowLongDefinition(false)
+        };
+    const toggleShortDefinition = () => {
+        setShowLongDefinition(!showLongDefinition);
+        setShowShortDefinition(false)
+    }
   
-    const toggleBothDefinitions = () => {
-      setShowShortDefinition(!showShortDefinition);
-      setShowLongDefinition(!showLongDefinition);
-    };
+ 
     return(<>
     <div className='text-center conntainer'>
         <h3 className="text-dark mb-3">{concept&&getConceptName(languageChoosed,concept)}</h3>

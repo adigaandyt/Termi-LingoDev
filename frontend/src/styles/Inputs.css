@@ -142,3 +142,13 @@
   font-size: 18px;
   font-weight: 300;
   }
+  #loginpage{
+    margin-top: 150px;
+    /*border: red solid;*/
+    z-index: 99999;
+  }
+  #regpage{
+    /*border: red solid;*/
+    /*width:500px;*/
+    /*margin-top: 200px;*/
+  }

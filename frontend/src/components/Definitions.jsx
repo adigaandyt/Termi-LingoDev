@@ -61,8 +61,8 @@ function Definitions({concept,languageChoosed}){
         <h3 className="text-dark mb-3">{concept&&getConceptName(languageChoosed,concept)}</h3>
         {concept&&
         <div>
-        <a  target='_blank' href={concept&&concept.readMore} >
-            <MdMoreHoriz  className='mx-3 m-1 text-primary' style={{"fontSize":"200%"}}>{t('show_both_definitions')} </MdMoreHoriz>
+            <a  target='_blank' href={concept&&concept.readMore} >
+                <MdMoreHoriz  className='mx-3 m-1 text-primary' style={{"fontSize":"200%"}}>{t('show_both_definitions')} </MdMoreHoriz>
             </a>
             <RxTextAlignCenter onClick={toggleLongDefinition} className='mx-3 m-1' style={{"fontSize":"200%"}}>{showShortDefinition?<BiShow style={{"fontSize":"180%"}}/>:<BiHide style={{"fontSize":"180%"}}/>} {t('short_definition')}</RxTextAlignCenter>
             <GrTextAlignCenter onClick={toggleShortDefinition} className='mx-3 m-1' style={{"fontSize":"180%"}}>{showLongDefinition?<BiShow style={{"fontSize":"180%"}}/>:<BiHide style={{"fontSize":"180%"}}/>}  {t('long_definition')}</GrTextAlignCenter>

@@ -56,7 +56,7 @@ function Home(){
     }
   
     return (<>
-         <div className='row mt-90' > 
+         <div id="home1" className='row mt-90' > 
         <div id="ho" className='col-12 col-sm-11 mt-5 '>
         
           {isLoading&&<Spinner/>}

@@ -1,3 +1,5 @@
+
+
 #body {
     margin-top: 5px;
     width: 100%;
@@ -27,8 +29,8 @@
     position: absolute;
     text-align: center;
     align-items: center;
-    /* left: 3px;
-    right: 3px; */
+     left: 3px;
+    right: 3px; 
     width: 100%;
     height: 100%;
     transform: 
@@ -80,3 +82,37 @@
     transform: translate(50%, -50%);
     color: #626569;
   }
+  @media (max-width: 500px){
+  .nav.left {
+    left: 35px;
+    transform: translate(-50%, -50%);
+    color: #626569;
+  }
+  
+  .nav.right {
+    right: -18px;
+    transform: translate(50%, -50%);
+    color: #626569;
+  }
+
+}
+/*@media only screen and (min-device-width: 480px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {*/
+  /* Style goes here */
+
+/*}*/
+
+
+/* @media not all and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {*/
+
+/*      .nav.left {*/
+/*    left: 35px;*/
+/*    transform: translate(-50%, -50%);*/
+/*    color: #626569;*/
+/*  }*/
+  
+/*  .nav.right {*/
+/*    right:-18px;*/
+/*    transform: translate(50%, -50%);*/
+/*    color: #626569;*/
+/*  }*/
+/*}*/

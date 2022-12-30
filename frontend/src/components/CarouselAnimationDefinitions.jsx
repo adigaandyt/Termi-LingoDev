@@ -53,12 +53,14 @@ const Carousel = ({children}) => {
     const onTouchEnd = (event) => {
       document.removeEventListener('touchmove', onTouchMove);
       document.removeEventListener('touchend', onTouchEnd);
-      if (event.changedTouches[0].clientX > initialX) {
+      console.log(initialX)
+      console.log(event.changedTouches[0].clientX)
+      if (event.changedTouches[0].clientX > initialX+35) {
         console.log('Moved to the right');
         if(active > 0){
           setActive(i => i - 1)
         }
-      } else if (event.changedTouches[0].clientX < initialX) {
+      } else if (event.changedTouches[0].clientX < initialX-35) {
         console.log('Moved to the left');
 
         if(active < count - 1){

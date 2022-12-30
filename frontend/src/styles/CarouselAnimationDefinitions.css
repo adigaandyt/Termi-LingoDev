@@ -55,7 +55,7 @@
     
   
   
-  .nav {
+  .nav { 
     color: white;
     font-size: 4rem;
     position: absolute;
@@ -84,12 +84,15 @@
   }
   @media (max-width: 500px){
   .nav.left {
+    display: none;
     left: 35px;
     transform: translate(-50%, -50%);
     color: #626569;
   }
   
   .nav.right {
+    display: none;
+
     right: -18px;
     transform: translate(50%, -50%);
     color: #626569;

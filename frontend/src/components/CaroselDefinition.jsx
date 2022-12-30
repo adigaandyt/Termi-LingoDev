@@ -23,7 +23,7 @@ function CatouselDefinition(){
     <div className='carousel-item-inside'>
         {/* english */}
         
-        <span id="home-flages3" className="fi fi-us mt-3"></span>
+        <img className='mt-3 ' src={require('../flags/united-states-xs.gif')}/>
         <br/>                
         <CgScrollH style={{"fontSize":"150%"}}/>
 
@@ -33,7 +33,9 @@ function CatouselDefinition(){
     <div class="carousel-item">
       <div className='carousel-item-inside'>
         {/* hebrew */}
-        <span id="home-flages3" className="fi fi-il mt-3"></span>                
+        <img className='mt-3' src={require('../flags/israel-xs.gif')}/>
+
+        {/* <span id="home-flages3" className="fi fi-il mt-3"></span>                 */}
         <br/>                
         <CgScrollH style={{"fontSize":"150%"}}/>
         <Definitions languageChoosed={{english:false,hebrew:true,arabic:false,}} concept={concept}/>
@@ -43,7 +45,8 @@ function CatouselDefinition(){
     <div class="carousel-item">
       <div className='carousel-item-inside'>
       {/* arabic */}
-      <span id="home-flages3" className="fi fi-sa mt-3"></span>                
+         
+      <img className='mt-3' src={require('../flags/saudi-arabia-xs.gif')}/>            
       <br/>                
         <CgScrollH style={{"fontSize":"150%"}}/>
       <Definitions languageChoosed={{english:false,hebrew:false,arabic:true,}} concept={concept}/>

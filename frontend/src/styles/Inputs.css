@@ -163,12 +163,16 @@
   
 
   
-    #scroll{
-      /*border: red solid;*/
-      height: 190px;
-      overflow-y: scroll;
+  #scroll{
+    /*border: red solid;*/
+    height: 180px;
+    overflow-y: scroll;
       
-    }
+    }  
+  /*#slide{*/
+  /*  border: red solid;*/
+    
+  /*}  */
   
 
 .button {

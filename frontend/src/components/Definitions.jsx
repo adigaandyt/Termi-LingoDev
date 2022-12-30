@@ -59,7 +59,7 @@ function Definitions({concept,languageChoosed}){
   
  
     return(<>
-    <div className='text-center  ' dir='ltr'>
+    <div className='text-center' dir='ltr' id="slide">
         <div className='row '>
         <div className='col-1 text-start'>
             {languageChoosed.hebrew&&<img className='mt-2 text-start ' src={require('../flags/israel-xs.gif')}/>}
@@ -107,7 +107,7 @@ function Definitions({concept,languageChoosed}){
 
         </div>}
       <MDBRow className='row'>
-      <div  className=''>
+      <div className=''>
 
         <MDBCol>
           <MDBCollapse id='MDBCollaps' show={showShortDefinition} className='mt-3 '>
@@ -115,12 +115,12 @@ function Definitions({concept,languageChoosed}){
           </MDBCollapse>
         </MDBCol>
         </div>
-        <div  className=''>
-        {showLongDefinition&&<MDBCol id='scroll'>
-          <MDBCollapse id='MDBCollaps' show={showLongDefinition} className='mt-3 '>
-          {concept?getDefinition(true):""}
-          </MDBCollapse>
-        </MDBCol>}
+        <div className=''>
+            {showLongDefinition&&<MDBCol id='scroll'>
+              <MDBCollapse id='MDBCollaps' show={showLongDefinition} className='mt-3 '>
+              {concept?getDefinition(true):""}
+              </MDBCollapse>
+            </MDBCol>}
         </div>
       </MDBRow>
       {/* {(concept&&showLongDefinition)&& <a className='text-primary mt-5 p-5' target='_blank' href={concept&&concept.readMore}>{t('get_more_informations')}</a>} */}

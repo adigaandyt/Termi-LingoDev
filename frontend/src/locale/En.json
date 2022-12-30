@@ -55,7 +55,11 @@
     "features": "Features",
     "support":"Support for three languages for now : English , Hebrow , Arabic",
     "instant":"Instant translation of text and phrases",
-    "ability_to":"Ability to save and organize favorite translations"
+    "ability_to":"Ability to save and organize favorite translations",
+    "my profile": "My Profile :",
+    "save": "Save",
+    "cancel": "Cancel",
+    "details": "Details"
 
 
 }

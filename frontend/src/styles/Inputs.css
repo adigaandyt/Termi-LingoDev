@@ -167,8 +167,11 @@
     /*border: red solid;*/
     height: 180px;
     overflow-y: scroll;
-      
-    }  
+    
+  }
+  #scroll::-webkit-scroll-thumb{
+    background-color: red;
+  }
   /*#slide{*/
   /*  border: red solid;*/
     

@@ -26,7 +26,7 @@ function Profile(){
   return(<> 
   <div dir='ltr' id="ppage">
         {isLoading&&<Spinner/>}
-    <h3 className='mx-2'>My Profile:</h3>
+    <h3 className='mx-2'>{t('my profile')}</h3>
     <div className="border-top row " id='profilePage'>
       <div className=" col-sm-4 border-start px-3 border-top   ">
         <div className='row'>
@@ -55,7 +55,7 @@ function Profile(){
 
       </div>
       <div className=" col-sm-8 border-start border-top">
-        <h3 className='mt-2 mx-2'>Details</h3>
+        <h3 className='mt-2 mx-2'>{t('details')}</h3>
         <ProfileForm isEdit={isEdit} setIsEdit={setIsEdit}/>
       </div>
 

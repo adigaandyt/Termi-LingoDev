@@ -25,7 +25,6 @@ function CatouselDefinition(){
         
         <img className='mt-3 ' src={require('../flags/united-states-xs.gif')}/>
         <br/>                
-        <CgScrollH style={{"fontSize":"150%"}}/>
 
         <Definitions languageChoosed={languageChoosed} concept={concept}/>
       </div>     
@@ -36,8 +35,7 @@ function CatouselDefinition(){
         <img className='mt-3' src={require('../flags/israel-xs.gif')}/>
 
         {/* <span id="home-flages3" className="fi fi-il mt-3"></span>                 */}
-        <br/>                
-        <CgScrollH style={{"fontSize":"150%"}}/>
+        <br/>    
         <Definitions languageChoosed={{english:false,hebrew:true,arabic:false,}} concept={concept}/>
 
       </div>      
@@ -48,7 +46,6 @@ function CatouselDefinition(){
          
       <img className='mt-3' src={require('../flags/saudi-arabia-xs.gif')}/>            
       <br/>                
-        <CgScrollH style={{"fontSize":"150%"}}/>
       <Definitions languageChoosed={{english:false,hebrew:false,arabic:true,}} concept={concept}/>
 
       </div>     

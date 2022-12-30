@@ -162,14 +162,14 @@
   }
   
 
-  @media only screen and (max-width: 450px) {
+  
     #scroll{
       /*border: red solid;*/
-      height: 150px;
+      height: 190px;
       overflow-y: scroll;
       
     }
-  }
+  
 
 .button {
   z-index: 99;

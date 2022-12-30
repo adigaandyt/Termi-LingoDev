@@ -15,6 +15,7 @@ import NoConceptResultModal from '../components/NoConceptResultModal'
 import ConceptCardsList from '../components/ConceptCardsList'
 import CatouselDefinition from '../components/CaroselDefinition'
 import Spinner from '../components/Spinner'
+import CarouselAnimationDefinitions from '../components/CarouselAnimationDefinitions'
 
 
 
@@ -92,10 +93,10 @@ function Home(){
                 </div> */}
                 {/* <br/> */}
                 <SearchForm/>
-                {concept&&<CatouselDefinition />}
-                {/* <Definitions languageChoosed={languageChoosed} concept={concept}/> */}
-                {concepts&&<div  className='center mt-5'>
-                <hr className=' mt-100 mb-3  '/>
+                {/* {concept&&<CatouselDefinition />} */}
+                {concept&&<CarouselAnimationDefinitions/>}
+                {concepts&&<div  className='center '>
+                <hr className=' mb-3  '/>
                 <h3>{t('suggestions_for_you')}:</h3>
                 </div>}
                 

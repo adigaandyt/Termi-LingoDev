@@ -59,9 +59,20 @@ function Definitions({concept,languageChoosed}){
   
  
     return(<>
-    <div className='text-center conntainer'>
-        <h3 className="text-dark mb-3">{concept&&getConceptName(languageChoosed,concept)}</h3>
-        <h5>{concept&&categoryById(concept.categories[0],languageChoosed,categories)}</h5>
+    <div className='text-center  ' dir='ltr'>
+        <div className='row '>
+        <div className='col-1 text-start'>
+            {languageChoosed.hebrew&&<img className='mt-2 text-start ' src={require('../flags/israel-xs.gif')}/>}
+            {languageChoosed.english&&<img className=' mt-2 ' src={require('../flags/united-states-xs.gif')}/>}
+            {languageChoosed.arabic&&<img className='mt-2' src={require('../flags/saudi-arabia-xs.gif')}/>}
+        </div>
+        <div className='col-11 text-end'>
+            <h3 className="text-dark mb-3 mt-2 ">{concept&&getConceptName(languageChoosed,concept)}</h3> 
+            <h5>{concept&&categoryById(concept.categories[0],languageChoosed,categories)}</h5>
+        </div>        
+        </div>
+
+
         {concept&&
         <div>
 
@@ -96,7 +107,7 @@ function Definitions({concept,languageChoosed}){
 
         </div>}
       <MDBRow className='row'>
-      <div  className='col-sm-6'>
+      <div  className=''>
 
         <MDBCol>
           <MDBCollapse id='MDBCollaps' show={showShortDefinition} className='mt-3 '>
@@ -104,12 +115,12 @@ function Definitions({concept,languageChoosed}){
           </MDBCollapse>
         </MDBCol>
         </div>
-        <div  className='col-sm-6'>
-        <MDBCol id='scroll'>
+        <div  className=''>
+        {showLongDefinition&&<MDBCol id='scroll'>
           <MDBCollapse id='MDBCollaps' show={showLongDefinition} className='mt-3 '>
           {concept?getDefinition(true):""}
           </MDBCollapse>
-        </MDBCol>
+        </MDBCol>}
         </div>
       </MDBRow>
       {/* {(concept&&showLongDefinition)&& <a className='text-primary mt-5 p-5' target='_blank' href={concept&&concept.readMore}>{t('get_more_informations')}</a>} */}

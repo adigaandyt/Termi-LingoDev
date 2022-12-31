@@ -27,6 +27,12 @@
   width: 99%;
 
 }
+@media only screen and (max-width: 450px) {
+  #ppage{
+    /*z-index: -9999;*/
+    /*border: red solid;*/
+  }
+}
 
 /*#nametext{*/
 /*  border: red solid;*/

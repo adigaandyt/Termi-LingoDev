@@ -2,14 +2,14 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import { getCategories} from './features/categories/categorySlice';
-import {getConceptsNames} from './features/concepts/conceptSlice'
+import {getConceptsNames} from './features/concepts/conceptSlice';
 import './App.css';
-import './index.css'
-import {ToastContainer } from "react-toastify"
-import 'react-toastify/dist/ReactToastify.css'
-import Home from './pages/Home'
-import Register from './pages/Register'
-import Login from './pages/Login'
+import './index.css';
+import {ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import Home from './pages/Home';
+import Register from './pages/Register';
+import Login from './pages/Login';
 import Header from './components/Header';
 import PrivateRoute from './components/PrivateRoute';
 import {BrowserRouter as Router , Routes , Route} from 'react-router-dom';
@@ -22,7 +22,7 @@ import ErrorPage404 from './pages/ErrorPage404';
 import TestComponent from './pages/TestComponent';
 import $ from 'jquery';
 import loadable from "@loadable/component";
-const Loader = loadable(()=>import("./styles/loader"));
+const Loader = loadable(()=>import("./scripts/loader"));
 
 function App() {
   const dispatch=useDispatch()

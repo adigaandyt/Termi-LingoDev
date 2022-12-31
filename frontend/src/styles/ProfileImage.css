@@ -3,6 +3,7 @@
   #comp-img2{
     position: relative;
     width: 200px;
+    z-index: -1;
    }
 
   #image2{

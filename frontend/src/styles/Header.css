@@ -133,15 +133,16 @@
     }
   }
   .nav1 .box {
-    width: 90px;
-    height: 90px;
+    width: 85px;
+    height: 85px;
     opacity: 0;
     border-radius: 50%;
     position: absolute;
     top: 50%;
-    right: -3%;
+    right: 0;
     transform: translate(-50%, -50%);
     transition-duration: 0.3s;
+    
   }
   .nav1 .box i {
     width: 50px;
@@ -205,6 +206,7 @@
       #titlestyle{
         margin-top: 5px;
       }
+      
       
   }
   /*@media only screen and (max-width: 820px) {*/

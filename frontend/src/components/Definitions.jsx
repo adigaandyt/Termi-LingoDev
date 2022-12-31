@@ -116,7 +116,7 @@ function Definitions({concept,languageChoosed}){
         </MDBCol>
         </div>
         <div className=''>
-            {showLongDefinition&&<MDBCol id='scroll'>
+            {showLongDefinition&&<MDBCol class='scroll' id="scroll-style">
               <MDBCollapse id='MDBCollaps' show={showLongDefinition} className='mt-3 '>
               {concept?getDefinition(true):""}
               </MDBCollapse>

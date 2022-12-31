@@ -1,14 +1,14 @@
-import {Link,useNavigate} from 'react-router-dom'
-import {useSelector,useDispatch} from 'react-redux'
-import {useState,useEffect} from 'react'
-import {logout} from '../features/auth/authSlice'
-import { useTranslation } from "react-i18next"
-import cookies from 'js-cookie'
+import {Link,useNavigate} from 'react-router-dom';
+import {useSelector,useDispatch} from 'react-redux';
+import {useState,useEffect} from 'react';
+import {logout} from '../features/auth/authSlice';
+import { useTranslation } from "react-i18next";
+import cookies from 'js-cookie';
 import "/node_modules/flag-icons/css/flag-icons.min.css";
-import {MdLanguage} from 'react-icons/md'
-import {ImExit,ImUserPlus, ImProfile} from 'react-icons/im'
-import {GoSignIn} from 'react-icons/go'
-import "../styles/Header.css"
+import {MdLanguage} from 'react-icons/md';
+import {ImExit,ImUserPlus, ImProfile} from 'react-icons/im';
+import {GoSignIn} from 'react-icons/go';
+import "../styles/Header.css";
 
 
 
@@ -73,7 +73,7 @@ function Header(){
                         <button className="lan" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <MdLanguage />
                         </button>
-                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton" id="l-option">
                             <a className="dropdown-item" name='en' onClick={onLanguageChange}><span className="fi fi-us"></span> English</a>
                             <a className="dropdown-item" name='hb' onClick={onLanguageChange}><span className="fi fi-il"></span> עברית</a>
                             <a className="dropdown-item" name='ar' onClick={onLanguageChange}><span className="fi fi-sa"></span> العربية</a>

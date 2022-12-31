@@ -143,14 +143,14 @@ function Register(){
                 <input className="form-control" type='phoneNumber' placeholder={t('phone')} id='phoneNumber' name='phoneNumber' value={phoneNumber} onChange={onChange} required/>  
             </div>
             
-            <div className="form-group  mt-2">
+            <div className="form-group mt-2" id="reg-dropdown">
                 <select className="select-input" name='language' onChange={onChange}>
                     <option value="English">English</option> 
                     <option value="العربية">العربية</option>
                     <option value="עברית">עברית</option>
                 </select>
             </div>
-            <div className="form-group  mt-2">
+            <div className="form-group mt-2" id="reg-dropdown">
                 <select className="select-input  mt-2" name='categoryId' onChange={(e)=>{setCategoryId(e.target.value)}}>
                                 {(categories)&&
                                     categories.map(category=>{

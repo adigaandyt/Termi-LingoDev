@@ -16,7 +16,7 @@ export default function Footer(){
             <div className="d-flex justify-content-between"> 
 
                 <div className='mx-1 flex-item text-center'>
-                    <input type= "radio" name="nav-item" id="m-home"/><label onClick={() => console.log('/add')} id="l3"><TbPlaylistAdd/></label>
+                    <input type= "radio" name="nav-item" id="m-home"/><label onClick={() => navigate('/new/concept')} id="l3"><TbPlaylistAdd/></label>
                 </div>
 
                 <div className=' flex-item'>

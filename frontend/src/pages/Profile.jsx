@@ -24,13 +24,13 @@ function Profile(){
       }
   }
   return(<> 
-  <div dir='ltr' id="ppage">
+  <div dir='ltr' className='mt-110' id="ppage">
         {isLoading&&<Spinner/>}
     <h3 className='mx-2'>{t('my profile')}</h3>
     <div className="border-top row " id='profilePage'>
-      <div className=" col-sm-4 border-start px-3 border-top   ">
-        <div className='row'>
-        <div className='col-7 '>
+      <div className=" col-sm-4 border-start px-3 border-top py-2  ">
+      
+       
         <ProfileImage isImageLoadin={isImageLoading} profile_image={profile_image} />
           <div className='mt-3 mx-3' >
           <h6 className="d-inline-block">{name}</h6>
@@ -42,21 +42,16 @@ function Profile(){
           <p className="d-inline-block">Score: </p>
           <h6 className="d-inline-block">0</h6>
         </div>
-          </div>
-          <div className='col-sm-6 col-6  text-sm-end '>
-          <div>
-          <button id="editbtn" disabled={isEdit} onClick={()=>setIsEdit(!isEdit)} className='btn btn-primary btn-sm text-end mt-lg-3 d-inline-block'>{t('edit')}</button>
-          <Link to='/reset' id="editbtn" className='btn btn-dark btn-sm text-end mt-1 mb-3 d-inline-block'>{t('reset_password')}</Link>            
-          </div>
+       
 
-
-          </div>
-        </div>
+       
 
       </div>
       <div className=" col-sm-8 border-start border-top">
         <h3 className='mt-2 mx-2'>{t('details')}</h3>
-        <ProfileForm isEdit={isEdit} setIsEdit={setIsEdit}/>
+        <button id="editbtn" disabled={isEdit} onClick={()=>setIsEdit(!isEdit)} className='btn btn-primary btn-sm  mx-2 '>{t('edit')}</button>
+
+        <ProfileForm isEdit={isEdit} setIsEdit={setIsEdit} />
       </div>
 
     </div>

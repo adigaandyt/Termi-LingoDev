@@ -1,23 +1,15 @@
+
+
+
+
 function NewConcept(){
     return(<>
-        <div className="text-center">New Concept</div>
-        <div className="text-center">New Concept</div>
-        <div className="text-center">New Concept</div>
-        <div className="text-center">New Concept</div>
-        <div className="text-center">New Concept</div>
-        <div className="text-center">New Concept</div>
-        <div className="text-center">New Concept</div>
-        <div className="text-center">New Concept</div>
-        <div className="text-center">New Concept</div>
-        <div className="text-center">New Concept</div>
-        <div className="text-center">New Concept</div>
-        <div className="text-center">New Concept</div>
-        <div className="text-center">New Concept</div>
-        <div className="text-center">New Concept</div>
-        <div className="text-center">New Concept</div>
-        <div className="text-center">New Concept</div>
-        <div className="text-center">New Concept</div>
-        <div className="text-center">New Concept</div>
+
+        <div className="mt-150 text-center">
+            
+
+        </div>
+       
     </>)
 }
 export default NewConcept

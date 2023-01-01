@@ -4,12 +4,16 @@
 } */
 
 #wrapper {
+  height: 10px;
   padding-left: 70px;
   transition: all .4s ease 0s;
+    margin-top: 87px;
+  /*border: red solid;*/
   /* height: 100% */
 }
 
-#sidebar-wrapper2 {
+#sidebar-wrapper2 { 
+
   margin-left: -150px;
   left: 70px;
   width: 150px;

@@ -41,7 +41,7 @@
       translateZ(calc(var(--abs-offset) * -30rem))
       translateX(calc(var(--direction) * -5rem));
     filter: blur(calc(var(--abs-offset) * 1rem));
-    transition: all 0.3s ease-out;
+    transition: all 0.4s ease-out;
   }
   
   .card-carousel2{

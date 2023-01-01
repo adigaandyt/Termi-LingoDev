@@ -172,14 +172,14 @@ const onClick=()=>{
   // <div className='' id=''>
 
 
-<div ref={elementRef} id="wrapper" dir='ltr' class="active">
+<div ref={elementRef} id="wrapper2" dir='ltr' class="active">
       <div id="sidebar-wrapper2">
-      <ul id="sidebar_menu" class="sidebar-nav">
-           <li class="sidebar-brand"><a onClick={onClick} id="menu-toggle" href="#">Menu<span id="main_icon" class="glyphicon glyphicon-align-justify"></span></a></li>
+      <ul id="sidebar_menu2" class="sidebar-nav2">
+           <li class="sidebar-brand2"><a onClick={onClick} id="menu-toggle2" href="#">Menu<span id="main_icon2" class="glyphicon glyphicon-align-justify"></span></a></li>
       </ul>
-        <ul class="sidebar-nav" id="sidebar">     
-          <li><a>Link1<span class="sub_icon glyphicon glyphicon-link d-inline-block"><FaUserAlt className='d-inline-block'/> </span></a></li>
-          <li><a>link2<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+        <ul class="sidebar-nav2" id="sidebar2">     
+          <li><a>Link1<span class="sub_icon2 glyphicon glyphicon-link d-inline-block"><FaUserAlt className='d-inline-block'/> </span></a></li>
+          <li><a>link2<span class="sub_icon2 glyphicon glyphicon-link"></span></a></li>
         </ul>
       </div>
 </div>

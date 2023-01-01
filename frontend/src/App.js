@@ -20,6 +20,7 @@ import NewConcept from './pages/NewConcept';
 import Footer from './components/Footer';
 import ErrorPage404 from './pages/ErrorPage404';
 import TestComponent from './pages/TestComponent';
+import Settings from './pages/Setting';
 import $ from 'jquery';
 import loadable from "@loadable/component";
 const Loader = loadable(()=>import("./scripts/loader"));
@@ -55,6 +56,9 @@ function App() {
 
             <Route path='/new/concept' element={<PrivateRoute/>}>
               <Route path='/new/concept' element={<NewConcept/>}/>
+            </Route>
+            <Route path='/settings' element={<PrivateRoute/>}>
+              <Route path='/settings' element={<Settings/>}/>
             </Route>
             <Route path='*' element={<ErrorPage404/>}/>
 

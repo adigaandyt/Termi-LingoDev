@@ -32,7 +32,7 @@ export default function Footer(){
                 </div>
 
                 <div className='mx-1 flex-item' id={location.pathname==='/setting'&&'input-clicked'}>
-                    <input type= "radio" name="nav-item" id="m-profile"/><label onClick={() => console.log('/setting')} id="l5"><AiOutlineSetting/></label>
+                    <input type= "radio" name="nav-item" id="m-profile"/><label onClick={() => navigate('/settings')} id="l5"><AiOutlineSetting/></label>
                 </div>
 
             </div>

@@ -159,6 +159,8 @@
 
 import React, { useState,useRef } from 'react';
 import {FaUserAlt} from 'react-icons/fa'
+import {AiFillSound} from 'react-icons/ai'
+import {FiMenu} from 'react-icons/fi'
 // import Speech from 'react-speech-kit';
 const TestComponent= () => {
   const elementRef=useRef(null);
@@ -175,11 +177,11 @@ const onClick=()=>{
 <div ref={elementRef} id="wrapper2" dir='ltr' class="active">
       <div id="sidebar-wrapper2">
       <ul id="sidebar_menu2" class="sidebar-nav2">
-           <li class="sidebar-brand2"><a onClick={onClick} id="menu-toggle2" href="#">Menu<span id="main_icon2" class="glyphicon glyphicon-align-justify"></span></a></li>
+           <li class="sidebar-brand2"><a onClick={onClick} id="" >Settings<span id="main_icon2" class="sub_icon2 glyphicon2 glyphicon-link2"><FiMenu/></span></a></li>
       </ul>
         <ul class="sidebar-nav2" id="sidebar2">     
-          <li><a>Link1<span class="sub_icon2 glyphicon glyphicon-link d-inline-block"><FaUserAlt className='d-inline-block'/> </span></a></li>
-          <li><a>link2<span class="sub_icon2 glyphicon glyphicon-link"></span></a></li>
+          <li><a>User<span class="sub_icon2 glyphicon2 glyphicon-link2 "><FaUserAlt className='d-inline-block '/> </span></a></li>
+          <li><a>Sound<span class="sub_icon2 glyphicon2 glyphicon-link2"><AiFillSound/></span></a></li>
         </ul>
       </div>
 </div>

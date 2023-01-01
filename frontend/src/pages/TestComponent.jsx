@@ -157,20 +157,34 @@
 // export default TestComponent
 //--------------------------------------------------------------------------
 
-import React, { useState } from 'react';
+import React, { useState,useRef } from 'react';
+import {FaUserAlt} from 'react-icons/fa'
 // import Speech from 'react-speech-kit';
 const TestComponent= () => {
-  
-  // const {concept}= useSelector(state=>state.concept)
-  const [text, setText] = useState('');
+  const elementRef=useRef(null);
+const onClick=()=>{
+  const element = elementRef.current;
 
-  const handleChange = (event) => {
-    setText(event.target.value);
-  };
+  // Toggle the "active" class on the element
+  element.classList.toggle("active");
+}
   return(
-  <div className='' id=''>
+  // <div className='' id=''>
 
-  </div>
+
+<div ref={elementRef} id="wrapper" dir='ltr' class="active">
+      <div id="sidebar-wrapper2">
+      <ul id="sidebar_menu" class="sidebar-nav">
+           <li class="sidebar-brand"><a onClick={onClick} id="menu-toggle" href="#">Menu<span id="main_icon" class="glyphicon glyphicon-align-justify"></span></a></li>
+      </ul>
+        <ul class="sidebar-nav" id="sidebar">     
+          <li><a>Link1<span class="sub_icon glyphicon glyphicon-link d-inline-block"><FaUserAlt className='d-inline-block'/> </span></a></li>
+          <li><a>link2<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+        </ul>
+      </div>
+    </div>
+
+  // </div>
 )};
 
 export default TestComponent

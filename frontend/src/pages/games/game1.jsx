@@ -19,7 +19,7 @@ function GuessTheTerm(){
    }
 
     return (
-        <iframe ref={componentRef} id='game1-body' className='mt-150  text-center'>
+        <div ref={componentRef} id='game1-body' className='mt-150  text-center'>
       {/* component content goes here */}
       <body>
       {isGamesLoading?(<Spinner2/>):(<>
@@ -30,7 +30,7 @@ function GuessTheTerm(){
       )}        
       </body>
 
-    </iframe>
+    </div>
     );
 }
 export default GuessTheTerm

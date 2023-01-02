@@ -67,7 +67,6 @@ function Home(){
                         <h4 className='text-dark'>
                         <BsTranslate className='text-sagol capitalized' /> {t('home_title')} <span className="text-warning">{t('its_definition')}</span> </h4>
                     </label>
-                    
                 </div>
               
             
@@ -93,6 +92,7 @@ function Home(){
                 </div> */}
                 {/* <br/> */}
                 <SearchForm/>
+                
                 {/* {concept&&<CatouselDefinition />} */}
                 {concept&&<CarouselAnimationDefinitions/>}
                 {concepts&&<div  className='center '>
@@ -101,6 +101,8 @@ function Home(){
                 </div>}
                 
                 <ConceptCardsList languageChoosed={languageChoosed}/>
+
+               
 
            
         </div>

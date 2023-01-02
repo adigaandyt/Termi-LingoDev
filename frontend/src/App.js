@@ -21,8 +21,11 @@ import Footer from './components/Footer';
 import ErrorPage404 from './pages/ErrorPage404';
 import TestComponent from './pages/TestComponent';
 import Settings from './pages/Setting';
+import Game from './pages/games/game1'
 import $ from 'jquery';
 import loadable from "@loadable/component";
+import GamesPage from './pages/games/GamesPage';
+import GuessTheTerm from './pages/games/game1';
 const Loader = loadable(()=>import("./scripts/loader"));
 
 function App() {
@@ -59,6 +62,12 @@ function App() {
             </Route>
             <Route path='/settings' element={<PrivateRoute/>}>
               <Route path='/settings' element={<Settings/>}/>
+            </Route>
+            <Route path='/games' element={<PrivateRoute/>}>
+              <Route path='/games' element={<GamesPage/>}/>
+            </Route>
+            <Route path='/games/gesstheterm' element={<PrivateRoute/>}>
+              <Route path='/games/gesstheterm' element={<GuessTheTerm/>}/>
             </Route>
             <Route path='*' element={<ErrorPage404/>}/>
 

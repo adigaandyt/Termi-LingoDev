@@ -1,6 +1,7 @@
 const asyncHandler =require('express-async-handler');
 const Concept=require('../Models/conceptsModel')
 const Category =require('../Models/categoriesModel')
+const User=require('../Models/usersModel')
 
 //add "639d8f0987cdf6706e335db9" to all arrays in the database
     //    concept=await Concept.updateMany(
@@ -106,6 +107,46 @@ const getConcepts=asyncHandler( async(req,res)=>{
     
     })
 
+//@desc get concept names and shortDefintions for "Guess The Term" game!
+//@route GET /get/concepts/games/game1/guesstheterm
+//@access private
+const getConceptsByUserId=asyncHandler( async(req,res)=>{
+    const userId =req.user._id
+    let concepts='saleh';
+    // if (userId) {
+    //     try {
+    //         concepts = await User.aggregate([
+    //             {
+    //                 $match: { "_id": userId }
+    //             },
+    //             {
+    //                 $lookup: {
+    //                     localField: "categoryId",
+    //                     foreignField: "categories",
+    //                     from: "concepts",
+    //                     as: "user_concepts",
+    //                 }
+    //             },
+    //             {
+    //                 $project: {
+    //                     "_id": 0,
+    //                     "user_concepts.shortDefinition": 1,
+    //                     "user_concepts.conceptName": 1,
+
+    //                 }
+    //             }
+    //         ])
+    //     } catch (error) {
+    //         res.status(500)
+    //         throw new Error("Some thing is wrong !")
+    //     }
+    // }
+    
+     res.status(200).json(concepts)
+    
+    })
+
+
 
 
 
@@ -116,5 +157,6 @@ module.exports={
    getConcept,
    testConcept,
    getConceptsNames,
-   getConcepts
+   getConcepts,
+   getConceptsByUserId
 }

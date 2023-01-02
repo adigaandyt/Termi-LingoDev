@@ -20,7 +20,7 @@ export default function Footer(){
                 </div>
 
                 <div className=' flex-item' id={location.pathname==='/games'&&'input-clicked'}>
-                    <input type= "radio" name="nav-item" id="m-search"/><label onClick={() => console.log(location.pathname)} id="l2"><CgGames/></label>
+                    <input type= "radio" name="nav-item" id="m-search"/><label onClick={() => navigate('/games')} id="l2"><CgGames/></label>
                 </div>
 
                 <div className=' flex-item' id={location.pathname==='/'&&'input-clicked'}>

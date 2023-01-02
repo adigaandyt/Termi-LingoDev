@@ -112,35 +112,35 @@ const getConcepts=asyncHandler( async(req,res)=>{
 //@access private
 const getConceptsByUserId=asyncHandler( async(req,res)=>{
     const userId =req.user._id
-    let concepts='saleh';
-    // if (userId) {
-    //     try {
-    //         concepts = await User.aggregate([
-    //             {
-    //                 $match: { "_id": userId }
-    //             },
-    //             {
-    //                 $lookup: {
-    //                     localField: "categoryId",
-    //                     foreignField: "categories",
-    //                     from: "concepts",
-    //                     as: "user_concepts",
-    //                 }
-    //             },
-    //             {
-    //                 $project: {
-    //                     "_id": 0,
-    //                     "user_concepts.shortDefinition": 1,
-    //                     "user_concepts.conceptName": 1,
+    let concepts;
+    if (userId) {
+        try {
+            concepts = await User.aggregate([
+                {
+                    $match: { "_id": userId }
+                },
+                {
+                    $lookup: {
+                        localField: "categoryId",
+                        foreignField: "categories",
+                        from: "concepts",
+                        as: "user_concepts",
+                    }
+                },
+                {
+                    $project: {
+                        "_id": 0,
+                        "user_concepts.shortDefinition": 1,
+                        "user_concepts.conceptName": 1,
 
-    //                 }
-    //             }
-    //         ])
-    //     } catch (error) {
-    //         res.status(500)
-    //         throw new Error("Some thing is wrong !")
-    //     }
-    // }
+                    }
+                }
+            ])
+        } catch (error) {
+            res.status(500)
+            throw new Error("Some thing is wrong !")
+        }
+    }
     
      res.status(200).json(concepts)
     

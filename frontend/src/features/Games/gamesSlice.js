@@ -16,12 +16,12 @@ const initialState={
 //get concept name and shortdefintion for "Guess the term" game
 export const getConcepts4GuessTerm=createAsyncThunk(
     'games/user',
-     async(thunkAPI)=>{
+     async(data,thunkAPI)=>{
+        const token=thunkAPI.getState().auth.user.token
         try {
-            const token=thunkAPI.getState().auth.user.token
             return await gamesService.getConcepts4GuessTerm(token)
         } catch (error) {
-            console.log(error)
+            
             const message=(error.response&&error.response.data&&error.response.data.message)
             ||error.message
             ||error.toString()

@@ -17,7 +17,7 @@ function ProfileImage() {
   const onselectImage=(event)=>{
     if(event.target.files[0]){
       const formdata=new FormData()
-      formdata.append('profileImage',event.target.files[0])
+      formdata.append('profileImage',event.target.files[0]) 
       dispatch(updateUserImage(formdata))
 
       }

@@ -5,7 +5,6 @@ const CONCEPT_API_URL='/api/concepts'
 
 //get concept name and shortdefintion for "Guess the term" game
 const getConcepts4GuessTerm =async (token)=>{
-    console.log('saleh')
    
     const config ={
         headers:{

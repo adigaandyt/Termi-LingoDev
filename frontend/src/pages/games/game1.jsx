@@ -21,14 +21,14 @@ function GuessTheTerm(){
     return (
         <div ref={componentRef} id='game1-body' className='mt-150  text-center'>
       {/* component content goes here */}
-      <body>
+     
       {isGamesLoading?(<Spinner2/>):(<>
         <div onClick={onExit} className="text-end mx-3 text-light"><h1>X</h1></div>
         {/* <AnimationTitle/> */}
         <h1>saleh</h1>
         </>
       )}        
-      </body>
+     
 
     </div>
     );

@@ -8,9 +8,10 @@ function GuessTheTerm(){
     const dispatch=useDispatch()
     const {isGamesLoading}= useSelector(state=>state.games)
     const componentRef = useRef(null);
+  
    useEffect(()=>{
     dispatch(getConcepts4GuessTerm())
-    componentRef.current.requestFullscreen();
+    componentRef.current.requestFullscreen()
 
    },[])
    const onExit=()=>{
@@ -22,7 +23,8 @@ function GuessTheTerm(){
       {/* component content goes here */}
       {isGamesLoading?(<Spinner2/>):(<>
         <div onClick={onExit} className="text-end mx-3 text-light"><h1>X</h1></div>
-        <AnimationTitle/>
+        {/* <AnimationTitle/> */}
+        <h1>saleh</h1>
         </>
       )}
     </div>

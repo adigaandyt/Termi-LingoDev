@@ -14,6 +14,7 @@ import {
     MDBModalBody,
     MDBModalFooter,
   } from 'mdb-react-ui-kit';
+
 import { use } from 'i18next'
 
 function ExitModal({toggleModal}){
@@ -27,18 +28,16 @@ function ExitModal({toggleModal}){
 
 
     return(<div>
-              <MDBModal  tabIndex='-1' show={centredModal} setShow={setCentredModal}>
-        <MDBModalDialog  centered>
-          <MDBModalContent >
+      {/* new */}
+      <MDBModal show={centredModal} setShow={setCentredModal} tabIndex='-1'>
+        <MDBModalDialog>
+          <MDBModalContent>
             <MDBModalHeader>
               <MDBModalTitle>{t('game_exit_title')}</MDBModalTitle>
               <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
             </MDBModalHeader>
-            <MDBModalBody>
-              <p>
-              {t('exit_game_desc')}
-              </p>
-            </MDBModalBody>
+            <MDBModalBody>{t('exit_game_desc')}</MDBModalBody>
+
             <MDBModalFooter>
             <Link to='/games' className='btn btn-success mt-4 mx-1'>{t('leave_game')}</Link>
             <Link onClick={toggleShow} className='btn btn-danger mt-4 mx-1'>{t('cancel')}</Link>
@@ -46,6 +45,7 @@ function ExitModal({toggleModal}){
           </MDBModalContent>
         </MDBModalDialog>
       </MDBModal>
+
     </div>)
 }
 export default ExitModal

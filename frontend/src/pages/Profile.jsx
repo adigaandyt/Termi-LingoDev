@@ -28,7 +28,7 @@ function Profile(){
         {isLoading&&<Spinner/>}
     <h3 className='mx-2'>{t('my profile')}</h3>
     <div className="border-top row " id='profilePage'>
-      <div className=" col-sm-4 border-start px-3 border-top py-2 ">
+      <div id="profile-image-and-detaile" className=" col-sm-4 border-start px-3 border-top py-2 ">
       <ProfileImage  />  
       
 

@@ -79,7 +79,7 @@ function GuessTheTerm(){
           {!isEnd?<button onClick={start}>start</button>:<button>Play Again</button> } 
           <button onClick={onExit}>Exit Game</button>         
           </>} */}
-          {!isStart&&<GroupButtons start={start} onExit={onExit}/> }
+          {!isStart&&<GroupButtons start={start} onExit={onExit} isEnd={isEnd}/> }
 
          {isStart&& <Qestion onNextQestion={onNextQestion} question={questionsList.length>0&&questionsList[questionNumber]}/>}
  

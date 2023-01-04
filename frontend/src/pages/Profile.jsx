@@ -29,10 +29,12 @@ function Profile(){
     <h3 className='mx-2'>{t('my profile')}</h3>
     <div className="border-top row " id='profilePage'>
       <div className=" col-sm-4 border-start px-3 border-top py-2 ">
+      <ProfileImage  />  
       
+
        
-        <ProfileImage isImageLoadin={isImageLoading} profile_image={profile_image} />
-          <div className='mt-3 mx-3' >
+        
+          <div className='mt-3 mx-3 ' >
           <h6 className="d-inline-block">{name}</h6>
         </div>
         <div className='mx-3' >
@@ -47,7 +49,7 @@ function Profile(){
        
 
       </div>
-      <div className=" col-sm-8 border-start border-top">
+      <div className=" col-sm-8 border-start border-top ">
         <h3 className='mt-2 mx-2'>{t('details')}</h3>
         <button id="editbtn" disabled={isEdit} onClick={()=>setIsEdit(!isEdit)} className='btn btn-primary btn-sm  mx-2 '>{t('edit')}</button>
 

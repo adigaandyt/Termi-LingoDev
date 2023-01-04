@@ -3,7 +3,7 @@
   #comp-img2{
     position: relative;
     width: 200px;
-    z-index: -1;
+
    }
 
   #image2{
@@ -19,6 +19,11 @@
     background-color: rgb(242, 234, 234);
     border-radius:50% ;
     padding: 12px;
+  }
+  #fileInput{
+    font-size: x-small;
+    display: none;
+    
   }
   #img-icon2{
     position: absolute;

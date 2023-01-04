@@ -17,8 +17,6 @@ function Qestion({question,onNextQestion}){
 
     },[question])
     const onClick=(e)=>{
-        console.log(e.target.name)
-        console.log(randomPosition)
         const iscorrect= e.target.name==randomPosition
 
         onNextQestion(iscorrect)

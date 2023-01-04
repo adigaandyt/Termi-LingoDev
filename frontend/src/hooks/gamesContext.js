@@ -15,12 +15,13 @@ let questionsList=[];
 const {names}=useSelector(state=>state.concept)
 
 const getquestionList=({user_concepts})=>{
+  questionsList.length=0;
   for(let i=0 ; i<10 ; i++){
-      let user_concept=getRandomObject(user_concepts.length)
-      let name1=getRandomObject(names.length)
-      let name2=getRandomObject(names.length)
-      let name3=getRandomObject(names.length)
-      let name4=getRandomObject(names.length)
+      const user_concept=getRandomObject(user_concepts.length)
+      const name1=getRandomObject(names.length)
+      const name2=getRandomObject(names.length)
+      const name3=getRandomObject(names.length)
+      const name4=getRandomObject(names.length)
 
   const question={
     shortDefinition:{
@@ -58,9 +59,6 @@ const getquestionList=({user_concepts})=>{
  };
 questionsList.push(question)
   }
-
-
-
 }
 
 

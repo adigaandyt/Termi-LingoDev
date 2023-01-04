@@ -14,6 +14,7 @@ import {useGame} from '../../hooks/useGame'
 import './games.css'
 import Qestion from "../../components/games/guessTheTerm/Question";
 import GroupButtons from "../../components/games/GroupButtons";
+import Timer from "../../components/games/guessTheTerm/Timer";
 
 
 function GuessTheTerm(){
@@ -39,21 +40,29 @@ function GuessTheTerm(){
     setIsModalOpen(!isModalOpen)
    }
    const start=()=>{
-    console.log("satart")
     if((user_concepts&&names)){
       getquestionList(user_concepts)
       }else{
         navigate('/games')
       }
+      setScore(0)
       setIsStart(true)
    }
    const onNextQestion =(isTrue)=>{
-    console.log(isTrue)
+    if(isTrue){
+      setScore(score+1)
+    }
     if(questionNumber<9)
     setQuestionNumber(questionNumber+1)
     else{
+      getquestionList(user_concepts)
       setIsStart(false)
       setIsEnd(true)
+      setQuestionNumber(0)
+      // send the score
+      {isTrue?console.log(score+1):console.log(score)}
+      
+  
     }
     if(isTrue){
       setScore(score+1)
@@ -69,16 +78,22 @@ function GuessTheTerm(){
         {isModalOpen&&<ExitGame toggleModal={toggleModal}/>}
         <AnimationTitle/> 
         <div>
-        {isStart&&<h5 className="text-light text-start mx-2 mt-2">Qusetion Number {questionNumber+1}</h5>} 
-        {isEnd&&<h5 className="text-light text-start mx-2 mt-2">Score:{score}</h5>}         
+        {isStart&&<div className="row mt-2">
+        
+        <div className="col-6">
+        <h5 className="text-light  text-start mx-2 ">Qusetion Number {questionNumber+1}</h5>
+        </div>
+        <div className="col-6">
+        <Timer className="col-1 my-2" onNextQestion={onNextQestion}/> 
+        </div>
+        </div>
+        } 
+        {!isStart&&<h5 className="text-light text-start mx-2 mt-2">Score:{score}</h5>}
+                
         </div>
 
         <div className="question text-center">
-          {/* {!isStart&&
-          <>
-          {!isEnd?<button onClick={start}>start</button>:<button>Play Again</button> } 
-          <button onClick={onExit}>Exit Game</button>         
-          </>} */}
+
           {!isStart&&<GroupButtons start={start} onExit={onExit} isEnd={isEnd}/> }
 
          {isStart&& <Qestion onNextQestion={onNextQestion} question={questionsList.length>0&&questionsList[questionNumber]}/>}

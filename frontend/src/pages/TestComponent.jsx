@@ -161,21 +161,21 @@ import React, { useState,useRef } from 'react';
 import {FaUserAlt} from 'react-icons/fa'
 import {AiFillSound} from 'react-icons/ai'
 import {FiMenu} from 'react-icons/fi'
+import Countdown from 'react-countdown-now';
 // import Speech from 'react-speech-kit';
 const TestComponent= () => {
 
   return(
  <>
-
-<div id="answers-buttons" className='row mt-150 '>
-<button className="big-button my-3">huuman resourcews hr()
-</button>
-
-<button className="big-button my-3">push</button>
-
-<button className="big-button my-3">me</button>
-<button className="big-button my-3">me</button>
-</div>
+<div className='mt-150 text-center mx-5'></div> 
+<Countdown className="mx-5"
+      date={Date.now() + 60000}
+      renderer={({ minutes, seconds }) => (
+        <div className='text-end mx-2'>{minutes}:{seconds}</div>
+       
+      )}
+      onComplete={()=>{alert('time done')}}
+    />
  </>
 )};
 

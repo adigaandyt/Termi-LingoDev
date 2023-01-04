@@ -71,7 +71,7 @@ function GuessTheTerm(){
     return (
      
    
-        <div  id='game1-body' className=' text-center'>
+        <div dir="ltr"  id='game1-body' className=' text-center'>
 
       
       {isGamesLoading?(<Spinner2/>):(<>

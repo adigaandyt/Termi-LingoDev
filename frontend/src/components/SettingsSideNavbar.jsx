@@ -12,14 +12,14 @@ function SettingsSideNavbar(){
       element.classList.toggle("active");
     }
     return (<>
-<div ref={elementRef} id="wrapper2" dir='ltr' class="">
+<div ref={elementRef} id="wrapper2" dir='ltr' className="">
       <div id="sidebar-wrapper2">
-      <ul id="sidebar_menu2" class="sidebar-nav2">
-           <li class="sidebar-brand2"><a onClick={onClick} id="" >Settings<span id="main_icon2" class="sub_icon2 glyphicon2 glyphicon-link2"><FiMenu/></span></a></li>
+      <ul id="sidebar_menu2" className="sidebar-nav2">
+           <li className="sidebar-brand2"><a onClick={onClick} id="" >Settings<span id="main_icon2" className="sub_icon2 glyphicon2 glyphicon-link2"><FiMenu/></span></a></li>
       </ul>
-        <ul class="sidebar-nav2" id="sidebar2">     
-          <li><a>User<span class="sub_icon2 glyphicon2 glyphicon-link2 "><FaUserAlt className='d-inline-block '/> </span></a></li>
-          <li><a>Sound<span class="sub_icon2 glyphicon2 glyphicon-link2"><AiFillSound/></span></a></li>
+        <ul className="sidebar-nav2" id="sidebar2">     
+          <li><a>User<span className="sub_icon2 glyphicon2 glyphicon-link2 "><FaUserAlt className='d-inline-block '/> </span></a></li>
+          <li><a>Sound<span className="sub_icon2 glyphicon2 glyphicon-link2"><AiFillSound/></span></a></li>
         </ul>
       </div>
 </div>

@@ -59,7 +59,10 @@
     "my profile": "الصفحة الشخصية",
     "save": "حفظ",
     "cancel": "الغاء",
-    "details": "تفاصيل"
+    "details": "تفاصيل",
+    "game_exit_title": "هل انت متاكد من الخروج ؟",
+    "exit_game_desc": "اضغط على الخروج ",
+    "leave_game": "خروج"
 
    
 

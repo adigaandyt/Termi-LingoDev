@@ -33,12 +33,12 @@ function ProfileImage() {
 
     <div id='comp-img2' className='text-center'>
       <div id='image2'style={{"backgroundImage":`url(${profile_image})`,"fontSize":"190%"}} >
-      {isImageLoading&&<div class="spinner-border  text-light " id='spinner-grow' role="status">
-              {<span class="sr-only">Loading...</span>}
+      {isImageLoading&&<div className="spinner-border  text-light " id='spinner-grow' role="status">
+              {<span className="sr-only">Loading...</span>}
             </div>}
             <label  className=' ' id='img-icon2'>
             <input ref={fileInputRef} id='input-image2'  style={{ "display":"none"}}  onChange={onselectImage} type="file" accept="image/*"/>
-            <MdOutlineAddAPhoto className='text-secondary'  onClick={{handleButtonClick}} id='img-icon2-bg'/>
+            <MdOutlineAddAPhoto className='text-secondary'  onClick={handleButtonClick} id='img-icon2-bg'/>
             </label> 
 
 

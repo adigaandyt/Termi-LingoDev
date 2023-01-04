@@ -1,12 +1,12 @@
-import React from 'react'
-import './jq.js'
+// //import React from 'react'
+// import './jq.js'
  
 
-export default class Loader extends React.Component {
-    componentDidMount(){
+// export default class Loader extends React.Component {
+//     componentDidMount(){
         
-    }
-    render(){
-        return false;
-    }
-}
+//     }
+//     render(){
+//         return false;
+//     }
+// }

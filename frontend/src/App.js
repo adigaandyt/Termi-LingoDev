@@ -26,7 +26,7 @@ import $ from 'jquery';
 import loadable from "@loadable/component";
 import GamesPage from './pages/games/GamesPage';
 import GuessTheTerm from './pages/games/game1';
-const Loader = loadable(()=>import("./scripts/loader"));
+// const Loader = loadable(()=>import("./scripts/loader"));
 
 function App() {
   const dispatch=useDispatch()
@@ -37,7 +37,7 @@ function App() {
 },[])
   return (
     <>
-    <Loader/>
+    
       <Router>
         <div className='mb-150'>
         <Header/>

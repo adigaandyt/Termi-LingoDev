@@ -59,7 +59,10 @@
     "my profile": "My Profile :",
     "save": "Save",
     "cancel": "Cancel",
-    "details": "Details"
+    "details": "Details",
+    "game_exit_title": "Are you sure to exit ?",
+    "exit_game_desc": "Press leave to exit the game",
+    "leave_game": "leave"
 
 
 }

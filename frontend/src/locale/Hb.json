@@ -59,5 +59,8 @@
     "my profile": "דף אישי",
     "save": "שמור",
     "cancel": "ביטול",
-    "details": "פרטים"
+    "details": "פרטים",
+    "game_exit_title": "האם אתה בטוח שרוצה לצאת ?",
+    "exit_game_desc": "ליציאה מהמשחק לחץ עזוב",
+    "leave_game": "עזוב"
 }

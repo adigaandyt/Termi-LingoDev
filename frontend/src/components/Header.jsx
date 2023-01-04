@@ -14,10 +14,15 @@ import "../styles/Header.css";
 
 
 function Header(){
-    const {t,i18n}=useTranslation()
-    const {user}=useSelector(state=>state.auth)
-    const dispatch=useDispatch()
-    const navigate=useNavigate()
+    const {t,i18n}=useTranslation();
+    const {user}=useSelector(state=>state.auth);
+    const dispatch=useDispatch();
+    const navigate=useNavigate();
+    
+    const [active, setActive] = useState(false);
+    const optionsClick = () => {
+        setActive(!active);
+    };
    
     useEffect(()=>{
     if(cookies.get('i18next')==='en'){
@@ -28,9 +33,11 @@ function Header(){
     },[])
     const onLogin=()=>{
         navigate('/login')
+        optionsClick()
     }
     const onRegister=()=>{
         navigate('/register')
+        optionsClick()
 
     }
     const onLogout=(e)=>{
@@ -38,6 +45,10 @@ function Header(){
         dispatch(logout())
         navigate('/')
 
+    }
+    const onProfile = () => {
+        navigate('/profile')
+        optionsClick()
     }
     
     const onLanguageChange=(e)=>{
@@ -59,16 +70,16 @@ function Header(){
         
         
         <div dir='ltr' className="nav1 ">
-        <div class="space"></div>
+        <div className="space"></div>
             <div className="content">
                 <div className="text">
                     <Link to='/' id='titlestyle' className="navbar-brand text-secondary mx-3"> Termi</Link>
                 </div>
-                <div className="btnb" ><span></span></div>
+                <div className={`btnb ${active ? 'active' : ''}`} onClick={optionsClick}><span></span></div>
 
             </div>
-            <div className="box">
-                <i  className="lan">
+            <div className={`box ${active ? 'open' : ''}`}>
+                <i className="lan">
                     <div className="dropdown dropleft">
                         <button className="lan" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <MdLanguage />
@@ -88,7 +99,7 @@ function Header(){
                 ):(
                     <>
                     <i className="exit"><button onClick={onLogout} type="button"><ImExit/></button></i>
-                    <i className="prof " onClick={() => navigate('/profile')}><img src={user.profile_image}/></i>
+                    <i className="prof " onClick={onProfile}><img src={user.profile_image}/></i>
                     </>
                 )}
             </div>

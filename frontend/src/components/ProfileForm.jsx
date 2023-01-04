@@ -66,19 +66,19 @@ function ProfileForm({isEdit,setIsEdit}){
   <div className="col-md-6">
     <div className="form-floating">
       <input disabled={!isEdit} onChange={onChange} name='newEmail' value={newEmail} type="email" className="form-control" id="floatingInputGrid" placeholder={newEmail} />
-      <label for="floatingInputGrid">{t('email_adress')}</label>
+      <label htmlFor="floatingInputGrid">{t('email_adress')}</label>
     </div>
   </div>
   <div className="col-md-6">
     <div className="form-floating">
       <input disabled={!isEdit} onChange={onChange} name='newName' value={newName} type="text" className="form-control" id="floatingInputGrid" placeholder={newName} />
-      <label for="floatingInputGrid">{t('name')}</label>
+      <label htmlFor="floatingInputGrid">{t('name')}</label>
     </div>
   </div>
   <div className="col-md-6">
     <div className="form-floating">
       <input disabled={!isEdit} onChange={onChange} name='newPhoneNumber' value={newPhoneNumber} type="text" className="form-control" id="floatingInputGrid" placeholder={newPhoneNumber} />
-      <label for="floatingInputGrid">{t('phone')}</label>
+      <label htmlFor="floatingInputGrid">{t('phone')}</label>
     </div>
   </div>
   <div className="col-md">
@@ -88,7 +88,7 @@ function ProfileForm({isEdit,setIsEdit}){
         <option value="العربية">العربية</option>
         <option value="עברית">עברית</option>
       </select>
-      <label for="floatingSelectGrid">{t('language1')}</label>
+      <label htmlFor="floatingSelectGrid">{t('language1')}</label>
     </div>
   </div>
   <div className="col-md">
@@ -100,7 +100,7 @@ function ProfileForm({isEdit,setIsEdit}){
             })
         }
       </select>
-      <label for="floatingSelectGrid">{t('context')}</label>
+      <label htmlFor="floatingSelectGrid">{t('context')}</label>
     </div>
   </div>
 

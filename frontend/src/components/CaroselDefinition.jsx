@@ -17,9 +17,9 @@ function CatouselDefinition(){
     return(<>
 
 <div className='  text-center'>
-    <div id="carouselExample" class="carousel slide">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
+    <div id="carouselExample" className="carousel slide">
+  <div className="carousel-inner">
+    <div className="carousel-item active">
     <div className='carousel-item-inside'>
         {/* english */}
         
@@ -29,7 +29,7 @@ function CatouselDefinition(){
         <Definitions languageChoosed={languageChoosed} concept={concept}/>
       </div>     
     </div>
-    <div class="carousel-item">
+    <div className="carousel-item">
       <div className='carousel-item-inside'>
         {/* hebrew */}
         <img className='mt-3' src={require('../flags/israel-xs.gif')}/>
@@ -40,7 +40,7 @@ function CatouselDefinition(){
 
       </div>      
     </div>
-    <div class="carousel-item">
+    <div className="carousel-item">
       <div className='carousel-item-inside'>
       {/* arabic */}
          
@@ -51,13 +51,13 @@ function CatouselDefinition(){
       </div>     
     </div>
   </div>
-  <button class="carousel-control-prev text-dark " aria-hidden="true" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
+  <button className="carousel-control-prev text-dark " aria-hidden="true" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span className="visually-hidden">Previous</span>
   </button>
-  <button class="carousel-control-next text-dark " aria-hidden="true" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span aria-hidden="true" class="visually-hidden">Next</span>
+  <button className="carousel-control-next text-dark " aria-hidden="true" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+    <span aria-hidden="true" className="visually-hidden">Next</span>
   </button>
 </div>
 

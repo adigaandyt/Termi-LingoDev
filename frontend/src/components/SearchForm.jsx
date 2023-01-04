@@ -62,7 +62,7 @@ import '../styles/SearchForm.css'
                         autoComplete='on'
                         onChange={(e)=>{setConceptSearch(e.target.value)}}
                         />
-                        <label className="form-label" htmlfor="form1">{t('search_for_concept')}</label>
+                        <label className="form-label" htmlFor="form1">{t('search_for_concept')}</label>
                     </div>
                     <button type="button" className="btn  btn-warning" onClick={onSearchClick}>
                         <i className="fas fa-search"></i>

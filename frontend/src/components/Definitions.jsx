@@ -76,31 +76,31 @@ function Definitions({concept,languageChoosed}){
         {concept&&
         <div>
 
-            <div class="button-container">
-                    <div class="button">
-                    <div class="button-text">
+            <div className="button-container">
+                    <div className="button">
+                    <div className="button-text">
                     <a  target='_blank' href={concept&&concept.readMore} >
                     <MdMoreHoriz  className='mx-3 m-1 text-primary' style={{"fontSize":"200%"}}>{t('show_both_definitions')} </MdMoreHoriz>
                     </a>
                     </div>
                     </div>
-                    <div class="button-outline"></div>
+                    <div className="button-outline"></div>
             </div>
-            <div class="button-container">
-                    <div class={showShortDefinition?"button button-clicked":"button"} onClick={toggleLongDefinition}>
-                    <div class="button-text" >
+            <div className="button-container">
+                    <div className={showShortDefinition?"button button-clicked":"button"} onClick={toggleLongDefinition}>
+                    <div className="button-text" >
                     <RxTextAlignCenter  className=' ' style={{"fontSize":"180%"}}/>
                     </div>
                     </div>
-                    <div class="button-outline"></div>
+                    <div className="button-outline"></div>
             </div>
-            <div class="button-container">
-                    <div class={showLongDefinition?"button button-clicked":"button"} onClick={toggleShortDefinition}>
-                    <div class="button-text" >
+            <div className="button-container">
+                    <div className={showLongDefinition?"button button-clicked":"button"} onClick={toggleShortDefinition}>
+                    <div className="button-text" >
                     <GrTextAlignCenter id='icon-clicked'  className='mx-3 m-1' style={{"fontSize":"180%"}}/> 
                     </div>
                     </div>
-                    <div class="button-outline"></div>
+                    <div className="button-outline"></div>
             </div>
 
 
@@ -116,7 +116,7 @@ function Definitions({concept,languageChoosed}){
         </MDBCol>
         </div>
         <div className=''>
-            {showLongDefinition&&<MDBCol class='scroll' id="scroll-style">
+            {showLongDefinition&&<MDBCol className='scroll' id="scroll-style">
               <MDBCollapse id='MDBCollaps' show={showLongDefinition} className='mt-3 '>
               {concept?getDefinition(true):""}
               </MDBCollapse>

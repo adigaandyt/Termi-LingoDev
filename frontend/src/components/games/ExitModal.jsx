@@ -26,10 +26,10 @@ function ExitModal({toggleModal}){
       setCentredModal(!centredModal);}
 
 
-    return(<>
-              <MDBModal tabIndex='-1' show={centredModal} setShow={setCentredModal}>
-        <MDBModalDialog centered>
-          <MDBModalContent>
+    return(<div>
+              <MDBModal  tabIndex='-1' show={centredModal} setShow={setCentredModal}>
+        <MDBModalDialog  centered>
+          <MDBModalContent >
             <MDBModalHeader>
               <MDBModalTitle>{t('game_exit_title')}</MDBModalTitle>
               <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
@@ -46,6 +46,6 @@ function ExitModal({toggleModal}){
           </MDBModalContent>
         </MDBModalDialog>
       </MDBModal>
-    </>)
+    </div>)
 }
 export default ExitModal

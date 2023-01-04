@@ -10,8 +10,7 @@ import { useDispatch , useSelector } from "react-redux";
 function GamesPage(){
     const dispatch=useDispatch()
     useEffect(()=>{
-    dispatch(getConcepts4GuessTerm())
-    dispatch(getConceptsNames())
+
 
     },[])
     const [gamesClicked,setGamesClicked] =useState({

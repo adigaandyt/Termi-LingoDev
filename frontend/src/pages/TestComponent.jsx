@@ -163,30 +163,17 @@ import {AiFillSound} from 'react-icons/ai'
 import {FiMenu} from 'react-icons/fi'
 // import Speech from 'react-speech-kit';
 const TestComponent= () => {
-  const elementRef=useRef(null);
-const onClick=()=>{
-  const element = elementRef.current;
 
-  // Toggle the "active" class on the element
-  element.classList.toggle("active");
-}
   return(
-  // <div className='' id=''>
-
-
-<div ref={elementRef} id="wrapper2" dir='ltr' class="active">
-      <div id="sidebar-wrapper2">
-      <ul id="sidebar_menu2" class="sidebar-nav2">
-           <li class="sidebar-brand2"><a onClick={onClick} id="" >Settings<span id="main_icon2" class="sub_icon2 glyphicon2 glyphicon-link2"><FiMenu/></span></a></li>
-      </ul>
-        <ul class="sidebar-nav2" id="sidebar2">     
-          <li><a>User<span class="sub_icon2 glyphicon2 glyphicon-link2 "><FaUserAlt className='d-inline-block '/> </span></a></li>
-          <li><a>Sound<span class="sub_icon2 glyphicon2 glyphicon-link2"><AiFillSound/></span></a></li>
-        </ul>
-      </div>
-</div>
-
-  // </div>
+ <>
+<div className="html_for_game_buttons mt-150">
+	<div id="buttons_game_containet">
+	<button id="game_button">Resume</button>
+	<button id="game_button">New Game</button>
+	<button id="game_button">Start</button>
+	</div>
+	</div>
+ </>
 )};
 
 export default TestComponent

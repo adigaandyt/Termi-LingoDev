@@ -1,7 +1,19 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import { useEffect } from "react"
+import { getConcepts4GuessTerm } from "../../features/Games/gamesSlice";
+import {getConceptsNames} from '../../features/concepts/conceptSlice'
+import { useDispatch , useSelector } from "react-redux";
+
+// import { GamesProvider } from "../../hooks/gamesContext"
 
 function GamesPage(){
+    const dispatch=useDispatch()
+    useEffect(()=>{
+    dispatch(getConcepts4GuessTerm())
+    dispatch(getConceptsNames())
+
+    },[])
     const [gamesClicked,setGamesClicked] =useState({
         game1:false,
         game2:false
@@ -24,6 +36,9 @@ function GamesPage(){
         })
     }
     return (<>
+    
+
+    
         <div className="text-center mt-150 row">
             <section className="mx-3 text-center" name='game1' onClick={toggleGame1} id='gamespage-game1'>
                 <h1>Guess The Term</h1>
@@ -37,6 +52,7 @@ function GamesPage(){
                <Link to='/games/gesstheterm'> <a class="play-btn"></a></Link>
             </div>}
         </div>
+      
     </>)
 }
 export default GamesPage

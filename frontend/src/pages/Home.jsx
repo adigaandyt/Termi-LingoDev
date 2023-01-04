@@ -21,7 +21,6 @@ import CarouselAnimationDefinitions from '../components/CarouselAnimationDefinit
 
 function Home(){
     const {t}=useTranslation()
-
     const [languageChoosed,setLanguageChoosed]=useState({
         english:true,
         hebrew:false,
@@ -40,7 +39,6 @@ function Home(){
     useEffect(()=>{
         dispatch(getConceptsNames())
         dispatch(getCategories())
-        
     },[])
 
     

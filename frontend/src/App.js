@@ -26,6 +26,7 @@ import $ from 'jquery';
 import loadable from "@loadable/component";
 import GamesPage from './pages/games/GamesPage';
 import GuessTheTerm from './pages/games/game1';
+import { GamesProvider } from './hooks/gamesContext';
 const Loader = loadable(()=>import("./scripts/loader"));
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
 },[])
   return (
     <>
+   <GamesProvider>
     <Loader/>
       <Router>
         <div className='mb-150'>
@@ -69,13 +71,16 @@ function App() {
             <Route path='/games/gesstheterm' element={<PrivateRoute/>}>
               <Route path='/games/gesstheterm' element={<GuessTheTerm/>}/>
             </Route>
+           
             <Route path='*' element={<ErrorPage404/>}/>
 
           </Routes>
+
           <Footer/>
         </div>
       </Router>
-
+ 
+      </GamesProvider>
       <ToastContainer />
      
     </>

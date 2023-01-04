@@ -184,7 +184,10 @@
 
   /* -----------------------------------group buttons-------------------------------------- */
 
-  
+ #exit-modal{
+  color: #fff;
+background-color: #2c2e2d;
+ } 
 .html_for_game_buttons{
 	align-items: center;
     text-align: center;

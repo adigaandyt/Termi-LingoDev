@@ -29,9 +29,9 @@ function ExitModal({toggleModal}){
 
     return(<div>
       {/* new */}
-      <MDBModal show={centredModal} setShow={setCentredModal} tabIndex='-1'>
-        <MDBModalDialog>
-          <MDBModalContent>
+      <MDBModal  show={centredModal} setShow={setCentredModal} tabIndex='-1'>
+        <MDBModalDialog >
+          <MDBModalContent id="exit-modal">
             <MDBModalHeader>
               <MDBModalTitle>{t('game_exit_title')}</MDBModalTitle>
               <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
@@ -39,8 +39,8 @@ function ExitModal({toggleModal}){
             <MDBModalBody>{t('exit_game_desc')}</MDBModalBody>
 
             <MDBModalFooter>
-            <Link to='/games' className='btn btn-success mt-4 mx-1'>{t('leave_game')}</Link>
-            <Link onClick={toggleShow} className='btn btn-danger mt-4 mx-1'>{t('cancel')}</Link>
+            <Link to='/games' className='btn btn-success  mx-1'>{t('leave_game')}</Link>
+            <Link onClick={toggleShow} className='btn btn-danger  mx-1'>{t('cancel')}</Link>
             </MDBModalFooter>
           </MDBModalContent>
         </MDBModalDialog>

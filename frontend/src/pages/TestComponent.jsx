@@ -166,13 +166,16 @@ const TestComponent= () => {
 
   return(
  <>
-<div className="html_for_game_buttons mt-150">
-	<div id="buttons_game_containet">
-	<button id="game_button">Resume</button>
-	<button id="game_button">New Game</button>
-	<button id="game_button">Start</button>
-	</div>
-	</div>
+
+<div id="answers-buttons" className='row mt-150 '>
+<button className="big-button my-3">huuman resourcews hr()
+</button>
+
+<button className="big-button my-3">push</button>
+
+<button className="big-button my-3">me</button>
+<button className="big-button my-3">me</button>
+</div>
  </>
 )};
 

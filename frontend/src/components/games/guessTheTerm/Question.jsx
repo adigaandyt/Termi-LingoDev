@@ -24,14 +24,14 @@ function Qestion({question,onNextQestion}){
         onNextQestion(iscorrect)
     }
     return(<>
-    <div className="text-center">
+   <div id="answers-buttons" className='row '>
     {/* {console.log(question)}
     {console.log(randomPosition)}  */}
-    <div>{question.shortDefinition.hebrew}</div>
-    <button name={0} onClick={onClick} >{randomPosition===0 ?question.correctAnswer.hebrew:question.wrongAnswer1.hebrew}</button>
-    <button name={1} onClick={onClick}>{randomPosition===1 ?question.correctAnswer.hebrew:question.wrongAnswer2.hebrew}</button>
-    <button name={2} onClick={onClick}>{randomPosition===2 ?question.correctAnswer.hebrew:question.wrongAnswer3.hebrew}</button>
-    <button name={3} onClick={onClick}>{randomPosition===3 ?question.correctAnswer.hebrew:question.wrongAnswer4.hebrew}</button>  
+    <h1 id="shortDefinition-game1">{question.shortDefinition.hebrew}</h1>
+    <button className="big-button my-3" name={0} onClick={onClick} >{randomPosition===0 ?question.correctAnswer.hebrew:question.wrongAnswer1.hebrew}</button>
+    <button className="big-button my-3" name={1} onClick={onClick}>{randomPosition===1 ?question.correctAnswer.hebrew:question.wrongAnswer2.hebrew}</button>
+    <button className="big-button my-3" name={2} onClick={onClick}>{randomPosition===2 ?question.correctAnswer.hebrew:question.wrongAnswer3.hebrew}</button>
+    <button className="big-button my-3" name={3} onClick={onClick}>{randomPosition===3 ?question.correctAnswer.hebrew:question.wrongAnswer4.hebrew}</button>  
 
     </div>
     </>)

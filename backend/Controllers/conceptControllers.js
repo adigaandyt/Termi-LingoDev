@@ -142,7 +142,7 @@ const getConceptsByUserId=asyncHandler( async(req,res)=>{
         }
     }
     
-     res.status(200).json(concepts)
+     res.status(200).json(concepts[0])
     
     })
 

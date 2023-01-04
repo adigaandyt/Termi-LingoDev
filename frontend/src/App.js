@@ -26,7 +26,12 @@ import $ from 'jquery';
 import loadable from "@loadable/component";
 import GamesPage from './pages/games/GamesPage';
 import GuessTheTerm from './pages/games/game1';
+<<<<<<< HEAD
 // const Loader = loadable(()=>import("./scripts/loader"));
+=======
+import { GamesProvider } from './hooks/gamesContext';
+const Loader = loadable(()=>import("./scripts/loader"));
+>>>>>>> 07e21754ca5392e0e72d2d4fe593cc9d9c473242
 
 function App() {
   const dispatch=useDispatch()
@@ -37,7 +42,12 @@ function App() {
 },[])
   return (
     <>
+<<<<<<< HEAD
     
+=======
+   <GamesProvider>
+    <Loader/>
+>>>>>>> 07e21754ca5392e0e72d2d4fe593cc9d9c473242
       <Router>
         <div className='mb-150'>
         <Header/>
@@ -69,13 +79,16 @@ function App() {
             <Route path='/games/gesstheterm' element={<PrivateRoute/>}>
               <Route path='/games/gesstheterm' element={<GuessTheTerm/>}/>
             </Route>
+           
             <Route path='*' element={<ErrorPage404/>}/>
 
           </Routes>
+
           <Footer/>
         </div>
       </Router>
-
+ 
+      </GamesProvider>
       <ToastContainer />
      
     </>

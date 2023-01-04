@@ -1,5 +1,5 @@
 import {useTranslation} from 'react-i18next'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Modal from 'react-modal'
 import {Link} from 'react-router-dom'
 import {BiError} from 'react-icons/bi'
@@ -14,19 +14,18 @@ import {
     MDBModalBody,
     MDBModalFooter,
   } from 'mdb-react-ui-kit';
+import { use } from 'i18next'
 
-function ExitModal(){
-        const {t}=useTranslation()
+function ExitModal({toggleModal}){
+    const {t}=useTranslation()
     const [modalIsOpen,setModalIsOpen]=useState(true)
     const [centredModal, setCentredModal] = useState(true);
 
-    const toggleShow = () => setCentredModal(!centredModal);
-    const closeModal=()=>{
-        setModalIsOpen(false)
-    }
-    const onSubmit=(e)=>{
-        e.preventDefault()
-    }
+    const toggleShow = () => {
+      toggleModal();
+      setCentredModal(!centredModal);}
+
+
     return(<>
               <MDBModal tabIndex='-1' show={centredModal} setShow={setCentredModal}>
         <MDBModalDialog centered>

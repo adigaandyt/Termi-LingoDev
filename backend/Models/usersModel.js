@@ -39,6 +39,10 @@ const userSchema=mongoose.Schema({
     profile_image:{
         type:String,
         default:'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png'
+    },
+    favorite_pet:{
+        type:String,
+        required:[true,"please add favorite pet  "]
     }
     
 

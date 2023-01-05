@@ -8,14 +8,16 @@ import './index.css';
 import {ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Home from './pages/Home';
-import Register from './pages/Register';
-import Login from './pages/Login';
+import Register from './pages/usersManagement/Register';
+import Login from './pages/usersManagement/Login';
 import Header from './components/Header';
-import PrivateRoute from './components/PrivateRoute';
+import PrivateRoute from './components/PrivateRoutes/PrivateRoute';
+import VerifyPrivateRoute from './components/PrivateRoutes/VerifyPrivateRoute';
 import {BrowserRouter as Router , Routes , Route} from 'react-router-dom';
 import About from './pages/About';
-import Profile from './pages/Profile';
-import ResetPassword from './pages/ResetPassword';
+import Profile from './pages/usersManagement/Profile';
+import ResetPassword from './pages/usersManagement/ResetPassword';
+import Validation from './pages/usersManagement/Validation';
 import NewConcept from './pages/NewConcept';
 import Footer from './components/Footer';
 import ErrorPage404 from './pages/ErrorPage404';
@@ -53,8 +55,11 @@ function App() {
             <Route path='/profile' element={<PrivateRoute/>}>
               <Route path='/profile' element={<Profile/>}/>
             </Route>
-            <Route path='/reset' element={<PrivateRoute/>}>
+            {/* <Route path='/reset' element={<PrivateRoute/>}>
                 <Route path='/reset' element={<ResetPassword/>}/>
+            </Route> */}
+            <Route path='/forgotpassword/verified' element={<VerifyPrivateRoute/>}>
+                <Route path='/forgotpassword/verified' element={<ResetPassword/>}/>
             </Route>
             <Route path='/test' element={<TestComponent/>}/>
 
@@ -70,7 +75,8 @@ function App() {
             <Route path='/games/gesstheterm' element={<PrivateRoute/>}>
               <Route path='/games/gesstheterm' element={<GuessTheTerm/>}/>
             </Route>
-           
+            <Route path='/validation' element={<Validation/>}/>
+            {/* <Route path='/forgotpassword/verified' element={<ResetPassword/>}/> */}
             <Route path='*' element={<ErrorPage404/>}/>
 
           </Routes>

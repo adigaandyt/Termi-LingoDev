@@ -1,14 +1,14 @@
 import { useState,useEffect } from "react"
 import {useNavigate,Link} from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
-import {login,reset} from '../features/auth/authSlice'
+import {login,reset} from '../../features/auth/authSlice'
 import { useTranslation } from "react-i18next"
 
-import Spinner from "../components/Spinner"
+import Spinner from "../../components/Spinner"
 import {toast} from 'react-toastify'
 import {AiOutlineUser} from 'react-icons/ai'
 import {TiArrowBackOutline} from 'react-icons/ti'
-import "../styles/Inputs.css"
+import "../../styles/Inputs.css"
 
 function Login(){
     const {t,i18n}=useTranslation();
@@ -107,6 +107,7 @@ function Login(){
                     </div>
                     {/* <button className='btn btn-dark text-light btn-profile btn-profile-login mt-5' type='submit'>{t('login')}</button> */}
                     <button id="rgbtn" className="btn btn-dark mt-3" type='submit'><span></span><span></span><span></span><span></span>{t('login')}</button>
+                    <Link to='/validation' className="text-primary d-block mt-2">Forgot password?</Link>
                 
                 </form>
             </div>

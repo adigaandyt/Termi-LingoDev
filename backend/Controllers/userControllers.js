@@ -13,11 +13,11 @@ const generateToken=(id)=>{
 
 
 //@desc register a new user
-//@route POST /api/users/register/:CategoryId  http://localhost:5000/api/users/:categoryId
+//@route POST /api/users/register/:CategoryId  http://localhost:5000/api/users/register/:categoryId
 //@access public
 const registrUser=asyncHandler( async (req,res)=>{
     const categoryId=req.params.categoryId
-    const {email, password ,password2 ,name, phoneNumber ,language,profile_image}=req.body;
+    const {email, password ,password2 ,name, phoneNumber ,language,profile_image,favorite_pet}=req.body;
 
     if(!categoryId){
         res.status(500)
@@ -51,6 +51,7 @@ const registrUser=asyncHandler( async (req,res)=>{
             phoneNumber,
             language, 
             categoryId,
+            favorite_pet,
             profile_image:profile_image,
             password:hashPassword
         })
@@ -62,6 +63,7 @@ const registrUser=asyncHandler( async (req,res)=>{
                 email:user.email,
                 phoneNumber:user.phone_number,
                 language:user.language,
+                favorite_pet:user.favorite_pet,
                 categoryId:user.categoryId,
                 profile_image:user.profile_image,
                 token:generateToken(user._id)
@@ -243,6 +245,39 @@ if(newUser){
     throw new Error('Somthing is Wrong, try to Logout and login again')
 }
 })
+  //@desc on user forgot his password 
+//@route GET /api/users/verify
+//@access public
+const verifyUser=asyncHandler(async (req,res)=>{
+
+    const {email,favorite_pet}=req.body
+    if(!email||!favorite_pet){
+        res.status(404)
+        throw new Error("missing details")
+    }
+    try {
+        const emailExist=await User.findOne({email:email})
+
+        if(!emailExist){
+        res.status(401)
+        throw new Error("Your email is not exist in our database")
+        }else{
+            if(emailExist.favorite_pet===favorite_pet){
+                res.status(200).json({
+                    token:generateToken(emailExist._id)
+                })
+            }else{
+                res.status(404)
+                throw new Error("Incorrect details")
+            }
+        }
+
+    } catch (error) {
+        res.status(500)
+        throw new Error(error.message)
+    }
+
+    })
 
 
 module.exports={
@@ -252,5 +287,6 @@ module.exports={
     resetPassword,
     uploadImage,
     updateUserDetails,
-    updateUserImage
+    updateUserImage,
+    verifyUser
 }

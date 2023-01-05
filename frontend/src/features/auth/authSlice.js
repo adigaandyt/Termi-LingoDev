@@ -7,6 +7,7 @@ const user =JSON.parse(localStorage.getItem('user'))
 const initialState={ 
     user:user?user:null,
     image_url:null,
+    user_token:null,
     isSuccess:false,
     isError:false,
     isLoading:false,
@@ -86,7 +87,7 @@ export const resetPassword=createAsyncThunk(
     'password/reset',
      async(formData,thunkAPI)=>{
         try {
-            const token=thunkAPI.getState().auth.user.token 
+            const token=thunkAPI.getState().auth.user_token.token 
             return await authService.resetPassword(formData ,token)
         } catch (error) {
             const message=(error.response&&error.response.data&&error.response.data.message)
@@ -104,6 +105,21 @@ export const updateUser=createAsyncThunk(
         try {
             const token=thunkAPI.getState().auth.user.token 
             return await authService.updateUser(formData ,token)
+        } catch (error) {
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
+//verify user
+export const verifyUser=createAsyncThunk(
+    'verify/user',
+     async(data,thunkAPI)=>{
+        try {
+            return await authService.verifyUser(data)
         } catch (error) {
             const message=(error.response&&error.response.data&&error.response.data.message)
             ||error.message
@@ -213,6 +229,23 @@ export const authSlice=createSlice({
             state.isImageLoading=false
             state.isSuccess=true
             state.user=action.payload
+        })
+        .addCase(verifyUser.pending,(state)=>{
+            state.isLoading=true
+        })
+        .addCase(verifyUser.rejected,(state,action)=>{
+            state.isLoading=false
+            state.isError=true
+            state.isSuccess=false
+            state.message=action.payload
+            state.user_token=null
+            
+        })
+        .addCase(verifyUser.fulfilled,(state,action)=>{
+            state.isLoading=false
+            state.isSuccess=true
+            state.isError=false
+            state.user_token=action.payload
         })
     }
 

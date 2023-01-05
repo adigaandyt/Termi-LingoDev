@@ -1,14 +1,14 @@
 import { useSelector,useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import ProfileForm from '../components/ProfileForm';
-import ProfileImage from '../components/ProfileImage';
+import ProfileForm from '../../components/ProfileForm';
+import ProfileImage from '../../components/ProfileImage';
 import {FcAddImage} from 'react-icons/fc';
-import '../styles/Profile.css';
+import '../../styles/Profile.css';
 import { useState } from 'react';
-import { updateUserImage } from '../features/auth/authSlice';
-import Spinner from '../components/Spinner';
+import { updateUserImage } from '../../features/auth/authSlice';
+import Spinner from '../../components/Spinner';
 import { useTranslation } from 'react-i18next';
-import TestComponent from './TestComponent';
+import TestComponent from '../TestComponent';
 function Profile(){
   const dispatch=useDispatch();
   const {t}=useTranslation();

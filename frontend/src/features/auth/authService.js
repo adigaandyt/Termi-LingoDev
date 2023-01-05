@@ -72,6 +72,13 @@ const updateUser =async (formData,token)=>{
     }
     return response.data
 }
+//verify user
+const verifyUser =async (data,token)=>{
+
+    const response=await axios.post(API_URL+'/verify',data)
+
+    return response.data
+}
 const authService={
     register,
     logout,
@@ -80,6 +87,7 @@ const authService={
     uploadImage,
     updateUser,
     updateUserImage,
+    verifyUser
     
 }
 

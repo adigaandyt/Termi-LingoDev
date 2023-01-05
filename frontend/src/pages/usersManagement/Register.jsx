@@ -2,19 +2,19 @@ import {React,useContext} from 'react'
 import { useState,useEffect } from "react"
 import {useNavigate,Link} from 'react-router-dom'
 import {useSelector ,useDispatch} from 'react-redux'
-import {register ,reset,uploadImage} from '../features/auth/authSlice'
-import { getCategories } from '../features/categories/categorySlice'
-import Spinner from "../components/Spinner"
+import {register ,reset,uploadImage} from '../../features/auth/authSlice'
+import { getCategories } from '../../features/categories/categorySlice'
+import Spinner from "../../components/Spinner"
 import { toast } from "react-toastify"
 import {AiOutlineUserAdd} from 'react-icons/ai'
 import {TiArrowBackOutline} from 'react-icons/ti'
 import { useTranslation } from "react-i18next"
 import {MdLanguage} from 'react-icons/md'
 import cookies from 'js-cookie'
-import {getCategoryName} from '../hooks/ExportsFunctions'
+import {getCategoryName} from '../../hooks/ExportsFunctions'
 import axios from 'axios'
-import "../styles/Inputs.css"
-import '../styles/Images.css'
+import "../../styles/Inputs.css"
+import '../../styles/Images.css'
 
 
 
@@ -33,6 +33,7 @@ function Register(){
         password:'',
         password2:'',
         phoneNumber:'',
+        favorite_pet:'',
         profile_image:'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png',
         language:'English',
     })
@@ -82,7 +83,7 @@ function Register(){
     },[isSuccess,isError,isImageLoading,image_url])
 
 
-    const {name,email,password,password2,phoneNumber,profile_image}=formData;
+    const {name,email,password,password2,phoneNumber,favorite_pet,profile_image}=formData;
 
 
     const onSubmit=(e)=>{
@@ -141,6 +142,9 @@ function Register(){
             </div>
             <div className="form-group mt-2"> 
                 <input className="form-control" type='phoneNumber' placeholder={t('phone')} id='phoneNumber' name='phoneNumber' value={phoneNumber} onChange={onChange} required/>  
+            </div>
+            <div className="form-group mt-2"> 
+                <input className="form-control" type='favorit_pet' placeholder={t('favorite_pet')} id='favorite_pet' name='favorite_pet' value={favorite_pet} onChange={onChange} required/>  
             </div>
             
             <div className="form-group mt-2" id="reg-dropdown">

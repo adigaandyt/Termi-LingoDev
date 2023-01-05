@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {CgPassword} from 'react-icons/cg';
 import {useDispatch,useSelector} from 'react-redux';
-import {resetPassword ,reset} from '../features/auth/authSlice';
+import {resetPassword ,reset} from '../../features/auth/authSlice';
 import {toast} from 'react-toastify';
-import Spinner from '../components/Spinner';
+import Spinner from '../../components/Spinner';
 import { useTranslation } from 'react-i18next';
 function ResetPassword(){
     const navigate=useNavigate();
@@ -45,7 +45,7 @@ function ResetPassword(){
         return <Spinner/>
     }
     return(<> 
-        <div className="  text-center mt-5 pt-5 ">
+        <div className="  text-center mt-150 pt-5 ">
             <label className="text-secondary mb-5" style={{"fontSize":"250%"}}>
                  <h1  className='text-warning'>
                  Reset 
@@ -55,8 +55,10 @@ function ResetPassword(){
              </label>
 
              <form onSubmit={onSubmit}>
-             <div className='row-sm mt-3 text-center'>
+             <div className='container  text-center '>
+             <div className="form-floating  mb-3 ">
                 <input
+                className="form-control "
                 name='password'
                 type='password'
                 placeholder={t('current password')}
@@ -66,9 +68,11 @@ function ResetPassword(){
                 required
 
                  />
+                  <label for="floatingInput">{t('current password')}</label>
             </div>
-            <div className='row-sm mt-3'>
+            <div className="form-floating  mb-3 ">
                 <input
+                className="form-control "
                 name='password1'
                 type='password'
                 placeholder={t('new password')}
@@ -78,9 +82,11 @@ function ResetPassword(){
                 required
 
                  />
+                  <label for="floatingInput">{t('new password')}</label>
             </div>
-            <div className='row-sm mt-3'>
+            <div className="form-floating  mb-3 ">
                 <input
+                className="form-control "
                 name='password2'
                 type='password'
                 placeholder={t('confirm password')}
@@ -90,10 +96,11 @@ function ResetPassword(){
                 required
 
                  />
+                  <label for="floatingInput">{t('confirm password')}</label>
             </div>
 
             <button className='btn btn-online-secondary mt-3'>{t('reset')}</button>
-                 
+            </div>
              </form>
             
         </div>

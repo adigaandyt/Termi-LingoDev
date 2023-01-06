@@ -63,7 +63,9 @@
     "exit_game_desc": "Press leave to exit the game",
     "leave_game": "leave",
     "not_enough_concepts_toast":"There are probably not enough concepts in your category, try changing the category in the settings, or change the default category in your personal profile",
-    "changeing_message":"Your changes have been updated :)"
+    "changeing_message":"Your changes have been updated :)",
+    "description1":"in this game you will receive a definition and you have to choose the concept name for this definiton"
+    
 
 
 }

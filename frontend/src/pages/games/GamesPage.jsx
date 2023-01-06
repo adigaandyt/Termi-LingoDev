@@ -4,10 +4,14 @@ import { useEffect } from "react"
 import { getConcepts4GuessTerm } from "../../features/Games/gamesSlice";
 import {getConceptsNames} from '../../features/concepts/conceptSlice'
 import { useDispatch , useSelector } from "react-redux";
+import './GamesPage.css'
+import {AiTwotoneLike, AiTwotoneDislike} from 'react-icons/ai'
+import { useTranslation } from 'react-i18next'
 
 // import { GamesProvider } from "../../hooks/gamesContext"
 
 function GamesPage(){
+    const {t}=useTranslation();
     const dispatch=useDispatch()
     useEffect(()=>{
 
@@ -38,18 +42,37 @@ function GamesPage(){
     
 
     
-        <div className="text-center mt-150 row">
-            <section className="mx-3 text-center" name='game1' onClick={toggleGame1} id='gamespage-game1'>
-                <h1>Guess The Term</h1>
-            </section>
-            <section className="mx-3" name='game1' onClick={toggleGame1} id='gamespage-game1'>
-                Game 2
-            </section>
-            {game1&&<div className="text-center">
-                <h3>Guess The Term</h3>
-                <p>Description......</p>
-               <Link to='/games/gesstheterm'> <a class="play-btn"></a></Link>
-            </div>}
+        <div class="card-container">
+        <div class="card" onClick={toggleGame1}>
+            {/* <div class="card-image"></div> */}
+            <div class="card-info">
+                <div class="card-title">Guess The Term</div>
+                <div class="card-detail">{t('description1')}</div>
+                <Link to='/games/gesstheterm'><a class="play-btn"></a></Link>
+            </div>    
+            <div class="card-social">
+            <ul>
+                <li><button className="card-btn"><AiTwotoneLike/></button></li>
+                <li><button className="card-btn"><AiTwotoneDislike/></button></li>
+            </ul>
+            </div>
+        </div>
+        <div class="card" onClick={toggleGame2}>
+            <div class="card-image"></div>
+            <div class="card-info">
+                <div class="card-title">Game 2</div>
+                <div class="card-detail"></div>
+                <Link to='/games/gesstheterm'><a class="play-btn"></a></Link>
+            </div>
+            <div class="card-social">
+                <ul>
+                    <li><button className="card-btn"><AiTwotoneLike/></button></li>
+                    <li><button className="card-btn"><AiTwotoneDislike/></button></li>
+                </ul>
+            </div>
+        </div>
+        
+        
         </div>
       
     </>)

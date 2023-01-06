@@ -16,12 +16,14 @@ import {TbArrowBackUp} from 'react-icons/tb'
 import { getCategoryName } from "../../hooks/ExportsFunctions";
 import {FiSave} from 'react-icons/fi'
 import {AiFillSound} from 'react-icons/ai'
+import { toast } from "react-toastify";
 
 
 function GuessTheTerm({page}){
   // const [rand1,createRand1]=useRandom()
   const {t}=useTranslation()
   const {term,getquestionList,questionsList} = useContext(GamesContext);
+  
   const [isModalOpen,setIsModalOpen]=useState(false)
   const [isStart,setIsStart]=useState(false)
   const [isEnd,setIsEnd]=useState(false)
@@ -33,10 +35,11 @@ function GuessTheTerm({page}){
     const {user} =useSelector(state=>state.auth)
     const {categories} =useSelector(state=>state.category)
     const {names}=useSelector(state=>state.concept)
+    const [languageChoosed,setLanguageChoosed]=useState(user.language)
    useEffect(()=>{
     dispatch(getConcepts4GuessTerm())
     dispatch(getConceptsNames())
-    console.log("use game 1")
+    
    },[]);
    const onExit=()=>{
     setIsModalOpen(!isModalOpen)
@@ -45,13 +48,21 @@ function GuessTheTerm({page}){
     setIsModalOpen(!isModalOpen)
    }
    const start=()=>{
-    if((user_concepts&&names)){
+    if((user_concepts&&user_concepts.user_concepts.length>10&&names)){
       getquestionList(user_concepts)
-      }else{
-        navigate('/games')
-      }
       setScore(0)
       setIsStart(true)
+      }
+
+      // else{
+      //   navigate('/games')
+      // }
+      if(user_concepts.user_concepts.length<10){
+        toast(t('not_enough_concepts_toast'))
+
+      }
+
+
    }
    const onNextQestion =(isTrue)=>{
     if(isTrue){
@@ -72,6 +83,10 @@ function GuessTheTerm({page}){
     if(isTrue){
       setScore(score+1)
     }
+   }
+   const onChangeLanguage=(e)=>{
+    e.preventDefault()
+    setLanguageChoosed(e.target.value)
    }
     return (
      
@@ -119,7 +134,7 @@ function GuessTheTerm({page}){
       </div>
       <div  className="text-center">
         <div className="mt-3  ">
-          <select   name='newLanguage' className="select-language-guesstheterm" defaultValue={user.language} id="floatingSelectGrid"  aria-label="Language">
+          <select onChange={(e=>setLanguageChoosed(e.target.value))}  name='languageChoosed' className="select-language-guesstheterm" defaultValue={languageChoosed} id="floatingSelectGrid"  aria-label="Language">
               <option value="English">English</option> 
               <option value="العربية">العربية</option>
               <option value="עברית">עברית</option>
@@ -138,7 +153,7 @@ function GuessTheTerm({page}){
 
           <label>
           <input class="form-check-input " type="checkbox" role="switch" id="flexSwitchCheckDefault"/>
-          <h4 className="d-inline-block sound-sittings-guesstheterm ">Sound    <AiFillSound/></h4>
+          <h4 className="d-inline-block sound-sittings-guesstheterm ">Sound    <AiFillSound className="mx-2"/></h4>
           
 
           </label>

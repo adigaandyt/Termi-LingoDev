@@ -58,11 +58,11 @@
     "ability_to":"Ability to save and organize favorite translations",
     "my profile": "My Profile :",
     "save": "Save",
-    "cancel": "Cancel",
     "details": "Details",
     "game_exit_title": "Are you sure to exit ?",
     "exit_game_desc": "Press leave to exit the game",
-    "leave_game": "leave"
+    "leave_game": "leave",
+    "not_enough_concepts_toast":"There are probably not enough concepts in your category, try changing the category in the settings, or change the default category in your personal profile"
 
 
 }

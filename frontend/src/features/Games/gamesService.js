@@ -15,8 +15,21 @@ const getConcepts4GuessTerm =async (token)=>{
 
     return response.data
 }
+//get concept name and shortdefintion for "Guess the term" game
+const getConcepts4GuessTermByCategoryId =async (data,token)=>{
+   
+    const config ={
+        headers:{
+            authorization:`Bearer ${token}`
+        }
+    }
+    const response=await axios.get(CONCEPT_API_URL+`/get/concepts/games/game1/guesstheterm/${data}`,config)
+
+    return response.data
+}
 const gamesService={
-    getConcepts4GuessTerm
+    getConcepts4GuessTerm,
+    getConcepts4GuessTermByCategoryId
 }
 
 export default gamesService

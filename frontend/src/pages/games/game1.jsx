@@ -3,6 +3,7 @@ import AnimationTitle from "../../components/Animation/AnimationTitle";
 import Spinner2 from "../../components/Spinners/Spinner2";
 import { getConcepts4GuessTerm } from "../../features/Games/gamesSlice";
 import {getConceptsNames} from '../../features/concepts/conceptSlice'
+import {getConcepts4GuessTermByCategoryId} from '../../features/Games/gamesSlice'
 import { useDispatch , useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import ExitGame from '../../components/games/ExitModal'
@@ -22,7 +23,7 @@ import { toast } from "react-toastify";
 function GuessTheTerm({page}){
   // const [rand1,createRand1]=useRandom()
   const {t}=useTranslation()
-  const {term,getquestionList,questionsList} = useContext(GamesContext);
+  const {getquestionList,questionsList} = useContext(GamesContext);
   
   const [isModalOpen,setIsModalOpen]=useState(false)
   const [isStart,setIsStart]=useState(false)
@@ -36,6 +37,8 @@ function GuessTheTerm({page}){
     const {categories} =useSelector(state=>state.category)
     const {names}=useSelector(state=>state.concept)
     const [languageChoosed,setLanguageChoosed]=useState(user.language)
+    const [categoryId,setCategoryId]=useState()
+    
    useEffect(()=>{
     dispatch(getConcepts4GuessTerm())
     dispatch(getConceptsNames())
@@ -54,9 +57,6 @@ function GuessTheTerm({page}){
       setIsStart(true)
       }
 
-      // else{
-      //   navigate('/games')
-      // }
       if(user_concepts.user_concepts.length<10){
         toast(t('not_enough_concepts_toast'))
 
@@ -88,6 +88,17 @@ function GuessTheTerm({page}){
     e.preventDefault()
     setLanguageChoosed(e.target.value)
    }
+   const onSave=(e)=>{
+    e.preventDefault()
+    if(categoryId){
+      dispatch(getConcepts4GuessTermByCategoryId(categoryId))
+      setCategoryId(null)
+    }else{
+      toast(t('changeing_message'))
+    }
+    
+console.log(categoryId)
+   }
     return (
      
    
@@ -112,13 +123,13 @@ function GuessTheTerm({page}){
         {!isStart&&<h5 className="text-light text-start mx-2 mt-2">Score:{score}</h5>}
                 
         </div>
-        <AnimationTitle text1='Guess' text2='The' text3='Term'/> 
+        {!isStart&&<AnimationTitle text1='Guess' text2='The' text3='Term'/>} 
 
         <div className="question text-center">
 
           {!isStart&&<GroupButtons start={start} onExit={onExit} isEnd={isEnd}/> }
 
-         {isStart&& <Qestion onNextQestion={onNextQestion} question={questionsList.length>0&&questionsList[questionNumber]}/>}
+         {isStart&& <Qestion languageChoosed={languageChoosed} onNextQestion={onNextQestion} question={questionsList.length>0&&questionsList[questionNumber]}/>}
  
           
         </div>
@@ -141,7 +152,9 @@ function GuessTheTerm({page}){
           </select>
         </div>
         <div className="mt-3  ">
-          <select   name='newLanguage' className="select-language-guesstheterm" id="floatingSelectGrid"  aria-label="Language">
+          <select onChange={(e)=>setCategoryId(e.target.value)} defaultValue='Category' name='newLanguage' className="select-language-guesstheterm" id="floatingSelectGrid"  aria-label="Language">
+          <option disabled>Category</option> 
+          <hr />
           {(categories)&&
             categories.map(category=>{
             return(category.accepted&&<option value={category._id}>{getCategoryName(category.categoryName)}</option>)
@@ -158,7 +171,7 @@ function GuessTheTerm({page}){
 
           </label>
         </div>
-        <button className="btn mt-3" id="settings-guesstheterm-button"><FiSave className="display-5"/></button>
+        <button onClick={onSave} className="btn mt-3" id="settings-guesstheterm-button"><FiSave className="display-5"/></button>
       </div>
 
   
@@ -167,10 +180,6 @@ function GuessTheTerm({page}){
 
 
 </>)}
-
-       
-
-     
         </>)}
     </div>
  

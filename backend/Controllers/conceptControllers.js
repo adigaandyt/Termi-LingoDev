@@ -107,7 +107,7 @@ const getConcepts=asyncHandler( async(req,res)=>{
     
     })
 
-//@desc get concept names and shortDefintions for "Guess The Term" game!
+//@desc get concept names and shortDefintions for "Guess The Term" game by user id!
 //@route GET /get/concepts/games/game1/guesstheterm
 //@access private
 const getConceptsByUserId=asyncHandler( async(req,res)=>{
@@ -145,7 +145,30 @@ const getConceptsByUserId=asyncHandler( async(req,res)=>{
      res.status(200).json(concepts[0])
     
     })
+//@desc get concepts names and shortDefintions for "Guess The Term" game by category id !
+//@route GET /get/concepts/games/game1/guesstheterm/:categoryid
+//@access private
+const getConceptsBycategoryId=asyncHandler( async(req,res)=>{
+    // user details for back office !
+    const user=req.user
 
+
+    const categoryId =req.params.categoryId
+    console.log(req.params)
+    let concepts;
+    if (categoryId) {
+        try {
+            concepts=await Concept.find({categories:categoryId},{"shortDefinition":1,"conceptName":1,"_id":0})
+        } catch (error) {
+            res.status(500)
+            throw new Error("Some thing is wrong !")
+        }
+    }
+    
+     res.status(200).json({user_concepts:concepts})
+    
+    })
+   
 
 
 
@@ -158,5 +181,6 @@ module.exports={
    testConcept,
    getConceptsNames,
    getConcepts,
-   getConceptsByUserId
+   getConceptsByUserId,
+   getConceptsBycategoryId
 }

@@ -30,6 +30,23 @@ export const getConcepts4GuessTerm=createAsyncThunk(
      }
 
 )
+//get concept name and shortdefintion for "Guess the term" game
+export const getConcepts4GuessTermByCategoryId=createAsyncThunk(
+    'games/category',
+     async(data,thunkAPI)=>{
+        const token=thunkAPI.getState().auth.user.token
+        try {
+            return await gamesService.getConcepts4GuessTermByCategoryId(data,token)
+        } catch (error) {
+            
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
 
 
 export const gamesSlice=createSlice({
@@ -57,6 +74,24 @@ export const gamesSlice=createSlice({
             
         })
         .addCase(getConcepts4GuessTerm.fulfilled,(state,action)=>{
+            state.isGamesLoading=false
+            state.isGamesError=false
+            state.isGamesSuccess=true
+            state.user_concepts=action.payload
+            state.message=''
+        })
+        .addCase(getConcepts4GuessTermByCategoryId.pending,(state)=>{
+            state.isGamesLoading=true
+        })
+        .addCase(getConcepts4GuessTermByCategoryId.rejected,(state,action)=>{
+            state.isGamesLoading=false
+            state.isGamesError=true
+            state.isGamesSuccess=false
+            state.user_concepts=null
+            state.message=action.payload
+            
+        })
+        .addCase(getConcepts4GuessTermByCategoryId.fulfilled,(state,action)=>{
             state.isGamesLoading=false
             state.isGamesError=false
             state.isGamesSuccess=true

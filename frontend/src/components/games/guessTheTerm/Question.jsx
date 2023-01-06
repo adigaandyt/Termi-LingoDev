@@ -39,7 +39,11 @@ function Qestion({question,onNextQestion,languageChoosed}){
     },[question])
     const onClick=(e)=>{
         const iscorrect= e.target.name==randomPosition
-
+        
+        //sound when click yahia 
+        // stop one secound
+        //red\green
+        //iscorrect true\false (correct answer)
         onNextQestion(iscorrect)
     }
     return(<>

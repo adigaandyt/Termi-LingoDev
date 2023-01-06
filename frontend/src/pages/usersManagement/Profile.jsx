@@ -12,7 +12,7 @@ import TestComponent from '../TestComponent';
 function Profile(){
   const dispatch=useDispatch();
   const {t}=useTranslation();
-  const {name,email,profile_image} =useSelector(state=>state.auth.user)
+  const {name,email,profile_image,games_coins} =useSelector(state=>state.auth.user)
   const {isLoading,isImageLoading} =useSelector(state=>state.auth)
   const [isEdit,setIsEdit]=useState(false)
   const onselectImage=(event)=>{
@@ -41,8 +41,8 @@ function Profile(){
           <h6 className="d-inline-block">{email}</h6>
         </div>
         <div className='mx-3' >
-          <p className="d-inline-block">Score: </p>
-          <h6 className="d-inline-block">0</h6>
+          <p className="d-inline-block">Coins: </p>
+          <h6 className="d-inline-block">{games_coins}</h6>
         </div>
        
 

@@ -55,9 +55,6 @@ function App() {
             <Route path='/profile' element={<PrivateRoute/>}>
               <Route path='/profile' element={<Profile/>}/>
             </Route>
-            {/* <Route path='/reset' element={<PrivateRoute/>}>
-                <Route path='/reset' element={<ResetPassword/>}/>
-            </Route> */}
             <Route path='/forgotpassword/verified' element={<VerifyPrivateRoute/>}>
                 <Route path='/forgotpassword/verified' element={<ResetPassword/>}/>
             </Route>
@@ -73,7 +70,10 @@ function App() {
               <Route path='/games' element={<GamesPage/>}/>
             </Route>
             <Route path='/games/gesstheterm' element={<PrivateRoute/>}>
-              <Route path='/games/gesstheterm' element={<GuessTheTerm/>}/>
+              <Route path='/games/gesstheterm' element={<GuessTheTerm page="home"/>}/>
+            </Route>
+            <Route path='/games/gesstheterm/settings' element={<PrivateRoute/>}>
+              <Route path='/games/gesstheterm/settings' element={<GuessTheTerm page="settings"/>}/>
             </Route>
             <Route path='/validation' element={<Validation/>}/>
             {/* <Route path='/forgotpassword/verified' element={<ResetPassword/>}/> */}

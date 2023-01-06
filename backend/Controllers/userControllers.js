@@ -65,6 +65,7 @@ const registrUser=asyncHandler( async (req,res)=>{
                 language:user.language,
                 favorite_pet:user.favorite_pet,
                 categoryId:user.categoryId,
+                games_coins:user.games_coins,
                 profile_image:user.profile_image,
                 token:generateToken(user._id)
     
@@ -97,6 +98,7 @@ const loginUser=asyncHandler( async (req,res)=>{
                 language:user.language,
                 categoryId:user.categoryId,
                 phoneNumber:user.phoneNumber,
+                games_coins:user.games_coins,
                 profile_image:user.profile_image,
                 token:generateToken(user._id)}
             res.status(200).json(userData)
@@ -190,6 +192,7 @@ const updateUserImage =asyncHandler(async(req,res)=>{
             phoneNumber:newUser.phoneNumber,
             language:newUser.language,
             categoryId:newUser.categoryId,
+            games_coins:newUser.games_coins,
             profile_image:newUser.profile_image,
             isAdmin:newUser.isAdmin,
             token:generateToken(newUser._id)
@@ -238,6 +241,7 @@ if(newUser){
         language:newUser.language,
         categoryId:newUser.categoryId,
         profile_image:newUser.profile_image,
+        games_coins:newUser.games_coins,
         isAdmin:newUser.isAdmin,
         token:generateToken(newUser._id)
     })

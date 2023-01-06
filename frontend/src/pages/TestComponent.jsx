@@ -167,15 +167,14 @@ const TestComponent= () => {
 
   return(
  <>
-<div className='mt-150 text-center mx-5'></div> 
-<Countdown className="mx-5"
-      date={Date.now() + 60000}
-      renderer={({ minutes, seconds }) => (
-        <div className='text-end mx-2'>{minutes}:{seconds}</div>
-       
-      )}
-      onComplete={()=>{alert('time done')}}
-    />
+   <div className="moon mt-150 text-center">
+      <svg width="100" height="100">
+        <path d="M50,1C23.8,1,1,23.8,1,50s22.8,49,50,49s49-22.8,49-50S76.2,1,50,1z M77.7,47.3C77.7,62,62.6,77.1,47.9,77.1
+          S18.2,62,18.2,47.3s14.6-29.8,29.3-29.8S77.7,32.6,77.7,47.3z M47.9,69.9c-9.7,0-17.6-7.8-17.6-17.6c0-9.7,7.8-17.6,17.6-17.6
+          s17.6,7.8,17.6,17.6C65.5,62.1,57.6,69.9,47.9,69.9z"
+        />
+      </svg>
+    </div>
  </>
 )};
 

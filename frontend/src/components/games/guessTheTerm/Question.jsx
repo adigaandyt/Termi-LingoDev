@@ -70,7 +70,7 @@ function Qestion({question,onNextQestion,languageChoosed,questionNumber,onNewQue
         </div>
         </div>
     
-    <h1 id="shortDefinition-game1">{getRelevantLanguage(question.shortDefinition,languageChoosed)}</h1>
+    <h3 id="shortDefinition-game1">{getRelevantLanguage(question.shortDefinition,languageChoosed)}</h3>
 
     <button className="big-button my-3" name={0} onClick={onClick} >{randomPosition===0 ?getRelevantLanguage(question.correctAnswer,languageChoosed):getRelevantLanguage(question.wrongAnswer1,languageChoosed)}</button>
     <button className="big-button my-3" name={1} onClick={onClick}>{randomPosition===1 ?getRelevantLanguage(question.correctAnswer,languageChoosed):getRelevantLanguage(question.wrongAnswer2,languageChoosed)}</button>

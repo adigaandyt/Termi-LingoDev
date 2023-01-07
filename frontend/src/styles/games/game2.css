@@ -1,0 +1,26 @@
+#game2{
+    position:absolute;
+    top:0;
+    bottom:0;
+    width: 100%;
+    height: auto;
+    z-index: 9999;
+    background-color: aquamarine;
+}
+/* .box{
+    width: 150px;
+    border: 1px solid #555;
+    padding: 1em;
+    float: left;
+    margin: 1em;
+    text-align: center;
+    font-family: lato;
+}
+#babydiv{
+    background: #000;
+    color: #fff;
+    text-align: center;
+    font-family: lato;
+    padding: 1em;
+    margin-top: 1em;
+} */

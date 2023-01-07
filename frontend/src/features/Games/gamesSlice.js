@@ -34,9 +34,27 @@ export const getConcepts4GuessTerm=createAsyncThunk(
 export const getConcepts4GuessTermByCategoryId=createAsyncThunk(
     'games/category',
      async(data,thunkAPI)=>{
+        console.log(data)
         const token=thunkAPI.getState().auth.user.token
         try {
             return await gamesService.getConcepts4GuessTermByCategoryId(data,token)
+        } catch (error) {
+            
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
+//get concept name and shortdefintion for "Guess the term" game
+export const setGuessTheTermGameResult=createAsyncThunk(
+    'set/result',
+     async(data,thunkAPI)=>{
+        const token=thunkAPI.getState().auth.user.token
+        try {
+            return await gamesService.setGuessTheTermGameResult(data,token)
         } catch (error) {
             
             const message=(error.response&&error.response.data&&error.response.data.message)
@@ -98,6 +116,8 @@ export const gamesSlice=createSlice({
             state.user_concepts=action.payload
             state.message=''
         })
+ 
+        
         
     }
 

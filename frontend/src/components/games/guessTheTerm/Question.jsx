@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import GamesContext from "../../../hooks/gamesContext"
+import Timer from "./Timer";
 import Button from "../Button";
 
 
@@ -29,17 +30,28 @@ function getRelevantLanguage(object,language){
     }
 
 }
-function Qestion({question,onNextQestion,languageChoosed}){
-    // const {questionsList}=useContext(GamesContext)
+function Qestion({question,onNextQestion,languageChoosed,questionNumber,onNewQuestResult}){
+    // const {gameResultList,setGameResultList}=useContext(GamesContext)
     const [randomPosition,setRandomPosition]=useState(0)
+    
+    const [time,setTime]=useState(0)
     useEffect(()=>{
      const result=getRandomNumber();
      setRandomPosition(result)
 
     },[question])
-    const onClick=(e)=>{
+    const onClick= async(e)=>{
         const iscorrect= e.target.name==randomPosition
-        
+        const date=new Date();
+        const questionResult={
+            questionNumber:questionNumber+1,
+            shorDefinition:question.shortDefinition.english,
+            isCorrect:iscorrect,
+            currentTime:`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
+        }
+       await onNewQuestResult(questionResult)
+
+
         //sound when click yahia 
         // stop one secound
         //red\green
@@ -48,9 +60,15 @@ function Qestion({question,onNextQestion,languageChoosed}){
     }
     return(<>
    <div id="answers-buttons" className='row '>
-    {/* {console.log(question)}
-    {console.log(randomPosition)}  */}
-
+    <div className="row mt-2">
+        
+        <div className="col-6">
+        <h5 className="text-light  text-start mx-2 ">Qusetion Number{questionNumber+1}</h5>
+        </div>
+        <div className="col-6">
+        <Timer className="col-1 my-2"  onNextQestion={onNextQestion}/> 
+        </div>
+        </div>
     
     <h1 id="shortDefinition-game1">{getRelevantLanguage(question.shortDefinition,languageChoosed)}</h1>
 

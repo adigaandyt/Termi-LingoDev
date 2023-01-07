@@ -1,7 +1,7 @@
-import { useRef,useEffect,useState,useContext  } from "react";
+import { useRef,useEffect,useState,useContext ,useLayoutEffect } from "react";
 import AnimationTitle from "../../components/Animation/AnimationTitle";
 import Spinner2 from "../../components/Spinners/Spinner2";
-import { getConcepts4GuessTerm } from "../../features/Games/gamesSlice";
+import { getConcepts4GuessTerm,setGuessTheTermGameResult } from "../../features/Games/gamesSlice";
 import {getConceptsNames} from '../../features/concepts/conceptSlice'
 import {getConcepts4GuessTermByCategoryId} from '../../features/Games/gamesSlice'
 import { useDispatch , useSelector } from "react-redux";
@@ -26,10 +26,18 @@ function GuessTheTerm({page}){
   const {getquestionList,questionsList} = useContext(GamesContext);
   
   const [isModalOpen,setIsModalOpen]=useState(false)
+
   const [isStart,setIsStart]=useState(false)
   const [isEnd,setIsEnd]=useState(false)
   const [score,setScore]=useState(0)
   const [questionNumber,setQuestionNumber]=useState(0);
+  const [gameResultList,setGameResultList]=useState([])
+  // const [gameResult,setGameResult]=useState({
+  //   gameResultList:[],
+  //   score:0,
+  //   date:new Date().getDate(),
+
+  // })
     const dispatch=useDispatch()
     const navigate=useNavigate();
     const {isGamesLoading,user_concepts}= useSelector(state=>state.games)
@@ -37,7 +45,7 @@ function GuessTheTerm({page}){
     const {categories} =useSelector(state=>state.category)
     const {names}=useSelector(state=>state.concept)
     const [languageChoosed,setLanguageChoosed]=useState(user.language)
-    const [categoryId,setCategoryId]=useState()
+    const [categoryId,setCategoryId]=useState(null)
     
    useEffect(()=>{
     dispatch(getConcepts4GuessTerm())
@@ -45,6 +53,13 @@ function GuessTheTerm({page}){
     // start game sound yahia
     
    },[]);
+   useLayoutEffect(()=>{
+    if(gameResultList.length>0){
+      // console.log("end usef")
+      onEndGame();
+    }
+  
+   },[isEnd])
    const onExit=()=>{
     setIsModalOpen(!isModalOpen)
    }
@@ -56,6 +71,8 @@ function GuessTheTerm({page}){
       getquestionList(user_concepts)
       setScore(0)
       setIsStart(true)
+      setIsEnd(false)
+      setGameResultList([])
       }
 
       if(user_concepts.user_concepts.length<10){
@@ -64,6 +81,11 @@ function GuessTheTerm({page}){
       }
 
 
+   }
+   const  onNewQuestResult=(questresult)=>{
+     setGameResultList([
+      ...gameResultList, questresult
+  ])
    }
    const onNextQestion =(isTrue)=>{
     if(isTrue){
@@ -76,8 +98,18 @@ function GuessTheTerm({page}){
       setIsStart(false)
       setIsEnd(true)
       setQuestionNumber(0)
+      // setGameResult((prev)=>{
+      //   return({
+      //     ...prev,
+      //     gameResultList:gameResultList,
+      //     score:isTrue?(score+1):(score)
+      //   })
+      // })
+      // console.log(gameResultList)
+
       // send the score
       {isTrue?console.log(score+1):console.log(score)}
+      
       
   
     }
@@ -85,10 +117,7 @@ function GuessTheTerm({page}){
       setScore(score+1)
     }
    }
-   const onChangeLanguage=(e)=>{
-    e.preventDefault()
-    setLanguageChoosed(e.target.value)
-   }
+
    const onSave=(e)=>{
     e.preventDefault()
     if(categoryId){
@@ -100,18 +129,31 @@ function GuessTheTerm({page}){
     
 console.log(categoryId)
    }
+   const onEndGame=()=>{
+    const date=new Date()
+    const game={
+          gameResultList:gameResultList,
+          score:score,
+          date:`${date.getDate()}/${(date.getMonth()+1)}/${date.getFullYear()}`,
+          language:languageChoosed,
+          categoryId:categoryId
+          }
+          // console.log(game)
+          dispatch(setGuessTheTermGameResult(game))
+
+   }
     return (
      
-   
+        
         <div dir="ltr"  id='game1-body' className=' text-center'>
-
       
       {isGamesLoading?(<Spinner2/>):(<>
         {isModalOpen&&<ExitGame toggleModal={toggleModal}/>}
         
         {page==='home'&&(<>
           <div>
-        {isStart&&<div className="row mt-2">
+
+        {/* {isStart&&<div className="row mt-2">
         
         <div className="col-6">
         <h5 className="text-light  text-start mx-2 ">Qusetion Number{questionNumber+1}</h5>
@@ -120,7 +162,7 @@ console.log(categoryId)
         <Timer className="col-1 my-2" onNextQestion={onNextQestion}/> 
         </div>
         </div>
-        } 
+        }  */}
         {!isStart&&<h5 className="text-light text-start mx-2 mt-2">Score:{score}</h5>}
                 
         </div>
@@ -128,9 +170,11 @@ console.log(categoryId)
 
         <div className="question text-center">
 
-          {!isStart&&<GroupButtons start={start} onExit={onExit} isEnd={isEnd}/> }
+          {!isStart&&<>
+            <GroupButtons start={start} onExit={onExit} isEnd={isEnd}/>
+          </> }
 
-         {isStart&& <Qestion languageChoosed={languageChoosed} onNextQestion={onNextQestion} question={questionsList.length>0&&questionsList[questionNumber]}/>}
+         {isStart&& <Qestion onNewQuestResult={onNewQuestResult}  questionNumber={questionNumber} languageChoosed={languageChoosed} onNextQestion={onNextQestion} question={questionsList.length>0&&questionsList[questionNumber]}/>}
  
           
         </div>

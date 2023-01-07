@@ -2,6 +2,7 @@ import axios from 'axios'
 
 
 const CONCEPT_API_URL='/api/concepts'
+const GAMES_API_URL='/api/games'
 
 //get concept name and shortdefintion for "Guess the term" game
 const getConcepts4GuessTerm =async (token)=>{
@@ -17,7 +18,7 @@ const getConcepts4GuessTerm =async (token)=>{
 }
 //get concept name and shortdefintion for "Guess the term" game
 const getConcepts4GuessTermByCategoryId =async (data,token)=>{
-   
+//    console.log(data)
     const config ={
         headers:{
             authorization:`Bearer ${token}`
@@ -27,9 +28,20 @@ const getConcepts4GuessTermByCategoryId =async (data,token)=>{
 
     return response.data
 }
+
+const setGuessTheTermGameResult=async(data,token)=>{
+    const config ={
+        headers:{
+            authorization:`Bearer ${token}`
+        }
+    }
+    const response=await axios.post(GAMES_API_URL+'/set/game/guesstheterm',data,config)
+}
+
 const gamesService={
     getConcepts4GuessTerm,
-    getConcepts4GuessTermByCategoryId
+    getConcepts4GuessTermByCategoryId,
+    setGuessTheTermGameResult
 }
 
 export default gamesService

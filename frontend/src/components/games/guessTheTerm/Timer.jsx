@@ -1,8 +1,9 @@
 import { useEffect, useRef } from 'react';
 import Countdown from 'react-countdown';
-function Timer({onNextQestion}){
+function Timer({onNextQestion,setTime}){
 const countdownRef=useRef(null)
-    const onComplete=()=>{
+    const onComplete=(e)=>{
+        console.log(e.target)
         onNextQestion(false)
         // countdownRef.current.reset()
     }

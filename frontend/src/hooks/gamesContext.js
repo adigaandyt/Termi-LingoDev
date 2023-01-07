@@ -67,7 +67,7 @@ questionsList.push(question)
 
 
   return (
-    <GamesContext.Provider value={{term,getquestionList,questionsList}}>   
+    <GamesContext.Provider value={{term,getquestionList,questionsList}}>    
       {props.children}
     </GamesContext.Provider>
   );

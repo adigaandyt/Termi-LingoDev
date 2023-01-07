@@ -18,6 +18,8 @@ connectDB()
 app.use('/api/users', require('./Routes/userRoutes'))
 app.use('/api/concepts',require('./Routes/conceptRoutes'))
 app.use('/api/categories',require('./Routes/categoryRoutes'))
+app.use('/api/games',require('./Routes/gamesRoutes'))
+
 
 // use the errorHandler function for manage error events 
 app.use(errorHandler)

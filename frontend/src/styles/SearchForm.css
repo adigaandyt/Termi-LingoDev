@@ -20,6 +20,9 @@
     }
     
 }
+#search-btn{
+    z-index: 0;
+}
 
 /*#formsearch{*/
 /*    border: red solid;*/

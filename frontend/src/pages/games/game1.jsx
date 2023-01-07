@@ -163,7 +163,7 @@ console.log(categoryId)
         </div>
         </div>
         }  */}
-        {!isStart&&<h5 className="text-light text-start mx-2 mt-2">Score:{score}</h5>}
+        {!isStart&&<h5 className="text-light text-start mx-2 mt-2">{t('score')}: {score}</h5>}
                 
         </div>
         {!isStart&&<AnimationTitle text1='Guess' text2='The' text3='Term'/>} 
@@ -182,7 +182,7 @@ console.log(categoryId)
           
 </>)}
 {page==='settings'&&(<>
-  <AnimationTitle className='mt-5' text1='Update' text2='Your' text3='Settings'/> 
+  <AnimationTitle className='mt-5' text1={t('update')} text2={t('your')} text3={t('settings')}/> 
 
   <div id='guesstheterm-settings' className="text-light  mt-5">
       <div className="w-25  text-end">
@@ -211,7 +211,7 @@ console.log(categoryId)
 
           <label>
           <input class="form-check-input " type="checkbox" role="switch" id="flexSwitchCheckDefault"/>
-          <h4 className="d-inline-block sound-sittings-guesstheterm ">Sound    <AiFillSound className="mx-2"/></h4>
+          <h4 className="d-inline-block sound-sittings-guesstheterm ">{t('sound')}    <AiFillSound className="mx-2"/></h4>
           
 
           </label>

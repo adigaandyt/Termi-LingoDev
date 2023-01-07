@@ -1,8 +1,8 @@
-import { useTranslation } from 'react-i18next'
-import{ MdFavorite } from 'react-icons/md'
-import{ BsTranslate } from 'react-icons/bs'
-import { BiTransferAlt } from 'react-icons/bi'
-import { SiGoogletranslate } from 'react-icons/si'
+import { useTranslation } from 'react-i18next';
+import{ MdFavorite } from 'react-icons/md';
+import{ BsTranslate } from 'react-icons/bs';
+import { BiTransferAlt } from 'react-icons/bi';
+import { SiGoogletranslate } from 'react-icons/si';
 import '../styles/About.css'
 // warning success danger dark light primary
 function About(){

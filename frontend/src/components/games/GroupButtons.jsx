@@ -1,12 +1,14 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function GroupButtons({start,onExit,isEnd}){
+	const {t} = useTranslation();
     return(<>
     <div className="html_for_game_buttons">
 	<div id="buttons_game_containet">
-	    {!isEnd?<button onClick={start} id="game_button">Start</button>:<button onClick={start} id="game_button">Play Again</button>}
-	    <Link to='/games/gesstheterm/settings' id="game_button">Settings</Link>
-	    <button onClick={onExit} id="game_button">Exit Game</button>
+	    {!isEnd?<button onClick={start} id="game_button">{t('start')}</button>:<button onClick={start} id="game_button">{t('play again')}</button>}
+	    <Link to='/games/gesstheterm/settings' id="game_button">{t('settings')}</Link>
+	    <button onClick={onExit} id="game_button">{t('exit-game')}</button>
 	</div>
 	</div>
     </>)

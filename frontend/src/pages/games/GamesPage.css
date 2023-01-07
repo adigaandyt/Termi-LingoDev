@@ -1,4 +1,4 @@
-/* games page -start- */
+ /*games page -start- */
 
 #gamespage-game1{
     height: 300px;
@@ -8,13 +8,14 @@
 }
 
 
-.card-container{
+.cards{
   width: 100%;
   margin-top: 150px;
   position: relative;
   flex-wrap: wrap;
   padding-left: 40px;
   display: flex;
+  
 }
 .card{
   min-width: 275px;
@@ -39,7 +40,7 @@ ul{
       display: flex;
       justify-content: space-around;
 }
-li{
+#li-btn{
         width: 30%;
         height: 100%;
         

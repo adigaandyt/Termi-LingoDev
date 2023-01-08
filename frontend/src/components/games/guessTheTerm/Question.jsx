@@ -33,14 +33,22 @@ function getRelevantLanguage(object,language){
 function Qestion({question,onNextQestion,languageChoosed,questionNumber,onNewQuestResult}){
     // const {gameResultList,setGameResultList}=useContext(GamesContext)
     const [randomPosition,setRandomPosition]=useState(0)
-    
     const [time,setTime]=useState(0)
+    const [correctBtnColor, setCorrectBtnColor] = useState();
+    const [inCorrectBtnColor, setInCorrectBtnColor] = useState();
+    function wait(callback) {
+        setTimeout(() => {
+          callback('waited one second');
+        }, 1000);
+    }
     useEffect(()=>{
      const result=getRandomNumber();
      setRandomPosition(result)
 
     },[question])
     const onClick= async(e)=>{
+        setCorrectBtnColor("green")
+        setInCorrectBtnColor("red")
         const iscorrect= e.target.name==randomPosition
         const date=new Date();
         const questionResult={
@@ -50,12 +58,16 @@ function Qestion({question,onNextQestion,languageChoosed,questionNumber,onNewQue
             currentTime:`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
         }
        await onNewQuestResult(questionResult)
-
-
         //sound when click yahia 
         // stop one secound
         //red\green
         //iscorrect true\false (correct answer)
+        wait(result => {
+            setCorrectBtnColor()
+            setInCorrectBtnColor()
+            console.log(iscorrect)
+            onNextQestion(iscorrect)
+        }); 
         onNextQestion(iscorrect)
     }
     return(<>
@@ -72,10 +84,10 @@ function Qestion({question,onNextQestion,languageChoosed,questionNumber,onNewQue
     
     <h3 id="shortDefinition-game1">{getRelevantLanguage(question.shortDefinition,languageChoosed)}</h3>
 
-    <button className="big-button my-3" name={0} onClick={onClick} >{randomPosition===0 ?getRelevantLanguage(question.correctAnswer,languageChoosed):getRelevantLanguage(question.wrongAnswer1,languageChoosed)}</button>
-    <button className="big-button my-3" name={1} onClick={onClick}>{randomPosition===1 ?getRelevantLanguage(question.correctAnswer,languageChoosed):getRelevantLanguage(question.wrongAnswer2,languageChoosed)}</button>
-    <button className="big-button my-3" name={2} onClick={onClick}>{randomPosition===2 ?getRelevantLanguage(question.correctAnswer,languageChoosed):getRelevantLanguage(question.wrongAnswer3,languageChoosed)}</button>
-    <button className="big-button my-3" name={3} onClick={onClick}>{randomPosition===3 ?getRelevantLanguage(question.correctAnswer,languageChoosed):getRelevantLanguage(question.wrongAnswer4,languageChoosed)}</button>  
+    <button className="big-button my-3" name={0} onClick={onClick} style={{ backgroundColor: randomPosition === 0 ? correctBtnColor : inCorrectBtnColor }}>{randomPosition===0 ?getRelevantLanguage(question.correctAnswer,languageChoosed):getRelevantLanguage(question.wrongAnswer1,languageChoosed)}</button>
+    <button className="big-button my-3" name={1} onClick={onClick} style={{ backgroundColor: randomPosition === 1 ? correctBtnColor : inCorrectBtnColor }}>{randomPosition===1 ?getRelevantLanguage(question.correctAnswer,languageChoosed):getRelevantLanguage(question.wrongAnswer2,languageChoosed)}</button>
+    <button className="big-button my-3" name={2} onClick={onClick} style={{ backgroundColor: randomPosition === 2 ? correctBtnColor : inCorrectBtnColor }}>{randomPosition===2 ?getRelevantLanguage(question.correctAnswer,languageChoosed):getRelevantLanguage(question.wrongAnswer3,languageChoosed)}</button>
+    <button className="big-button my-3" name={3} onClick={onClick} style={{ backgroundColor: randomPosition === 3 ? correctBtnColor : inCorrectBtnColor }}>{randomPosition===3 ?getRelevantLanguage(question.correctAnswer,languageChoosed):getRelevantLanguage(question.wrongAnswer4,languageChoosed)}</button>  
 
     </div>
     </>)

@@ -55,10 +55,9 @@ function GuessTheTerm({page}){
    },[]);
    useLayoutEffect(()=>{
     if(gameResultList.length>0){
-      // console.log("end usef")
+      //call the function (useEffect) yahia
       onEndGame();
     }
-  
    },[isEnd])
    const onExit=()=>{
     setIsModalOpen(!isModalOpen)
@@ -130,6 +129,12 @@ function GuessTheTerm({page}){
 console.log(categoryId)
    }
    const onEndGame=()=>{
+    if(score>8){
+      //sound yahia
+      //
+    }else{
+      //
+    }
     const date=new Date()
     const game={
           gameResultList:gameResultList,
@@ -138,7 +143,6 @@ console.log(categoryId)
           language:languageChoosed,
           categoryId:categoryId
           }
-          // console.log(game)
           dispatch(setGuessTheTermGameResult(game))
 
    }

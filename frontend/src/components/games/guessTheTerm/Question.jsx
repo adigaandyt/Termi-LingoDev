@@ -46,7 +46,7 @@ function Qestion({question,onNextQestion,languageChoosed,questionNumber,onNewQue
     const playSound = (src) => {
         setAudio(new Howl({ src }));
     };
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (audio) {
         audio.play();
         }

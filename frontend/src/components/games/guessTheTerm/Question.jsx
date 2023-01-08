@@ -1,8 +1,10 @@
 import { useContext, useEffect, useState,useLayoutEffect } from "react"
 import GamesContext from "../../../hooks/gamesContext"
 import Timer from "./Timer";
+import {Howl, Howler} from "howler";
 import Button from "../Button";
-
+import Correct from "./correct.mp3"
+import Wrong from "./wrong.wav"
 
 function getRandomNumber() {
     // console.log(array)
@@ -40,6 +42,15 @@ function Qestion({question,onNextQestion,languageChoosed,questionNumber,onNewQue
      const result=getRandomNumber();
      setRandomPosition(result)
     },[question])
+    const [audio, setAudio] = useState(null);
+    const playSound = (src) => {
+        setAudio(new Howl({ src }));
+    };
+    useEffect(() => {
+        if (audio) {
+        audio.play();
+        }
+    }, [audio]);
 
     const onClick= (e)=>{
         setCorrectBtnColor("green")
@@ -56,9 +67,9 @@ function Qestion({question,onNextQestion,languageChoosed,questionNumber,onNewQue
         }
         onNewQuestResult(questionResult)
         if(iscorrect){
-            //todo (correct) dont change any thing else בחיאת רבק 
+            playSound(Correct);
         }else{
-           //todo (incorrect) dont change any thing else בחיאת רבק 
+            playSound(Wrong);
         }
 
         setTimeout(() => {

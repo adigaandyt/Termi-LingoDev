@@ -2,6 +2,7 @@ const asyncHandler =require('express-async-handler');
 const Concept=require('../Models/conceptsModel')
 const Category =require('../Models/categoriesModel')
 const User=require('../Models/usersModel')
+const _ = require('lodash');
 
 //add "639d8f0987cdf6706e335db9" to all arrays in the database
     //    concept=await Concept.updateMany(
@@ -168,6 +169,51 @@ const getConceptsBycategoryId=asyncHandler( async(req,res)=>{
      res.status(200).json({user_concepts:concepts})
     
     })
+
+
+    //@desc get concept names for game2 (transMe)
+//@route GET /get/concepts/games/game2/transme
+//@access private
+const getConceptsNamesByUserId=asyncHandler( async(req,res)=>{
+    const userId =req.user._id
+    let conceptNames;
+    if (userId) {
+        try {
+
+            conceptNames = await User.aggregate([
+                {
+                    $match: { "_id": userId }
+                },
+                {
+                    $lookup: {
+                        localField: "categoryId",
+                        foreignField: "categories",
+                        from: "concepts",
+                        as: "concept_names",
+                    },
+                   
+                },
+                {
+                    $project: {
+                        "_id": 0,
+                        "concept_names.conceptName": 1,
+
+                    }
+                }
+            ]).then((concept_names)=>{
+            //  const dd=concept_names[0]
+             const randomDocuments = _.sampleSize(concept_names[0].concept_names,10);
+                res.json(randomDocuments)
+
+            })
+        } catch (error) {
+            res.status(500)
+            // throw new Error(error.message)
+            throw new Error("Sorry, something went wrong")
+        }
+    }
+    
+    })
    
 
 
@@ -182,5 +228,6 @@ module.exports={
    getConceptsNames,
    getConcepts,
    getConceptsByUserId,
-   getConceptsBycategoryId
+   getConceptsBycategoryId,
+   getConceptsNamesByUserId
 }

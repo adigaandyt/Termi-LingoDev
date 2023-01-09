@@ -5,22 +5,93 @@
     width: 100%;
     height: auto;
     z-index: 9999;
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
+    background-image: url('https://static.vecteezy.com/system/resources/thumbnails/003/303/295/small/mountains-background-game-vector.jpg');
+    background-size:cover;
 }
-/* .box{
-    width: 150px;
-    border: 1px solid #555;
-    padding: 1em;
-    float: left;
-    margin: 1em;
-    text-align: center;
-    font-family: lato;
+#game2-title{
+    display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 4rem;
 }
-#babydiv{
-    background: #000;
-    color: #fff;
-    text-align: center;
-    font-family: lato;
-    padding: 1em;
-    margin-top: 1em;
-} */
+.cloud {
+	width: 300px;
+	height: 105px;
+	background: #ede9e9;
+	border-radius: 100px;
+	position: absolute;
+	/* top: -20px; */
+	box-shadow: 0 10px 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+}
+.cloud-bar {
+	position: relative;
+    margin-top: 100px;
+	height: 150px;
+}
+.cloud::after{
+    content: "";
+	position: absolute;
+	background: inherit;
+	border-radius:inherit;
+    z-index: -1;
+
+}
+.cloud::before {
+	content: "";
+	position: absolute;
+	background: inherit;
+	border-radius:inherit;
+    z-index: -1;
+}
+.cloud::after {
+	width: 28%;
+	height: 83%;
+	bottom: 50%;
+	left: 16%;
+}
+.cloud::before {
+	width: 51%;
+	height: 150%;
+	bottom: 18%;
+	left: 37%;
+}
+#game2-button {
+	position: relative;
+    color: rgba(255,255,255,1);
+    text-decoration: none;
+    background-color: rgba(219,87,5,1);
+    font-family: 'Yanone Kaffeesatz';
+    font-weight: 700;
+    /* font-size: 3em; */
+    display: block;
+    padding: 4px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
+    -moz-box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
+    box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
+    margin: 15px auto;
+	width: 100%;
+    height: 40px;
+	text-align: center;
+	
+	-webkit-transition: all .1s ease;
+	-moz-transition: all .1s ease;
+	-ms-transition: all .1s ease;
+	-o-transition: all .1s ease;
+	transition: all .1s ease;
+}
+
+#game2-button:active {
+    -webkit-box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
+    -moz-box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
+    box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
+    position: relative;
+    top: 6px;
+}

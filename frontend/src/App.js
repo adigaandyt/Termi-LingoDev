@@ -29,7 +29,7 @@ import loadable from "@loadable/component";
 import GamesPage from './pages/games/GamesPage';
 import GuessTheTerm from './pages/games/game1';
 import { GamesProvider } from './hooks/gamesContext';
-import Game2 from './pages/games/game2';
+import TransMe from './pages/games/game2';
 
 function App() {
   const dispatch=useDispatch()
@@ -76,8 +76,11 @@ function App() {
             <Route path='/games/gesstheterm/settings' element={<PrivateRoute/>}>
               <Route path='/games/gesstheterm/settings' element={<GuessTheTerm page="settings"/>}/>
             </Route>
-            <Route path='/games/game2' element={<PrivateRoute/>}>
-              <Route path='/games/game2' element={<Game2/>}/>
+            <Route path='/games/transme' element={<PrivateRoute/>}>
+              <Route path='/games/transme' element={<TransMe path='home'/>}/>
+            </Route>
+            <Route path='/games/transme/settings' element={<PrivateRoute/>}>
+              <Route path='/games/transme/settings' element={<TransMe path='settings'/>}/>
             </Route>
             <Route path='/validation' element={<Validation/>}/>
             {/* <Route path='/forgotpassword/verified' element={<ResetPassword/>}/> */}

@@ -6,6 +6,7 @@ import gamesService from './gamesService'
 
 const initialState={ 
     user_concepts:null,
+    concept_names:null,
     isGamesSuccess:false,
     isGamesError:false,
     isGamesLoading:false,
@@ -55,6 +56,23 @@ export const setGuessTheTermGameResult=createAsyncThunk(
         const token=thunkAPI.getState().auth.user.token
         try {
             return await gamesService.setGuessTheTermGameResult(data,token)
+        } catch (error) {
+            
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
+//get concept names  for "TransMe" game2
+export const getConceptNames4TransMeGame=createAsyncThunk(
+    'get/conceptNames/transme',
+     async(data,thunkAPI)=>{
+        const token=thunkAPI.getState().auth.user.token
+        try {
+            return await gamesService.getConceptNames4TransMeGame(token)
         } catch (error) {
             
             const message=(error.response&&error.response.data&&error.response.data.message)
@@ -115,6 +133,18 @@ export const gamesSlice=createSlice({
             state.isGamesSuccess=true
             state.user_concepts=action.payload
             state.message=''
+        }).addCase(getConceptNames4TransMeGame.fulfilled,(state,action)=>{
+            state.isGamesLoading=false
+            state.isGamesError=false
+            state.isGamesSuccess=true
+            state.concept_names=action.payload
+            state.message=''
+        }).addCase(getConceptNames4TransMeGame.rejected,(state,action)=>{
+            state.isGamesLoading=false
+            state.isGamesError=true
+            state.isGamesSuccess=false
+            state.concept_names=null
+            state.message=action.payload
         })
  
         

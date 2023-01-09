@@ -37,11 +37,23 @@ const setGuessTheTermGameResult=async(data,token)=>{
     }
     const response=await axios.post(GAMES_API_URL+'/set/game/guesstheterm',data,config)
 }
+//get concept names  for "TransMe" game2
+const getConceptNames4TransMeGame =async (token)=>{
+   
+    const config ={
+        headers:{
+            authorization:`Bearer ${token}`
+        }
+    }
+    const response=await axios.get(CONCEPT_API_URL+'/get/concepts/games/game2/transme',config)
+
+    return response.data
+}
 
 const gamesService={
     getConcepts4GuessTerm,
     getConcepts4GuessTermByCategoryId,
-    setGuessTheTermGameResult
+    setGuessTheTermGameResult,getConceptNames4TransMeGame
 }
 
 export default gamesService

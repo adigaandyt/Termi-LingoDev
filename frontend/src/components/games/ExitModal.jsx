@@ -15,7 +15,7 @@ import {
     MDBModalFooter,
   } from 'mdb-react-ui-kit';
 
-import { use } from 'i18next'
+
 
 function ExitModal({toggleModal}){
     const {t}=useTranslation()

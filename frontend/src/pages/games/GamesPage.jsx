@@ -62,7 +62,7 @@ function GamesPage(){
             <div className="card-info">
                 <div className="card-title">Game 2</div>
                 <div className="card-detail"></div>
-                <Link to='/games/gesstheterm'><a className="play-btn"></a></Link>
+                <Link to='/games/transme'><a className="play-btn"></a></Link>
             </div>
             {/*<div className="card-social">
                 <ul>

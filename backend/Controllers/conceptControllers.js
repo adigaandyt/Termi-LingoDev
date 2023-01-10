@@ -214,6 +214,34 @@ const getConceptsNamesByUserId=asyncHandler( async(req,res)=>{
     }
     
     })
+
+    //@desc get concepts names  for "Trans" game by category id !
+//@route GET /get/concepts/games/game2/transme/:categoryid
+//@access private
+const getConceptNamesBycategoryId=asyncHandler( async(req,res)=>{
+    // user details for back office !
+    const user=req.user
+
+
+    const categoryId =req.params.categoryid;
+
+    let conceptNames;
+    if (categoryId) {
+        try {
+            conceptNames=await Concept.find({categories:categoryId},{"conceptName":1,"_id":0}).then((concept_names)=>{
+                 const randomDocuments = _.sampleSize(concept_names,10);
+                    res.json(randomDocuments )
+    
+                })
+     
+        } catch (error) {
+            res.status(500)
+            throw new Error("Some thing went wrong !")
+        }
+    }
+    
+    })
+
    
 
 
@@ -229,5 +257,6 @@ module.exports={
    getConcepts,
    getConceptsByUserId,
    getConceptsBycategoryId,
-   getConceptsNamesByUserId
+   getConceptsNamesByUserId,
+   getConceptNamesBycategoryId
 }

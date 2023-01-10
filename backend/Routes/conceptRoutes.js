@@ -6,7 +6,8 @@ const {
       getConcepts,
       getConceptsByUserId,
       getConceptsBycategoryId,
-      getConceptsNamesByUserId
+      getConceptsNamesByUserId,
+      getConceptNamesBycategoryId
     } = require('../Controllers/conceptControllers')
 const router=express.Router()
 const {protect}=require("../middleware/authMiddleware")
@@ -18,6 +19,7 @@ router.get('/get/names',getConceptsNames)
 router.get('/get/concepts/games/game1/guesstheterm',protect,getConceptsByUserId)
 router.get('/get/concepts/games/game1/guesstheterm/:categoryId',protect,getConceptsBycategoryId)
 router.get('/get/concepts/games/game2/transme',protect,getConceptsNamesByUserId)
+router.get('/get/concepts/games/game2/transme/:categoryid',protect,getConceptNamesBycategoryId)
 
 
 

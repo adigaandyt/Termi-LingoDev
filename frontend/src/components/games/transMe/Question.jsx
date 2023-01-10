@@ -18,7 +18,6 @@ function getRelevanteLang(object,language){
         }
         case 'العربية':{
             return object.arabic;
-       
         }
         case 'עברית':{
             return object.hebrew;
@@ -45,7 +44,7 @@ function Question({languages,onNextQuestion,questionNumber}){
 
 
     useEffect(()=>{
-       console.log(questionNumber)
+       console.log(questLanguage)
         setRandomPosition(getRandomCorrectAnswer())
         setRandoms(()=>{
             return({
@@ -83,9 +82,9 @@ function Question({languages,onNextQuestion,questionNumber}){
         <div class="cloud-bar">
         <div class="cloud top"><h1 className="mt-4" style={{"zIndex":"1"}}>{getRelevanteLang(concept_names[questionNumber].conceptName,questLanguage)}</h1></div>
         </div>
-        <h1>{getRelevanteLang(concept_names[questionNumber].conceptName,answersLanguage)}</h1>
+        <h1 className="text-light">{getRelevanteLang(concept_names[questionNumber].conceptName,languages.answersLanguage)}</h1>
        
-        
+        <button>{(randomPosition===0)?getRelevanteLang(concept_names[questionNumber].conceptName,answersLanguage):getRelevanteLang(names[rand1].conceptName,answersLanguage)}</button>
         <div className="row">
         <div className="col-sm-6 col-md-4 col-lg-3 mt-sm-5 ">
             <button id='game2-button'  onClick={onClick} name={0}>{randomPosition==0?getRelevanteLang(concept_names[questionNumber].conceptName,answersLanguage):getRelevanteLang(names[rand1].conceptName,answersLanguage)}</button>

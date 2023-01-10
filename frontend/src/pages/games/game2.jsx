@@ -17,7 +17,7 @@ function TransMe({path}){
     const [categoryChanged,setCategoryChanged]=useState(false);
     const [languages,setLanguages]=useState({
         questLanguage:user.language,
-        answersLanguage:user.language=="English"?"hebrew":"English",
+        answersLanguage:(user.language==="English")?"hebrew":"English",
     })
     const [isStart,setIsStart]=useState(false)
     const [isEnd,setIsEnd]=useState(false)

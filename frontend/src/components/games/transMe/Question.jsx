@@ -10,18 +10,16 @@ function getRandomCorrectAnswer(){
     return randomIndex;
 }
 function getRelevanteLang(object,language){
-
+    // console.log(language)
     switch(language){
         case 'English':{
             return object.english;
-        
         }
         case 'العربية':{
             return object.arabic;
         }
         case 'עברית':{
             return object.hebrew;
-      
         }
         default:{
             break;
@@ -44,7 +42,8 @@ function Question({languages,onNextQuestion,questionNumber}){
 
 
     useEffect(()=>{
-       console.log(questLanguage)
+        const x=getRelevanteLang(concept_names[questionNumber].conceptName,languages.answersLanguage)
+        console.log(x)
         setRandomPosition(getRandomCorrectAnswer())
         setRandoms(()=>{
             return({
@@ -58,6 +57,7 @@ function Question({languages,onNextQuestion,questionNumber}){
     },[])
     const onClick=(e)=>{
         const isCorrect=e.target.name==randomPosition
+        setRandomPosition(getRandomCorrectAnswer())
         console.log(isCorrect)
         console.log(randomPosition)
         console.log(e.target.name)
@@ -82,9 +82,7 @@ function Question({languages,onNextQuestion,questionNumber}){
         <div class="cloud-bar">
         <div class="cloud top"><h1 className="mt-4" style={{"zIndex":"1"}}>{getRelevanteLang(concept_names[questionNumber].conceptName,questLanguage)}</h1></div>
         </div>
-        <h1 className="text-light">{getRelevanteLang(concept_names[questionNumber].conceptName,languages.answersLanguage)}</h1>
-       
-        <button>{(randomPosition===0)?getRelevanteLang(concept_names[questionNumber].conceptName,answersLanguage):getRelevanteLang(names[rand1].conceptName,answersLanguage)}</button>
+
         <div className="row">
         <div className="col-sm-6 col-md-4 col-lg-3 mt-sm-5 ">
             <button id='game2-button'  onClick={onClick} name={0}>{randomPosition==0?getRelevanteLang(concept_names[questionNumber].conceptName,answersLanguage):getRelevanteLang(names[rand1].conceptName,answersLanguage)}</button>

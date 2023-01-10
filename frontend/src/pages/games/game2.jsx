@@ -17,7 +17,7 @@ function TransMe({path}){
     const [categoryChanged,setCategoryChanged]=useState(false);
     const [languages,setLanguages]=useState({
         questLanguage:user.language,
-        answersLanguage:(user.language==="English")?"hebrew":"English",
+        answersLanguage:null,
     })
     const [isStart,setIsStart]=useState(false)
     const [isEnd,setIsEnd]=useState(false)
@@ -26,9 +26,10 @@ function TransMe({path}){
         dispatch(getConceptNames4TransMeGame())
         // console.log("use",user.categoryId)
         // dispatch(getConceptNames4TransMeGameByCategoryId(CategoryId))
+
     },[])
 const onStart=()=>{
-
+    if(languages.answersLanguage){
     if(concept_names.length>=10){
         setScore(0)
         setIsStart(true)
@@ -38,7 +39,11 @@ const onStart=()=>{
         
     }else{
         toast(t('not_enough_concepts_toast'))
+    }        
+    }else{
+        toast("choose language to play")
     }
+
 }
 const onNextQuestion=(isTrue)=>{
     if(questionNumber<9){
@@ -61,7 +66,7 @@ const onNextQuestion=(isTrue)=>{
         {path=='home'&&<>
 
             {!isStart?
-            <Home onStart={onStart}/>:
+            <Home onStart={onStart} answersLanguage={languages.answersLanguage} questLanguage={languages.questLanguage} setLanguages={setLanguages}/>:
             <Question languages={languages} onNextQuestion={onNextQuestion} questionNumber={questionNumber}/>}
         </>}
         {path=='settings'&&<>

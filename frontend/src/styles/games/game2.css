@@ -172,7 +172,7 @@
     position: relative;
     display: inline-block;
     color: rgb(244, 240, 240);
-    font-family: Cursive;
+    /*font-family: Cursive;*/
     animation: flip 10s infinite;
     animation-delay: calc(.2s * var(--flip));
   }

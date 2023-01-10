@@ -13,16 +13,16 @@ function getRelevanteLang(object,language){
 
     switch(language){
         case 'English':{
-            return object.english
-            break;
+            return object.english;
+        
         }
         case 'العربية':{
-            return object.arabic
-            break;
+            return object.arabic;
+       
         }
         case 'עברית':{
-            return object.hebrew
-            break;
+            return object.hebrew;
+      
         }
         default:{
             break;
@@ -81,8 +81,10 @@ function Question({languages,onNextQuestion,questionNumber}){
         
         <div className="text-center">
         <div class="cloud-bar">
-        <div class="cloud top"><h1 className="mt-4" style={{"zIndex":"1"}}>{ <h3>{getRelevanteLang(concept_names[questionNumber].conceptName,questLanguage)}</h3>}</h1></div>
+        <div class="cloud top"><h1 className="mt-4" style={{"zIndex":"1"}}>{getRelevanteLang(concept_names[questionNumber].conceptName,questLanguage)}</h1></div>
         </div>
+        <h1>{getRelevanteLang(concept_names[questionNumber].conceptName,answersLanguage)}</h1>
+       
         
         <div className="row">
         <div className="col-sm-6 col-md-4 col-lg-3 mt-sm-5 ">

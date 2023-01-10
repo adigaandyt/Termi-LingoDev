@@ -83,6 +83,24 @@ export const getConceptNames4TransMeGame=createAsyncThunk(
      }
 
 )
+//get concept names  for "TransMe" game2 by categoryId
+export const getConceptNames4TransMeGameByCategoryId=createAsyncThunk(
+    'get/conceptNames/transme/catId',
+     async(categoryId,thunkAPI)=>{
+        console.log(categoryId)
+        const token=thunkAPI.getState().auth.user.token
+        try {
+            return await gamesService.getConceptNames4TransMeGameByCategoryId(categoryId,token)
+        } catch (error) {
+            
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
 
 
 export const gamesSlice=createSlice({
@@ -145,6 +163,18 @@ export const gamesSlice=createSlice({
             state.isGamesSuccess=false
             state.concept_names=null
             state.message=action.payload
+        }).addCase(getConceptNames4TransMeGameByCategoryId.rejected,(state,action)=>{
+            state.isGamesLoading=false
+            state.isGamesError=true
+            state.isGamesSuccess=false
+            state.concept_names=null
+            state.message=action.payload
+        }).addCase(getConceptNames4TransMeGameByCategoryId.fulfilled,(state,action)=>{
+            state.isGamesLoading=false
+            state.isGamesError=false
+            state.isGamesSuccess=true
+            state.concept_names=action.payload
+            state.message=''
         })
  
         

@@ -15,9 +15,13 @@ import Timer from "../../components/games/guessTheTerm/Timer";
 import { useTranslation } from "react-i18next";
 import {TbArrowBackUp} from 'react-icons/tb'
 import { getCategoryName } from "../../hooks/ExportsFunctions";
-import {FiSave} from 'react-icons/fi'
-import {AiFillSound} from 'react-icons/ai'
+import {FiSave} from 'react-icons/fi';
+import {AiFillSound} from 'react-icons/ai';
 import { toast } from "react-toastify";
+import {Howl} from "howler";
+import Win from './win.wav';
+
+
 
 
 function GuessTheTerm({page}){
@@ -45,7 +49,14 @@ function GuessTheTerm({page}){
     const {categories} =useSelector(state=>state.category)
     const {names}=useSelector(state=>state.concept)
     const [languageChoosed,setLanguageChoosed]=useState(user.language)
-    const [categoryId,setCategoryId]=useState(null)
+    const [categoryId,setCategoryId]=useState(null);
+    const [highScore, setHighScore] = useState();
+    const [feedScore, setFeedScore] = useState();
+    const [feedColor, setFeedColor] = useState();
+    const [audio, setAudio] = useState(null);
+    const playSound = (src) => {
+        setAudio(new Howl({ src }));
+    };
     
    useEffect(()=>{
     dispatch(getConcepts4GuessTerm())
@@ -56,6 +67,10 @@ function GuessTheTerm({page}){
    useLayoutEffect(()=>{
     if(gameResultList.length>0){
       //call the function (useEffect) yahia
+      if (audio) {
+        audio.play();
+      }
+      playSound(Win);
       onEndGame();
     }
    },[isEnd])
@@ -131,9 +146,13 @@ console.log(categoryId)
    const onEndGame=()=>{
     if(score>8){
       //sound yahia
-      //
+      setHighScore("true")
+      setFeedScore("excelant")
+      setFeedColor("text-success")
     }else{
-      //
+      setHighScore("false")
+      setFeedScore("good job - you can improve")
+      setFeedColor("text-warning")
     }
     const date=new Date()
     const game={
@@ -167,7 +186,10 @@ console.log(categoryId)
         </div>
         </div>
         }  */}
-        {!isStart&&<h5 className="text-light text-start mx-2 mt-2">{t('score')}: {score}</h5>}
+        {!isStart&&<div>
+                      <h5 className="text-light text-start mx-2 mt-2">{t('score')}: {score}</h5>
+                      <span><h4 className={`text-start mx-5 mt-2 ${feedColor}`}>{feedScore}</h4></span>
+                    </div>}
                 
         </div>
         {!isStart&&<AnimationTitle text1='Guess' text2='The' text3='Term'/>} 

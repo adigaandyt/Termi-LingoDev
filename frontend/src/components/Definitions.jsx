@@ -7,7 +7,10 @@ import { getConceptName,categoryById } from '../hooks/ExportsFunctions';
 import "../styles/Inputs.css"
 import {GrTextAlignCenter} from 'react-icons/gr'
 import {RxTextAlignCenter} from 'react-icons/rx'
-import {MdMoreHoriz} from 'react-icons/md'
+import {MdMoreHoriz} from 'react-icons/md';
+
+
+
 function Definitions({concept,languageChoosed}){
     const {categories}=useSelector(state=>state.category)
     const { t }=useTranslation();
@@ -55,7 +58,17 @@ function Definitions({concept,languageChoosed}){
     const toggleShortDefinition = () => {
         setShowLongDefinition(!showLongDefinition);
         setShowShortDefinition(false)
-    }
+    };
+    
+    const handleClick = () => {
+        navigator.share({
+          title: getDefinition(false),
+          text: 'Check out My App',
+          url: '',
+        })
+          .then(() => console.log('Successful share'))
+          .catch((error) => console.log('Error sharing:', error));
+    };
   
  
     return(<>
@@ -112,6 +125,7 @@ function Definitions({concept,languageChoosed}){
         <MDBCol>
           <MDBCollapse id='MDBCollaps' show={showShortDefinition} className='mt-3 '>
           {concept?getDefinition(false):""}
+          
           </MDBCollapse>
         </MDBCol>
         </div>

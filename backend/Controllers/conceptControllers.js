@@ -208,8 +208,8 @@ const getConceptsNamesByUserId=asyncHandler( async(req,res)=>{
             })
         } catch (error) {
             res.status(500)
-            // throw new Error(error.message)
-            throw new Error("Sorry, something went wrong")
+            throw new Error(error.message)
+            // throw new Error("Sorry, something went wrong")
         }
     }
     

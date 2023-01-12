@@ -2,6 +2,7 @@ import { useRef,useEffect,useState,useContext ,useLayoutEffect } from "react";
 import AnimationTitle from "../../components/Animation/AnimationTitle";
 import Spinner2 from "../../components/Spinners/Spinner2";
 import { getConcepts4GuessTerm,setGuessTheTermGameResult } from "../../features/Games/gamesSlice";
+import {setCoins,reset} from '../../features/auth/authSlice'
 import {getConceptsNames} from '../../features/concepts/conceptSlice'
 import {getConcepts4GuessTermByCategoryId} from '../../features/Games/gamesSlice'
 import { useDispatch , useSelector } from "react-redux";
@@ -163,6 +164,8 @@ console.log(categoryId)
           categoryId:categoryId
           }
           dispatch(setGuessTheTermGameResult(game))
+          dispatch(setCoins({score:score}))
+          dispatch(reset())
 
    }
     return (

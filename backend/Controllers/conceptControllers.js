@@ -21,15 +21,16 @@ const _ = require('lodash');
 //@access private
 const testConcept=asyncHandler( async(req,res)=>{
     
-    let concept
+
 
     try {
     //    concept=await Concept.updateMany({}, { $set: { accepted: true } });
+    const user=await User.find({}).sort({ games_coins: -1 }).where({ games_coins: { $exists: true } }).lean();
+    res.status(200).json(user)
     } catch (error) {
         res.status(500)
         throw new Error("Some thing is wrong !" )
     }
-     res.status(200).json(concept)
 
 })
 

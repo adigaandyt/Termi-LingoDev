@@ -5,6 +5,17 @@ const GuessTheTerm=require('../Models/guessTheTermModel')
 const TransMe=require('../Models/transMeModel')
 
 
+// MyModel.find({})
+// .sort({ coins: -1 })
+// .exec(function(err, docs) { 
+//   if (!err){ 
+//      console.log(docs);
+//   } else {throw err;}
+// });
+
+
+
+
 //@desc set the result of TrasMe game in the DB
 //@route POST /api/games/set/game/transme
 //@access private
@@ -39,7 +50,7 @@ const setTransMeGame=asyncHandler( async(req,res)=>{
     
     try {
         const categoryName=await Category.findById({_id:data.categoryId},{_id:0,"categoryName.english":1})
-
+        // const newUser=await User.findByIdAndUpdate({_id:user._id},{games_coins:user.games_coins+data.score})
         const response=await TransMe.create({
             userId:user._id,
             userEmail:user.email,

@@ -79,6 +79,21 @@ const verifyUser =async (data,token)=>{
 
     return response.data
 }
+
+
+//update the cuser coins after the game play
+const setCoins =async (data,token)=>{
+    const config ={
+        headers:{
+            authorization:`Bearer ${token}`
+        }
+    }
+    const response=await axios.post(API_URL+'/set/coins',data ,config)
+    if(response.data){
+        localStorage.setItem('user',JSON.stringify(response.data))
+    }
+    return response.data
+}
 const authService={
     register,
     logout,
@@ -87,7 +102,8 @@ const authService={
     uploadImage,
     updateUser,
     updateUserImage,
-    verifyUser
+    verifyUser,
+    setCoins
     
 }
 

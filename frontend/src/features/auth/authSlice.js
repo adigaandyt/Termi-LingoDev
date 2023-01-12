@@ -129,6 +129,22 @@ export const verifyUser=createAsyncThunk(
      }
 
 )
+// set coins after the game play
+export const setCoins=createAsyncThunk(
+    'update/coins',
+     async(data,thunkAPI)=>{
+        const token=thunkAPI.getState().auth.user.token 
+        try { 
+            return await authService.setCoins(data,token)
+        } catch (error) {
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
 
 
 export const authSlice=createSlice({
@@ -246,6 +262,22 @@ export const authSlice=createSlice({
             state.isSuccess=true
             state.isError=false
             state.user_token=action.payload
+        })
+        .addCase(setCoins.pending,state=>{
+            state.isLoading=true
+        })
+        .addCase(setCoins.fulfilled,(state,action)=>{
+            state.isLoading=false
+            state.isError=false
+            state.isSuccess=true
+            state.message=""
+            state.user=action.payload
+        })
+        .addCase(setCoins.rejected,(state,action)=>{
+            state.isLoading=false
+            state.isSuccess=false
+            state.isError=true
+            state.message=action.payload
         })
     }
 

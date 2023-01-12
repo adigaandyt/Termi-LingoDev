@@ -283,7 +283,34 @@ const verifyUser=asyncHandler(async (req,res)=>{
 
     })
 
-
+ //@desc set coins when the user play game and finished it 
+//@route POST /api/users/set/coins
+//@access private
+const setCoinsOnFinishedGame=asyncHandler( async (req,res)=>{
+    const user=req.user
+    const data=req.body
+    console.log(data)
+     try {
+        const newUser=await User.findByIdAndUpdate({_id:user._id},{games_coins:user.games_coins+data.score},{new:true})
+        const  userData={ 
+                _id:newUser._id,
+                name:newUser.name,
+                isAdmin:newUser.isAdmin,
+                email:newUser.email,
+                language:newUser.language,
+                categoryId:newUser.categoryId,
+                phoneNumber:newUser.phoneNumber,
+                games_coins:newUser.games_coins,
+                profile_image:newUser.profile_image,
+                token:generateToken(newUser._id)}
+             res.status(200).json(userData)
+     } catch (error) {
+         res.status(500)
+         throw new Error(error)
+     }
+     
+  
+  })
 module.exports={
     registrUser,
     loginUser,
@@ -292,5 +319,6 @@ module.exports={
     uploadImage,
     updateUserDetails,
     updateUserImage,
-    verifyUser
+    verifyUser,
+    setCoinsOnFinishedGame
 }

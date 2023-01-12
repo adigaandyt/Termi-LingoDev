@@ -8,6 +8,7 @@ import Question from '../../components/games/transMe/Question';
 import {toast} from 'react-toastify'
 import { useTranslation } from 'react-i18next';
 import TransMeSpinner from '../../components/Spinners/TransMeSpinner';
+import { reset, setCoins } from '../../features/auth/authSlice';
 
 function TransMe({path}){
     const dispatch =useDispatch();
@@ -97,9 +98,11 @@ const onEndGame=()=>{
           questionLanguage:languages.questLanguage,
           answerLanguage:languages.answersLanguage,
           categoryId:categoryId?categoryId:user.categoryId
-          }
+          } 
     // console.log(game)
     dispatch(setTransMeGameResult(game))
+    dispatch(setCoins({score:score}))
+    dispatch(reset())
 }
 
     return(<>

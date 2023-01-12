@@ -93,7 +93,7 @@ function App() {
       </Router>
  
       </GamesProvider>
-      <ToastContainer />
+      <ToastContainer dir='ltr' />
      
     </>
   );

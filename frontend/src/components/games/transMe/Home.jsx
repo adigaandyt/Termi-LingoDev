@@ -24,7 +24,7 @@ function Home({onStart,answersLanguage,questLanguage,setLanguages}){
 
         <div className="text-center ">
         {/* <h2 className='mt-5' id='game2-title'>TransMe</h2> */}
-        <div class="flip_letters mt-90">
+        <div dir='ltr'  class="flip_letters mt-90">
    <span style={{"--flip":"1"}}>T</span>
    <span style={{"--flip":"2"}}>r</span>
    <span style={{"--flip":"3"}}>a</span>

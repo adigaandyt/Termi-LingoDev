@@ -126,10 +126,11 @@ border-radius: 0%;
 .mt-80{
   margin-top: 80px;
 }
-.row {
+/* .row {
   margin-right: 0;
   margin-left: 0;
-}
+} */
+
 .text-sagol{
   color: #652f8f;
 }

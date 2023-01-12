@@ -174,7 +174,11 @@ export const gamesSlice=createSlice({
             state.isGamesSuccess=true
             state.concept_names=action.payload
             state.message=''
-        }).addCase(getConceptNames4TransMeGame.rejected,(state,action)=>{
+        }).addCase(getConceptNames4TransMeGame.pending,state=>{
+            state.isGamesLoading=true
+        })
+        
+        .addCase(getConceptNames4TransMeGame.rejected,(state,action)=>{
             state.isGamesLoading=false
             state.isGamesError=true
             state.isGamesSuccess=false

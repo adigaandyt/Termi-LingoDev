@@ -7,12 +7,13 @@ import Settings from '../../components/games/transMe/Settings';
 import Question from '../../components/games/transMe/Question';
 import {toast} from 'react-toastify'
 import { useTranslation } from 'react-i18next';
+import TransMeSpinner from '../../components/Spinners/TransMeSpinner';
 
 function TransMe({path}){
     const dispatch =useDispatch();
     const {t}=useTranslation();
     const {user}=useSelector(state=>state.auth);
-    const {concept_names}=useSelector(state=>state.games);
+    const {concept_names,isGamesLoading}=useSelector(state=>state.games);
     const [questionNumber,setQuestionNumber]=useState(0);
     const [startGameTime,setStartGameTime]=useState()
     const [categoryId,setCategoryId]=useState(null)//used just in the getCategoryId function !
@@ -100,8 +101,11 @@ const onEndGame=()=>{
     // console.log(game)
     dispatch(setTransMeGameResult(game))
 }
+
     return(<>
+    
         <div  id="game2">
+        {isGamesLoading?<TransMeSpinner/>:<>
         {isStart&&<div><h4 className="text-light text-start">Question Number: {questionNumber+1}</h4></div>}
         {!isStart&&isEnd&&<div><h4 className="text-light text-start">Score: {score}</h4></div>}
         {path=='home'&&<>
@@ -113,6 +117,9 @@ const onEndGame=()=>{
         {path=='settings'&&<>
             <Settings  setCategoryChanged={setCategoryChanged} languages={languages}  setLanguages={setLanguages} getCategoryId={getCategoryId}/>
         </>}
+
+        </>}
+
         
         </div>
     </>)

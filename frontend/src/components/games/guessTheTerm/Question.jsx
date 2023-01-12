@@ -32,7 +32,7 @@ function getRelevantLanguage(object,language){
     }
 
 }
-function Qestion({question,onNextQestion,languageChoosed,questionNumber,onNewQuestResult}){
+function Qestion({question,onNextQestion,languageChoosed,questionNumber,onNewQuestResult}){ 
     const [isDesabled, setIsDesabled] = useState(false);
     const [randomPosition,setRandomPosition]=useState();
     const [correctBtnColor, setCorrectBtnColor] = useState();

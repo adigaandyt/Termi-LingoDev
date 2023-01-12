@@ -61,12 +61,23 @@ const getConceptNames4TransMeGameByCategoryId =async (categoryId,token)=>{
 
     return response.data
 }
+const setTransMeGameResult=async(data,token)=>{
+    console.log(data)
+
+    const config ={
+        headers:{
+            authorization:`Bearer ${token}`
+        }
+    }
+    await axios.post(GAMES_API_URL+'/set/game/transme',data,config)
+}
 const gamesService={
     getConcepts4GuessTerm,
     getConcepts4GuessTermByCategoryId,
     setGuessTheTermGameResult,
     getConceptNames4TransMeGame,
-    getConceptNames4TransMeGameByCategoryId
+    getConceptNames4TransMeGameByCategoryId,
+    setTransMeGameResult
 }
 
 export default gamesService

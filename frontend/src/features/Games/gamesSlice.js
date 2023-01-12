@@ -49,13 +49,30 @@ export const getConcepts4GuessTermByCategoryId=createAsyncThunk(
      }
 
 )
-//get concept name and shortdefintion for "Guess the term" game
+//set the game results of gues the term game
 export const setGuessTheTermGameResult=createAsyncThunk(
     'set/result',
      async(data,thunkAPI)=>{
         const token=thunkAPI.getState().auth.user.token
         try {
             return await gamesService.setGuessTheTermGameResult(data,token)
+        } catch (error) {
+            
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
+//set the game results of transME game
+export const setTransMeGameResult=createAsyncThunk(
+    'set/result/transMe',
+     async(data,thunkAPI)=>{
+        const token=thunkAPI.getState().auth.user.token
+        try {
+            return await gamesService.setTransMeGameResult(data,token)
         } catch (error) {
             
             const message=(error.response&&error.response.data&&error.response.data.message)

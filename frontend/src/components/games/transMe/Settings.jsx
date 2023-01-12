@@ -10,11 +10,11 @@ import {TbArrowBackUp} from 'react-icons/tb'
 import { useEffect } from 'react'
 import { toast } from 'react-toastify'
 import '../../../styles/games/game2.css'
-function Settings({setCategoryChanged,languages,setLanguages}){
+function Settings({setCategoryChanged,languages,setLanguages,getCategoryId}){
     const dispatch =useDispatch()
     const navigate= useNavigate()
     const {categories} =useSelector(state=>state.category)
-    const [categoryId,setCategoryId]=useState()
+    const [categoryId,setCategoryId]=useState(null)
     const {questLanguage,answersLanguage}=languages
     const onChangeLanguage=(e)=>{
         e.preventDefault()
@@ -31,6 +31,7 @@ function Settings({setCategoryChanged,languages,setLanguages}){
     }
     const onSave=()=>{
         if(categoryId){
+            getCategoryId(categoryId)
            dispatch(getConceptNames4TransMeGameByCategoryId(categoryId))
             navigate('/games/transme')
         }

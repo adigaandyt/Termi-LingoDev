@@ -7,11 +7,19 @@ const guessTheTermSchema=mongoose.Schema({
     required:[true,'YOU MUST TO LOGIN'],
     ref:"User"
    },
+   userEmail:{
+    type:String,
+    required:[true,'YOU MUST TO contain email'],
+  },
    categoryId:{
     type:mongoose.Schema.Types.ObjectId,
     required:[true,'include category id'],
     ref:"Category"
    },
+   categoryName:{
+    type:String,
+    required:[true,'YOU MUST TO contain categoryName'],
+  },
    language:{
     type:String,
     required:true,

@@ -1,7 +1,7 @@
 import '../../styles/games/game2.css'
-import { useRef,useEffect, useState } from 'react';
+import { useRef,useEffect, useState,useLayoutEffect } from 'react';
 import {useDispatch,useSelector} from 'react-redux'
-import {getConceptNames4TransMeGame,getConceptNames4TransMeGameByCategoryId} from '../../features/Games/gamesSlice'
+import {getConceptNames4TransMeGame,setTransMeGameResult} from '../../features/Games/gamesSlice'
 import Home from '../../components/games/transMe/Home';
 import Settings from '../../components/games/transMe/Settings';
 import Question from '../../components/games/transMe/Question';
@@ -14,7 +14,10 @@ function TransMe({path}){
     const {user}=useSelector(state=>state.auth);
     const {concept_names}=useSelector(state=>state.games);
     const [questionNumber,setQuestionNumber]=useState(0);
+    const [startGameTime,setStartGameTime]=useState()
+    const [categoryId,setCategoryId]=useState(null)//used just in the getCategoryId function !
     const [categoryChanged,setCategoryChanged]=useState(false);
+  const [gameResultList,setGameResultList]=useState([]);
     const [languages,setLanguages]=useState({
         questLanguage:user.language,
         answersLanguage:null,
@@ -28,10 +31,34 @@ function TransMe({path}){
         // dispatch(getConceptNames4TransMeGameByCategoryId(CategoryId))
 
     },[])
+    useLayoutEffect(()=>{
+        if(gameResultList.length>0){
+          //call the function (useEffect) yahia
+        //   if (audio) {
+        //     audio.play();
+        //   }
+        //   playSound(Win);
+          onEndGame();
+        }
+       },[isEnd])
+    const getCategoryId=(categoryId)=>{
+        setCategoryId(categoryId)
+       }
+    const  onNewQuestResult=(questresult)=>{
+        setGameResultList([
+         ...gameResultList, questresult
+     ])
+    //  console.log(gameResultList)
+    }
+
 const onStart=()=>{
     if(languages.answersLanguage){
     if(concept_names.length>=10){
+        const date=new Date()
+        setStartGameTime(`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`)
+        setGameResultList([])
         setScore(0)
+        setIsEnd(false)
         setIsStart(true)
         if(!categoryChanged){
         dispatch(getConceptNames4TransMeGame())
@@ -59,6 +86,20 @@ const onNextQuestion=(isTrue)=>{
     }
 
 }
+const onEndGame=()=>{
+    const date=new Date()
+    const game={
+          gameResultList:gameResultList,
+          score:score,
+          date:`${date.getDate()}/${(date.getMonth()+1)}/${date.getFullYear()}`,
+          startGame:startGameTime,
+          questionLanguage:languages.questLanguage,
+          answerLanguage:languages.answersLanguage,
+          categoryId:categoryId?categoryId:user.categoryId
+          }
+    // console.log(game)
+    dispatch(setTransMeGameResult(game))
+}
     return(<>
         <div  id="game2">
         {isStart&&<div><h4 className="text-light text-start">Question Number: {questionNumber+1}</h4></div>}
@@ -67,10 +108,10 @@ const onNextQuestion=(isTrue)=>{
 
             {!isStart?
             <Home onStart={onStart} answersLanguage={languages.answersLanguage} questLanguage={languages.questLanguage} setLanguages={setLanguages}/>:
-            <Question languages={languages} onNextQuestion={onNextQuestion} questionNumber={questionNumber}/>}
+            <Question  languages={languages} onNextQuestion={onNextQuestion} questionNumber={questionNumber} onNewQuestResult={onNewQuestResult}/>}
         </>}
         {path=='settings'&&<>
-            <Settings  setCategoryChanged={setCategoryChanged} languages={languages}  setLanguages={setLanguages}/>
+            <Settings  setCategoryChanged={setCategoryChanged} languages={languages}  setLanguages={setLanguages} getCategoryId={getCategoryId}/>
         </>}
         
         </div>

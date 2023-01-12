@@ -1,5 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState ,useLayoutEffect } from "react";
 import { useSelector } from "react-redux"
+import {GrStatusGood} from 'react-icons/gr'
+import {Howl, Howler} from "howler";
+import {ImSad2} from 'react-icons/im'
+import transme_correct_sound from '../../../mp3/transme_correct_sound.wav'
+import transme_incorrect_sound from '../../../mp3/transme_incorrcet_sound.wav'
 
 function getRandomWrongAnswer(object){
     const randomIndex = Math.floor(Math.random() * object.length);
@@ -27,10 +32,17 @@ function getRelevanteLang(object,language){
     }
 }
 
-function Question({languages,onNextQuestion,questionNumber}){
+function Question({languages,onNextQuestion,questionNumber,onNewQuestResult}){
     const {concept_names}=useSelector(state=>state.games)
     const {names}=useSelector(state=>state.concept)
     const [randomPosition,setRandomPosition]=useState()
+    const [correctBtnColor, setCorrectBtnColor] = useState();
+    const [inCorrectBtnColor, setInCorrectBtnColor] = useState();
+    const [isDesabled, setIsDesabled] = useState(false);
+    const [audio, setAudio] = useState(null);
+    const playSound = (src) => {
+        setAudio(new Howl({ src }));
+    };
     const [randoms,setRandoms]=useState({
         rand1:0,
         rand2:0,
@@ -54,47 +66,91 @@ function Question({languages,onNextQuestion,questionNumber}){
             })
         })
   
-    },[])
+    },[questionNumber])
+    useLayoutEffect(() => {
+        if (audio) {
+        audio.play();
+        }
+    }, [audio]);
+
     const onClick=(e)=>{
         const isCorrect=e.target.name==randomPosition
-        setRandomPosition(getRandomCorrectAnswer())
-        console.log(isCorrect)
-        console.log(randomPosition)
-        console.log(e.target.name)
+        
+        setCorrectBtnColor("green")
+        setInCorrectBtnColor("red")
+        setIsDesabled(true)
+
+
+        const date=new Date();
+        let answer;
+        
+        switch(e.target.name){
+            case '0':{
+                isCorrect ? answer=getRelevanteLang(concept_names[questionNumber].conceptName,answersLanguage) :answer=getRelevanteLang(names[rand1].conceptName,answersLanguage);
+                break;
+            }
+            case '1':{
+                isCorrect ? answer=getRelevanteLang(concept_names[questionNumber].conceptName,answersLanguage) :answer=getRelevanteLang(names[rand2].conceptName,answersLanguage);
+                break;
+            }
+            case '2':{
+                isCorrect ? answer=getRelevanteLang(concept_names[questionNumber].conceptName,answersLanguage) :answer=getRelevanteLang(names[rand3].conceptName,answersLanguage);
+                break;
+            }
+            case '3':{
+                isCorrect ? answer=getRelevanteLang(concept_names[questionNumber].conceptName,answersLanguage) :answer=getRelevanteLang(names[rand4].conceptName,answersLanguage);
+                break;
+            }
+        }
+        const questionResult={
+            questionNumber:questionNumber+1,
+            question:getRelevanteLang(concept_names[questionNumber].conceptName,questLanguage),
+            answer:answer,
+            isCorrect:isCorrect,
+            currentTime:`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
+        }
+        onNewQuestResult(questionResult)
+        if(isCorrect){
+            playSound(transme_correct_sound);
+        }else{
+            // playSound(Wrong);
+            playSound(transme_incorrect_sound);
+
+        }
+        setTimeout(() => {
+            setIsDesabled(false)
+            setCorrectBtnColor()
+            setInCorrectBtnColor()
+            onNextQuestion(isCorrect)
+          },1000); 
+          
 
 
 
 
+        // onNextQuestion(isCorrect)
 
-        onNextQuestion(isCorrect)
-        setRandoms(()=>{
-            return({
-                rand1:getRandomWrongAnswer(names),
-                rand2:getRandomWrongAnswer(names),
-                rand3:getRandomWrongAnswer(names),
-                rand4:getRandomWrongAnswer(names),
-            })
-        })
     }
     return(<>
         
         <div className="text-center">
         <div class="cloud-bar">
-        <div class="cloud top"><h1 className="mt-4" style={{"zIndex":"1"}}>{getRelevanteLang(concept_names[questionNumber].conceptName,questLanguage)}</h1></div>
+        <div class="cloud top"><h1 className="mt-4" style={{"zIndex":"1"}}>{getRelevanteLang(concept_names[questionNumber].conceptName,questLanguage)}</h1>
+        </div>
         </div>
 
         <div className="row">
         <div className="col-sm-6 col-md-4 col-lg-3 mt-sm-5 ">
-            <button id='game2-button'  onClick={onClick} name={0}>{randomPosition==0?getRelevanteLang(concept_names[questionNumber].conceptName,answersLanguage):getRelevanteLang(names[rand1].conceptName,answersLanguage)}</button>
+            <button disabled={isDesabled} style={{ backgroundColor: randomPosition === 0 && correctBtnColor   }} id='game2-button'  onClick={onClick} name={0}>{randomPosition==0?(getRelevanteLang(concept_names[questionNumber].conceptName,answersLanguage)):getRelevanteLang(names[rand1].conceptName,answersLanguage)}  </button>
         </div>
         <div className="col-sm-6 col-md-4 col-lg-3 mt-sm-5 ">
-            <button id='game2-button'  onClick={onClick} name={1}>{randomPosition==1?getRelevanteLang(concept_names[questionNumber].conceptName,answersLanguage):getRelevanteLang(names[rand2].conceptName,answersLanguage)}</button>
+            <button disabled={isDesabled} style={{ backgroundColor: randomPosition === 1 && correctBtnColor  }} id='game2-button'  onClick={onClick} name={1}>{randomPosition==1?getRelevanteLang(concept_names[questionNumber].conceptName,answersLanguage):getRelevanteLang(names[rand2].conceptName,answersLanguage)}</button>
         </div>
         <div className="col-sm-6 col-md-4 col-lg-3 mt-sm-5 ">
-            <button id='game2-button'  onClick={onClick} name={2}>{randomPosition==2?getRelevanteLang(concept_names[questionNumber].conceptName,answersLanguage):getRelevanteLang(names[rand3].conceptName,answersLanguage)}</button>
+            <button disabled={isDesabled} style={{ backgroundColor: randomPosition === 2 && correctBtnColor  }} id='game2-button'  onClick={onClick} name={2}>{randomPosition==2?getRelevanteLang(concept_names[questionNumber].conceptName,answersLanguage):getRelevanteLang(names[rand3].conceptName,answersLanguage)}</button>
         </div>
         <div className="col-sm-6 col-md-4 col-lg-3 mt-sm-5 ">
-            <button id='game2-button'  onClick={onClick} name={3}>{randomPosition==3?getRelevanteLang(concept_names[questionNumber].conceptName,answersLanguage):getRelevanteLang(names[rand4].conceptName,answersLanguage)}</button>
+            <button disabled={isDesabled} style={{ backgroundColor: randomPosition === 3 && correctBtnColor  }} id='game2-button'  onClick={onClick} name={3}>{randomPosition==3?getRelevanteLang(concept_names[questionNumber].conceptName,answersLanguage):getRelevanteLang(names[rand4].conceptName,answersLanguage)}</button>
         </div>
         </div>
         </div>

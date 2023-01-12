@@ -28,9 +28,10 @@ function Home({onStart,answersLanguage,questLanguage,setLanguages}){
    <span style={{"--flip":"1"}}>T</span>
    <span style={{"--flip":"2"}}>r</span>
    <span style={{"--flip":"3"}}>a</span>
-   <span style={{"--flip":"4"}}>s</span>
-   <span style={{"--flip":"5","color":" rgba(219,87,5,1)"}}>M</span>
-   <span style={{"--flip":"6","color":" rgba(219,87,5,1)"}}>e</span>
+   <span style={{"--flip":"4"}}>n</span>
+   <span style={{"--flip":"5"}}>s</span>
+   <span style={{"--flip":"6","color":" rgba(219,87,5,1)"}}>M</span>
+   <span style={{"--flip":"7","color":" rgba(219,87,5,1)"}}>e</span>
   </div>
           <div dir='ltr' className="mt-5   row">
             <div className="col-5 text-end">

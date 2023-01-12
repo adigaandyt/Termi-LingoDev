@@ -43,10 +43,10 @@ function GamesPage(){
 
     
         <div className="cards">
-        <div className="card" onClick={toggleGame1}>
+        <div className="card-game" onClick={toggleGame1}>
             {/* <div class="card-image"></div> */}
             <div className="card-info">
-                <div className="card-title">Guess The Term</div>
+                <div className="card-game-title">Guess The Term</div>
                 <div className="card-detail">{t('description1')}</div>
                 <Link to='/games/gesstheterm'><a className="play-btn"></a></Link>
             </div>    
@@ -57,10 +57,10 @@ function GamesPage(){
             </ul>
             </div>*/}
         </div>
-        <div className="card" onClick={toggleGame2}>
+        <div className="card-game" onClick={toggleGame2}>
             {/*<div className="card-image"></div>*/}
             <div className="card-info">
-                <div className="card-title">Game 2</div>
+                <div className="card-game-title">Game 2</div>
                 <div className="card-detail"></div>
                 <Link to='/games/transme'><a className="play-btn"></a></Link>
             </div>

@@ -1,4 +1,4 @@
- /*games page -start- */
+ games page -start- 
 
 #gamespage-game1{
     height: 300px;
@@ -17,7 +17,7 @@
   display: flex;
   
 }
-.card{
+.card-game{
   min-width: 275px;
   width: 275px;
   position: relative;
@@ -55,7 +55,7 @@ ul{
     font-family: 'Open Sans';
 }
 
-.card-title{
+.card-game-title{
       line-height: 35px;
       height: 35px;
       position: relative;

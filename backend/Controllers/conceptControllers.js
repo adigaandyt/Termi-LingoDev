@@ -60,6 +60,7 @@ const getConcept=asyncHandler( async(req,res)=>{
         res.status(500)
         throw new Error("Some thing is wrong !" )
     }
+    console.log("searched for concept" + concept)
      res.status(200).json(concept)
 
 

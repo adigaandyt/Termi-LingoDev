@@ -64,6 +64,22 @@ export const getConcepts=createAsyncThunk(
      }
 
 )
+//create new concept by user
+export const createNewConceptByUser=createAsyncThunk(
+    'create/concept',
+     async(data,thunkAPI)=>{
+        const token=thunkAPI.getState().auth.user.token 
+        try {
+            return await conceptService.createNewConceptByUser(data,token)
+        } catch (error) {
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
 
 
 

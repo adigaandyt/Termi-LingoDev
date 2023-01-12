@@ -6,6 +6,7 @@ const conceptSchema=mongoose.Schema({
         required:true,
         ref:'Category'
     }],
+
     shortDefinition:{
         type:Object,
         // required:[true,'Please add short definition'],
@@ -48,6 +49,12 @@ const conceptSchema=mongoose.Schema({
     suggestedBy:{
         type:String
     },
+    suggestedBy_userId:{
+        type:mongoose.Schema.Types.ObjectId,
+        required:true,
+        ref:'User'
+    },
+
     readMore:{
         type:String,
 
@@ -56,6 +63,7 @@ const conceptSchema=mongoose.Schema({
         type:Boolean,
         default:false
     }
+    
     
 
 })

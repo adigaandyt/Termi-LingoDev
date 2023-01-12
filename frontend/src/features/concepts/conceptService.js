@@ -22,12 +22,24 @@ const getConcepts =async (data)=>{
     return response.data
 }
 
+//create new concept by user
+const createNewConceptByUser =async (data,token)=>{
+    const config ={
+        headers:{
+            authorization:`Bearer ${token}`
+        }
+    }
+    const response=await axios.post(API_URL+"/create/concept",data,config) 
+    
+    return response.data
+}
+
 
 
 const conceptService={
     getConcept,
     getConceptsNames,
-    getConcepts
+    getConcepts,createNewConceptByUser
     
 }
 

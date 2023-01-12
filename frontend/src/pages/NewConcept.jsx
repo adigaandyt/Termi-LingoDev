@@ -1,47 +1,70 @@
 import { useTranslation } from 'react-i18next'
-import {useState} from 'react'
-import { useSelector } from 'react-redux';
+import {useEffect, useState} from 'react'
+import { useSelector ,useDispatch} from 'react-redux';
 import {getCategoryName} from '../hooks/ExportsFunctions'
-
+import {createNewConceptByUser} from '../features/concepts/conceptSlice'
+// conceptName:{
+//     english:null,
+//     hebrew:null,
+//     arabic:null
+// },
+// longDefinition:{
+//     english:null,
+//     hebrew:null,
+//     arabic:null
+// },
+// shortDefinition:{
+//     english:null,
+//     hebrew:null,
+//     arabic:null
+// },
 function NewConcept(){
     const {t}=useTranslation();
+    const dispatch=useDispatch()
     const {categories}=useSelector(state=>state.category)
     const [categoryId,setCategoryId]=useState(null)
     const [formData,setFormData]=useState({
-        conceptName:{
-            english:null,
-            hebrew:null,
-            arabic:null
-        },
-        longDefinition:{
-            english:null,
-            hebrew:null,
-            arabic:null
-        },
-        shortDefinition:{
-            english:null,
-            hebrew:null,
-            arabic:null
-        },
+        conceptName_english:null,
+        conceptName_arabic:null,
+        conceptName_hebrew:null,
+        longDefinition_english:null,
+        longDefinition_arabic:null,
+        longDefinition_hebrew:null,
+        shortDefinition_english:null,
+        shortDefinition_arabic:null,
+        shortDefinition_hebrew:null,
+        categoryId:null,
         readMore:null
 
     })
+    const {
+        conceptName_english,
+        conceptName_arabic,
+        conceptName_hebrew,
+        longDefinition_english,
+        longDefinition_arabic,
+        longDefinition_hebrew,
+        shortDefinition_english,
+        shortDefinition_arabic,
+        shortDefinition_hebrew,
+        readMore
+    }=formData
+
     
 
     const handleTextChange = (e) =>{
-        // console.log(e.target.value)
-        setFormData((prev)=>{
+        setFormData((preventState)=>{
             return({
-                ...prev,
+                ...preventState,
                 [e.target.name]:e.target.value
             })
         })
     }
 
 
-    const onSubmitClick=(e)=>{
+    const onSubmitClick=()=>{
         console.log("Clickeddd")
-        
+        dispatch(createNewConceptByUser(formData))
     }
 
     return(<>
@@ -68,41 +91,41 @@ function NewConcept(){
         <div  class="tab-content  text-center  container"  id="newconcept-inputs-page">
             <div class="tab-pane fade show active " id="pills-english" role="tabpanel" aria-labelledby="pills-english-tab">
             <div class="form-group mb-1 "> 
-                    <input name='conceptName.english' type="text" onChange={handleTextChange} class="form-control " id="floatingShortEnglish"  placeholder={t('concept_name_english')}/>
+                    <input value={conceptName_english} name='conceptName_english' type="text" onChange={handleTextChange} class="form-control " id="floatingShortEnglish"  placeholder={t('concept_name_english')}/>
                 </div>
                 <div class="form-group mb-1 "> 
-                    <textarea type="text" onChange={handleTextChange} class="form-control " id="floatingShortEnglish"  placeholder={t('short_translation_english')}/>
+                    <textarea name='shortDefinition_english' type="text" onChange={handleTextChange} class="form-control " id="floatingShortEnglish"  placeholder={t('short_translation_english')}/>
                 </div>
                 <div class="form-group mb-1">
-                    <textarea type="text" class="form-control" id="floatingLongEnglish" placeholder={t('long_translation_english')} />
+                    <textarea name='longDefinition_english'  onChange={handleTextChange} type="text" class="form-control" id="floatingLongEnglish" placeholder={t('long_translation_english')} />
                 </div>
             </div>
 
             <div class="tab-pane fade" id="pills-hebrew" role="tabpanel" aria-labelledby="pills-hebrew-tab">
             <div class="form-group mb-1 "> 
-                 <input type="text" onChange={handleTextChange} class="form-control " id="floatingShortEnglish"  placeholder={t('concept_name_hebrew')}/>
+                 <input name='conceptName_hebrew'  onChange={handleTextChange}  type="text"  class="form-control " id="floatingShortEnglish"  placeholder={t('concept_name_hebrew')}/>
                  </div>
             <div class="form-group mb-1 ">
-                    <textarea type="text"  class="form-control" id="floatingShortHebrew"  placeholder={t('short_translation_hebrew')}/>
+                    <textarea name='shortDefinition_hebrew'  onChange={handleTextChange}  type="text"  class="form-control" id="floatingShortHebrew"  placeholder={t('short_translation_hebrew')}/>
                 </div>
                 <div class="form-group mb-1">
-                    <textarea type="text" class="form-control" id="floatingLongHebrew" placeholder={t('long_translation_hebrew')} />
+                    <textarea name='longDefinition_hebrew'  onChange={handleTextChange}  type="text" class="form-control" id="floatingLongHebrew" placeholder={t('long_translation_hebrew')} />
                 </div>
             </div>
 
             <div class="tab-pane fade" id="pills-arabic" role="tabpanel" aria-labelledby="pills-arabic-tab">
             <div class="form-group mb-1 "> 
-                <input type="text" onChange={handleTextChange} class="form-control " id="floatingShortEnglish"  placeholder={t('concept_name_arabic')}/>
+                <input name='conceptName_arabic'  onChange={handleTextChange}  type="text"  class="form-control " id="floatingShortEnglish"  placeholder={t('concept_name_arabic')}/>
                 </div>
             <div class="form-group mb-1 ">
-                    <textarea type="text"  class="form-control" id="floatingShortArabic"  placeholder={t('short_translation_arabic')}/>
+                    <textarea name='shortDefinition_arabic'  onChange={handleTextChange}  type="text"  class="form-control" id="floatingShortArabic"  placeholder={t('short_translation_arabic')}/>
                 </div>
                 <div class="form-group mb-1">
-                    <textarea type="text" class="form-control" id="floatingLongArabic" placeholder={t('long_translation_arabic')} />
+                    <textarea name='longDefinition_arabic'  onChange={handleTextChange}  type="text" class="form-control" id="floatingLongArabic" placeholder={t('long_translation_arabic')} />
                 </div>
             </div>
              <div class="form-group mb-1">
-                    <input type="text" class="form-control" id="floatingLinkArabic" placeholder={t('link')}/>
+                    <input name='readMore'  onChange={handleTextChange}  type="text" class="form-control" id="floatingLinkArabic" placeholder={t('link')}/>
                 </div>
             
             
@@ -114,7 +137,7 @@ function NewConcept(){
 
     </div>
     <div className="form-group mt-2" id="reg-dropdown">
-                <select className="select-input  mt-2" name='categoryId' onChange={(e)=>{setCategoryId(e.target.value)}}>
+                <select className="select-input  mt-2" name='categoryId' onChange={handleTextChange}>
                                 {(categories)&&
                                     categories.map(category=>{
                                             return(category.accepted&&<option value={category._id}>{getCategoryName(category.categoryName)}</option>)

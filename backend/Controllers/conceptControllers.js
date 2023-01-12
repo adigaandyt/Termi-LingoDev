@@ -3,6 +3,7 @@ const Concept=require('../Models/conceptsModel')
 const Category =require('../Models/categoriesModel')
 const User=require('../Models/usersModel')
 const _ = require('lodash');
+const { findById } = require('../Models/conceptsModel');
 
 //add "639d8f0987cdf6706e335db9" to all arrays in the database
     //    concept=await Concept.updateMany(
@@ -244,7 +245,63 @@ const getConceptNamesBycategoryId=asyncHandler( async(req,res)=>{
     })
 
    
+//@desc  create concept by user
+//@route POST /create/concept
+//@access private
+const creactNewConceptByUser=asyncHandler( async(req,res)=>{
 
+
+const user=req.user;
+const data=req.body;
+if(
+    (!data.conceptName_hebrew||!data.conceptName_english||!data.conceptName_arabic)
+    &&
+    (!data.shortDefinition_english||!data.shortDefinition_arabic||!data.shortDefinition_hebrew)
+    &&
+    (!data.categoryId)
+    ){
+        console.log(" missing details")
+        res.status(400)
+        throw new Error("Missing details")
+    }
+
+try {
+const response=await Concept.create({
+conceptName:{
+    english:data.conceptName_english?data.conceptName_english:"N/A",
+    hebrew:data.conceptName_hebrew?data.conceptName_hebrew:"N/A",
+    arabic:data.conceptName_arabic?data.conceptName_arabic:"N/A"
+},
+longDefinition:{
+    english:data.longDefinition_english,
+    hebrew:data.longDefinition_hebrew,
+    arabic:data.longDefinition_arabic
+},
+shortDefinition:{
+    english:data.shortDefinition_english,
+    hebrew:data.shortDefinition_hebrew,
+    arabic:data.shortDefinition_arabic
+},
+categories:[data.categoryId,'639e49f8dfabd615c821584f'],
+suggestedBy:user.name,
+suggestedBy_userId:user._id,
+readMore:data.readMore,
+
+
+})
+console.log(response)
+
+
+
+
+} catch (error) {
+
+    console.log(error.message)
+    res.status(400)
+    throw new Error(error.message)
+}
+    
+})
 
 
 
@@ -259,5 +316,6 @@ module.exports={
    getConceptsByUserId,
    getConceptsBycategoryId,
    getConceptsNamesByUserId,
-   getConceptNamesBycategoryId
+   getConceptNamesBycategoryId,
+   creactNewConceptByUser
 }

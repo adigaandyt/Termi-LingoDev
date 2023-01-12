@@ -1,8 +1,10 @@
-import { useState } from "react"
-import ExitModal from '../ExitModal'
-import { useNavigate } from "react-router-dom"
-import {BsFillArrowRightCircleFill} from 'react-icons/bs'
+import { useState } from "react";
+import ExitModal from '../ExitModal';
+import { useNavigate } from "react-router-dom";
+import {BsFillArrowRightCircleFill} from 'react-icons/bs';
+import { useTranslation } from 'react-i18next';
 function Home({onStart,answersLanguage,questLanguage,setLanguages}){
+  const {t}=useTranslation();
   const [isModalOpen,setIsModalOpen]=useState(false)
     const navigate=useNavigate()
     const onExit=()=>{
@@ -54,9 +56,9 @@ function Home({onStart,answersLanguage,questLanguage,setLanguages}){
         </div>
         <div className="html_for_game_buttons">
         <div id="buttons_game_containet">
-        <button className="d-" id="game2-home-button"  onClick={onStart}>Start</button>
-        <button className="d-" id="game2-home-button" onClick={()=>navigate('/games/transme/settings')}>Settings</button>
-        <button className="d-" id="game2-home-button" onClick={onExit}>Exit Game</button>
+        <button className="d-" id="game2-home-button"  onClick={onStart}>{t('start')}</button>
+        <button className="d-" id="game2-home-button" onClick={()=>navigate('/games/transme/settings')}>{t('settings')}</button>
+        <button className="d-" id="game2-home-button" onClick={onExit}>{t('exit-game')}</button>
         </div>
         </div>
         </div>

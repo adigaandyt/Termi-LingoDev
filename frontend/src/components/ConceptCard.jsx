@@ -29,14 +29,14 @@ function ConceptCard({concept,languageChoosed}){
     
     return(<>
         <div id='parent '>
-            <div className="card my-2 w-100" id='child'>
+            <div className="card my-2 w-100 mx-2" id='child'>
                 <div className="card-body">
                     <h6 className="card-title">{getConceptName(languageChoosed,concept)}</h6>
-                    <p className="card-subtitle mb-2 text-secondary">{searchById(concept.categories[0])}</p>
+                    <p className="card-subtitle mt-5 text-secondary">{searchById(concept.categories[0])}</p>
                     {concept.accepted?
-                        <p className="card-subtitle mb-2 text-success">{t('accepted_by_admin')} </p>:
-                        <p className="card-subtitle mb-2 text-danger">{t('not_accepted_by_admin_yet')}</p>}
-                        <button onClick={onChoose} className="card-link btn btn-sm btn-secondary">{t('choose')}</button>
+                        <p className="card-subtitle mt-2 text-success">{t('accepted_by_admin')} </p>:
+                        <p className="card-subtitle mt-2 text-danger">{t('not_accepted_by_admin_yet')}</p>}
+                        <button onClick={onChoose} className="card-link btn btn-sm btn-secondary mt-3">{t('choose')}</button>
 
                 </div>
             </div>

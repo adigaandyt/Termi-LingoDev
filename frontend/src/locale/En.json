@@ -74,8 +74,17 @@
     "your": "Your",
     "sound": "Sound",
     "forgot": "Forgot Password ?",
-    "favorite_pet": "Favorite pet"
-    
+    "favorite_pet": "Favorite pet",
+    "hebrew": "Hebrew",
+    "english": "English",
+    "arabic": "Arabic",
+    "short_translation_english": "Short Translation In English",
+    "long_translation_english": "Long Translation In English",
+    "short_translation_arabic": "Short Translation In Arabic",
+    "long_translation_arabic": "Long Translation In Arabic",
+    "short_translation_hebrew": "Short Translation In Hebrew",
+    "long_translation_hebrew": "Long Translation In Hebrew",
+    "link": "Link"
     
 
 

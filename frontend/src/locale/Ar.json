@@ -74,7 +74,17 @@
     "your": "",
     "sound": "صوت",
     "forgot": "نسيت كلمة السر ؟",
-    "favorite_pet": "الحيوان الاليف المفضل"
+    "favorite_pet": "الحيوان الاليف المفضل",
+    "hebrew": "عبري",
+    "english": "انجليزي",
+    "arabic": "عربي",
+    "short_translation_english": "ترجمة إنجليزية قصيرة",
+    "long_translation_english": "ترجمة إنجليزية طويلة",
+    "short_translation_arabic": "ترجمة عربية قصيرة",
+    "long_translation_arabic": "ترجمة عربية طويلة",
+    "short_translation_hebrew": "ترجمة عبرية قصيرة",
+    "long_translation_hebrew": "ترجمة عبرية طويلة",
+    "link": "رابط"
 
    
 

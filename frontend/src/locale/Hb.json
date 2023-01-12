@@ -74,5 +74,16 @@
     "your": "",
     "sound": "שמע",
     "forgot": "שכחת סיסמה ?",
-    "favorite_pet": "חיית מחמד מועדפת"
+    "favorite_pet": "חיית מחמד מועדפת",
+    "hebrew": "עברית",
+    "english": "אנגלית",
+    "arabic": "ערבית",
+    "short_translation_english": "תרגום קצר באנגלית",
+    "long_translation_english": "תרגום רחב באנגלית",
+    "short_translation_arabic": "תרגום קצר בערבית",
+    "long_translation_arabic": "תרגום רחב בערבית",
+    "short_translation_hebrew": "תרגום קצר בעברית",
+    "long_translation_hebrew": "תרגום רחב בעברית",
+    "link": "קישור"
+    
 }

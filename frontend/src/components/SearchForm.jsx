@@ -7,7 +7,7 @@ import {getConcept,getConceptsNames,resetConcept,getConcepts} from '../features/
 import {useTranslation} from 'react-i18next'
 import {getCategoryName} from '../hooks/ExportsFunctions'
 import NoConceptResultModal from './NoConceptResultModal'
-import '../styles/SearchForm.css'
+import '../styles/CircleBar.css'
 
 
 
@@ -50,12 +50,12 @@ import '../styles/SearchForm.css'
         <form onSubmit={onSearchClick}>
         <div className='row ' id='formsearch'>
             <div className='' id='formSearch-item'>
-                <div className="input-group">
+                <div dir='ltr' className="input-group">
                     <div id="search-autocomplete " className="form-outline">
                         <input
                         value={conceptSearch}
                         type="search" 
-                        id="form1" 
+                        id="circlebar"  
                         style={(conceptSearch.length <= 3&&conceptSearch.length >0)?({"border":"2px solid red"}) :({"backgroundColor":"white"}) }
                         list='brow' 
                         className="form-control  "
@@ -64,10 +64,10 @@ import '../styles/SearchForm.css'
                         />
                         <label className="form-label" htmlFor="form1">{t('search_for_concept')}</label>
                     </div>
-                    <button id="search-btn" type="button" className="btn  btn-warning" onClick={onSearchClick}>
+                    <button id="search-btn" type="button" className="btn  btn-warning" id="searchbtn" onClick={onSearchClick}>
                         <i className="fas fa-search"></i>
                     </button>
-                    <button id="search-btn" onClick={onReset} type='button' className='btn btn-secondary'>{t('reset')}</button>
+                    
 
                     <datalist className='bg-light w-100' id="brow">
                         {(names && conceptSearch.length >= 3 )&&
@@ -83,7 +83,7 @@ import '../styles/SearchForm.css'
                 </div>
             </div>
             <div className=' mt-2' id='formSearch-item'>
-                <select className="form-select border-secondary" aria-label="Default select example" onChange={OnSelectedCategory}>
+                <select className="form-select border-secondary mt-1 mx-1 btn btn-primary col-3 " aria-label="Default select example" onChange={OnSelectedCategory}>
                     <option value='639e49f8dfabd615c821584f'>{t('all')}</option>
                     {
                         (categories)&&

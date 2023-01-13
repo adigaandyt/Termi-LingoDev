@@ -1,4 +1,6 @@
 {
+    "Language":"שפה",
+    "category":"קטגוריה",
     "language":"עברית",
     "title":"טרמי",
     "profile":"פרופיל",
@@ -73,7 +75,7 @@
     "update": "עדכון",
     "your": "",
     "sound": "שמע",
-    "forgot": "שכחת סיסמה ?",
+    "forgot": "שכחת את הסיסמה ?",
     "favorite_pet": "חיית מחמד מועדפת",
     "hebrew": "עברית",
     "english": "אנגלית",

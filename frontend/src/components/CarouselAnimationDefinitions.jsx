@@ -2,7 +2,7 @@
 
 
 
-import React, {useState,useRef} from 'react';
+import React, {useState,useRef,useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import {TiChevronLeftOutline, TiChevronRightOutline} from 'react-icons/ti';
 import { useSelector } from 'react-redux';
@@ -36,10 +36,15 @@ const Card = ({title,concept}) => {
 };
 
 const Carousel = ({children}) => {
+  const {concept}=useSelector(state=>state.concept)
   const [active, setActive] = useState(2);
   const count = React.Children.count(children);
   const [position, setPosition] = useState(0);
   const handleRef = useRef(null);
+  useEffect(()=>{
+    console.log(active);
+    console.log(concept);
+  },[active])
   const handleTouchStart = (event) => {
     event.preventDefault();
     const initialX = event.touches[0].clientX;
@@ -62,18 +67,28 @@ const Carousel = ({children}) => {
         }
       } else if (event.changedTouches[0].clientX < initialX-35) {
         console.log('Moved to the left');
-
         if(active < count - 1){
           setActive(i => i + 1)
+          
         }
       }
     };
     document.addEventListener('touchmove', onTouchMove);
     document.addEventListener('touchend', onTouchEnd);
   };
+  const onLeft=()=>{
+    setActive(i => i - 1)
+    // console.log(concept);
+    // console.log(active);
+  }
+  const onRight=()=>{
+    setActive(i => i + 1)
+    // console.log(concept);
+    // console.log(active);
+  }
   return (
     <div ref={handleRef}  onTouchStart={handleTouchStart} className='carousel' >
-      {active > 0 && <button className='nav left' onClick={() => setActive(i => i - 1)}><TiChevronLeftOutline/></button>}
+      {active > 0 && <button className='nav left' onClick={onLeft}><TiChevronLeftOutline/></button>}
       {React.Children.map(children, (child, i) => (
         <div className='card-container' style={{
             '--active': i === active ? 1 : 0,
@@ -87,7 +102,7 @@ const Carousel = ({children}) => {
           {child}
         </div>
       ))}
-      {active < count - 1 && <button className='nav right' onClick={() => setActive(i => i + 1)}><TiChevronRightOutline/></button>}
+      {active < count - 1 && <button className='nav right' onClick={onRight}><TiChevronRightOutline/></button>}
     </div>
   );
 };
@@ -98,7 +113,7 @@ const CarouselAnimationDefinitions= () => {
   
     return(
     <div className=' ' id='body'>
-      <Carousel>
+      <Carousel concept={concept}>
         {[...new Array(CARDS)].map((_, i) => (
           <Card concept={concept} title={ (i + 1)} content='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'/>
         ))}

@@ -267,30 +267,30 @@ if(
     }
 
 try {
-const response=await Concept.create({
-conceptName:{
-    english:data.conceptName_english?data.conceptName_english:"N/A",
-    hebrew:data.conceptName_hebrew?data.conceptName_hebrew:"N/A",
-    arabic:data.conceptName_arabic?data.conceptName_arabic:"N/A"
-},
-longDefinition:{
-    english:data.longDefinition_english,
-    hebrew:data.longDefinition_hebrew,
-    arabic:data.longDefinition_arabic
-},
-shortDefinition:{
-    english:data.shortDefinition_english,
-    hebrew:data.shortDefinition_hebrew,
-    arabic:data.shortDefinition_arabic
-},
-categories:[data.categoryId,'639e49f8dfabd615c821584f'],
-suggestedBy:user.name,
-suggestedBy_userId:user._id,
-readMore:data.readMore,
+// const response=await Concept.create({
+// conceptName:{
+//     english:data.conceptName_english?data.conceptName_english:"N/A",
+//     hebrew:data.conceptName_hebrew?data.conceptName_hebrew:"N/A",
+//     arabic:data.conceptName_arabic?data.conceptName_arabic:"N/A"
+// },
+// longDefinition:{
+//     english:data.longDefinition_english,
+//     hebrew:data.longDefinition_hebrew,
+//     arabic:data.longDefinition_arabic
+// },
+// shortDefinition:{
+//     english:data.shortDefinition_english,
+//     hebrew:data.shortDefinition_hebrew,
+//     arabic:data.shortDefinition_arabic
+// },
+// categories:[data.categoryId,'639e49f8dfabd615c821584f'],
+// suggestedBy:user.name,
+// suggestedBy_userId:user._id,
+// readMore:data.readMore,
 
 
-})
-console.log(response)
+// })
+// console.log(response)
 
 
 

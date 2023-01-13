@@ -148,20 +148,26 @@ function Register(){
             </div>
             
             <div className="form-group mt-2" id="reg-dropdown">
-                <select className="select-input" name='language' onChange={onChange}>
+                <select className="select-input" defaultValue={t('Language')} name='language' onChange={onChange}>
+                    <option disabled>{t('Language')}</option>
+                    <hr className='text-secondary'/>
+                    <option disabled></option>
                     <option value="English">English</option> 
                     <option value="العربية">العربية</option>
                     <option value="עברית">עברית</option>
                 </select>
             </div>
             <div className="form-group mt-2" id="reg-dropdown">
-                <select className="select-input  mt-2" name='categoryId' onChange={(e)=>{setCategoryId(e.target.value)}}>
+                <select className="select-input  mt-2" defaultValue={t('category')} name='categoryId' onChange={(e)=>{setCategoryId(e.target.value)}}>
+                                <option disabled>{t('category')}</option>
+                                <hr className='my-1'/>
+                                <option disabled></option>
                                 {(categories)&&
                                     categories.map(category=>{
                                             return(category.accepted&&<option value={category._id}>{getCategoryName(category.categoryName)}</option>)
                                     })
                                 }
-                                <option value='639e49f8dfabd615c821584f'>{t('other')}</option>
+                                {/* <option value='639e49f8dfabd615c821584f'>{t('other')}</option> */}
                 </select>
             </div>
 

@@ -68,7 +68,7 @@ function NewConcept(){
     }
 
     return(<>
-    <div className="mt-150 text-center"> 
+    <div className="mt-150 text-center "> 
     <div dir='ltr' className="container-fluid">
         <ul  class="btn-group nav-pills col-12 shadow-none"  id="pills-tab" role="tablist">
 
@@ -88,7 +88,7 @@ function NewConcept(){
 
         </div>
 
-        <div  class="tab-content  text-center  container"  id="newconcept-inputs-page">
+        <div  class="tab-content  text-center  container"  id="newconcept-inputs-page"> 
             <div class="tab-pane fade show active " id="pills-english" role="tabpanel" aria-labelledby="pills-english-tab">
             <div class="form-group mb-1 "> 
                     <input value={conceptName_english} name='conceptName_english' type="text" onChange={handleTextChange} class="form-control " id="floatingShortEnglish"  placeholder={t('concept_name_english')}/>
@@ -132,11 +132,7 @@ function NewConcept(){
 
         </div>
 
-
-
-
-    </div>
-    <div className="form-group mt-2" id="reg-dropdown">
+        <div className="form-group mt-2" id="reg-dropdown">
                 <select className="select-input  mt-2" name='categoryId' onChange={handleTextChange}>
                                 {(categories)&&
                                     categories.map(category=>{
@@ -149,6 +145,10 @@ function NewConcept(){
     <div class="mt-3 col-md-12 ">
              <button type="button" class="btn btn-warning pull-right mr-15"  onClick={onSubmitClick} >Submit</button>
         </div>
+
+
+    </div>
+
     </>)
 }
 export default NewConcept

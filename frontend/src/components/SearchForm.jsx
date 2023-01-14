@@ -48,9 +48,9 @@ import '../styles/CircleBar.css'
     return(<>
        {(!isStart&&!concept&&!isLoading)&&<NoConceptResultModal/>}
         <form onSubmit={onSearchClick}>
-        <div className='row ' id='formsearch'>
+        <div className='container' id='formsearch'>
             <div className='' id='formSearch-item'>
-                <div dir='ltr' className="input-group">
+                 <div dir='ltr' className="input-group ">
                     <div id="search-autocomplete " className="form-outline">
                         <input
                         value={conceptSearch}
@@ -64,12 +64,12 @@ import '../styles/CircleBar.css'
                         />
                         <label className="form-label" htmlFor="form1">{t('search_for_concept')}</label>
                     </div>
-                    <button id="search-btn" type="button" className="btn  btn-warning" id="searchbtn" onClick={onSearchClick}>
+                    <button  type="button" className="btn  btn-warning" id="searchbtn" onClick={onSearchClick}>
                         <i className="fas fa-search"></i>
                     </button>
                     
 
-                    <datalist className='bg-light w-100' id="brow">
+                    <datalist className='' id="brow">
                         {(names && conceptSearch.length >= 3 )&&
                                     names.map((name)=>
                                     {
@@ -82,8 +82,8 @@ import '../styles/CircleBar.css'
                     </datalist> 
                 </div>
             </div>
-            <div className=' mt-2' id='formSearch-item'>
-                <select className="form-select border-secondary mt-1 mx-1 btn btn-primary col-3 " aria-label="Default select example" onChange={OnSelectedCategory}>
+            <div className='mt-2' id='formSearch-item'>
+                <select className="form-select border-secondary mt-1 mx-1 btn btn-primary  " aria-label="Default select example" onChange={OnSelectedCategory}>
                     <option value='639e49f8dfabd615c821584f'>{t('all')}</option>
                     {
                         (categories)&&

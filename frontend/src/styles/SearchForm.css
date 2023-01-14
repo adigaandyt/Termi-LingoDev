@@ -1,15 +1,20 @@
 
 @media only screen and (min-width: 800px) {
 	#formsearch{
-        display: flex;
+        /* display: flex; */
         justify-content: center;
         align-items: center;
+        margin: auto;
     }
     #formSearch-item
     {
+        
        width: 65%;
-       text-align: center;  
+       text-align: center;
+       margin: auto;  
     }
+
+
     #parent{
         display: flex;
         justify-content: center;
@@ -20,6 +25,7 @@
     }
     
 }
+
 #search-btn{
     z-index: 0;
 }

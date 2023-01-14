@@ -113,7 +113,7 @@
   }
   .nav1 .content .btnb.active span::before, .nav1 .content .btnb.active span::after {
     width: 60%;
-    right: -1px;
+    /* right: -1px; */
   }
   .nav1 .content .btnb.active span::before {
     transform: rotate(45deg);

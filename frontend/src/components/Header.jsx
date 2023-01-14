@@ -69,7 +69,7 @@ function Header(){
         <>
         
         
-        <div dir='ltr' className="nav1 ">
+        <div dir='ltr' className="nav1">
         <div className="space"></div>
             <div className="content">
                 <div className="text">

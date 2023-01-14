@@ -55,9 +55,18 @@ function Home(){
     }
   
     return (<>
-         <div id="home1" className='row mt-90' > 
-        <div id="ho" className='col-12  mt-5 '>
-        
+    {/* <div>
+    
+    <div>
+
+
+
+
+    </div>
+    
+    </div> */}
+         <div  className=' mt-150' > 
+        <div className='  mt-5 '>
           {isLoading&&<Spinner/>}
                
                 <div className='text-center mb-4' id='t1'>
@@ -69,29 +78,7 @@ function Home(){
               
             
           
-                {/* <div className='text-center'>
-                    <div className='d-inline-block text-center' >
-                        <button
-                        onClick={onChangeLanguage}
-                        name="english"
-                        className= {english?'button-group btn btn-dark ':' btn btn-outline-secondary '} >English
-                        </button>
-                        <button
-                        onClick={onChangeLanguage}
-                        name="arabic" 
-                        className={arabic?'button-group btn btn-dark ':' btn btn-outline-secondary '}>العربية
-                        </button>
-                        <button
-                        onClick={onChangeLanguage}
-                        name="hebrew"
-                        className={hebrew?'button-group btn btn-dark ':' btn btn-outline-secondary '}>עברית
-                        </button>
-                    </div>
-                </div> */}
-                {/* <br/> */}
                 <SearchForm/>
-                
-                {/* {concept&&<CatouselDefinition />} */}
                 {concept&&<CarouselAnimationDefinitions/>}
                 {concepts&&<div  className='center '>
                 <hr className=' mb-3  '/>

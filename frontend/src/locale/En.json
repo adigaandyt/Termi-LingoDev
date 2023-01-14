@@ -86,7 +86,11 @@
     "long_translation_arabic": "Long Translation In Arabic",
     "short_translation_hebrew": "Short Translation In Hebrew",
     "long_translation_hebrew": "Long Translation In Hebrew",
-    "link": "Link"
+    "link": "Link",
+    "gender":"Gender",
+    "male":"Male",
+    "female":"Female",
+    "coins":"Coins"
     
 
 

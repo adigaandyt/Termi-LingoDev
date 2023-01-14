@@ -86,6 +86,10 @@
     "long_translation_arabic": "תרגום רחב בערבית",
     "short_translation_hebrew": "תרגום קצר בעברית",
     "long_translation_hebrew": "תרגום רחב בעברית",
-    "link": "קישור"
+    "link": "קישור",
+    "gender":"מגדר",
+    "male":"זכר",
+    "female":"נקבה",
+    "coins":"טבעות"
     
 }

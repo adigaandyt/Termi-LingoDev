@@ -13,6 +13,7 @@ import {MdLanguage} from 'react-icons/md'
 import cookies from 'js-cookie'
 import {getCategoryName} from '../../hooks/ExportsFunctions'
 import axios from 'axios'
+import RegisterImage from '../../components/RegisterImage'
 import "../../styles/Inputs.css"
 import '../../styles/Images.css'
 
@@ -34,6 +35,7 @@ function Register(){
         password2:'',
         phoneNumber:'',
         favorite_pet:'',
+        gender:null,
         profile_image:'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png',
         language:'English',
     })
@@ -83,7 +85,7 @@ function Register(){
     },[isSuccess,isError,isImageLoading,image_url])
 
 
-    const {name,email,password,password2,phoneNumber,favorite_pet,profile_image}=formData;
+    const {name,email,password,password2,phoneNumber,favorite_pet,gender,profile_image}=formData;
 
 
     const onSubmit=(e)=>{
@@ -99,15 +101,15 @@ function Register(){
         })
        }
  
-        const onUploadImage = event => {
-            if(event.target.files[0]){
-            const formdata=new FormData()
-            formdata.append('profileImage',event.target.files[0])
-            dispatch(uploadImage(formdata))
+        // const onUploadImage = event => {
+        //     if(event.target.files[0]){
+        //     const formdata=new FormData()
+        //     formdata.append('profileImage',event.target.files[0])
+        //     dispatch(uploadImage(formdata))
 
-            }
+        //     }
                 
-            }
+        //     }
        if(isLoading){
         return (<Spinner/> )
        }
@@ -117,17 +119,21 @@ function Register(){
 
         <form className="form1" onSubmit={onSubmit}>
 
-            <div className='form-group mt-2'>
+            {/* <div className='form-group mt-2'>
             <img  className='register-image ' src={image_url?image_url:'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png'}></img>
+            </div> */}
+            <div className='text-center'>
+            <RegisterImage/>
             </div>
-            <div className='form-group' >
+            
+            {/* <div className='form-group' >
                 <label className='btn btn-sm btn-secondary mt-2  ml-5 ' > 
                 {isImageLoading&&(<div class="spinner-grow spinner-grow-sm" role="status">
                 <span class="sr-only">Loading...</span>
                 </div>)} {t('select_image')}
                 <input   style={{"position":"relative" ,"left":"15%","display":"none"}} onChange={onUploadImage}  type="file" accept="image/*"/>
             </label>
-            </div>
+            </div> */}
             <div className="form-group mt-2"> 
                 <input className="form-control" type="name" placeholder={t('name')}  name="name" id="name"  value={name} onChange={onChange} required/>
             </div>
@@ -155,6 +161,15 @@ function Register(){
                     <option value="English">English</option> 
                     <option value="العربية">العربية</option>
                     <option value="עברית">עברית</option>
+                </select>
+            </div>
+            <div className="form-group mt-2" id="reg-dropdown">
+                <select className="select-input" defaultValue={t('gender')} name='gender' onChange={onChange}>
+                    <option disabled>{t('gender')}</option>
+                    <hr className='text-secondary'/>
+                    <option value="female">{t('female')}</option> 
+                    <option value="male">{t('male')}</option>
+                    <option value="other">{t('other')}</option>
                 </select>
             </div>
             <div className="form-group mt-2" id="reg-dropdown">

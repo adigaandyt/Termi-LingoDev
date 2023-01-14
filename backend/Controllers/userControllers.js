@@ -17,8 +17,16 @@ const generateToken=(id)=>{
 //@access public
 const registrUser=asyncHandler( async (req,res)=>{
     const categoryId=req.params.categoryId
-    const {email, password ,password2 ,name, phoneNumber ,language,profile_image,favorite_pet}=req.body;
+    const {email, password ,password2 ,name, phoneNumber ,language,profile_image,favorite_pet,gender}=req.body;
 
+    if(categoryId==='639e49f8dfabd615c821584f'){
+        res.status(500)
+        throw new Error("Missing Category ID")
+    }
+    if(!gender){
+        res.status(500)
+        throw new Error("Choose gender")
+    }
     if(!categoryId){
         res.status(500)
         throw new Error("You have to choose category , if there is a category choosen , try to switch it to other category and get back to category you want tot choose")
@@ -29,10 +37,11 @@ const registrUser=asyncHandler( async (req,res)=>{
     }
     
     try {
-        const category=await Category.findById(categoryId)
+        const category=await Category.findOne({categoryId})
+        console.log(category)
         if(!category){
             res.status(500)
-            throw new Error("You have to choose category , if there is a category choosen , try to switch it to other category and get back to category you want tot choose")
+            throw new Error("You have to choose category ")
         }
         const userExist=await User.findOne({email})
         //check if the user is exists by email
@@ -49,7 +58,8 @@ const registrUser=asyncHandler( async (req,res)=>{
             name,
             email,
             phoneNumber,
-            language, 
+            language,
+            gender, 
             categoryId,
             favorite_pet,
             profile_image:profile_image,
@@ -65,6 +75,7 @@ const registrUser=asyncHandler( async (req,res)=>{
                 language:user.language,
                 favorite_pet:user.favorite_pet,
                 categoryId:user.categoryId,
+                gender:user.gender,
                 games_coins:user.games_coins,
                 profile_image:user.profile_image,
                 token:generateToken(user._id)
@@ -99,6 +110,7 @@ const loginUser=asyncHandler( async (req,res)=>{
                 categoryId:user.categoryId,
                 phoneNumber:user.phoneNumber,
                 games_coins:user.games_coins,
+                gender:user.gender,
                 profile_image:user.profile_image,
                 token:generateToken(user._id)}
             res.status(200).json(userData)
@@ -194,6 +206,7 @@ const updateUserImage =asyncHandler(async(req,res)=>{
             categoryId:newUser.categoryId,
             games_coins:newUser.games_coins,
             profile_image:newUser.profile_image,
+            gender:newUser.gender,
             isAdmin:newUser.isAdmin,
             token:generateToken(newUser._id)
         })
@@ -242,6 +255,7 @@ if(newUser){
         categoryId:newUser.categoryId,
         profile_image:newUser.profile_image,
         games_coins:newUser.games_coins,
+        gender:newUser.gender,
         isAdmin:newUser.isAdmin,
         token:generateToken(newUser._id)
     })
@@ -301,6 +315,7 @@ const setCoinsOnFinishedGame=asyncHandler( async (req,res)=>{
                 categoryId:newUser.categoryId,
                 phoneNumber:newUser.phoneNumber,
                 games_coins:newUser.games_coins,
+                gender:newUser.gender,
                 profile_image:newUser.profile_image,
                 token:generateToken(newUser._id)}
              res.status(200).json(userData)

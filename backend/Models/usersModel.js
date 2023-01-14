@@ -26,6 +26,11 @@ const userSchema=mongoose.Schema({
         enum:['English','עברית', 'العربية' ],
         default:'English'
        },
+       gender:{
+        type:String,
+        required:[true,'Please select a gender'],
+        enum:['female','male','other'],
+       },
     categoryId:{
         type:mongoose.Schema.Types.ObjectId,
         required:[true,'Please select a category'],

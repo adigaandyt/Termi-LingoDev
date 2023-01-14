@@ -17,9 +17,13 @@
   width: 280px;
   border-radius: 10px;
   font-family: "Source Sans Pro", sans-serif;
-  /*padding: 10px 15px;*/
-  /* margin: 5px auto 10px auto; */
-  /*display: block;*/
+  font-size: 18px;
+  font-weight: 300;
+}
+.form1 select{
+  width: 280px;
+  border-radius: 10px;
+  font-family: "Source Sans Pro", sans-serif;
   font-size: 18px;
   font-weight: 300;
 }
@@ -38,7 +42,6 @@
     font-size: 16px;
     text-transform: uppercase;
     overflow: hidden;
-    /*transition: .5s;*/
     letter-spacing: 4px;
   }
   
@@ -132,12 +135,11 @@
     border-radius: 10px;
   }
   .select-input{
-     width: 280px;
+     /* width: 280px; */
      color: black;
   border-radius: 10px;
   font-family: "Source Sans Pro", sans-serif;
-  padding: 10px 15px;
-  margin: 5px auto 10px auto;
+  padding: 10px 1px;
   display: block;
   font-size: 18px;
   font-weight: 300;
@@ -190,8 +192,8 @@
 }
 /* #reg-dropdown{
   margin-left: -20px
-}   */
-  
+}  
+   */
 
 .button {
   z-index: 99;

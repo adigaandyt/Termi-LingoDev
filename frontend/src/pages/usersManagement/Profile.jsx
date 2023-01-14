@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import ProfileForm from '../../components/ProfileForm';
 import ProfileImage from '../../components/ProfileImage';
 import {FcAddImage} from 'react-icons/fc';
+import {IoMdFemale} from 'react-icons/io'
+import {IoMdMale} from 'react-icons/io'
+import {BsQuestionLg} from 'react-icons/bs'
+import {RiCoinsFill} from 'react-icons/ri'
 import '../../styles/Profile.css';
 import { useState } from 'react';
 import { updateUserImage } from '../../features/auth/authSlice';
@@ -12,7 +16,7 @@ import TestComponent from '../TestComponent';
 function Profile(){
   const dispatch=useDispatch();
   const {t}=useTranslation();
-  const {name,email,profile_image,games_coins} =useSelector(state=>state.auth.user)
+  const {name,email,profile_image,games_coins,gender} =useSelector(state=>state.auth.user)
   const {isLoading,isImageLoading} =useSelector(state=>state.auth)
   const [isEdit,setIsEdit]=useState(false)
   const onselectImage=(event)=>{
@@ -24,7 +28,7 @@ function Profile(){
       }
   }
   return(<> 
-  <div dir='ltr' className='mt-110' id="ppage">
+  <div  className='mt-110' id="ppage">
         {isLoading&&<Spinner/>}
     <h3 className='mx-2'>{t('my profile')}</h3>
     <div className="border-top row " id='profilePage'>
@@ -34,15 +38,19 @@ function Profile(){
 
        
         
-          <div className='mt-3 mx-3 ' >
+          <div className='mt-3 mx-3 ' style={{"height":"23px"}}>
           <h6 className="d-inline-block">{name}</h6>
         </div>
-        <div className='mx-3' >
+        <div className='mx-3' style={{"height":"23px"}}>
           <h6 className="d-inline-block">{email}</h6>
         </div>
-        <div className='mx-3' >
-          <p className="d-inline-block">Coins: </p>
-          <h6 className="d-inline-block">{games_coins}</h6>
+        <div className='mx-3 ' style={{"height":"23px"}} >
+          <p className="d-inline-block">{t('gender')}: </p>
+          <h6 className="d-inline-block"> {gender==='female'?<IoMdFemale style={{color:"#f103c9"}}/>:(gender==='male'?<IoMdMale className='text-success'/>:<BsQuestionLg className='text-warning'/>)}</h6>
+        </div>
+        <div className='mx-3' style={{"height":"23px"}}>
+          <p className="d-inline-block">{t('coins')}: </p>
+          <h6 className="d-inline-block">{games_coins} <RiCoinsFill className='' style={{color:"#FFD700"}}/></h6>
         </div>
        
 

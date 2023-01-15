@@ -46,9 +46,7 @@ function App() {
     dispatch(checkme())
 },[])
 
-if(isLoading){
-  return <Spinner3/>
-}
+
   return (
     <>
 

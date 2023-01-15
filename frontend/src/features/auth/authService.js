@@ -122,6 +122,15 @@ const setCoins =async (data,token)=>{
     }
     return response.data
 }
+//get the top5 users by coins count
+const getTop5Users =async (data,token)=>{
+  
+    const response=await axios.get(API_URL+'/get/top5')
+    if(response.data){
+        localStorage.setItem('user',JSON.stringify(response.data))
+    }
+    return response.data
+}
 const authService={
     me,
     register,
@@ -133,7 +142,8 @@ const authService={
     updateUserImage,
     verifyUser,
     // me,
-    setCoins
+    setCoins,
+    getTop5Users
     
 }
 

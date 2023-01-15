@@ -11,6 +11,7 @@ const  initialState={
     user:user?user:null,
     image_url:null,
     user_token:null,
+    top5:null,
     isSuccess:false,
     isError:false,
     isLoading:false,
@@ -172,6 +173,22 @@ export const setCoins=createAsyncThunk(
      }
 
 )
+// set coins after the game play
+export const getTop5Users=createAsyncThunk(
+    'get/top5',
+     async(thunkAPI)=>{
+      
+        try { 
+            return await authService.getTop5Users()
+        } catch (error) {
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
 
 
 export  const authSlice=createSlice({
@@ -318,6 +335,17 @@ export  const authSlice=createSlice({
             state.isSuccess=false
             state.isError=true
             state.message=action.payload
+        })
+        .addCase(getTop5Users.pending,(state)=>{
+            state.isLoading=true
+        })
+        .addCase(getTop5Users.rejected,(state,action)=>{
+            state.isLoading=false
+            state.message=action.payload
+        })
+        .addCase(getTop5Users.fulfilled,(state,action)=>{
+            state.isLoading=false
+            state.top5=action.payload
         })
     }
 

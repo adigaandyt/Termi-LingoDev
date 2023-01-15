@@ -340,6 +340,33 @@ const setCoinsOnFinishedGame=asyncHandler( async (req,res)=>{
      
   
   })
+  
+ //@desc get the top 5 in the games by there coins ....
+//@route POST /api/users/get/top5
+//@access public
+    
+const getTop5Users=asyncHandler( async (req,res)=>{
+
+     try {
+        // const users=await User.find({},).sort({games_coins: -1}).limit(5)
+        const users=await User.aggregate([
+            { $sort:{games_coins:-1}},
+            {$limit:5},
+            {$project:{_id:0,favorite_pet:0,added_concepts:0,password:0,phoneNumber:0}}
+        ])
+
+
+        users.sort(function(a, b) {
+            return b.games_coins - a.games_coins;
+        });
+        
+     res.json(users)
+
+     } catch (error) {
+         res.status(500)
+         throw new Error(error)
+     }
+  })
 module.exports={
     registrUser,
     loginUser,
@@ -349,5 +376,6 @@ module.exports={
     updateUserDetails,
     updateUserImage,
     verifyUser,
-    setCoinsOnFinishedGame
+    setCoinsOnFinishedGame,
+    getTop5Users
 }

@@ -71,7 +71,7 @@ if(isLoading){
             <Route path='/forgotpassword/verified' element={<VerifyPrivateRoute/>}>
                 <Route path='/forgotpassword/verified' element={<ResetPassword/>}/>
             </Route>
-            <Route path='/test' element={<UserList/>}/>
+            <Route path='/test' element={<TestComponent/>}/>
 
             <Route path='/new/concept' element={<PrivateRoute/>}>
               <Route path='/new/concept' element={<NewConcept/>}/>

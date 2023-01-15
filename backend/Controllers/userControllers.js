@@ -130,7 +130,21 @@ const loginUser=asyncHandler( async (req,res)=>{
 //@route GET /api/users/me
 //@access private
 const getMe=asyncHandler( async(req,res)=>{
-    res.status(200).json(req.user)
+    const user=req.user
+    res.status(200).json({
+        _id:user._id,
+        name:user.name,
+        email:user.email,
+        phoneNumber:user.phoneNumber,
+        language:user.language,
+        categoryId:user.categoryId,
+        games_coins:user.games_coins,
+        profile_image:user.profile_image,
+        added_concepts:user.added_concepts,
+        gender:user.gender,
+        isAdmin:user.isAdmin,
+        token:generateToken(user._id)
+    })
 })
 
 

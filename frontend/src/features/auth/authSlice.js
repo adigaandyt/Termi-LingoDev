@@ -1,19 +1,47 @@
 import {createSlice,createAsyncThunk} from '@reduxjs/toolkit'
+import axios from 'axios'
 import authService from './authService'
+import { useDispatch } from 'react-redux'
+import {me} from './authService'
 
-// Get user from localstorage
+
 const user =JSON.parse(localStorage.getItem('user'))
 
-const initialState={ 
+
+const  initialState={ 
     user:user?user:null,
     image_url:null,
     user_token:null,
     isSuccess:false,
     isError:false,
     isLoading:false,
-    isImageLoading:false,
+    isImageLoading:false, 
     message:''
 }
+// check me 
+export const checkme=createAsyncThunk(
+    'check/me',
+     async(thunkAPI)=>{
+        console.log("213")
+        const token =JSON.parse(localStorage.getItem('token'))
+
+    //    const user=authService.me(token)
+        try { 
+            console.log("user")
+            return await authService.me(token)
+          
+        } catch (error) {
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
+// const dispatch=useDispatch()
+
+
 // Upload image to s3
 export const uploadImage=createAsyncThunk(
     'upload/image',
@@ -147,7 +175,7 @@ export const setCoins=createAsyncThunk(
 )
 
 
-export const authSlice=createSlice({
+export  const authSlice=createSlice({
     name:'auth',
     initialState,
     reducers:{
@@ -161,6 +189,19 @@ export const authSlice=createSlice({
     },
     extraReducers:(builder)=>{
         builder
+        .addCase(checkme.pending,(state)=>{
+            state.isLoading=true
+            
+        })
+        .addCase(checkme.fulfilled,(state,action)=>{
+            state.isLoading=false
+            state.user=action.payload
+        })
+        .addCase(checkme.rejected,(state,action)=>{
+            console.log(action.payload)
+            state.isLoading=false
+            state.isError=true
+        })
         .addCase(register.pending,(state)=>{
             state.isLoading=true
         })

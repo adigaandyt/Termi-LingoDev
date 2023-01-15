@@ -3,6 +3,32 @@ import axios from 'axios'
 
 const API_URL='/api/users'
 
+export const  me=async (token)=>{
+    console.log(token)
+    const config ={
+        headers:{
+            authorization:`Bearer ${token}`
+        }
+    }
+    try {
+        const response= await axios.get(API_URL+'/me',config)
+        // console.log(response.data)
+        if(response.data){
+            localStorage.setItem('token',JSON.stringify(response.data.token))
+            localStorage.setItem('user',JSON.stringify(response.data))
+        }
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+ 
+
+    
+    // console.log(response)
+    // console.log(response.data)
+    // return response.data
+}
+
 //upload image to s3
 const uploadImage =async (formdata)=>{
     console.log(formdata)
@@ -30,6 +56,7 @@ const updateUserImage =async (formdata,token)=>{
 const register =async (Data)=>{
     const response=await axios.post(API_URL+`/register/${Data.categoryId}`,Data.formData)
     if(response.data){
+        localStorage.setItem('token',JSON.stringify(response.data.token))
         localStorage.setItem('user',JSON.stringify(response.data))
     }
     return response.data
@@ -41,6 +68,7 @@ const login =async (userData)=>{
     
     if(response.data){
         localStorage.setItem('user',JSON.stringify(response.data))
+        localStorage.setItem('token',JSON.stringify(response.data.token))
     }
     return response.data
 }
@@ -95,6 +123,7 @@ const setCoins =async (data,token)=>{
     return response.data
 }
 const authService={
+    me,
     register,
     logout,
     login,

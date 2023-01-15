@@ -48,7 +48,7 @@ import '../styles/CircleBar.css'
     return(<>
        {(!isStart&&!concept&&!isLoading)&&<NoConceptResultModal/>}
         <form onSubmit={onSearchClick}>
-        <div className='container' id='formsearch'>
+        <div dir='ltr' className='container ' id='formsearch'>
             <div className='' id='formSearch-item'>
                  <div dir='ltr' className="input-group ">
                     <div id="search-autocomplete " className="form-outline">
@@ -82,8 +82,8 @@ import '../styles/CircleBar.css'
                     </datalist> 
                 </div>
             </div>
-            <div className='mt-2' id='formSearch-item'>
-                <select className="form-select border-secondary mt-1 mx-1 btn btn-primary  " aria-label="Default select example" onChange={OnSelectedCategory}>
+            <div   className='mt-2 col-5 ' id='formSearch-item'>
+                <select  className="form-select  border-secondary mt-1 mx-1 btn btn-primary " aria-label="Default select example" onChange={OnSelectedCategory}>
                     <option value='639e49f8dfabd615c821584f'>{t('all')}</option>
                     {
                         (categories)&&

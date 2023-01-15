@@ -69,8 +69,8 @@ function NewConcept(){
 
     return(<>
     <div className="mt-150 text-center "> 
-    <div dir='ltr' className="container-fluid">
-        <ul  className="btn-group nav-pills col-12 shadow-none"  id="pills-tab" role="tablist">
+    <div dir='ltr' className="container-fluid ">
+        <ul  className="btn-group nav-pills shadow-none "  id="pills-tab" role="tablist">
 
             <li className="nav-item " role="presentation">
             <button className="nav-link active" id="pills-english-tab" data-bs-toggle="pill" data-bs-target="#pills-english" type="button" role="tab" aria-controls="pills-english" aria-selected="true">{t('english')}</button>
@@ -88,7 +88,7 @@ function NewConcept(){
 
         </div>
 
-        <div  className="tab-content  text-center  container"  id="newconcept-inputs-page"> 
+        <div className="tab-content  text-center  container"  id="newconcept-inputs-page"> 
             <div className="tab-pane fade show active " id="pills-english" role="tabpanel" aria-labelledby="pills-english-tab">
             <div className="form-group mb-1 "> 
                     <input value={conceptName_english} name='conceptName_english' type="text" onChange={handleTextChange} class="form-control " id="floatingShortEnglish"  placeholder={t('concept_name_english')}/>
@@ -114,7 +114,7 @@ function NewConcept(){
             </div>
 
             <div className="tab-pane fade" id="pills-arabic" role="tabpanel" aria-labelledby="pills-arabic-tab">
-            <div className="form-group mb-1 "> 
+            <div  className="form-group mb-1 "> 
                 <input name='conceptName_arabic'  onChange={handleTextChange}  type="text"  className="form-control " id="floatingShortEnglish"  placeholder={t('concept_name_arabic')}/>
                 </div>
             <div className="form-group mb-1 ">
@@ -124,31 +124,56 @@ function NewConcept(){
                     <textarea name='longDefinition_arabic'  onChange={handleTextChange}  type="text" className="form-control" id="floatingLongArabic" placeholder={t('long_translation_arabic')} />
                 </div>
             </div>
-             <div className="form-group mb-1">
+             <div  className="form-group mb-1">
                     <input name='readMore'  onChange={handleTextChange}  type="text" className="form-control" id="floatingLinkArabic" placeholder={t('link')}/>
                 </div>
+                
+                <div dir='ltr' className="container-fluid">
+                <button type="button" class="btn btn-warning pull-right mt-3"   onClick={onSubmitClick} >{t('submit')}</button>
             
-            
-
-        </div>
-
-        <div className="form-group mt-2" id="reg-dropdown">
-                <select className="select-input  mt-2" name='categoryId' onChange={handleTextChange}>
+                <div  className="form-group mt-2 col-5 " id="reg-dropdown">
+                <select className="form-select border-secondary mt-1 mx-1 btn btn-primary  mt-2 " name='categoryId' onChange={handleTextChange}>
                                 {(categories)&&
                                     categories.map(category=>{
                                             return(category.accepted&&<option value={category._id}>{getCategoryName(category.categoryName)}</option>)
                                     })
                                 }
-                                <option value='639e49f8dfabd615c821584f'>{t('other')}</option>
-                </select>
+                </select>   
+
+                    
+                <button type="button" class="btn btn-info form-group mt-2 " data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">{t('new_category')}</button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{t('new_category')}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">{t('category_name')}</label>
+                                <input type="text" class="form-control" id="recipient-name"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">{t('category_description')}:</label>
+                                <textarea class="form-control" id="message-text"></textarea>
+                            </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-warning">{t('submit')}</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
             </div>
-    <div class="mt-3 col-md-12 ">
-             <button type="button" class="btn btn-warning pull-right mr-15"  onClick={onSubmitClick} >Submit</button>
         </div>
-
-
+        </div>
     </div>
-
     </>)
 }
 export default NewConcept

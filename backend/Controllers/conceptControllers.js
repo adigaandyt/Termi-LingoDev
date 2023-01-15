@@ -18,7 +18,7 @@ const { findById } = require('../Models/conceptsModel');
 
 
  //@desc testing in postman !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//@route GET /api/concepts/test 
+//@route POST /api/concepts/test 
 //@access private
 const testConcept=asyncHandler( async(req,res)=>{
     
@@ -26,12 +26,13 @@ const testConcept=asyncHandler( async(req,res)=>{
 
     try {
     //    concept=await Concept.updateMany({}, { $set: { accepted: true } });
-    const user=await User.find({}).sort({ games_coins: -1 }).where({ games_coins: { $exists: true } }).lean();
-    res.status(200).json(user)
+    // const user=await User.updateMany({},{added_concepts:0},{new:true})
+    // res.status(200).json(user)
     } catch (error) {
         res.status(500)
         throw new Error("Some thing is wrong !" )
     }
+    
 
 })
 
@@ -267,6 +268,8 @@ if(
     }
 
 try {
+    const newuser=await User.findByIdAndUpdate(user._id,{added_concepts:user.added_concepts+1})
+    console.log("succec")
 // const response=await Concept.create({
 // conceptName:{
 //     english:data.conceptName_english?data.conceptName_english:"N/A",

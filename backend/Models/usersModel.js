@@ -49,6 +49,10 @@ const userSchema=mongoose.Schema({
         type:String,
         required:[true,"please add favorite pet  "]
     },
+    added_concepts:{
+    type:Number,
+    default:0,
+    },
     games_coins:{
         type:Number,
         default:0

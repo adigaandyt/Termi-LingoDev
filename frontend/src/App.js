@@ -1,5 +1,5 @@
-import React from 'react';
-import { useEffect } from 'react';
+import React, { useState } from 'react';
+import { useEffect ,useLayoutEffect } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import { getCategories} from './features/categories/categorySlice';
 import {getConceptsNames} from './features/concepts/conceptSlice';
@@ -30,16 +30,26 @@ import GamesPage from './pages/games/GamesPage';
 import GuessTheTerm from './pages/games/game1';
 import { GamesProvider } from './hooks/gamesContext';
 import TransMe from './pages/games/game2';
+import { checkme } from './features/auth/authSlice';
+import Spinner from './components/Spinner';
+import Spinner3 from './components/Spinners/Spinner3';
 
 function App() {
+  const {user,isLoading}=useSelector(state=>state.auth)
+  const [loggedin,setLoggedIn]=useState(false)
   const dispatch=useDispatch()
   useEffect(()=>{
     dispatch(getConceptsNames())
     dispatch(getCategories())
-    
+    dispatch(checkme())
 },[])
+
+if(isLoading){
+  return <Spinner3/>
+}
   return (
     <>
+
    <GamesProvider>
     
       <Router>

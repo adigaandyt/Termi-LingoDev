@@ -94,6 +94,9 @@ if(isLoading){
             <Route path='/games/transme' element={<PrivateRoute/>}>
               <Route path='/games/transme' element={<TransMe path='home'/>}/>
             </Route>
+            <Route path='/games/transme/top5' element={<PrivateRoute/>}>
+              <Route path='/games/transme/top5' element={<TransMe path='top5'/>}/>
+            </Route>
             <Route path='/games/transme/settings' element={<PrivateRoute/>}>
               <Route path='/games/transme/settings' element={<TransMe path='settings'/>}/>
             </Route>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ExitModal from '../ExitModal';
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import {BsFillArrowRightCircleFill} from 'react-icons/bs';
 import { useTranslation } from 'react-i18next';
 function Home({onStart,answersLanguage,questLanguage,setLanguages}){
@@ -58,6 +58,7 @@ function Home({onStart,answersLanguage,questLanguage,setLanguages}){
         <div id="buttons_game_containet">
         <button className="d-" id="game2-home-button"  onClick={onStart}>{t('start')}</button>
         <button className="d-" id="game2-home-button" onClick={()=>navigate('/games/transme/settings')}>{t('settings')}</button>
+        <button className="d-" id="game2-home-button" onClick={()=>navigate('/games/transme/top5')}>{t('top5')}</button>
         <button className="d-" id="game2-home-button" onClick={onExit}>{t('exit-game')}</button>
         </div>
         </div>

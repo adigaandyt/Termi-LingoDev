@@ -1,11 +1,11 @@
 import {GiTrophyCup} from 'react-icons/gi'
 import '../styles/userCard.css' 
 
-function UserCard({user,index}){
+function UserCard({user,index,color}){
     return (<>
     <div dir='ltr' className="container mt-2 " style={{"position":"relative"}}>
     <div class="user-card-container">
-  <div class="svg-background-user-card"></div>
+  <div class="svg-background-user-card" style={{"backgroundColor":color}}></div>
   <div class="svg-background2-user-card"></div>
   <div class="circle-user-card"></div>
   {/* <img class="menu-icon-user-card" src="https://pngimage.net/wp-content/uploads/2018/06/white-menu-icon-png-8.png"/> */}

@@ -1,5 +1,7 @@
 import '../../styles/games/game2.css'
 import { useRef,useEffect, useState,useLayoutEffect } from 'react';
+import {Link} from 'react-router-dom'
+import {TbArrowBackUp} from 'react-icons/tb'
 import {useDispatch,useSelector} from 'react-redux'
 import {getConceptNames4TransMeGame,setTransMeGameResult} from '../../features/Games/gamesSlice'
 import Home from '../../components/games/transMe/Home';
@@ -10,6 +12,7 @@ import { useTranslation } from 'react-i18next';
 import TransMeSpinner from '../../components/Spinners/TransMeSpinner';
 import { reset, setCoins } from '../../features/auth/authSlice';
 import Timer from '../Timer';
+import UserList from '../../components/UserList';
 
 function TransMe({path}){
     const dispatch =useDispatch();
@@ -157,6 +160,26 @@ const onEndGame=()=>{
             <Home onStart={onStart} answersLanguage={languages.answersLanguage} questLanguage={languages.questLanguage} setLanguages={setLanguages}/>:
             <Question  languages={languages} onNextQuestion={onNextQuestion} questionNumber={questionNumber} onNewQuestResult={onNewQuestResult}/>
             }
+        </>}
+        {path==='top5'&&<>
+        <div className='text-center'>
+        <div dir='ltr'  class="flip_letters ">
+          <span style={{"--flip":"1"}}>T</span>
+          <span style={{"--flip":"2"}}>O</span>
+          <span style={{"--flip":"3"}}>P</span>
+          <span style={{"--flip":"4","color":" rgba(219,87,5,1)"}}>5</span>
+          <span style={{"--flip":"5"}}>U</span>
+          <span style={{"--flip":"6"}}>S</span>
+          <span style={{"--flip":"7"}}>E</span>
+          <span style={{"--flip":"8"}}>R</span>
+          <span style={{"--flip":"9"}}>S</span>
+        </div>
+        <div className="w-25 text-end">
+            <Link to='/games/transme' id="settings-guesstheterm-button" className="btn" style={{"color":"rgba(219,87,5,1)"}}><TbArrowBackUp className="display-5"/> </Link>
+        </div>
+        </div>  
+        <div className='mt-80'></div>
+        <UserList color={" rgba(219,87,5,1)"}/>
         </>}
         {path=='settings'&&<>
             <Settings  setCategoryChanged={setCategoryChanged} languages={languages}  setLanguages={setLanguages} getCategoryId={getCategoryId}/>

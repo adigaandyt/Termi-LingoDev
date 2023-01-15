@@ -3,6 +3,34 @@ import authService from './authService'
 
 // Get user from localstorage
 const user =JSON.parse(localStorage.getItem('user'))
+// const token =JSON.parse(localStorage.getItem('token'))
+// const token =JSON.parse(localStorage.getItem('token'))
+// const getuser=()=>{
+//     let res
+//     const usera= me(token).then(async res=>{
+//         // console.log(res)
+        
+//     //    console.log(usera)
+//         return await res
+//      })
+     
+//      console.log(res)
+// }
+// getuser()
+
+
+// console.log(token)
+// let res
+// const usera= me(token).then(async res=>{
+//     // console.log(res)
+    
+// //    console.log(usera)
+//     return await res
+//  })
+
+// console.log(usera)
+
+
 
 const initialState={ 
     user:user?user:null,

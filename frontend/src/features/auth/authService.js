@@ -3,6 +3,27 @@ import axios from 'axios'
 
 const API_URL='/api/users'
 
+// export const  me=async (token)=>{
+//     const config ={
+//         headers:{
+//             authorization:`Bearer ${token}`
+//         }
+//     }
+//     try {
+//       return await axios.get(API_URL+'/me',config).then(response=>{
+//             return(response.data) 
+//         })
+        
+//     } catch (error) {
+//         console.log(error)
+//     }
+ 
+
+    
+    // console.log(response)
+    // console.log(response.data)
+    // return response.data
+// }
 //upload image to s3
 const uploadImage =async (formdata)=>{
     console.log(formdata)
@@ -103,6 +124,7 @@ const authService={
     updateUser,
     updateUserImage,
     verifyUser,
+    // me,
     setCoins
     
 }

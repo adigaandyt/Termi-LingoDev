@@ -5,8 +5,8 @@ import { getConcepts4GuessTerm } from "../../features/Games/gamesSlice";
 import {getConceptsNames} from '../../features/concepts/conceptSlice';
 import { useDispatch , useSelector } from "react-redux";
 import './GamesPage.css';
-import {AiTwotoneLike, AiTwotoneDislike} from 'react-icons/ai';
 import { useTranslation } from 'react-i18next';
+
 
 // import { GamesProvider } from "../../hooks/gamesContext"
 
@@ -39,42 +39,25 @@ function GamesPage(){
         })
     }
     return (<>
-    
-
-    
-        <div className="cards">
-        <div className="card-game" onClick={toggleGame1}>
-            {/* <div class="card-image"></div> */}
-            <div className="card-info">
-                <div className="card-game-title">Guess The Term</div>
-                <div className="card-detail">{t('description1')}</div>
-                <Link to='/games/gesstheterm'><a className="play-btn"></a></Link>
-            </div>    
-            {/*<div className="card-social">
-            <ul>
-                <li id="li-btn"><button className="card-btn"><AiTwotoneLike/></button></li>
-                <li id="li-btn"><button className="card-btn"><AiTwotoneDislike/></button></li>
-            </ul>
-            </div>*/}
-        </div>
-        <div className="card-game" onClick={toggleGame2}>
-            {/*<div className="card-image"></div>*/}
-            <div className="card-info">
-                <div className="card-game-title">Game 2</div>
-                <div className="card-detail"></div>
-                <Link to='/games/transme'><a className="play-btn"></a></Link>
+        <div className='row mt-5' id="games-box" >
+            <div className='g1-box' onClick={toggleGame1}>
+                <Link to='/games/gesstheterm'>
+                <div className="icon" id="game-1">
+                    
+                </div>  
+                </Link>
+                <h6>Guess The Term</h6>
             </div>
-            {/*<div className="card-social">
-                <ul>
-                    <li id="li-btn"><button className="card-btn"><AiTwotoneLike/></button></li>
-                    <li id="li-btn"><button className="card-btn"><AiTwotoneDislike/></button></li>
-                </ul>
-            </div>*/}
-        </div>
-        
-        
-        </div>
-      
+            <div className='g1-box' onClick={toggleGame2}>
+                <Link to='/games/transme'>
+                <div className="icon" id="game-2">
+                    
+                </div>  
+                </Link>
+                <h6>TransMe</h6>
+            </div>
+         </div>
+
     </>)
 }
 export default GamesPage

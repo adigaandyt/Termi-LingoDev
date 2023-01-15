@@ -12,7 +12,7 @@ import GamesContext from '../../hooks/gamesContext';
 import './games.css'
 import Qestion from "../../components/games/guessTheTerm/Question";
 import GroupButtons from "../../components/games/GroupButtons";
-import Timer from "../../components/games/guessTheTerm/Timer";
+// import Timer from "../../components/games/guessTheTerm/Timer";
 import { useTranslation } from "react-i18next";
 import {TbArrowBackUp} from 'react-icons/tb'
 import { getCategoryName } from "../../hooks/ExportsFunctions";
@@ -21,6 +21,7 @@ import {AiFillSound} from 'react-icons/ai';
 import { toast } from "react-toastify";
 import {Howl} from "howler";
 import Win from './win.wav';
+import Timer from '../Timer'
 
 
 
@@ -55,6 +56,30 @@ function GuessTheTerm({page}){
     const [feedScore, setFeedScore] = useState();
     const [feedColor, setFeedColor] = useState();
     const [audio, setAudio] = useState(null);
+    const [isActive, setIsActive] = useState(false);
+    const [isPaused, setIsPaused] = useState(true);
+    const [time, setTime] = useState(0);
+    
+    const handleStart = () => {
+      setIsActive(true);
+      setIsPaused(false);
+    };
+    
+    
+    const handleReset = () => {
+      setIsActive(false);
+      setTime(0);
+      // console.log(`${time/1000}`)
+      // toast.error(`you have finish in ${time/1000}`)
+      if((time/1000) > 60){
+        console.log(`${time/60000} min`)
+        toast(`you have finish in ${(time/60000)} min` )
+      }
+      else{
+        console.log(`${time/1000} sec`)
+        toast(`you have finish in ${time/1000} sec`)
+      }
+    };
     const playSound = (src) => {
         setAudio(new Howl({ src }));
     };
@@ -73,8 +98,26 @@ function GuessTheTerm({page}){
       }
       playSound(Win);
       onEndGame();
+      handleReset();
     }
    },[isEnd])
+   ///// useState for timer /////////////
+   useLayoutEffect(() => {
+    let interval = null;
+  
+    if (isActive && isPaused === false) {
+      interval = setInterval(() => {
+        setTime((time) => time + 10);
+      }, 10);
+    } else {
+      clearInterval(interval);
+    }
+    return () => {
+      clearInterval(interval);
+    };
+  }, [isActive, isPaused]);
+  
+  
    const onExit=()=>{
     setIsModalOpen(!isModalOpen)
    }
@@ -88,6 +131,7 @@ function GuessTheTerm({page}){
       setIsStart(true)
       setIsEnd(false)
       setGameResultList([])
+      handleStart();
       }
 
       if(user_concepts.user_concepts.length<10){
@@ -203,7 +247,9 @@ console.log(categoryId)
             <GroupButtons start={start} onExit={onExit} isEnd={isEnd}/>
           </> }
 
-         {isStart&& <Qestion onNewQuestResult={onNewQuestResult}  questionNumber={questionNumber} languageChoosed={languageChoosed} onNextQestion={onNextQestion} question={questionsList.length>0&&questionsList[questionNumber]}/>}
+         {isStart&&
+          <Qestion onNewQuestResult={onNewQuestResult}  questionNumber={questionNumber} languageChoosed={languageChoosed} onNextQestion={onNextQestion} question={questionsList.length>0&&questionsList[questionNumber]}/>
+         }
  
           
         </div>

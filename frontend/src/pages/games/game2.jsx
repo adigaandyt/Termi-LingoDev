@@ -9,6 +9,7 @@ import {toast} from 'react-toastify'
 import { useTranslation } from 'react-i18next';
 import TransMeSpinner from '../../components/Spinners/TransMeSpinner';
 import { reset, setCoins } from '../../features/auth/authSlice';
+import Timer from '../Timer';
 
 function TransMe({path}){
     const dispatch =useDispatch();
@@ -19,14 +20,37 @@ function TransMe({path}){
     const [startGameTime,setStartGameTime]=useState()
     const [categoryId,setCategoryId]=useState(null)//used just in the getCategoryId function !
     const [categoryChanged,setCategoryChanged]=useState(false);
-  const [gameResultList,setGameResultList]=useState([]);
+    const [gameResultList,setGameResultList]=useState([]);
     const [languages,setLanguages]=useState({
         questLanguage:user.language,
         answersLanguage:null,
     })
     const [isStart,setIsStart]=useState(false)
     const [isEnd,setIsEnd]=useState(false)
-    const [score,setScore]=useState(0)
+    const [score,setScore]=useState(0);
+    const [isActive, setIsActive] = useState(false);
+    const [isPaused, setIsPaused] = useState(true);
+    const [time, setTime] = useState(0);
+    const handleStart = () => {
+      setIsActive(true);
+      setIsPaused(false);
+    };
+    
+    
+    const handleReset = () => {
+      setIsActive(false);
+      setTime(0);
+      // console.log(`${time/1000}`)
+      // toast.error(`you have finish in ${time/1000}`)
+      if((time/1000) > 60){
+        console.log(`${time/60000} min`)
+        toast(`you have finish in ${(time/60000)} min` )
+      }
+      else{
+        console.log(`${time/1000} sec`)
+        toast(`you have finish in ${time/1000} sec`)
+      }
+    };
     useEffect(()=>{
         dispatch(getConceptNames4TransMeGame())
         // console.log("use",user.categoryId)
@@ -41,6 +65,7 @@ function TransMe({path}){
         //   }
         //   playSound(Win);
           onEndGame();
+          handleReset();
         }
        },[isEnd])
     const getCategoryId=(categoryId)=>{
@@ -52,6 +77,21 @@ function TransMe({path}){
      ])
     //  console.log(gameResultList)
     }
+    ///// useState for timer /////////////
+   useLayoutEffect(() => {
+        let interval = null;
+      
+        if (isActive && isPaused === false) {
+          interval = setInterval(() => {
+            setTime((time) => time + 10);
+          }, 10);
+        } else {
+          clearInterval(interval);
+        }
+        return () => {
+          clearInterval(interval);
+        };
+    }, [isActive, isPaused]);
 
 const onStart=()=>{
     if(languages.answersLanguage){
@@ -65,7 +105,7 @@ const onStart=()=>{
         if(!categoryChanged){
         dispatch(getConceptNames4TransMeGame())
         }
-        
+        handleStart();
     }else{
         toast(t('not_enough_concepts_toast'))
     }        
@@ -115,7 +155,8 @@ const onEndGame=()=>{
 
             {!isStart?
             <Home onStart={onStart} answersLanguage={languages.answersLanguage} questLanguage={languages.questLanguage} setLanguages={setLanguages}/>:
-            <Question  languages={languages} onNextQuestion={onNextQuestion} questionNumber={questionNumber} onNewQuestResult={onNewQuestResult}/>}
+            <Question  languages={languages} onNextQuestion={onNextQuestion} questionNumber={questionNumber} onNewQuestResult={onNewQuestResult}/>
+            }
         </>}
         {path=='settings'&&<>
             <Settings  setCategoryChanged={setCategoryChanged} languages={languages}  setLanguages={setLanguages} getCategoryId={getCategoryId}/>

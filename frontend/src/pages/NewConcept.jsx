@@ -154,12 +154,16 @@ function NewConcept(){
                         <div class="modal-body">
                             <form>
                             <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">{t('category_name')}</label>
+                                <label for="recipient-name" class="col-form-label">{t('english')}</label>
                                 <input type="text" class="form-control" id="recipient-name"/>
                             </div>
                             <div class="form-group">
-                                <label for="message-text" class="col-form-label">{t('category_description')}:</label>
-                                <textarea class="form-control" id="message-text"></textarea>
+                            <label for="recipient-name" class="col-form-label">{t('hebrew')}</label>
+                                <input type="text" class="form-control" id="recipient-name"/>
+                            </div>
+                            <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">{t('arabic')}</label>
+                                <input type="text" class="form-control" id="recipient-name"/>
                             </div>
                             </form>
                         </div>

@@ -85,6 +85,9 @@ if(isLoading){
             <Route path='/games/gesstheterm' element={<PrivateRoute/>}>
               <Route path='/games/gesstheterm' element={<GuessTheTerm page="home"/>}/>
             </Route>
+            <Route path='/games/gesstheterm/top5' element={<PrivateRoute/>}>
+              <Route path='/games/gesstheterm/top5' element={<GuessTheTerm page="top5"/>}/>
+            </Route>
             <Route path='/games/gesstheterm/settings' element={<PrivateRoute/>}>
               <Route path='/games/gesstheterm/settings' element={<GuessTheTerm page="settings"/>}/>
             </Route>

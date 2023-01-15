@@ -10,9 +10,13 @@ function UserList(){
         // dispatch(getTop5Users())
     },[])
     return(<>
-        <div className="mt-150">
+        <div className="">
             {top5&&top5.map((user,index)=>{
-               return <UserCard  user={user} key={index} index={index}/>
+               return(
+                <div className='  '>
+               <UserCard  user={user} key={index} index={index}/>
+               </div>
+               )
             })}
         </div>
     </>)

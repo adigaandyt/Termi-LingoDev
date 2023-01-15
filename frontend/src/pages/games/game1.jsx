@@ -2,7 +2,7 @@ import { useRef,useEffect,useState,useContext ,useLayoutEffect } from "react";
 import AnimationTitle from "../../components/Animation/AnimationTitle";
 import Spinner2 from "../../components/Spinners/Spinner2";
 import { getConcepts4GuessTerm,setGuessTheTermGameResult } from "../../features/Games/gamesSlice";
-import {setCoins,reset} from '../../features/auth/authSlice'
+import {setCoins,reset, getTop5Users} from '../../features/auth/authSlice'
 import {getConceptsNames} from '../../features/concepts/conceptSlice'
 import {getConcepts4GuessTermByCategoryId} from '../../features/Games/gamesSlice'
 import { useDispatch , useSelector } from "react-redux";
@@ -23,6 +23,7 @@ import {Howl} from "howler";
 import Win from './win.wav';
 import Timer from '../Timer'
 import Coins from "../coins";
+import UserList from "../../components/UserList";
 
 
 
@@ -89,6 +90,7 @@ function GuessTheTerm({page}){
    useEffect(()=>{
     dispatch(getConcepts4GuessTerm())
     dispatch(getConceptsNames())
+    // dispatch(getTop5Users())
     // start game sound yahia
     
    },[]);
@@ -217,7 +219,7 @@ console.log(categoryId)
     return (
      
         
-        <div dir="ltr"  id='game1-body' className=' text-center'>
+        <div dir="ltr"  id='game1-body' className=' '>
       
       {isGamesLoading?(<Spinner2/>):(<>
         {isModalOpen&&<ExitGame toggleModal={toggleModal}/>}
@@ -259,6 +261,28 @@ console.log(categoryId)
         </div>
 
           
+</>)}
+{page==='top5'&&(<>
+
+<div>
+
+<div className="text-center mt-3">
+<h1 className="display-2"><spam className='text-danger'>The</spam> <spam className='text-success'>Top 5</spam> <spam className='text-warning'>Users</spam></h1>
+<div className="w-25 text-end ">
+
+<Link to='/games/gesstheterm' id="settings-guesstheterm-button" className="btn text-warning" ><TbArrowBackUp className="display-5"/> </Link>
+</div>
+</div>
+<div className="text-center mt-80 ">
+
+
+</div>
+       
+<UserList/>
+</div>
+<div className="text-center">
+</div>
+
 </>)}
 {page==='settings'&&(<>
   <AnimationTitle className='mt-5' text1={t('update')} text2={t('your')} text3={t('settings')}/> 

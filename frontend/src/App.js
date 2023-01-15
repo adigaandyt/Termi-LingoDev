@@ -33,6 +33,8 @@ import TransMe from './pages/games/game2';
 import { checkme } from './features/auth/authSlice';
 import Spinner from './components/Spinner';
 import Spinner3 from './components/Spinners/Spinner3';
+import UserCard from './components/UserCard';
+import UserList from './components/UserList';
 
 function App() {
   const {user,isLoading}=useSelector(state=>state.auth)
@@ -69,7 +71,7 @@ if(isLoading){
             <Route path='/forgotpassword/verified' element={<VerifyPrivateRoute/>}>
                 <Route path='/forgotpassword/verified' element={<ResetPassword/>}/>
             </Route>
-            <Route path='/test' element={<TestComponent/>}/>
+            <Route path='/test' element={<UserList/>}/>
 
             <Route path='/new/concept' element={<PrivateRoute/>}>
               <Route path='/new/concept' element={<NewConcept/>}/>

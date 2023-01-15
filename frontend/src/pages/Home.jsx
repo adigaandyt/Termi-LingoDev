@@ -16,6 +16,7 @@ import ConceptCardsList from '../components/ConceptCardsList'
 import CatouselDefinition from '../components/CaroselDefinition'
 import Spinner from '../components/Spinner'
 import CarouselAnimationDefinitions from '../components/CarouselAnimationDefinitions'
+import UserCard from '../components/UserCard'
 
 
 
@@ -86,6 +87,7 @@ function Home(){
                 </div>}
                 
                 <ConceptCardsList languageChoosed={languageChoosed}/>
+           
 
                
 

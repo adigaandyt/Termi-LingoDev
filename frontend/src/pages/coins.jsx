@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/coins.css';
 import anime from 'animejs';
 
+
 const Coins = () => {
     anime  ({
         targets: '#animationWrapper .coin',

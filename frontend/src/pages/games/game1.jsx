@@ -247,6 +247,7 @@ console.log(categoryId)
 
           {!isStart&&<>
             <GroupButtons start={start} onExit={onExit} isEnd={isEnd}/>
+            {isEnd&&<Coins/>}
             
           </> }
 

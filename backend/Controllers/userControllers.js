@@ -162,7 +162,7 @@ const resetPassword=asyncHandler(async (req,res)=>{
     try {
         const user=await User.findById(userId)
         //check if the user is exit and the current password that user included is correct 
-        if(user && (await bcrypt.compare(password,user.password))){
+        // if(user && (await bcrypt.compare(password,user.password))){
             if(password1!==password2){
                 res.status(400)
                 throw new Error("You must to include a same passwords !")
@@ -175,10 +175,7 @@ const resetPassword=asyncHandler(async (req,res)=>{
             const isSuccess= await  User.updateOne({_id:user._id} ,{password:hashPassword})
             res.status(200).json(isSuccess)
             
-        }else{
-            res.status(500)
-            throw new Error('Incorrect password')
-        }
+        
     } catch (error) {
         res.status(500)
         throw new Error(error)

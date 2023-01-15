@@ -1,0 +1,16 @@
+#pills-tab{
+    /*border: red solid;*/
+    /*width: 100%;*/
+    
+}
+@media only screen and (max-width: 450px) {
+    #pills-tab{
+        width: auto;
+    }
+    .nav-pills{
+        margin-left: -20px
+    }
+    /*#pills-english-tab{*/
+    /*    border: red solid;*/
+    /*}*/
+}

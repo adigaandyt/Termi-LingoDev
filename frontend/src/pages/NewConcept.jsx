@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react'
 import { useSelector ,useDispatch} from 'react-redux';
 import {getCategoryName} from '../hooks/ExportsFunctions'
 import {createNewConceptByUser} from '../features/concepts/conceptSlice'
+import "../styles/newConcept.css"
 // conceptName:{
 //     english:null,
 //     hebrew:null,
@@ -70,7 +71,7 @@ function NewConcept(){
     return(<>
     <div className="mt-150 text-center "> 
     <div dir='ltr' className="container-fluid ">
-        <ul  className="btn-group nav-pills shadow-none "  id="pills-tab" role="tablist">
+        <ul  className="btn-group nav-pills shadow-none text-center"  id="pills-tab" role="tablist">
 
             <li className="nav-item " role="presentation">
             <button className="nav-link active" id="pills-english-tab" data-bs-toggle="pill" data-bs-target="#pills-english" type="button" role="tab" aria-controls="pills-english" aria-selected="true">{t('english')}</button>

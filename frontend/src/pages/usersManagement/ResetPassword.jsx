@@ -56,20 +56,7 @@ function ResetPassword(){
 
              <form onSubmit={onSubmit}>
              <div className='container  text-center '>
-             <div className="form-floating  mb-3 ">
-                <input
-                className="form-control "
-                name='password'
-                type='password'
-                placeholder={t('current password')}
-                id='password'
-                value={password}
-                onChange={onChange}
-                required
-
-                 />
-                  <label for="floatingInput">{t('current password')}</label>
-            </div>
+      
             <div className="form-floating  mb-3 ">
                 <input
                 className="form-control "

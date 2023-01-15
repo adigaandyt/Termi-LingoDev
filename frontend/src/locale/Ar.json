@@ -80,17 +80,25 @@
     "hebrew": "عبري",
     "english": "انجليزي",
     "arabic": "عربي",
-    "short_translation_english": "ترجمة إنجليزية قصيرة",
-    "long_translation_english": "ترجمة إنجليزية طويلة",
-    "short_translation_arabic": "ترجمة عربية قصيرة",
-    "long_translation_arabic": "ترجمة عربية طويلة",
-    "short_translation_hebrew": "ترجمة عبرية قصيرة",
-    "long_translation_hebrew": "ترجمة عبرية طويلة",
+    "short_translation_english": "وصف إنجليزية قصيرة",
+    "long_translation_english": "وصف إنجليزية طويلة",
+    "short_translation_arabic": "وصف عربية قصيرة",
+    "long_translation_arabic": "وصف عربية طويلة",
+    "short_translation_hebrew": "وصف عبرية قصيرة",
+    "long_translation_hebrew": "وصف عبرية طويلة",
     "link": "رابط",
     "gender":"الجنس",
     "male":"ذكر",
     "female":"انثى",
-    "coins":"نقود"
+    "coins":"نقود",
+    "concept_name_english": "اسم الموضوع  بالإنجليزية",
+    "concept_name_hebrew": "اسم الموضوع بلعبراني",
+    "concept_name_arabic": "اسم الموضوع بالعربي",
+    "submit": "إرسال",
+    "new_category" : "فئة جديدة",
+    "category_name" : "اسم الفئة",
+    "category_description": "وصف الفئة"
+
 
    
 

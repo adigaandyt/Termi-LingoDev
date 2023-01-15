@@ -80,17 +80,27 @@
     "hebrew": "Hebrew",
     "english": "English",
     "arabic": "Arabic",
-    "short_translation_english": "Short Translation In English",
-    "long_translation_english": "Long Translation In English",
-    "short_translation_arabic": "Short Translation In Arabic",
-    "long_translation_arabic": "Long Translation In Arabic",
-    "short_translation_hebrew": "Short Translation In Hebrew",
-    "long_translation_hebrew": "Long Translation In Hebrew",
+    "short_translation_english": "Short Description In English",
+    "long_translation_english": "Long Description In English",
+    "short_translation_arabic": "Short Description In Arabic",
+    "long_translation_arabic": "Long Description In Arabic",
+    "short_translation_hebrew": "Short Description In Hebrew",
+    "long_translation_hebrew": "Long Description In Hebrew",
     "link": "Link",
     "gender":"Gender",
     "male":"Male",
     "female":"Female",
-    "coins":"Coins"
+    "coins":"Coins",
+    "concept_name_english": "Concept Name In English",
+    "concept_name_hebrew": "Concept Name In Hebrew",
+    "concept_name_arabic": "Concept Name In Arabic",
+    "submit": "Submit",
+    "new_category" : "New Category",
+    "category_name" : "Category Name",
+    "category_description": "Category Description"
+
+
+
     
 
 

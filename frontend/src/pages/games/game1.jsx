@@ -22,6 +22,8 @@ import { toast } from "react-toastify";
 import {Howl} from "howler";
 import Win from './win.wav';
 import Timer from '../Timer'
+import Coins from "../coins";
+
 
 
 
@@ -245,6 +247,7 @@ console.log(categoryId)
 
           {!isStart&&<>
             <GroupButtons start={start} onExit={onExit} isEnd={isEnd}/>
+            
           </> }
 
          {isStart&&

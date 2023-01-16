@@ -9,11 +9,11 @@ const languageChangeSchema=mongoose.Schema({
         type:String,
         required:[true,'YOU MUST TO contain email'],
      },
-     categoryName:{
+     categoryID:{
         type:String,
         required:[true,'YOU MUST TO contain categoryName'],
      },
-     conceptName:{
+     conceptID:{
         type:String,
         required:[true,'YOU MUST TO contain conceptName'],
      },

@@ -8,6 +8,10 @@ import {TiChevronLeftOutline, TiChevronRightOutline} from 'react-icons/ti';
 import { useSelector } from 'react-redux';
 import Definitions from '../components/Definitions'
 import '../styles/CarouselAnimationDefinitions.css'
+import {sendLanguageChange} from '../features/logging/loggingSlice'
+import {useDispatch} from 'react-redux'
+
+
 const CARDS = 3;
 const MAX_VISIBILITY = 2;
 
@@ -36,17 +40,39 @@ const Card = ({title,concept}) => {
 };
 
 const Carousel = ({children}) => {
+  const dispatch =useDispatch();
+
   const {concept}=useSelector(state=>state.concept)
   const [active, setActive] = useState(2);
   const count = React.Children.count(children);
   const [position, setPosition] = useState(0);
   const handleRef = useRef(null);
-  useEffect(()=>{
-    console.log("------------------")
-    console.log(active);
-    console.log(concept);
-    console.log("------------------")
-  },[active])
+  
+  // useEffect(()=>{
+  //   console.log("------------------")
+  //   console.log(active);
+  //   console.log(concept);
+  //   const data={
+  //     active:active,
+  //     concept:concept
+  //   }
+  //   dispatch(sendLanguageChange(data))
+  //   // sendLanguageChange
+  //   console.log("------------------")
+  // },[active])
+
+  const languagechange=(change)=>{
+        let newActive = active + change
+        const data={
+          previousLanguage:active,
+          newLanguage:newActive,
+          categoryID:concept.categories[1],
+          conceptID:concept._id
+        }
+        dispatch(sendLanguageChange(data))
+        setActive(newActive)
+  }
+
   const handleTouchStart = (event) => {
     event.preventDefault();
     const initialX = event.touches[0].clientX;
@@ -65,12 +91,12 @@ const Carousel = ({children}) => {
       if (event.changedTouches[0].clientX > initialX+35) {
         console.log('Moved to the right');
         if(active > 0){
-          setActive(i => i - 1)
+          languagechange(-1)
         }
       } else if (event.changedTouches[0].clientX < initialX-35) {
         console.log('Moved to the left');
         if(active < count - 1){
-          setActive(i => i + 1)
+          languagechange(1)
           
         }
       }
@@ -79,12 +105,12 @@ const Carousel = ({children}) => {
     document.addEventListener('touchend', onTouchEnd);
   };
   const onLeft=()=>{
-    setActive(i => i - 1)
+    languagechange(-1)
     // console.log(concept);
     // console.log(active);
   }
   const onRight=()=>{
-    setActive(i => i + 1)
+    languagechange(1)
     // console.log(concept);
     // console.log(active);
   }

@@ -11,20 +11,17 @@ const Concept=require('../Models/conceptsModel')
 const setLanguageChange=asyncHandler( async(req,res)=>{
     const user=req.user;
     const data=req.body;
-    const expr = 'data.newLanguage';
+    const getLanguageByID=(expr)=>{
     switch (expr) {
-      case '0':
-        console.log('Hebrew');
-        break;
-      case '1':
-        console.log('Arabic');
-        break;
-      case '2':
-        console.log('english');
-        break;
+      case 0:
+        return 'עברית'
+      case 1:
+        return 'العربية'
       default:
-        console.log("undefined language");
+        return 'English'
     }
+    }
+
     //switch end
     
     console.log("----------****----------")
@@ -35,8 +32,11 @@ const setLanguageChange=asyncHandler( async(req,res)=>{
         const response=await LanguageChange.create({
             // userId:user._id,
             userEmail:user.email,
-            // categoryId:data.categoryId?data.categoryId:user.categoryId,
-            categoryName:categoryName.categoryName.english
+            conceptID:data.conceptID,
+            categoryID:data.categoryID,
+            newLanguage:getLanguageByID(data.newLanguage),
+            previousLanguage:getLanguageByID(data.previousLanguage),
+
             // language:data.language,
             // score:data.score,
             // date:data.date,
@@ -51,3 +51,6 @@ const setLanguageChange=asyncHandler( async(req,res)=>{
     }
 
 })
+module.exports={
+    setLanguageChange
+}

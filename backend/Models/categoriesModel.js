@@ -19,11 +19,11 @@ const categorySchema=mongoose.Schema({
         type:Boolean,
         default:false
     },
-    // suggestBy:{
-    //     type:mongoose.Schema.Types.ObjectId,
-    //     required:true,
-    //     ref:'User',
-    // }
+    suggestBy:{
+        type:mongoose.Schema.Types.ObjectId,
+        required:true,
+        ref:'User',
+    }
     
 
 })

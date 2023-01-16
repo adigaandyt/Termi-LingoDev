@@ -29,10 +29,43 @@ const getAllCategories=asyncHandler( async(req,res)=>{
     }
 
 })
+//@desc Create new Category by user
+//@route POST /api/categories/create/category
+//@access Private
+const createCategoryByUser=asyncHandler( async(req,res)=>{
+    const user=req.user
+    const {categoryName_english,categoryName_hebrew,categoryName_arabic}=req.body
+    try {
+        const categoryExist_english= await Category.findOne({"categoryName.english":categoryName_english})
+        const categoryExist_arabic= await Category.findOne({"categoryName.arabic":categoryName_arabic})
+        const categoryExist_hebrew= await Category.findOne({"categoryName.hebrew":categoryName_hebrew})
+        if(categoryExist_arabic||categoryExist_english||categoryExist_hebrew){
+            res.status(400)
+            throw new Error('One or more of the categories names already exist in our database')
+        }
+        const newCategory= await Category.create({
+            categoryName:{
+                english:categoryName_english?categoryName_english:'N/A',
+                arabic:categoryName_arabic?categoryName_arabic:'N/A',
+                hebrew:  categoryName_hebrew?categoryName_hebrew:'N/A'
+            },
+            suggestBy:user._id,
 
+        })
+        res.status(200)
+
+
+    } catch (error) {
+        res.status(500)
+        throw new Error(error.message)
+    }
+    
+
+})
 
 
 module.exports={
     testCategories,
-    getAllCategories
+    getAllCategories,
+    createCategoryByUser
  }

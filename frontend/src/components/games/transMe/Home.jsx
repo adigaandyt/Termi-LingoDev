@@ -31,6 +31,7 @@ function Home({onStart,answersLanguage,questLanguage,setLanguages}){
         <div className="text-center ">
         {/* <h2 className='mt-5' id='game2-title'>TransMe</h2> */}
         <div dir='ltr'  class="flip_letters mt-90">
+<<<<<<< HEAD
            <span style={{"--flip":"1"}}>T</span>
            <span style={{"--flip":"2"}}>r</span>
            <span style={{"--flip":"3"}}>a</span>
@@ -40,6 +41,17 @@ function Home({onStart,answersLanguage,questLanguage,setLanguages}){
            <span style={{"--flip":"7","color":" rgba(219,87,5,1)"}}>e</span>
         </div>
         <div dir='ltr' className="mt-5 row w-100" >
+=======
+   <span style={{"--flip":"1"}}>T</span>
+   <span style={{"--flip":"2"}}>r</span>
+   <span style={{"--flip":"3"}}>a</span>
+   <span style={{"--flip":"4"}}>n</span>
+   <span style={{"--flip":"5"}}>s</span>
+   <span style={{"--flip":"6","color":" rgba(219,87,5,1)"}}>M</span>
+   <span style={{"--flip":"7","color":" rgba(219,87,5,1)"}}>e</span>
+  </div>
+          <div dir='ltr' className="mt-5 row">
+>>>>>>> 21bb6dbaa5a920e415a94eb8e3af6ef3123b64f8
             <div className="col-5 text-end">
                 <select name="questLanguage" onChange={onChangeLanguage} className="text-end select-game2-lang"  id="floatingSelectGrid"  aria-label="Language">
                   <option disabled={(answersLanguage==="English")?true:false}   value="English">English</option> 

@@ -19,7 +19,7 @@ app.use('/api/users', require('./Routes/userRoutes'))
 app.use('/api/concepts',require('./Routes/conceptRoutes'))
 app.use('/api/categories',require('./Routes/categoryRoutes'))
 app.use('/api/games',require('./Routes/gamesRoutes'))
-// app.use('/api/loging',require('./Routes/logingRoutes')) 
+app.use('/api/loging',require('./Routes/logingRoutes')) 
 
  
 // use the errorHandler function for manage error events 

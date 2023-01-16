@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next"
 import { useEffect, useState } from "react"
 import { useSelector,useDispatch } from "react-redux"
 import { getConcept ,resetConcept } from "../features/concepts/conceptSlice"
-import { getConceptName,getCategoryName1 } from "../hooks/ExportsFunctions"
+import { getConceptName,getCategoryName1,getConceptNameCookies } from "../hooks/ExportsFunctions"
 
 import '../styles/SearchForm.css'
 
@@ -11,7 +11,9 @@ function ConceptCard({concept,languageChoosed}){
     const {categories}=useSelector(state=>state.category);
     const dispatch=useDispatch();
     const [category,setCategory]=useState('');
-
+    // useEffect(()=>{
+    //     console.log('card',languageChoosed)
+    // },[concept])
     const searchById=(id)=>{
         if(categories){
             const result= categories.find((item) => item._id === id);
@@ -28,10 +30,11 @@ function ConceptCard({concept,languageChoosed}){
     }
     
     return(<>
-        <div id='parent '>
+        <div id='parent'>
             <div className="card my-2 w-100 mx-2" id='child'>
                 <div className="card-body">
-                    <h6 className="card-title">{getConceptName(languageChoosed,concept)}</h6>
+                    <h6 className="card-title">{getConceptNameCookies(concept)}</h6>
+                    <button onClick={()=>console.log(concept)}>ssa</button>
                     <p className="card-subtitle mt-5 text-secondary">{searchById(concept.categories[0])}</p>
                     {concept.accepted?
                         <p className="card-subtitle mt-2 text-success">{t('accepted_by_admin')} </p>:

@@ -1,18 +1,18 @@
 import '../../styles/games/game2.css'
 import { useRef,useEffect, useState,useLayoutEffect } from 'react';
+import {Link} from 'react-router-dom'
+import {TbArrowBackUp} from 'react-icons/tb'
 import {useDispatch,useSelector} from 'react-redux'
 import {getConceptNames4TransMeGame,setTransMeGameResult} from '../../features/Games/gamesSlice'
 import Home from '../../components/games/transMe/Home';
 import Settings from '../../components/games/transMe/Settings';
 import Question from '../../components/games/transMe/Question';
-import {Link} from 'react-router-dom'
 import {toast} from 'react-toastify'
-import {TbArrowBackUp} from 'react-icons/tb'
-import UserList from '../../components/UserList'
 import { useTranslation } from 'react-i18next';
 import TransMeSpinner from '../../components/Spinners/TransMeSpinner';
 import { reset, setCoins } from '../../features/auth/authSlice';
 import Timer from '../Timer';
+import UserList from '../../components/UserList';
 
 function TransMe({path}){
     const dispatch =useDispatch();
@@ -161,9 +161,9 @@ const onEndGame=()=>{
             <Question  languages={languages} onNextQuestion={onNextQuestion} questionNumber={questionNumber} onNewQuestResult={onNewQuestResult}/>
             }
         </>}
-             {path==='top5'&&<>
-        <div  dir='ltr'  className='text-center'>
-        <div class="flip_letters ">
+        {path==='top5'&&<>
+        <div className='text-center'>
+        <div dir='ltr'  class="flip_letters ">
           <span style={{"--flip":"1"}}>T</span>
           <span style={{"--flip":"2"}}>O</span>
           <span style={{"--flip":"3"}}>P</span>

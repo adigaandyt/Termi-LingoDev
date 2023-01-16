@@ -4,7 +4,7 @@ const {protect}=require("../middleware/authMiddleware")
 const {setLanguageChange}=require('../Controllers/searchLanguageChangeController')
 
 
-router.post('/set/search_language_change',protect,setLanguageChange)
+router.post('/set/searchlanguagechange',protect,setLanguageChange)
 
 
 module.exports=router

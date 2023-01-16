@@ -52,7 +52,10 @@ const createCategoryByUser=asyncHandler( async(req,res)=>{
             suggestBy:user._id,
 
         })
-        res.status(200)
+        if(newCategory){
+
+            res.status(200)
+        }
 
 
     } catch (error) {

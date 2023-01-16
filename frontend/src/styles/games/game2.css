@@ -1,9 +1,10 @@
 #game2{
-    position:absolute;
-    top:0;
-    bottom:0;
-    width: 100%;
-    height: auto;
+  position: absolute;
+  top:0;
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+  	
     z-index: 9999;
     /* background-color: aquamarine; */
     background-image: url('https://static.vecteezy.com/system/resources/thumbnails/003/303/295/small/mountains-background-game-vector.jpg');

@@ -5,6 +5,7 @@ import {BsFillArrowRightCircleFill} from 'react-icons/bs';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from "react-redux";
 import { getTop5Users } from "../../../features/auth/authSlice";
+//yahia
 function Home({onStart,answersLanguage,questLanguage,setLanguages}){
   const {t}=useTranslation();
   const [isModalOpen,setIsModalOpen]=useState(false)
@@ -38,7 +39,7 @@ function Home({onStart,answersLanguage,questLanguage,setLanguages}){
    <span style={{"--flip":"6","color":" rgba(219,87,5,1)"}}>M</span>
    <span style={{"--flip":"7","color":" rgba(219,87,5,1)"}}>e</span>
   </div>
-          <div dir='ltr' className="mt-5   row">
+          <div dir='ltr' className="mt-5 row">
             <div className="col-5 text-end">
             <select   name="questLanguage" onChange={onChangeLanguage} className="text-end select-game2-lang"  id="floatingSelectGrid"  aria-label="Language">
               <option disabled={(answersLanguage==="English")?true:false}   value="English">English</option> 

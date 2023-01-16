@@ -4,7 +4,7 @@
     height: 100%;
     /* position: relative; */
     /* margin: 1em 0; */
-    /* border: red solid */
+     /*border: red solid */
   }
   .coin {
     width: 25px;
@@ -13,7 +13,7 @@
     border-radius: 50%;
     position: absolute;
     /* right: 0; */
-    margin-left: 500px;
+    margin-left: 350px;
     bottom: 7;
     opacity: 1;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);

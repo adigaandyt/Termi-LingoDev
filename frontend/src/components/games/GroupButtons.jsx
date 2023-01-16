@@ -6,7 +6,7 @@ function GroupButtons({start,onExit,isEnd}){
 	const dispatch=useDispatch()
 	const {t} = useTranslation();
     return(<>
-    <div className="html_for_game_buttons">
+    <div className="html_for_game_buttons ">
 	<div id="buttons_game_containet">
 	    {!isEnd?<button onClick={start} id="game_button">{t('start')}</button>:<button onClick={start} id="game_button">{t('play again')}</button>}
 	    <Link to='/games/gesstheterm/settings' id="game_button">{t('settings')}</Link>

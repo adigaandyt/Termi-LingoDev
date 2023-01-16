@@ -38,12 +38,13 @@ const testConcept=asyncHandler( async(req,res)=>{
 
 
 
+
  //@desc get single concept
 //@route GET /api/concepts/get/concept
 //@access private
 const getConcept=asyncHandler( async(req,res)=>{
     let concept
-    const textSearch=req.body.textSearch.replaceAll(')',"\\$&").replaceAll('(',"\\$&")
+    const textSearch=req.body.textSearch
     try {
         const category=await Category.findById(req.params.categoryId)
         if(!category){
@@ -52,9 +53,9 @@ const getConcept=asyncHandler( async(req,res)=>{
         }
         else{
             concept=await Concept.findOne({$or:[
-            {categories: {$all:[category.id]},"conceptName.arabic":{ $regex:new RegExp(textSearch), "$options" : "iu"}},
-            {categories: {$all:[category.id]},"conceptName.english":{ $regex:new RegExp(textSearch), "$options" : "iu"}},
-            {categories: {$all:[category.id]},"conceptName.hebrew":{ $regex:new RegExp(textSearch), "$options" : "iu"}}
+            {categories: {$all:[category.id]},"conceptName.arabic":textSearch},
+            {categories: {$all:[category.id]},"conceptName.english":textSearch},
+            {categories: {$all:[category.id]},"conceptName.hebrew":textSearch}
         ]})
         }
          

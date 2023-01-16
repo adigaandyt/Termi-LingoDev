@@ -7,7 +7,7 @@ function AnimationTitle({text1,text2,text3}){
  
     return(<>
   
-    <div class="container-title">
+    <div class="container-title mt-120">
       <span class="text1">{text1}</span>
       <span class="text3">{text2}</span>
       <span class="text2">{text3}</span>

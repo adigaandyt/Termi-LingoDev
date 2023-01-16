@@ -21,8 +21,8 @@ import {AiFillSound} from 'react-icons/ai';
 import { toast } from "react-toastify";
 import {Howl} from "howler";
 import Win from './win.wav';
-import Timer from '../Timer'
-import Coins from "../coins";
+import Timer from '../Timer';
+import Coins from "../../components/coins";
 import UserList from "../../components/UserList";
 
 

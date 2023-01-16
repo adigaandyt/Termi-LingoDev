@@ -13,9 +13,15 @@
     border-radius: 50%;
     position: absolute;
     /* right: 0; */
-    margin-left: 350px;
+    margin-left: 1000px;
     bottom: 7;
     opacity: 1;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
     transform: rotateX(0deg);
+  }
+  @media only screen and (max-width: 450px) {
+    .coin{
+      margin-left: 350px;
+      bottom: 500px;
+    }
   }

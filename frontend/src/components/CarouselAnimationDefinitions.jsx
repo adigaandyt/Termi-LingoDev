@@ -42,8 +42,10 @@ const Carousel = ({children}) => {
   const [position, setPosition] = useState(0);
   const handleRef = useRef(null);
   useEffect(()=>{
+    console.log("------------------")
     console.log(active);
     console.log(concept);
+    console.log("------------------")
   },[active])
   const handleTouchStart = (event) => {
     event.preventDefault();

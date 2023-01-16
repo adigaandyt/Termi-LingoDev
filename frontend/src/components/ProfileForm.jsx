@@ -94,6 +94,7 @@ function ProfileForm({isEdit,setIsEdit}){
   <div className="col-md">
     <div className="form-floating">
       <select disabled={!isEdit} className="form-select" name='newCategoryId' onChange={onChange} defaultValue={getCategoryNameById(categories,categoryId)} id="floatingSelectGrid"  aria-label="Floating label select example">
+        <option >{getCategoryNameById(categories,categoryId)}</option>
         {(categories)&&
             categories.map(category=>{
             return(category.accepted&&<option value={category._id}>{getCategoryName(category.categoryName)}</option>)

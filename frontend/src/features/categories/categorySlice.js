@@ -26,10 +26,11 @@ export const getCategories=createAsyncThunk(
 )
 //get categories names
 export const createNewCategoryByUser=createAsyncThunk(
-    'categories/names',
-     async(thunkAPI)=>{
+    'create/category',
+     async(data,thunkAPI)=>{
+        const token=thunkAPI.getState().auth.user.token 
         try {
-            return await categoryService.getCategories()
+            return await categoryService.createNewCategoryByUser(data,token)
         } catch (error) {
             const message=(error.response&&error.response.data&&error.response.data.message)
             ||error.message
@@ -44,7 +45,7 @@ export const categorySlice=createSlice({
     name:'category',
     initialState,
     reducers:{
-        reset:(state)=>{
+        Categoryreset:(state)=>{
             state.isCategoryLoading=false
             state.isCategoryError=false
             state.isCategorySuccess=false
@@ -67,10 +68,23 @@ export const categorySlice=createSlice({
                 state.isCategorySuccess=true
                 state.categories=action.payload
             })
+            .addCase(createNewCategoryByUser.pending,(state)=>{
+                state.isCategoryLoading=true
+            })
+            .addCase(createNewCategoryByUser.rejected,(state,action)=>{
+                state.isCategoryLoading=false
+                state.isCategoryError=true
+                state.Categorymessage=action.payload
+       
+            })
+            .addCase(createNewCategoryByUser.fulfilled,(state,action)=>{
+                state.isCategoryLoading=false
+                state.isCategorySuccess=true
+            })
         
     }
 
 })
 
-export const {reset}=categorySlice.actions
+export const {Categoryreset}=categorySlice.actions
 export default categorySlice.reducer

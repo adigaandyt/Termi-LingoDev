@@ -1,17 +1,19 @@
 import { useTranslation } from 'react-i18next'
-import {useEffect, useState} from 'react'
+import {useEffect, useState,useLayoutEffect} from 'react'
 import { useSelector ,useDispatch} from 'react-redux';
 import {getCategoryName} from '../hooks/ExportsFunctions'
 import {createNewConceptByUser,reset} from '../features/concepts/conceptSlice'
 import {toast} from 'react-toastify' 
 import Spinner3 from '../components/Spinners/Spinner3'
 import "../styles/newConcept.css"
+import { Categoryreset, createNewCategoryByUser } from '../features/categories/categorySlice';
 
 function NewConcept(){
     const {t}=useTranslation();
     const dispatch=useDispatch()
     const {categories}=useSelector(state=>state.category)
     const {isLoading,isSuccess,isError,message}=useSelector(state=>state.concept)
+    const {isCategoryLoading,isCategorySuccess,isCategoryError,Categorymessage}=useSelector(state=>state.category)
     const [categoryFormData,setCategoryFormData]=useState({
         categoryName_english:null,
         categoryName_hebrew:null,
@@ -46,6 +48,18 @@ if(isSuccess){
 
 },[isError,isSuccess,message])
 
+useLayoutEffect(()=>{
+if(isCategoryError){
+    toast.error(Categorymessage)
+    dispatch(Categoryreset())
+
+}
+if(isCategorySuccess){
+    toast.success("The category added to our database")
+    dispatch(Categoryreset())
+}
+},[isCategorySuccess,isCategoryError,Categorymessage])
+
     
 
     const handleTextChange = (e) =>{
@@ -72,6 +86,7 @@ if(isSuccess){
     const onCategorySubmitClick=(e)=>{
         e.preventDefault()
         console.log(categoryFormData)
+        dispatch(createNewCategoryByUser(categoryFormData))
     }
 
 

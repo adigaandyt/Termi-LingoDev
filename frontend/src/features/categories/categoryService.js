@@ -11,6 +11,17 @@ const getCategories =async ()=>{
     
     return response.data
 }
+//create new Category by user  
+const createNewCategoryByUser =async (data,token)=>{
+    const config ={
+        headers:{
+            authorization:`Bearer ${token}`
+        }
+    }
+    const response=await axios.post(API_URL+'/create/category',data,config) 
+    
+    return response.data
+}
 
 
 
@@ -18,6 +29,7 @@ const getCategories =async ()=>{
 
 const categoryService={
     getCategories,
+    createNewCategoryByUser
     
 }
 

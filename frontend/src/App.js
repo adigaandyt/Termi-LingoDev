@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useEffect ,useLayoutEffect } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
-import { getCategories} from './features/categories/categorySlice';
+import { Categoryreset, getCategories} from './features/categories/categorySlice';
 import {getConceptsNames} from './features/concepts/conceptSlice';
 import './App.css';
 import './index.css';
@@ -39,6 +39,7 @@ import UserList from './components/UserList';
 
 function App() {
   const {user,isLoading}=useSelector(state=>state.auth)
+  const {isCategorySuccess,isCategoryError}=useSelector(state=>state.category)
   const [loggedin,setLoggedIn]=useState(false)
   const dispatch=useDispatch()
   useEffect(()=>{
@@ -46,6 +47,11 @@ function App() {
     dispatch(getCategories())
     dispatch(checkme())
 },[])
+useLayoutEffect(()=>{
+if(isCategorySuccess||isCategoryError){
+  dispatch(Categoryreset())
+}
+},[isCategorySuccess,isCategoryError])
 
 
   return (

@@ -2,28 +2,22 @@ import { useTranslation } from 'react-i18next'
 import {useEffect, useState} from 'react'
 import { useSelector ,useDispatch} from 'react-redux';
 import {getCategoryName} from '../hooks/ExportsFunctions'
-import {createNewConceptByUser} from '../features/concepts/conceptSlice'
+import {createNewConceptByUser,reset} from '../features/concepts/conceptSlice'
+import {toast} from 'react-toastify' 
+import Spinner3 from '../components/Spinners/Spinner3'
 import "../styles/newConcept.css"
-// conceptName:{
-//     english:null,
-//     hebrew:null,
-//     arabic:null
-// },
-// longDefinition:{
-//     english:null,
-//     hebrew:null,
-//     arabic:null
-// },
-// shortDefinition:{
-//     english:null,
-//     hebrew:null,
-//     arabic:null
-// },
+
 function NewConcept(){
     const {t}=useTranslation();
     const dispatch=useDispatch()
     const {categories}=useSelector(state=>state.category)
-    const [categoryId,setCategoryId]=useState(null)
+    const {isLoading,isSuccess,isError,message}=useSelector(state=>state.concept)
+    const [categoryFormData,setCategoryFormData]=useState({
+        categoryName_english:null,
+        categoryName_hebrew:null,
+        categoryName_arabic:null
+
+    })
     const [formData,setFormData]=useState({
         conceptName_english:null,
         conceptName_arabic:null,
@@ -38,18 +32,19 @@ function NewConcept(){
         readMore:null
 
     })
-    const {
-        conceptName_english,
-        conceptName_arabic,
-        conceptName_hebrew,
-        longDefinition_english,
-        longDefinition_arabic,
-        longDefinition_hebrew,
-        shortDefinition_english,
-        shortDefinition_arabic,
-        shortDefinition_hebrew,
-        readMore
-    }=formData
+useEffect(()=>{
+if(isError){
+   toast.error(message)
+   dispatch(reset())
+
+}
+if(isSuccess){
+    toast.success("The concept added to our database")
+   dispatch(reset())
+
+}
+
+},[isError,isSuccess,message])
 
     
 
@@ -64,11 +59,24 @@ function NewConcept(){
 
 
     const onSubmitClick=()=>{
-        console.log("Clickeddd")
         dispatch(createNewConceptByUser(formData))
     }
+    const handleCategoryTextChange=(e)=>{
+        setCategoryFormData((prev)=>{
+            return({
+                ...prev,
+                [e.target.name]:e.target.value
+            })
+        })
+    }
+    const onCategorySubmitClick=(e)=>{
+        e.preventDefault()
+        console.log(categoryFormData)
+    }
+
 
     return(<>
+    {isLoading&&<Spinner3/>}
     <div className="mt-150 text-center "> 
     <div dir='ltr' className="container-fluid ">
         <ul  className="btn-group nav-pills shadow-none text-center"  id="pills-tab" role="tablist">
@@ -92,7 +100,7 @@ function NewConcept(){
         <div className="tab-content  text-center  container"  id="newconcept-inputs-page"> 
             <div className="tab-pane fade show active " id="pills-english" role="tabpanel" aria-labelledby="pills-english-tab">
             <div className="form-group mb-1 "> 
-                    <input value={conceptName_english} name='conceptName_english' type="text" onChange={handleTextChange} class="form-control " id="floatingShortEnglish"  placeholder={t('concept_name_english')}/>
+                    <input  name='conceptName_english' type="text" onChange={handleTextChange} class="form-control " id="floatingShortEnglish"  placeholder={t('concept_name_english')}/>
                 </div>
                 <div className="form-group mb-1 "> 
                     <textarea name='shortDefinition_english' type="text" onChange={handleTextChange} className="form-control " id="floatingShortEnglish"  placeholder={t('short_translation_english')}/>
@@ -133,12 +141,14 @@ function NewConcept(){
                 <button type="button" class="btn btn-warning pull-right mt-3"   onClick={onSubmitClick} >{t('submit')}</button>
             
                 <div  className="form-group mt-2 col-5 " id="reg-dropdown">
+                
                 <select className="form-select border-secondary mt-1 mx-1 btn btn-primary  mt-2 " name='categoryId' onChange={handleTextChange}>
+                                
                                 {(categories)&&
                                     categories.map(category=>{
                                             return(category.accepted&&<option value={category._id}>{getCategoryName(category.categoryName)}</option>)
                                     })
-                                }
+                                }   
                 </select>   
 
                     
@@ -152,26 +162,28 @@ function NewConcept(){
                             <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
+                        <form onSubmit={onCategorySubmitClick}>
                         <div class="modal-body">
-                            <form>
+                         
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">{t('english')}</label>
-                                <input type="text" class="form-control" id="recipient-name"/>
+                                <input name='categoryName_english' type="text" class="form-control" id="recipient-name" onChange={handleCategoryTextChange} required/>
                             </div>
                             <div class="form-group">
                             <label for="recipient-name" class="col-form-label">{t('hebrew')}</label>
-                                <input type="text" class="form-control" id="recipient-name"/>
+                                <input name='categoryName_hebrew' type="text" class="form-control" id="recipient-name" onChange={handleCategoryTextChange} required/>
                             </div>
                             <div class="form-group">
                             <label for="recipient-name" class="col-form-label">{t('arabic')}</label>
-                                <input type="text" class="form-control" id="recipient-name"/>
+                                <input name='categoryName_arabic' type="text" class="form-control" id="recipient-name" onChange={handleCategoryTextChange} required/>
                             </div>
-                            </form>
+                            
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-warning">{t('submit')}</button>
+                            <button type="submit" class="btn btn-warning">{t('submit')}</button>
                         </div>
+                        </form>
                         </div>
                     </div>
                     </div>

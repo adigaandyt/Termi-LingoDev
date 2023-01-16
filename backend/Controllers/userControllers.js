@@ -78,6 +78,7 @@ const registrUser=asyncHandler( async (req,res)=>{
                 gender:user.gender,
                 games_coins:user.games_coins,
                 profile_image:user.profile_image,
+                added_concepts:user.added_concepts,
                 token:generateToken(user._id)
     
 
@@ -112,6 +113,7 @@ const loginUser=asyncHandler( async (req,res)=>{
                 games_coins:user.games_coins,
                 gender:user.gender,
                 profile_image:user.profile_image,
+                added_concepts:user.added_concepts,
                 token:generateToken(user._id)}
             res.status(200).json(userData)
         }else{
@@ -217,6 +219,7 @@ const updateUserImage =asyncHandler(async(req,res)=>{
             categoryId:newUser.categoryId,
             games_coins:newUser.games_coins,
             profile_image:newUser.profile_image,
+            added_concepts:newUser.added_concepts,
             gender:newUser.gender,
             isAdmin:newUser.isAdmin,
             token:generateToken(newUser._id)
@@ -267,6 +270,7 @@ if(newUser){
         profile_image:newUser.profile_image,
         games_coins:newUser.games_coins,
         gender:newUser.gender,
+        added_concepts:newUser.added_concepts,
         isAdmin:newUser.isAdmin,
         token:generateToken(newUser._id)
     })
@@ -326,6 +330,7 @@ const setCoinsOnFinishedGame=asyncHandler( async (req,res)=>{
                 categoryId:newUser.categoryId,
                 phoneNumber:newUser.phoneNumber,
                 games_coins:newUser.games_coins,
+                added_concepts:newUser.added_concepts,
                 gender:newUser.gender,
                 profile_image:newUser.profile_image,
                 token:generateToken(newUser._id)}

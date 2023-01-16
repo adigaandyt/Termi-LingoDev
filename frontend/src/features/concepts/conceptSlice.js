@@ -67,7 +67,7 @@ export const getConcepts=createAsyncThunk(
 //create new concept by user
 export const createNewConceptByUser=createAsyncThunk(
     'create/concept',
-     async(data,thunkAPI)=>{
+     async(data,thunkAPI)=>{ 
         const token=thunkAPI.getState().auth.user.token 
         try {
             return await conceptService.createNewConceptByUser(data,token)
@@ -136,6 +136,19 @@ export const conceptSlice=createSlice({
             state.isLoading=false
             state.isSuccess=true
             state.concepts=action.payload
+        })
+        .addCase(createNewConceptByUser.pending,(state)=>{
+            state.isLoading=true
+        })
+        .addCase(createNewConceptByUser.rejected,(state,action)=>{
+            state.isLoading=false
+            state.isError=true
+            state.message=action.payload
+            
+        })
+        .addCase(createNewConceptByUser.fulfilled,(state)=>{
+            state.isLoading=false
+            state.isSuccess=true
         })
     }
 

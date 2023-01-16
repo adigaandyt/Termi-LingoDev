@@ -252,14 +252,14 @@ const getConceptNamesBycategoryId=asyncHandler( async(req,res)=>{
 //@access private
 const creactNewConceptByUser=asyncHandler( async(req,res)=>{
 
-
 const user=req.user;
 const data=req.body;
+
 if(
-    (!data.conceptName_hebrew||!data.conceptName_english||!data.conceptName_arabic)
-    &&
-    (!data.shortDefinition_english||!data.shortDefinition_arabic||!data.shortDefinition_hebrew)
-    &&
+    (!data.conceptName_hebrew&&!data.conceptName_english&&!data.conceptName_arabic)
+    || 
+    (!data.shortDefinition_english&&!data.shortDefinition_arabic&&!data.shortDefinition_hebrew)
+    ||
     (!data.categoryId)
     ){
         console.log(" missing details")
@@ -268,41 +268,48 @@ if(
     }
 
 try {
-    const newuser=await User.findByIdAndUpdate(user._id,{added_concepts:user.added_concepts+1})
-    console.log("succec")
-// const response=await Concept.create({
-// conceptName:{
-//     english:data.conceptName_english?data.conceptName_english:"N/A",
-//     hebrew:data.conceptName_hebrew?data.conceptName_hebrew:"N/A",
-//     arabic:data.conceptName_arabic?data.conceptName_arabic:"N/A"
-// },
-// longDefinition:{
-//     english:data.longDefinition_english,
-//     hebrew:data.longDefinition_hebrew,
-//     arabic:data.longDefinition_arabic
-// },
-// shortDefinition:{
-//     english:data.shortDefinition_english,
-//     hebrew:data.shortDefinition_hebrew,
-//     arabic:data.shortDefinition_arabic
-// },
-// categories:[data.categoryId,'639e49f8dfabd615c821584f'],
-// suggestedBy:user.name,
-// suggestedBy_userId:user._id,
-// readMore:data.readMore,
+
+    const conceptExist_english= await Concept.findOne({categories: {$all:[data.categoryId]},"conceptName.english":data.conceptName_english})
+    const conceptExist_arabic= await Concept.findOne({categories: {$all:[data.categoryId]},"conceptName.arabic":data.conceptName_arabic})
+    const conceptExist_hebrew= await Concept.findOne({categories: {$all:[data.categoryId]},"conceptName.hebrew":data.conceptName_hebrew})
+    if(conceptExist_english||conceptExist_hebrew||conceptExist_arabic){
+        res.status(400)
+        console.log("One or more of the concept names already exist")
+        throw new Error("One or more of the concept names already exist")
+    }
+const newuser=await User.findByIdAndUpdate(user._id,{added_concepts:user.added_concepts+1})
+res.status(200)
+const response=await Concept.create({
+conceptName:{
+    english:data.conceptName_english?data.conceptName_english:"N/A",
+    hebrew:data.conceptName_hebrew?data.conceptName_hebrew:"N/A",
+    arabic:data.conceptName_arabic?data.conceptName_arabic:"N/A"
+},
+longDefinition:{
+    english:data.longDefinition_english,
+    hebrew:data.longDefinition_hebrew,
+    arabic:data.longDefinition_arabic
+},
+shortDefinition:{
+    english:data.shortDefinition_english,
+    hebrew:data.shortDefinition_hebrew,
+    arabic:data.shortDefinition_arabic
+},
+categories:[data.categoryId,'639e49f8dfabd615c821584f'],
+suggestedBy:user.name,
+suggestedBy_userId:user._id,
+readMore:data.readMore,
 
 
-// })
+})
 // console.log(response)
-
-
-
+res.status(200).json(response)
 
 } catch (error) {
 
     console.log(error.message)
     res.status(400)
-    throw new Error(error.message)
+    throw new Error(error.message) 
 }
     
 })

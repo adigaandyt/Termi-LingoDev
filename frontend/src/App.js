@@ -36,6 +36,7 @@ import Spinner from './components/Spinner';
 import Spinner3 from './components/Spinners/Spinner3';
 import UserCard from './components/UserCard';
 import UserList from './components/UserList';
+import AdminPrivateRoute from './components/PrivateRoutes/AdminPrivateRoute';
 
 function App() {
   const {user,isLoading}=useSelector(state=>state.auth)
@@ -81,7 +82,7 @@ if(isCategorySuccess||isCategoryError){
             <Route path='/new/concept' element={<PrivateRoute/>}>
               <Route path='/new/concept' element={<NewConcept/>}/>
             </Route>
-            <Route path='/settings' element={<PrivateRoute/>}>
+            <Route path='/settings' element={<AdminPrivateRoute/>}>
               <Route path='/settings' element={<Settings/>}/>
             </Route>
             <Route path='/games' element={<PrivateRoute/>}>

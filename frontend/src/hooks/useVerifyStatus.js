@@ -8,7 +8,6 @@ export const useVerifyStatus=()=>{
     const {user_token}=useSelector(state=>state.auth)
 
     useEffect(()=>{
-        console.log("hii")
         if(user_token){
             setVerified(true) 
         }

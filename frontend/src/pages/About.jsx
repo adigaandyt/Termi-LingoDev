@@ -12,7 +12,7 @@ function About(){
     <div className="about-container bg-darks">
       <div className="about-header">
         <h1 className="about-title">{t('about_app')}</h1>
-        <SiGoogletranslate id='app-logo-about'/>
+        <SiGoogletranslate className='text-green' id='app-logo-about'/>
       </div>
       
       <p className="about-description">
@@ -21,15 +21,15 @@ function About(){
           <h2 className="about-features-title">{t('features')}</h2>
       <ul className="about-features-list">
         <li className="about-feature">
-         <BsTranslate/>
+         <BsTranslate className='text-info' />
           <span className="about-feature-text">{t('support')} </span>
         </li>
         <li className="about-feature">
-          <BiTransferAlt/>
+          <BiTransferAlt className='text-primary' />
           <span className="about-feature-text">{t('instant')}</span>
         </li>
         <li className="about-feature">
-          <MdFavorite/>
+          <MdFavorite className='text-danger' />
           <span className="about-feature-text">{t('ability_to')}</span>
         </li>
       </ul>

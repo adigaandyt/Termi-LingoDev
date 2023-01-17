@@ -19,21 +19,12 @@ function Settings(){
        
     }
     return (<>
-    {/* <SettingsSideNavbar/> */}
+    <div dir="ltr">
     <SettingsNavbar isActive={isActive} setIsActive={setIsActive}/>
-    <div>
-        {isHomeActive&&(<>
-            <SettingsHome/>
-        </>)}
-        {isUsersActive&&(<>
-            <SettingsUsers/>
-        </>)}
-        {isConceptsActive&&(<>
-            <SettingsConcepts/>
-        </>)}
-        {isCategoriesActive&&(<>
-            <SettingsCategories/>
-        </>)}
+        {isHomeActive&&(<SettingsHome/>)}
+        {isUsersActive&&(<SettingsUsers/>)}
+        {isConceptsActive&&(<SettingsConcepts/>)}
+        {isCategoriesActive&&(<SettingsCategories/>)}
     </div>
 
     </>)

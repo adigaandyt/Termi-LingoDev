@@ -2,7 +2,7 @@
   .about-container {
     /* Add styles for small screens here */
     max-width: 100%;
-    margin: 0;
+    /* margin: 0; */
   }
 
   .about-header {
@@ -38,11 +38,11 @@
 
 .about-container {
   max-width: 650px;
-  margin: 100px auto;
+  margin-top: 100px;
   text-align: center;
   position: relative;
-  background: linear-gradient(to right, #652F8F, #b65c32);
-  color: white;
+  /* background: linear-gradient(to right, #652F8F, #b65c32); */
+  /* color: white; */
   padding: 1em;
   border-radius: 5px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
@@ -58,7 +58,7 @@
 
 .about-title {
   font-size: 2em;
-  margin-bottom: 0.5em;
+  /* margin-bottom: 0.5em; */
   text-transform: uppercase;
   letter-spacing: 0.2em;
   font-weight: bold;

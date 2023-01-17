@@ -56,7 +56,7 @@ const getConcept=asyncHandler( async(req,res)=>{
             {categories: {$all:[category.id]},"conceptName.arabic":textSearch},
             {categories: {$all:[category.id]},"conceptName.english":textSearch},
             {categories: {$all:[category.id]},"conceptName.hebrew":textSearch}
-        ]})
+        ],accepted:true})
         }
          
     } catch (error) {
@@ -80,7 +80,7 @@ const getConceptsNames=asyncHandler( async(req,res)=>{
     
     let conceptsNames
     try {
-        conceptsNames=await Concept.find().select("conceptName -_id" )
+        conceptsNames=await Concept.find({accepted:true}).select("conceptName -_id" )
     } catch (error) {
         res.status(500)
         throw new Error("Some thing is wrong !" )
@@ -102,7 +102,7 @@ const getConcepts=asyncHandler( async(req,res)=>{
             {"conceptName.arabic":{ $regex:new RegExp(textSearch), "$options" : "iu"}},
             {"conceptName.english":{ $regex:new RegExp(textSearch), "$options" : "iu"}},
             {"conceptName.hebrew":{ $regex:new RegExp(textSearch), "$options" : "iu"}}
-        ]})
+        ],accepted:true})
          
     } catch (error) {
         res.status(500)
@@ -233,7 +233,7 @@ const getConceptNamesBycategoryId=asyncHandler( async(req,res)=>{
     let conceptNames;
     if (categoryId) {
         try {
-            conceptNames=await Concept.find({categories:categoryId},{"conceptName":1,"_id":0}).then((concept_names)=>{
+            conceptNames=await Concept.find({categories:categoryId,accepted:true},{"conceptName":1,"_id":0}).then((concept_names)=>{
                  const randomDocuments = _.sampleSize(concept_names,10);
                     res.json(randomDocuments )
     
@@ -314,6 +314,23 @@ res.status(200).json(response)
 }
     
 })
+//@desc get concepts that not accepted yet by admin ,for the admin request ...
+//@route GET /get/concepts/not/accepted
+//@access private
+const getUnAcceptedConcepts=asyncHandler( async(req,res)=>{
+    // user details for back office !
+    const user=req.user
+
+        try {
+            const unAcceptedConcepts=await Concept.find({accepted:false})
+            res.json(unAcceptedConcepts)
+        } catch (error) {
+            res.status(500)
+            throw new Error("Some thing went wrong !")
+        }
+
+    
+    })
 
 
 
@@ -329,5 +346,6 @@ module.exports={
    getConceptsBycategoryId,
    getConceptsNamesByUserId,
    getConceptNamesBycategoryId,
-   creactNewConceptByUser
+   creactNewConceptByUser,
+   getUnAcceptedConcepts
 }

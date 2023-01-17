@@ -23,7 +23,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "  nodemon backend/server.js"
+    "server": " PORT=5001 nodemon backend/server.js"
   },
   "author": "",
   "license": "ISC",

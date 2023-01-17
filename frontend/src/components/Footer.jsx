@@ -6,11 +6,13 @@ import {AiOutlineHome, AiOutlineSetting} from 'react-icons/ai';
 import {FcAbout} from 'react-icons/fc';
 import {TbPlaylistAdd} from 'react-icons/tb';
 import {VscQuestion} from 'react-icons/vsc';
+import { useSelector } from 'react-redux';
 
 
 export default function Footer(){
     const navigate = useNavigate();
     const location = useLocation();
+    const {user}=useSelector(state=>state.auth)
     return(
         <nav  dir='ltr'  className="footer1">
             <div className="d-flex justify-content-between"> 
@@ -31,9 +33,9 @@ export default function Footer(){
                     <input type= "radio" name="nav-item" id="m-home"/><label onClick={() => navigate('/about')} id="l4"><VscQuestion/></label>
                 </div>
 
-                <div className='mx-1 flex-item' id={location.pathname==='/setting' ? 'input-clicked' : undefined}>
+               {user&&user.isAdmin&& <div className='mx-1 flex-item' id={location.pathname==='/setting' ? 'input-clicked' : undefined}>
                     <input type= "radio" name="nav-item" id="m-profile"/><label onClick={() => navigate('/settings')} id="l5"><AiOutlineSetting/></label>
-                </div>
+                </div>}
 
             </div>
       

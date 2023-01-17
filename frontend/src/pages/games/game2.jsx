@@ -153,7 +153,7 @@ const onEndGame=()=>{
     
         <div  id="game2">
         {isGamesLoading?<TransMeSpinner/>:<>
-        {isStart&&<div><h4 className="text-light text-start">Question Number: {questionNumber+1}</h4></div>}
+        {isStart&&<div id="question-title"><h4 className="text-light text-start">Question Number: {questionNumber+1}</h4></div>}
         {!isStart&&isEnd&&<div><h4 className="text-light text-start">Score: {score}</h4></div>}
         {path=='home'&&<>
 

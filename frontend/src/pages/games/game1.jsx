@@ -193,7 +193,7 @@ function GuessTheTerm({page}){
 console.log(categoryId)
    }
    const onEndGame=()=>{
-    if(score>8){
+    if(score>6){
       //sound yahia
       setHighScore("true")
       setFeedScore("excelant")

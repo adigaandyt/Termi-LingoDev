@@ -1,8 +1,8 @@
 import { useNavigate , Link } from 'react-router-dom'
 import {useSelector,useDispatch} from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useEffect, useState,useLayoutEffect } from 'react'
 import {getConcept,getConceptsNames,resetConcept} from '../features/concepts/conceptSlice'
-import {getCategories} from '../features/categories/categorySlice'
+import {getCategories,Categoryreset} from '../features/categories/categorySlice'
 import {BsTranslate} from 'react-icons/bs'
 import { useTranslation } from 'react-i18next'
 import Definitions from '../components/Definitions'
@@ -29,7 +29,7 @@ function Home(){
     })
 
     const {english,hebrew,arabic}=languageChoosed
-
+    const {isCategorySuccess,isCategoryError}=useSelector(state=>state.category)
     const dispatch=useDispatch()
     const {user} =useSelector(state=>state.auth)
     const {concepts,names,concept,isLoading}=useSelector(state=>state.concept)
@@ -41,6 +41,12 @@ function Home(){
         dispatch(getConceptsNames())
         dispatch(getCategories())
     },[])
+
+    useLayoutEffect(()=>{
+    if(isCategorySuccess||isCategoryError){
+      dispatch(Categoryreset())
+    }
+    },[isCategorySuccess,isCategoryError])
 
     
 
@@ -70,10 +76,9 @@ function Home(){
         <div className='  mt-5 '>
           {isLoading&&<Spinner/>}
                
-                <div className='text-center mb-4' id='t1'>
+                <div className='text-center ' id='t1'>
                     <label className='d-inline '>
-                        <h4 className='text-dark'>
-                        <BsTranslate className='text-sagol capitalized' /> {t('home_title')} <span className="text-warning">{t('its_definition')}</span> </h4>
+                    <h1 id='home-title-anim'>Termi</h1>
                     </label>
                 </div>
               

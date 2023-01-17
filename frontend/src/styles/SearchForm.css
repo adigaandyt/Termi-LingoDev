@@ -33,3 +33,33 @@
 /*#formsearch{*/
 /*    border: red solid;*/
 /*}*/
+
+
+/* ----------------new card-------------------- */
+/* .concet-card {
+    --w:450px;
+    --c:(100vw - var(--w));
+    
+    max-width:500px;
+    background:#fff;
+    margin:10px ;
+    border-radius:10px;
+    overflow:hidden;
+    padding:0 20px 0 clamp(20px,var(--c)*1000,180px);
+    box-sizing:border-box;
+    box-shadow:1px 2px 5px #0005;
+    position:relative;
+  }
+  .concet-card img {
+    position:absolute;
+    top:clamp(0px,var(--c)*-1000,0px);
+    left:clamp(0px,var(--c)*-1000,0px);
+    width:clamp(100px,var(--c)*1000,150px);
+    height:clamp(100%,var(--c)*1000,100%);
+    border-radius:clamp(0px,var(--c)*-1000,50px);
+    object-fit:cover;
+    object-position:top;
+  }
+  .concet-card h2 {
+    margin:20px 0 10px clamp(0px,var(--c)*-1000,70px);
+  } */

@@ -62,6 +62,23 @@ export const getCategoryName1=(categoryNames,languageChoosed)=>{
       
         
     }
+    //get concept name with the cookies language
+    export  const getConceptNameCookies =(concept)=>{
+        
+        switch(cookies.get('i18next')){
+            case 'en':{
+                return concept.conceptName.english
+            }
+            case 'hb':{
+                return concept.conceptName.hebrew
+            }
+            case 'ar':{
+                return concept.conceptName.arabic
+            }
+        }
+      
+        
+    }
     //get categoryname by id with the default language choosed.
     export const getCategoryNameById=(categories,categoryId)=>{
     if(categories){

@@ -1,9 +1,9 @@
 import {React,useContext} from 'react'
-import { useState,useEffect } from "react"
+import { useState,useEffect,useLayoutEffect } from "react"
 import {useNavigate,Link} from 'react-router-dom'
 import {useSelector ,useDispatch} from 'react-redux'
 import {register ,reset,uploadImage} from '../../features/auth/authSlice'
-import { getCategories } from '../../features/categories/categorySlice'
+import { getCategories,Categoryreset } from '../../features/categories/categorySlice'
 import Spinner from "../../components/Spinner"
 import { toast } from "react-toastify"
 import {AiOutlineUserAdd} from 'react-icons/ai'
@@ -21,6 +21,8 @@ import '../../styles/Images.css'
 
 function Register(){
     const {t,i18n}=useTranslation()
+    const {isCategorySuccess,isCategoryError}=useSelector(state=>state.category)
+
     const dispatch=useDispatch()
     const {user,isLoading,isSuccess,isError,message,image_url,isImageLoading}=useSelector((state)=>state.auth)
     const {categories}=useSelector(state=>state.category)
@@ -85,6 +87,11 @@ function Register(){
     },[isSuccess,isError,isImageLoading,image_url])
 
 
+    useLayoutEffect(()=>{
+        if(isCategorySuccess||isCategoryError){
+          dispatch(Categoryreset())
+        }
+        },[isCategorySuccess,isCategoryError])
     const {name,email,password,password2,phoneNumber,favorite_pet,gender,profile_image}=formData;
 
 
@@ -157,7 +164,6 @@ function Register(){
                 <select className="select-input" defaultValue={t('Language')} name='language' onChange={onChange}>
                     <option disabled>{t('Language')}</option>
                     <hr className='text-secondary'/>
-                    <option disabled></option>
                     <option value="English">English</option> 
                     <option value="العربية">العربية</option>
                     <option value="עברית">עברית</option>
@@ -174,9 +180,8 @@ function Register(){
             </div>
             <div className="form-group mt-2" id="reg-dropdown">
                 <select className="select-input  mt-2" defaultValue={t('category')} name='categoryId' onChange={(e)=>{setCategoryId(e.target.value)}}>
-                                <option disabled>{t('category')}</option>
+                                <option disabled value={t('category')}>{t('category')}</option>
                                 <hr className='my-1'/>
-                                <option disabled></option>
                                 {(categories)&&
                                     categories.map(category=>{
                                             return(category.accepted&&<option value={category._id}>{getCategoryName(category.categoryName)}</option>)

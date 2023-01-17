@@ -139,8 +139,8 @@ function Question({languages,onNextQuestion,questionNumber,onNewQuestResult}){
         </div>
         </div>
 
-        <div className="row w-90" id="answer-buttons">
-        <div className="col-sm-6 col-md-4 col-lg-3 mt-sm-5" id="answer-button"> 
+        <div className="row" id="answer-buttons">
+        <div className="col-sm-6 col-md-4 col-lg-3 mt-sm-5 ">
             <button disabled={isDesabled} style={{ backgroundColor: randomPosition === 0 && correctBtnColor   }} id='game2-button'  onClick={onClick} name={0}>{randomPosition==0?(getRelevanteLang(concept_names[questionNumber].conceptName,answersLanguage)):getRelevanteLang(names[rand1].conceptName,answersLanguage)}  </button>
         </div>
         <div className="col-sm-6 col-md-4 col-lg-3 mt-sm-5" id="answer-button">

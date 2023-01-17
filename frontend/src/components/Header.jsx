@@ -8,6 +8,7 @@ import "/node_modules/flag-icons/css/flag-icons.min.css";
 import {MdLanguage} from 'react-icons/md';
 import {ImExit,ImUserPlus, ImProfile} from 'react-icons/im';
 import {GoSignIn} from 'react-icons/go';
+import {BsTranslate} from 'react-icons/bs'
 import "../styles/Header.css";
 
 
@@ -73,7 +74,7 @@ function Header(){
         <div className="space"></div>
             <div className="content">
                 <div className="text">
-                    <Link to='/' id='titlestyle' className="navbar-brand text-secondary mx-3"> Termi</Link>
+                    <Link to='/' id='titlestyle' className="navbar-brand text-secondary mx-3"> <BsTranslate className='text-dark display-3' /></Link>
                 </div>
                 <div className={`btnb ${active ? 'active' : ''}`} onClick={optionsClick}><span></span></div>
 

@@ -7,6 +7,8 @@ import {toast} from 'react-toastify'
 import Spinner3 from '../components/Spinners/Spinner3'
 import "../styles/newConcept.css"
 import { Categoryreset, createNewCategoryByUser } from '../features/categories/categorySlice';
+import "/node_modules/flag-icons/css/flag-icons.min.css";
+
 
 function NewConcept(){
     const {t}=useTranslation();
@@ -157,7 +159,7 @@ if(isCategorySuccess){
             
                 <div  className="form-group mt-2 col-5 " id="reg-dropdown">
                 
-                <select className="form-select border-secondary mt-1 mx-1 btn btn-primary  mt-2 " name='categoryId' onChange={handleTextChange}>
+                <select className="form-select border-secondary  mt-1 mx-1  mt-2 " name='categoryId' onChange={handleTextChange}>
                                 
                                 {(categories)&&
                                     categories.map(category=>{

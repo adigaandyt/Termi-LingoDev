@@ -82,8 +82,8 @@ import '../styles/CircleBar.css'
                     </datalist> 
                 </div>
             </div>
-            <div   className='mt-2 col-5 ' id='formSearch-item'>
-                <select  className="form-select  border-secondary mt-1 mx-1 btn btn-primary " aria-label="Default select example" onChange={OnSelectedCategory}>
+            <div   className='mt-2 col-11 ' id='formSearch-item'>
+                <select  className="form-select  border-secondary mt-1 mx-1  " aria-label="Default select example" onChange={OnSelectedCategory}>
                     <option value='639e49f8dfabd615c821584f'>{t('all')}</option>
                     {
                         (categories)&&

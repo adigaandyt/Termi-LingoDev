@@ -76,10 +76,9 @@ function Home(){
         <div className='  mt-5 '>
           {isLoading&&<Spinner/>}
                
-                <div className='text-center mb-4' id='t1'>
+                <div className='text-center ' id='t1'>
                     <label className='d-inline '>
-                        <h4 className='text-dark'>
-                        <BsTranslate className='text-sagol capitalized' /> {t('home_title')} <span className="text-warning">{t('its_definition')}</span> </h4>
+                    <h1 id='home-title-anim'>Termi</h1>
                     </label>
                 </div>
               

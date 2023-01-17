@@ -196,11 +196,11 @@ console.log(categoryId)
     if(score>6){
       //sound yahia
       setHighScore("true")
-      setFeedScore("excelant")
+      setFeedScore(t('excelant'))
       setFeedColor("text-success")
     }else{
       setHighScore("false")
-      setFeedScore("good job - you can improve")
+      setFeedScore(t("good job"))
       setFeedColor("text-warning")
     }
     const date=new Date()

@@ -55,9 +55,9 @@
     text-align: center; */
   }
     
+   
   
-  
-  .nav { 
+  .nav3 { 
     color: white;
     font-size: 4rem;
     position: absolute;
@@ -73,26 +73,26 @@
     
   
   }
-  .nav.left {
+  .nav3.left {
     left: 0;
     transform: translate(-50%, -50%);
     color: #626569;
   }
   
-  .nav.right {
+  .nav3.right {
     right: 0;
     transform: translate(50%, -50%);
     color: #626569;
   }
   @media (max-width: 890px){
-  .nav.left {
+  .nav3.left {
     display: none;
     left: 35px;
     transform: translate(-50%, -50%);
     color: #626569;
   }
   
-  .nav.right {
+  .nav3.right {
     display: none;
 
     right: -18px;

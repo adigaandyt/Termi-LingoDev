@@ -116,7 +116,7 @@ const Carousel = ({children}) => {
   }
   return (
     <div ref={handleRef}  onTouchStart={handleTouchStart} className='carousel' >
-      {active > 0 && <button className='nav left' onClick={onLeft}><TiChevronLeftOutline/></button>}
+      {active > 0 && <button className='nav3 left' onClick={onLeft}><TiChevronLeftOutline/></button>}
       {React.Children.map(children, (child, i) => (
         <div className='card-container' style={{
             '--active': i === active ? 1 : 0,
@@ -130,7 +130,7 @@ const Carousel = ({children}) => {
           {child}
         </div>
       ))}
-      {active < count - 1 && <button className='nav right' onClick={onRight}><TiChevronRightOutline/></button>}
+      {active < count - 1 && <button className='nav3 right' onClick={onRight}><TiChevronRightOutline/></button>}
     </div>
   );
 };

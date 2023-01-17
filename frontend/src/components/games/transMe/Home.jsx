@@ -5,7 +5,6 @@ import {BsFillArrowRightCircleFill} from 'react-icons/bs';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from "react-redux";
 import { getTop5Users } from "../../../features/auth/authSlice";
-import './TransmeHome.css';
 function Home({onStart,answersLanguage,questLanguage,setLanguages}){
   const {t}=useTranslation();
   const [isModalOpen,setIsModalOpen]=useState(false)

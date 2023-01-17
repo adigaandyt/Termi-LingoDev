@@ -35,6 +35,21 @@
     margin-top: 100px;
 	height: 150px;
 }
+@media only screen and (max-width: 450px) {
+	#question-title{
+        /*border: red solid;*/
+        margin-left: 10px;
+    }
+	.cloud-bar{
+		width: 90%;
+        margin-left: 10px;
+	}
+	#answer-buttons{
+       
+        margin-left: 20px;
+        width: 90%;    
+    }
+}
 .cloud::after{
     content: "";
 	position: absolute;

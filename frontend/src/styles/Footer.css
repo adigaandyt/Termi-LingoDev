@@ -23,10 +23,10 @@
     color: black;
 }
 
-label:hover {
+/* label:hover {
 	color: #ffc107;
 	text-shadow: 0 0 5px #fff, 0 0 10px #fff;
-}
+} */
 
 input:checked + label {
 	color: #ffc107;

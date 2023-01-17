@@ -5,6 +5,7 @@ import {Howl, Howler} from "howler";
 import Button from "../Button";
 import Correct from "./correct.mp3"
 import Wrong from "./wrong.wav"
+import '../../../styles/games/game1.css'
 
 function getRandomNumber() {
     // console.log(array)
@@ -83,7 +84,7 @@ function Qestion({question,onNextQestion,languageChoosed,questionNumber,onNewQue
     }
 
     return(<>
-   <div id="answers-buttons" className='row '>
+   <div id="answers-buttons" className='row w-100'>
     <div className="row mt-2">
         
         <div className="col-6">
@@ -96,10 +97,10 @@ function Qestion({question,onNextQestion,languageChoosed,questionNumber,onNewQue
     
     <h3 id="shortDefinition-game1">{getRelevantLanguage(question.shortDefinition,languageChoosed)}</h3>
 
-    <button disabled={isDesabled} className="big-button my-3" name={0} onClick={onClick} style={{ backgroundColor: randomPosition === 0 ? correctBtnColor : inCorrectBtnColor }}>{randomPosition===0 ?getRelevantLanguage(question.correctAnswer,languageChoosed):getRelevantLanguage(question.wrongAnswer1,languageChoosed)}</button>
-    <button disabled={isDesabled} className="big-button my-3" name={1} onClick={onClick} style={{ backgroundColor: randomPosition === 1 ? correctBtnColor : inCorrectBtnColor }}>{randomPosition===1 ?getRelevantLanguage(question.correctAnswer,languageChoosed):getRelevantLanguage(question.wrongAnswer2,languageChoosed)}</button>
-    <button disabled={isDesabled} className="big-button my-3" name={2} onClick={onClick} style={{ backgroundColor: randomPosition === 2 ? correctBtnColor : inCorrectBtnColor }}>{randomPosition===2 ?getRelevantLanguage(question.correctAnswer,languageChoosed):getRelevantLanguage(question.wrongAnswer3,languageChoosed)}</button>
-    <button disabled={isDesabled} className="big-button my-3" name={3} onClick={onClick} style={{ backgroundColor: randomPosition === 3 ? correctBtnColor : inCorrectBtnColor }}>{randomPosition===3 ?getRelevantLanguage(question.correctAnswer,languageChoosed):getRelevantLanguage(question.wrongAnswer4,languageChoosed)}</button>  
+    <button disabled={isDesabled} className="big-button my-3" id="answers-button" name={0} onClick={onClick} style={{ backgroundColor: randomPosition === 0 ? correctBtnColor : inCorrectBtnColor }}>{randomPosition===0 ?getRelevantLanguage(question.correctAnswer,languageChoosed):getRelevantLanguage(question.wrongAnswer1,languageChoosed)}</button>
+    <button disabled={isDesabled} className="big-button my-3" id="answers-button" name={1} onClick={onClick} style={{ backgroundColor: randomPosition === 1 ? correctBtnColor : inCorrectBtnColor }}>{randomPosition===1 ?getRelevantLanguage(question.correctAnswer,languageChoosed):getRelevantLanguage(question.wrongAnswer2,languageChoosed)}</button>
+    <button disabled={isDesabled} className="big-button my-3" id="answers-button" name={2} onClick={onClick} style={{ backgroundColor: randomPosition === 2 ? correctBtnColor : inCorrectBtnColor }}>{randomPosition===2 ?getRelevantLanguage(question.correctAnswer,languageChoosed):getRelevantLanguage(question.wrongAnswer3,languageChoosed)}</button>
+    <button disabled={isDesabled} className="big-button my-3" id="answers-button" name={3} onClick={onClick} style={{ backgroundColor: randomPosition === 3 ? correctBtnColor : inCorrectBtnColor }}>{randomPosition===3 ?getRelevantLanguage(question.correctAnswer,languageChoosed):getRelevantLanguage(question.wrongAnswer4,languageChoosed)}</button>  
 
     </div>
     </>)

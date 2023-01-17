@@ -23,7 +23,7 @@ import NewConcept from './pages/NewConcept';
 import Footer from './components/Footer';
 import ErrorPage404 from './pages/ErrorPage404';
 import TestComponent from './pages/TestComponent';
-import Settings from './pages/Setting';
+import Settings from './pages/Settings';
 import Game from './pages/games/game1'
 import $ from 'jquery';
 import loadable from "@loadable/component";

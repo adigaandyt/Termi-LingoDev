@@ -18,6 +18,7 @@ const initialState={
 export const getConcepts4GuessTerm=createAsyncThunk(
     'games/user',
      async(data,thunkAPI)=>{
+        // console.log(data)
         const token=thunkAPI.getState().auth.user.token
         try {
             return await gamesService.getConcepts4GuessTerm(token)

@@ -38,7 +38,7 @@ const Coins = () => {
             delay: anime.stagger(100) // increase delay by 100ms for each elements.
           }
         ],
-        loop: true
+        loop: false
       });
   return (
     <div id="animationWrapper">

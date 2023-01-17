@@ -12,7 +12,7 @@ function SettingsSideNavbar(){
       element.classList.toggle("active");
     }
     return (<>
-<div ref={elementRef} id="wrapper2" dir='ltr' className="">
+<div ref={elementRef} id="wrapper2" dir='ltr' className=""> 
       <div id="sidebar-wrapper2">
       <ul id="sidebar_menu2" className="sidebar-nav2">
            <li className="sidebar-brand2"><a onClick={onClick} id="" >Settings<span id="main_icon2" className="sub_icon2 glyphicon2 glyphicon-link2"><FiMenu/></span></a></li>

@@ -133,7 +133,7 @@ function Question({languages,onNextQuestion,questionNumber,onNewQuestResult}){
     }
     return(<>
         
-        <div className="text-center">
+        <div dir='ltr' className="text-center">
         <div class="cloud-bar" id="cloud-q">
         <div class="cloud top"><h1 className="mt-4" style={{"zIndex":"1"}}>{getRelevanteLang(concept_names[questionNumber].conceptName,questLanguage)}</h1>
         </div>

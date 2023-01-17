@@ -39,7 +39,7 @@ function GamesPage(){
         })
     }
     return (<>
-        <div className='row mt-5' id="games-box" >
+        <div className='row mt-5' id="games-box" dir="ltr">
             <div className='g1-box' onClick={toggleGame1}>
                 <Link to='/games/gesstheterm'>
                 <div className="icon" id="game-1">

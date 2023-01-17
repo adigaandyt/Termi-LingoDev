@@ -239,7 +239,7 @@ console.log(categoryId)
         }  */}
         {!isStart&&<div dir='ltr'>
                       <h5 className="text-light text-start mx-2 mt-2">{t('score')}: {score}</h5>
-                      <span><h4 className={`text-start mx-5 mt-2 ${feedColor}`}>{feedScore}</h4></span>
+                      <span><h4 className={`text-start mt-2 ${feedColor}`}>{feedScore}</h4></span>
                     </div>}
                 
         </div>

@@ -30,6 +30,7 @@ const getConcepts4GuessTermByCategoryId =async (data,token)=>{
 }
 
 const setGuessTheTermGameResult=async(data,token)=>{
+    console.log(data)
     const config ={
         headers:{
             authorization:`Bearer ${token}`

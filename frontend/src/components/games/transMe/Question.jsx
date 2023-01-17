@@ -134,7 +134,7 @@ function Question({languages,onNextQuestion,questionNumber,onNewQuestResult}){
     return(<>
         
         <div className="text-center">
-        <div class="cloud-bar">
+        <div class="cloud-bar" id="cloud-q">
         <div class="cloud top"><h1 className="mt-4" style={{"zIndex":"1"}}>{getRelevanteLang(concept_names[questionNumber].conceptName,questLanguage)}</h1>
         </div>
         </div>
@@ -143,13 +143,13 @@ function Question({languages,onNextQuestion,questionNumber,onNewQuestResult}){
         <div className="col-sm-6 col-md-4 col-lg-3 mt-sm-5 ">
             <button disabled={isDesabled} style={{ backgroundColor: randomPosition === 0 && correctBtnColor   }} id='game2-button'  onClick={onClick} name={0}>{randomPosition==0?(getRelevanteLang(concept_names[questionNumber].conceptName,answersLanguage)):getRelevanteLang(names[rand1].conceptName,answersLanguage)}  </button>
         </div>
-        <div className="col-sm-6 col-md-4 col-lg-3 mt-sm-5 ">
+        <div className="col-sm-6 col-md-4 col-lg-3 mt-sm-5" id="answer-button">
             <button disabled={isDesabled} style={{ backgroundColor: randomPosition === 1 && correctBtnColor  }} id='game2-button'  onClick={onClick} name={1}>{randomPosition==1?getRelevanteLang(concept_names[questionNumber].conceptName,answersLanguage):getRelevanteLang(names[rand2].conceptName,answersLanguage)}</button>
         </div>
-        <div className="col-sm-6 col-md-4 col-lg-3 mt-sm-5 ">
+        <div className="col-sm-6 col-md-4 col-lg-3 mt-sm-5" id="answer-button">
             <button disabled={isDesabled} style={{ backgroundColor: randomPosition === 2 && correctBtnColor  }} id='game2-button'  onClick={onClick} name={2}>{randomPosition==2?getRelevanteLang(concept_names[questionNumber].conceptName,answersLanguage):getRelevanteLang(names[rand3].conceptName,answersLanguage)}</button>
         </div>
-        <div className="col-sm-6 col-md-4 col-lg-3 mt-sm-5 ">
+        <div className="col-sm-6 col-md-4 col-lg-3 mt-sm-5" id="answer-button">
             <button disabled={isDesabled} style={{ backgroundColor: randomPosition === 3 && correctBtnColor  }} id='game2-button'  onClick={onClick} name={3}>{randomPosition==3?getRelevanteLang(concept_names[questionNumber].conceptName,answersLanguage):getRelevanteLang(names[rand4].conceptName,answersLanguage)}</button>
         </div>
         </div>

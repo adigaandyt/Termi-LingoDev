@@ -41,7 +41,7 @@ const Coins = () => {
         loop: false
       });
   return (
-    <div id="animationWrapper">
+    <div dir='ltr' id="animationWrapper">
         <div class="coin"></div>
         <div class="coin"></div>
         <div class="coin"></div>

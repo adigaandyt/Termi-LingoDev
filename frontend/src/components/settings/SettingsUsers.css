@@ -1,0 +1,227 @@
+.cardUser {
+    width: 450px;
+    height: 170px;
+    background-color: #fff;
+    background: linear-gradient(#f8f8f8, #fff);
+    box-shadow: 0 8px 16px -8px rgba(0,0,0,0.4);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    /* margin: 1.5rem; */
+    margin: 50px 0px 0px 35%;
+  }
+  
+  .cardUser h3 {
+    text-align: center;
+  }
+  
+  .cardUser .additional {
+    position: absolute;
+    width: 150px;
+    height: 100%;
+    background: linear-gradient(#dE685E, #EE786E);
+    transition: width 0.4s;
+    overflow: hidden;
+    z-index: 2;
+  }
+  
+  .cardUser.green .additional {
+    background: linear-gradient(#92bCa6, #A2CCB6);
+  }
+  
+  
+  .cardUser:hover .additional {
+    width: 100%;
+    border-radius: 0 5px 5px 0;
+  }
+  
+  .cardUser .additional .user-card-image {
+    width: 150px;
+    height: 100%;
+    position: relative;
+    float: left;
+    /* border: red solid; */
+  }
+  
+  .cardUser .additional .user-card-image::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 10%;
+    right: -2px;
+    height: 80%;
+    border-left: 2px solid rgba(0,0,0,0.025);
+  }
+  
+  .cardUser .additional .user-card-image .level,
+  #points{
+    margin-top: 10px;
+    margin-left: 25px;
+    /* bottom: 0; */
+    /* border: red solid; */
+    width: 100px;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 0.75em;
+    font-weight: bold;
+    background: rgba(0,0,0,0.15);
+    padding: 0.125rem 0.75rem;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+  #user-image{
+    margin-top: 5px;
+    margin-left: 20px;
+  }
+  
+  /* .card .additional .user-card .points {
+    top: 85%;
+  } */
+  
+  .cardUser .additional .user-card-image svg {
+    top: 50%;
+  }
+  
+  .cardUser .additional .more-info {
+    width: 300px;
+    float: left;
+    position: absolute;
+    left: 150px;
+    height: 100%;
+  }
+  
+  .cardUser .additional .more-info h3 {
+    color: #fff;
+    margin-bottom: 0;
+  }
+  
+  .cardUser.green .additional .more-info h3 {
+    color: #224C36;
+  }
+  
+  .cardUser .additional .coords {
+    margin: 0 1rem;
+    color: #fff;
+    font-size: 1rem;
+  }
+  
+  .cardUser.green .additional .coords {
+    color: #325C46;
+  }
+  
+  .cardUser .additional .coords span + span {
+    float: right;
+  }
+  
+  .cardUser .additional .stats {
+    font-size: 2rem;
+    display: flex;
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    top: auto;
+    color: #fff;
+  }
+  
+  .cardUser.green .additional .stats {
+    color: #325C46;
+    margin-left: 4px;
+    margin-bottom: -10px;
+
+  }
+  
+  .cardUser .additional .stats > div {
+    flex: 0;
+    text-align: center;
+  }
+  
+  .cardUser .additional .stats i {
+    display: block;
+  }
+  
+  .cardUser .additional .stats div.titleUser {
+    font-size: 0.75rem;
+    font-weight: bold;
+    /* text-transform: uppercase; */
+  }
+  #title-add{
+    /* border: red solid; */
+    width: 90px;
+  } 
+  
+  .cardUser .additional .stats div.value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1.5rem;
+  }
+  
+  .cardUser .general {
+    width: 300px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    box-sizing: border-box;
+    padding: 1rem;
+    padding-top: 0;
+  }
+  
+  .cardUser .general #more {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    font-size: 0.9em;
+  }
+  
+  @media only screen and (max-width: 450px) {
+    .cardUser{
+        margin: 20px 0px 0px 20px;
+        width: 350px;
+        /* height: 150px; */
+    }#user-image{
+        margin-left: 3px;
+    }
+    .cardUser .additional{
+        width: 120px;
+    }
+    .cardUser .additional .user-card-image{
+        width: 120px;
+    }
+    #points{
+        margin-left: 10px;
+    }
+    #more{
+        display: none;
+    }
+    .general h3{
+        margin-left: 70px
+    }
+    .more-info h3{
+        margin-left: -30px;
+    }
+    .cardUser .additional .more-info{
+        left: 100px;
+    }
+    .cardUser .additional .coords span{
+        margin-left: 10px;
+    }
+    .cardUser .general p{
+        margin: 20px 0px 0px 100px;
+    }
+    .cardUser .additional .stats div.titleUser {
+        font-size: 0.75rem;
+        font-weight: bold;
+        /* border: red solid; */
+        text-transform: lowercase;
+    }
+    #title-add{
+        width: 80px;
+    }  
+    .cardUser .additional .stats div.value {
+        font-size: 1.5rem;
+        font-weight:bold;
+        line-height: 1.5rem;
+    }
+  }

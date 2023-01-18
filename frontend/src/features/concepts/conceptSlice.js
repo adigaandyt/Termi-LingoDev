@@ -3,6 +3,7 @@ import conceptService from './conceptService'
 const initialState={ 
     concepts:null,
     concept:null,
+    unAcceptedConcepts:null,
     names:null,
     isSuccess:false,
     isError:false,
@@ -71,6 +72,22 @@ export const createNewConceptByUser=createAsyncThunk(
         const token=thunkAPI.getState().auth.user.token 
         try {
             return await conceptService.createNewConceptByUser(data,token)
+        } catch (error) {
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
+//get unAccepted concepts for admin editing
+export const getUnAcceptedConcepts=createAsyncThunk(
+    'unAccepted/concepts',
+     async(data,thunkAPI)=>{ 
+        const token=thunkAPI.getState().auth.user.token 
+        try {
+            return await conceptService.getUnAcceptedConcepts(token)
         } catch (error) {
             const message=(error.response&&error.response.data&&error.response.data.message)
             ||error.message
@@ -149,6 +166,20 @@ export const conceptSlice=createSlice({
         .addCase(createNewConceptByUser.fulfilled,(state)=>{
             state.isLoading=false
             state.isSuccess=true
+        })
+        .addCase(getUnAcceptedConcepts.pending,(state)=>{
+            state.isLoading=true
+        })
+        .addCase(getUnAcceptedConcepts.rejected,(state,action)=>{
+            state.isLoading=false
+            state.isError=true
+            state.message=action.payload
+            
+        })
+        .addCase(getUnAcceptedConcepts.fulfilled,(state,action)=>{
+            state.isLoading=false
+            state.isSuccess=true
+            state.unAcceptedConcepts=action.payload
         })
     }
 

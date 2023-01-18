@@ -325,6 +325,7 @@ const getUnAcceptedConcepts=asyncHandler( async(req,res)=>{
             const unAcceptedConcepts=await Concept.find({accepted:false})
             res.json(unAcceptedConcepts)
         } catch (error) {
+            console.log(error)
             res.status(500)
             throw new Error("Some thing went wrong !")
         }

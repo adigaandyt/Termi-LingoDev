@@ -34,12 +34,25 @@ const createNewConceptByUser =async (data,token)=>{
     return response.data
 }
 
+//get unAccepted concepts for admin editing
+const getUnAcceptedConcepts =async (token)=>{
+    const config ={
+        headers:{
+            authorization:`Bearer ${token}`
+        }
+    }
+    const response=await axios.get(API_URL+"/get/concepts/not/accepted",config) 
+    
+    return response.data
+}
+
 
 
 const conceptService={
     getConcept,
     getConceptsNames,
-    getConcepts,createNewConceptByUser
+    getConcepts,createNewConceptByUser,
+    getUnAcceptedConcepts
     
 }
 

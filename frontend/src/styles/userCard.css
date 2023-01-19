@@ -77,6 +77,10 @@
         font-weight: 600;
         /* margin-top: 2px; */
       }
+      #points{
+        text-align: center;
+        /* border: red solid; */
+      }
       
       /* .info-text-user-card { */
         /* margin-top: 2px; */
@@ -87,6 +91,11 @@
         /* font-size: 14px; */
         /* margin-top: 2px; */
       /* } */
+      #icon-card{
+        /* border: red solid; */
+        /* width: 100px; */
+        margin-left: -10px;
+      }
 }
 @media(min-width:400px){
     .user-card-container {
@@ -103,7 +112,10 @@
         border-radius: 10px;
         overflow: hidden;
       }
- 
+      #points{
+        text-align: center;
+        /* border: red solid; */
+      }
       
       .svg-background-user-card {
         width: 60%;
@@ -164,4 +176,10 @@
         font-weight: 600;
         /* margin-top: 2px; */
       }
+      #icon-card{
+        /* border: red solid; */
+        /* width: 100px; */
+        margin-left: -10px;
+      }
+      
 }

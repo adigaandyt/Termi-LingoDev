@@ -4,6 +4,7 @@ function UserCard(){
     const dispatch=useDispatch();
     const {name,email,profile_image,games_coins,gender,added_concepts} =useSelector(state=>state.auth.user)
     return(<>
+
         <div class="cardUser green">
             <div class="additional">
             <div class="user-card-image">

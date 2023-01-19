@@ -287,19 +287,19 @@ conceptName:{
     arabic:data.conceptName_arabic?data.conceptName_arabic:"N/A"
 },
 longDefinition:{
-    english:data.longDefinition_english,
-    hebrew:data.longDefinition_hebrew,
-    arabic:data.longDefinition_arabic
+    english:data.longDefinition_english?data.longDefinition_english:"N/A",
+    hebrew:data.longDefinition_hebrew?data.longDefinition_hebrew:"N/A",
+    arabic:data.longDefinition_arabic?data.longDefinition_arabic:"N/A"
 },
 shortDefinition:{
-    english:data.shortDefinition_english,
-    hebrew:data.shortDefinition_hebrew,
-    arabic:data.shortDefinition_arabic
+    english:data.shortDefinition_english?data.shortDefinition_english:"N/A",
+    hebrew:data.shortDefinition_hebrew?data.shortDefinition_hebrew:"N/A",
+    arabic:data.shortDefinition_arabic?data.shortDefinition_arabic:"N/A"
 },
 categories:[data.categoryId,'639e49f8dfabd615c821584f'],
 suggestedBy:user.name,
 suggestedBy_userId:user._id,
-readMore:data.readMore,
+readMore:data.readMore?data.readMore:"N/A",
 
 
 })

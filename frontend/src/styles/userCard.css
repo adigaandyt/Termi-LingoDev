@@ -87,6 +87,11 @@
         /* font-size: 14px; */
         /* margin-top: 2px; */
       /* } */
+      #icon-card{
+        /* border: red solid; */
+        /* width: 100px; */
+        margin-left: -10px;
+      }
 }
 @media(min-width:400px){
     .user-card-container {
@@ -164,4 +169,10 @@
         font-weight: 600;
         /* margin-top: 2px; */
       }
+      #icon-card{
+        /* border: red solid; */
+        /* width: 100px; */
+        margin-left: -10px;
+      }
+      
 }

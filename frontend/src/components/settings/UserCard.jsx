@@ -12,7 +12,6 @@ function UserCard(){
                     <circle cx="125" cy="125" r="120" fill="rgba(0,0,0,0.15)" />    
                 </svg>
                 <div id="points">
-                
                     {games_coins} Coins
                 </div>
             </div>

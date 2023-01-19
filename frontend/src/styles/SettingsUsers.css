@@ -238,7 +238,7 @@
     color: #000000;
     padding-bottom: 1%;
     /* autocomplete: off; */
-    max-width: 75%;
+    /* max-width: 75%; */
     
     
   }
@@ -257,5 +257,13 @@
     /* margin-left: 10px; */
     text-align: center;
     /* border: red solid; */
-    width: 45%;
+    width: 35%;
+  }@media(max-width:400px){
+    #inputUser{
+      max-width: 70%;
+      margin-left: 20px;
+    }
+    .input-user{
+      width: 100%;
+    }
   }

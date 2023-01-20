@@ -9,7 +9,9 @@ const {
       getConceptsNamesByUserId,
       getConceptNamesBycategoryId,
       creactNewConceptByUser,
-      getUnAcceptedConcepts
+      getUnAcceptedConcepts,
+      updateConceptByAdmin,
+      deleteConceptByAdmin
     } = require('../Controllers/conceptControllers')
 const router=express.Router()
 const {protect}=require("../middleware/authMiddleware")
@@ -24,6 +26,8 @@ router.get('/get/concepts/games/game1/guesstheterm',protect,getConceptsByUserId)
 router.get('/get/concepts/games/game1/guesstheterm/:categoryId',protect,getConceptsBycategoryId)
 router.get('/get/concepts/games/game2/transme',protect,getConceptsNamesByUserId)
 router.get('/get/concepts/games/game2/transme/:categoryid',protect,getConceptNamesBycategoryId)
+router.post('/update/concept/by/admin',protect,updateConceptByAdmin)
+router.delete('/delete/comcept/by/admin/:conceptId',deleteConceptByAdmin)
 
 
 

@@ -1,5 +1,6 @@
 import UnAcceptedConceptCard from "./UnAcceptedConceptCard"
 import {useSelector} from 'react-redux'
+import {useEffect} from 'react'
 
 function UnAcceptedConceptsList(){
     const {unAcceptedConcepts}=useSelector(state=>state.concept)
@@ -14,6 +15,7 @@ function UnAcceptedConceptsList(){
                 </div>
             )
         })}
+   
         
 
         {/* <div className=' col-sm-6 col-md-4 col-lg-3 my-1'>

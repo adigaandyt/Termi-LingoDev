@@ -14,7 +14,7 @@ function UnAcceptedConceptCard ({concept,index}){
 
     const toggleShow = () => setBasicModal(!basicModal);
     return(<>
-    <div class="card text-center">
+    <div class="card text-center ">
   {/* <div class="card-header">
     Featured
   </div> */}

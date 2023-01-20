@@ -6,7 +6,7 @@ function UnAcceptedConceptsList(){
     const {unAcceptedConcepts}=useSelector(state=>state.concept)
 
     return(<>
-    <div className="row w-100">
+    <div className="row w-100 text-center" style={{"margin":"auto"}}>
 
         {unAcceptedConcepts&&unAcceptedConcepts.map((concept,index)=>{
             return(

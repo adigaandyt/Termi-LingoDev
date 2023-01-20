@@ -258,7 +258,7 @@
     text-align: center;
     /* border: red solid; */
     width: 35%;
-  }@media(max-width:400px){
+  }@media(max-width:500px){
     #inputUser{
       max-width: 70%;
       margin-left: 20px;

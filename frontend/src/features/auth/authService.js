@@ -74,7 +74,11 @@ const login =async (userData)=>{
 }
 
 //Logout user
-const logout=()=>localStorage.removeItem('user')
+const logout=()=>{
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
+    
+}
 
 //reset password
 const resetPassword =async (formData,token)=>{

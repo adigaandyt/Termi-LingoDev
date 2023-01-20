@@ -1,5 +1,9 @@
+
+.userContainer{
+  align-items: center;
+}
 .cardUser {
-    width: 450px;
+    width:450px;
     height: 170px;
     background-color: #fff;
     background: linear-gradient(#f8f8f8, #fff);
@@ -7,9 +11,12 @@
     border-radius: 6px;
     overflow: hidden;
     position: relative;
+    border: #325C46 solid 5px;
+    margin: auto;
     /* margin: 1.5rem; */
-    margin: 50px 0px 0px 35%;
+    /* margin: 50px 0px 0px 35%; */
   }
+  
   
   .cardUser h3 {
     text-align: center;
@@ -47,16 +54,16 @@
     content: "";
     display: block;
     position: absolute;
-    top: 10%;
-    right: -2px;
+    /* top: 10%; */
+    /* right: -2px; */
     height: 80%;
     border-left: 2px solid rgba(0,0,0,0.025);
   }
   
   .cardUser .additional .user-card-image .level,
   #points{
-    margin-top: 10px;
-    margin-left: 25px;
+    margin: 10px auto;
+    /* margin-left: 25px; */
     /* bottom: 0; */
     /* border: red solid; */
     width: 100px;
@@ -110,7 +117,7 @@
   }
   
   .cardUser .additional .coords span + span {
-    float: right;
+    /* float: right; */
   }
   
   .cardUser .additional .stats {
@@ -175,9 +182,55 @@
     font-size: 0.9em;
   }
   
-  @media only screen and (max-width: 450px) {
+
+
+
+  #inputUser {
+    background-color: transparent;
+    border: 2px solid transparent;
+    text-align: center;
+    font-size: 150%;
+    border-bottom: 4px solid #000000; 
+    outline: none;
+    font-weight: bold;
+    color: #000000;
+    padding-bottom: 1%;
+    /* autocomplete: off; */
+    /* max-width: 75%; */
+    
+    
+  }
+  #buttonUser{
+    font-size: 250%;
+    color: #000000;
+    background-color: transparent;
+    border: none;
+  }
+  .article {
+    font-size: 125%;
+    
+  }
+  .input-user {
+    margin: 15px auto auto auto;
+    /* margin-left: 10px; */
+    text-align: center;
+    /* border: red solid; */
+    width: 35%;
+  }
+  @media(max-width:500px){
+    #inputUser{
+      max-width: 70%;
+      margin-left: 20px;
+    }
+    .input-user{
+      width: 100%;
+    }
+  }
+
+  
+  @media only screen and (max-width: 600px) {
     .cardUser{
-        margin: 20px 0px 0px 20px;
+        /* margin: 20px 0px 0px 20px; */
         width: 350px;
         /* height: 150px; */
     }#user-image{
@@ -223,47 +276,5 @@
         font-size: 1.5rem;
         font-weight:bold;
         line-height: 1.5rem;
-    }
-  }
-
-
-  #inputUser {
-    background-color: transparent;
-    border: 2px solid transparent;
-    text-align: center;
-    font-size: 150%;
-    border-bottom: 4px solid #000000; 
-    outline: none;
-    font-weight: bold;
-    color: #000000;
-    padding-bottom: 1%;
-    /* autocomplete: off; */
-    /* max-width: 75%; */
-    
-    
-  }
-  #buttonUser{
-    font-size: 250%;
-    color: #000000;
-    background-color: transparent;
-    border: none;
-  }
-  .article {
-    font-size: 125%;
-    
-  }
-  .input-user {
-    margin: 15px auto auto auto;
-    /* margin-left: 10px; */
-    text-align: center;
-    /* border: red solid; */
-    width: 35%;
-  }@media(max-width:500px){
-    #inputUser{
-      max-width: 70%;
-      margin-left: 20px;
-    }
-    .input-user{
-      width: 100%;
     }
   }

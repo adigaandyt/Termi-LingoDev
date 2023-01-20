@@ -4,15 +4,19 @@ function UserCard(){
     const dispatch=useDispatch();
     const {name,email,profile_image,games_coins,gender,added_concepts} =useSelector(state=>state.auth.user)
     return(<>
+        <div className='userContainer container ' style={{"margin":"auto"}}>
 
+        
         <div className="cardUser green">
             <div className="additional">
             <div className="user-card-image">
                 <svg id="user-image" width="110" height="110" viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" class="center">
                     <circle cx="125" cy="125" r="120" fill="rgba(0,0,0,0.15)" />    
                 </svg>
-                <div id="points">
+                <div className='text-center' >
+                <div id="points" >
                     {games_coins} Coins
+                </div>
                 </div>
             </div>
             <div className="more-info">
@@ -49,6 +53,7 @@ function UserCard(){
                 <p>{email}</p>
                 <span id="more">Mouse over the card for more info</span>
             </div>
+        </div>
         </div>
     </>)
 }

@@ -332,7 +332,60 @@ const getUnAcceptedConcepts=asyncHandler( async(req,res)=>{
 
     
     })
+//@desc update concept by admin in the settings page 
+//@route POST /update/concept/by/admin
+//@access private
+const updateConceptByAdmin=asyncHandler( async(req,res)=>{
+    // user details for back office !
+    const user=req.user
+    const data=req.body
 
+        try {
+            const newConcept=await Concept.findByIdAndUpdate({_id:data.conceptId},{
+                conceptName:{
+                    english:data.conceptName_english?data.conceptName_english:"N/A",
+                    hebrew:data.conceptName_hebrew?data.conceptName_hebrew:"N/A",
+                    arabic:data.conceptName_arabic?data.conceptName_arabic:"N/A"
+                },
+                longDefinition:{
+                    english:data.longDefinition_english?data.longDefinition_english:"N/A",
+                    hebrew:data.longDefinition_hebrew?data.longDefinition_hebrew:"N/A",
+                    arabic:data.longDefinition_arabic?data.longDefinition_arabic:"N/A"
+                },
+                shortDefinition:{
+                    english:data.shortDefinition_english?data.shortDefinition_english:"N/A",
+                    hebrew:data.shortDefinition_hebrew?data.shortDefinition_hebrew:"N/A",
+                    arabic:data.shortDefinition_arabic?data.shortDefinition_arabic:"N/A"
+                },
+                categories:[data.categoryId,'639e49f8dfabd615c821584f'],
+                readMore:data.readMore?data.readMore:"N/A",
+                accepted:true
+            },{new:true})
+            res.json(newConcept)
+        } catch (error) {
+            res.status(500)
+            // throw new Error("Some thing went wrong !")
+            throw new Error(error.message)
+
+        }
+
+    
+    })
+//@desc deleteConceptByAdmin 
+//@route DELETE /delete/comcept/by/admin
+//@access private
+const deleteConceptByAdmin=asyncHandler( async(req,res)=>{
+    const conceptId=req.params.conceptId
+    try {
+        const conceptDeleted=await Concept.findByIdAndDelete({_id:conceptId})
+        res.json(conceptDeleted)
+    } catch (error) {
+        res.status(400)
+        throw new Error(error.message)
+    }
+
+
+})
 
 
 
@@ -348,5 +401,7 @@ module.exports={
    getConceptsNamesByUserId,
    getConceptNamesBycategoryId,
    creactNewConceptByUser,
-   getUnAcceptedConcepts
+   getUnAcceptedConcepts,
+   updateConceptByAdmin,
+   deleteConceptByAdmin
 }

@@ -12,7 +12,6 @@ function UserCard(){
                     <circle cx="125" cy="125" r="120" fill="rgba(0,0,0,0.15)" />    
                 </svg>
                 <div id="points">
-                
                     {games_coins} Coins
                 </div>
             </div>
@@ -36,7 +35,7 @@ function UserCard(){
                             <i class="fa fa-gamepad"></i>
                         <div class="value">27</div>
                     </div>
-                    <div>
+                    <div id='icon-card'>
                         <div class="titleUser" id="title-add">concepts add</div>
                             <i class="fa fa-group"></i>
                         <div class="value">{added_concepts}</div>

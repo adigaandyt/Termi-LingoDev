@@ -3,8 +3,10 @@ import {useState,useEffect} from 'react'
 import {useSelector} from 'react-redux'
 import {useTranslation} from 'react-i18next'
 import {getCategoryName,getCategoryNameById} from '../../hooks/ExportsFunctions'
+import {useDispatch} from 'react-redux'
+import { updateConceptByAdmin,getUnAcceptedConcepts,reset } from '../../features/concepts/conceptSlice'
+import {toast} from 'react-toastify'
 import {
-    MDBBtn,
     MDBModal,
     MDBModalDialog,
     MDBModalContent,
@@ -15,21 +17,25 @@ import {
   } from 'mdb-react-ui-kit';
 function EditConceptModal({concept,index,basicModal,setBasicModal,toggleShow}){
     const {t}=useTranslation()
+    const dispatch=useDispatch()
     const {categories} =useSelector(state=>state.category)
+    const {isLoading,isSuccess,isError,message} =useSelector(state=>state.concept)
     const [formData,setFormData]=useState({
-        conceptName_english:null,
-        conceptName_arabic:null,
-        conceptName_hebrew:null,
-        longDefinition_english:null,
-        longDefinition_arabic:null,
-        longDefinition_hebrew:null,
-        shortDefinition_english:null,
-        shortDefinition_arabic:null,
-        shortDefinition_hebrew:null,
+        conceptId:concept._id,
+        conceptName_english:concept.conceptName.english,
+        conceptName_arabic:concept.conceptName.arabic,
+        conceptName_hebrew:concept.conceptName.hebrew,
+        longDefinition_english:concept.longDefinition.english,
+        longDefinition_arabic:concept.longDefinition.arabic,
+        longDefinition_hebrew:concept.longDefinition.hebrew,
+        shortDefinition_english:concept.shortDefinition.english,
+        shortDefinition_arabic:concept.shortDefinition.arabic,
+        shortDefinition_hebrew:concept.shortDefinition.hebrew,
         categoryId:concept.categories[0],
-        readMore:null
+        readMore:concept.readMore
     })
-    const {        conceptName_english,
+    const {        
+        conceptName_english,
         conceptName_arabic,
         conceptName_hebrew,
         longDefinition_english,
@@ -43,21 +49,7 @@ function EditConceptModal({concept,index,basicModal,setBasicModal,toggleShow}){
     const [isDisabled,setIsDisabled] =useState(false)
     const [currentSlide, setCurrentSlide] = useState(0);
 
-    const handlePrevious = () => {
-      if (currentSlide === 0) {
-        setCurrentSlide(2);
-      } else {
-        setCurrentSlide(currentSlide - 1);
-      }
-    }
-  
-    const handleNext = () => {
-      if (currentSlide === 2) {
-        setCurrentSlide(0);
-      } else {
-        setCurrentSlide(currentSlide + 1);
-      }
-    }
+
     const [flag,setFlag]=useState({
         hebrew:false,
         arabic:false,
@@ -66,8 +58,31 @@ function EditConceptModal({concept,index,basicModal,setBasicModal,toggleShow}){
     const {hebrew,arabic,english} =flag
 
     useEffect(()=>{
-        console.log(index)
-      },[])
+       if(isSuccess&&basicModal){
+        dispatch(getUnAcceptedConcepts())
+        setBasicModal()
+        setIsDisabled(false)
+        dispatch(reset())
+        toast.success("The concept has updated and saved in the database with 'Accepted' status ")
+       }
+       if(isError&&!toggleShow){
+        toast(message)
+       }
+      },[isSuccess,isError])
+      const onChange=(e)=>{
+        e.preventDefault()
+        setFormData((preventState)=>{
+          return ({
+            ...preventState,
+            [e.target.name]:e.target.value
+          })
+        })
+      }
+    const  onSubmit=(e)=>{
+      console.log(formData)
+      dispatch(updateConceptByAdmin(formData))
+      
+      }
     return (<>
 <MDBModal show={basicModal} setShow={setBasicModal} tabIndex='-1'>
 <MDBModalDialog>
@@ -79,7 +94,7 @@ function EditConceptModal({concept,index,basicModal,setBasicModal,toggleShow}){
                 </div>
             </MDBModalHeader>
             <MDBModalBody>
-            <form>
+            <form onSubmit={onSubmit}>
         {/* --------------------------carousel----------------------------------- */}
 
 <div id={`carouselExampleControls${index}`} class="carousel slide w-100 " >
@@ -103,44 +118,44 @@ function EditConceptModal({concept,index,basicModal,setBasicModal,toggleShow}){
   <div class={`carousel-item active`} onAnimationEnd={()=>{setFlag({english:true,hebrew:false,arabic:false})}}>
              <div class="mb-1 text-start">
           <label for="recipient-name" class="col-form-label">Concept Name in English:</label>
-          <input defaultValue={concept.conceptName.english} disabled={!isDisabled}  type="text" class="form-control" id="recipient-name"/>
+          <input onChange={onChange} name='conceptName_english' value={conceptName_english} defaultValue={concept.conceptName.english} disabled={!isDisabled}  type="text" class="form-control" id="recipient-name"/>
         </div>
         <div class="mb-1 text-start">
           <label for="message-text" class="col-form-label">Short Definition in English:</label>
-          <textarea defaultValue={concept.shortDefinition.english}  disabled={!isDisabled} class="form-control" id="message-text"></textarea>
+          <textarea onChange={onChange} name='shortDefinition_english' value={shortDefinition_english} defaultValue={concept.shortDefinition.english}  disabled={!isDisabled} class="form-control" id="message-text"></textarea>
         </div>
         <div class="mb-1 text-start">
           <label for="message-text" class="col-form-label">Long Definition in English:</label>
-          <textarea defaultValue={concept.longDefinition.english} disabled={!isDisabled} class="form-control" id="message-text"></textarea>
+          <textarea onChange={onChange} name='longDefinition_english' value={longDefinition_english} defaultValue={concept.longDefinition.english} disabled={!isDisabled} class="form-control" id="message-text"></textarea>
         </div>
   </div>
   <div class={`carousel-item `} onAnimationEnd={()=>{setFlag({english:false,hebrew:true,arabic:false})}}>
-  <div class="mb-3 text-start">
+  <div class="mb-1 text-start">
 
           <label for="recipient-name" class="col-form-label">Concept Name in Hebrew:</label>
-          <input defaultValue={concept.conceptName.hebrew} disabled={!isDisabled} type="text" class="form-control" id="recipient-name"/>
+          <input onChange={onChange} name='conceptName_hebrew' value={conceptName_hebrew} defaultValue={concept.conceptName.hebrew} disabled={!isDisabled} type="text" class="form-control" id="recipient-name"/>
         </div>
         <div class="mb-1 text-start">
           <label for="message-text" class="col-form-label">Short Definition in Hebrew:</label>
-          <textarea defaultValue={concept.shortDefinition.hebrew} disabled={!isDisabled} class="form-control" id="message-text"></textarea>
+          <textarea onChange={onChange} name='shortDefinition_hebrew' value={shortDefinition_hebrew} defaultValue={concept.shortDefinition.hebrew} disabled={!isDisabled} class="form-control" id="message-text"></textarea>
         </div>
         <div class="mb-1 text-start">
           <label for="message-text" class="col-form-label">Long Definition in Hebrew:</label>
-          <textarea defaultValue={concept.longDefinition.hebrew} disabled={!isDisabled} class="form-control" id="message-text"></textarea>
+          <textarea onChange={onChange} name='longDefinition_hebrew' value={longDefinition_hebrew} defaultValue={concept.longDefinition.hebrew} disabled={!isDisabled} class="form-control" id="message-text"></textarea>
         </div>
   </div>
   <div class={`carousel-item`} onAnimationEnd={()=>{setFlag({english:false,hebrew:false,arabic:true})}}>
   <div class="mb-1 text-start">
           <label for="recipient-name" class="col-form-label">Concept Name in Arabic:</label>
-          <input defaultValue={concept.conceptName.arabic} disabled={!isDisabled} type="text" class="form-control" id="recipient-name"/>
+          <input onChange={onChange} name='conceptName_arabic' value={conceptName_arabic} defaultValue={concept.conceptName.arabic} disabled={!isDisabled} type="text" class="form-control" id="recipient-name"/>
         </div>
         <div class="mb-1 text-start">
           <label for="message-text" class="col-form-label">Short Definition in Arabic:</label>
-          <textarea defaultValue={concept.shortDefinition.arabic} disabled={!isDisabled} class="form-control" id="message-text"></textarea>
+          <textarea onChange={onChange} name='shortDefinition_arabic' value={shortDefinition_arabic} defaultValue={concept.shortDefinition.arabic} disabled={!isDisabled} class="form-control" id="message-text"></textarea>
         </div>
         <div class="mb-1 text-start">
           <label for="message-text" class="col-form-label">Long Definition in Arabic:</label>
-          <textarea defaultValue={concept.longDefinition.arabic} disabled={!isDisabled} class="form-control" id="message-text"></textarea>
+          <textarea onChange={onChange} name='longDefinition_arabic' value={longDefinition_arabic} defaultValue={concept.longDefinition.arabic} disabled={!isDisabled} class="form-control" id="message-text"></textarea>
         </div>
   </div>
 </div>
@@ -149,11 +164,11 @@ function EditConceptModal({concept,index,basicModal,setBasicModal,toggleShow}){
         {/* --------------------------carousel----------------------------------- */}
         <div class="mb-1 text-start">
             <label for="recipient-name" class="col-form-label">URL Link:</label>
-            <input defaultValue={concept.readMore} disabled={!isDisabled} type="text" class="form-control" id="recipient-name"/>
+            <input onChange={onChange} name='readMore' value={readMore} defaultValue={concept.readMore} disabled={!isDisabled} type="text" class="form-control" id="recipient-name"/>
           </div>
           <div className="text-start">
           <label for="recipient-name" class="col-form-label">URL Link:</label>
-      <select disabled={!isDisabled} className="form-select" name='newCategoryId'  defaultValue={getCategoryNameById(categories,categoryId)} id="floatingSelectGrid"  aria-label="Floating label select example">
+      <select onChange={onChange} name='categoryId' disabled={!isDisabled} className="form-select"   defaultValue={getCategoryNameById(categories,categoryId)} id="floatingSelectGrid"  aria-label="Floating label select example">
         <option >{getCategoryNameById(categories,categoryId)}</option>
         {(categories)&&
             categories.map(category=>{
@@ -170,13 +185,13 @@ function EditConceptModal({concept,index,basicModal,setBasicModal,toggleShow}){
          {!isDisabled&&(
              <>
              <button  type="button" class="btn btn-secondary" onClick={()=>setIsDisabled(!isDisabled)}><FiEdit2/></button>
-             <button type="button" class="btn btn-success">Accept Concept</button>
+             <button onClick={onSubmit} type="button" class="btn btn-success">Accept Concept</button>
              </>
          )}
          {isDisabled&&(
              <>
              <button  type="button" class="btn btn-secondary" onClick={()=>setIsDisabled(!isDisabled)}>Cancel</button>
-             <button type="button" class="btn btn-warning">Save & Accept</button>
+             <button onClick={onSubmit} type="button" class="btn btn-warning">Save & Accept</button>
              </>
          )}
             </MDBModalFooter>

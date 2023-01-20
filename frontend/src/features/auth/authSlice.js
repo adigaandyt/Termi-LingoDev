@@ -12,6 +12,7 @@ const  initialState={
     image_url:null,
     user_token:null,
     top5:null,
+    usersByAdmin:null,
     isSuccess:false,
     isError:false,
     isLoading:false,

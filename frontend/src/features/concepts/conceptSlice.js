@@ -97,6 +97,38 @@ export const getUnAcceptedConcepts=createAsyncThunk(
      }
 
 )
+//update concept by admin 
+export const updateConceptByAdmin=createAsyncThunk(
+    'update/concept',
+     async(data,thunkAPI)=>{ 
+        const token=thunkAPI.getState().auth.user.token 
+        try {
+            return await conceptService.updateConceptByAdmin(data,token)
+        } catch (error) {
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
+//delete Concept By Admin
+export const deleteConceptByAdmin=createAsyncThunk(
+    'delete/concept',
+     async(conceptId,thunkAPI)=>{ 
+        try {
+            return await conceptService.deleteConceptByAdmin(conceptId)
+        } catch (error) {
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
+
 
 
 
@@ -180,6 +212,32 @@ export const conceptSlice=createSlice({
             state.isLoading=false
             state.isSuccess=true
             state.unAcceptedConcepts=action.payload
+        })
+        .addCase(updateConceptByAdmin.pending,(state)=>{
+            state.isLoading=true
+        })
+        .addCase(updateConceptByAdmin.rejected,(state,action)=>{
+            state.isLoading=false
+            state.isError=true
+            state.message=action.payload
+            
+        })
+        .addCase(updateConceptByAdmin.fulfilled,(state,action)=>{
+            state.isLoading=false
+            state.isSuccess=true
+        })
+        .addCase(deleteConceptByAdmin.pending,(state)=>{
+            state.isLoading=true
+        })
+        .addCase(deleteConceptByAdmin.rejected,(state,action)=>{
+            state.isLoading=false
+            state.isError=true
+            state.message=action.payload
+            
+        })
+        .addCase(deleteConceptByAdmin.fulfilled,(state,action)=>{
+            state.isLoading=false
+            state.isSuccess=true
         })
     }
 

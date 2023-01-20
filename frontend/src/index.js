@@ -21,11 +21,11 @@ const spinner=(
 
 root.render(
   <Suspense fallback={spinner}>
-    <React.StrictMode>
+    {/* <React.StrictMode> */}
     <Provider store={store}>
       <App />
     </Provider>
-    </React.StrictMode>
+    {/* </React.StrictMode> */}
   </Suspense>
   
 );

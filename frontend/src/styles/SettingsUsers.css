@@ -3,8 +3,8 @@
   align-items: center;
 }
 .cardUser {
-    width:450px;
-    height: 170px;
+    max-width:450px;
+    height: 185px;
     background-color: #fff;
     background: linear-gradient(#f8f8f8, #fff);
     box-shadow: 0 8px 16px -8px rgba(0,0,0,0.4);
@@ -12,7 +12,7 @@
     overflow: hidden;
     position: relative;
     border: #325C46 solid 5px;
-    margin: 20px auto ;
+    margin: 10px auto ;
     /* margin: 1.5rem; */
     /* margin: 50px 0px 0px 35%; */
   }
@@ -243,7 +243,8 @@
         /* margin: 20px 0px 0px 20px; */
         /*width: 380px;*/
         /* height: 150px; */
-        width: 95%
+        width: 95%;
+        height: 170px;
       
     }#user-image{
         margin-left: 3px;

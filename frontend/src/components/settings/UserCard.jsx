@@ -33,11 +33,11 @@ function UserCard({user}){
                 <div className="coords">
                     <span>Language: {user.language}</span>
                 </div>
-                <div className="stats row">
+                <div className="stats row d-flex justify-content-between">
                     <div>
                         <div className="titleUser">Likes</div>
                         <FcLike className=' display-4 '/>
-                        <div className="value">2</div>
+                        <div className="value">0</div>
                     </div>
                     <div>
                         <div className="titleUser">Matches</div>

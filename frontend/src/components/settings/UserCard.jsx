@@ -1,8 +1,12 @@
 import '../../styles/SettingsUsers.css'
+import {TbPlaylistAdd} from 'react-icons/tb'
+import {CgGames} from 'react-icons/cg'
+import {FcLike} from 'react-icons/fc'
 import { useSelector,useDispatch } from 'react-redux';
-function UserCard(){
+import { getCategoryNameById } from '../../hooks/ExportsFunctions';
+function UserCard({user}){
     const dispatch=useDispatch();
-    const {name,email,profile_image,games_coins,gender,added_concepts} =useSelector(state=>state.auth.user)
+    const {categories} =useSelector(state=>state.category)
     return(<>
         <div className='userContainer  ' style={{"margin":"auto"}}>
 
@@ -10,47 +14,49 @@ function UserCard(){
         <div className="cardUser green">
             <div className="additional">
             <div className="user-card-image">
-                <svg id="user-image" width="110" height="110" viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" class="center">
-                    <circle cx="125" cy="125" r="120" fill="rgba(0,0,0,0.15)" />    
-                </svg>
+
+                <img className='rounded-circle'  id="user-image" width="110" height="110" viewBox="0 0 250 250"  src={user.profile_image}/>
+
+                
                 <div className='text-center' >
                 <div id="points" >
-                    {games_coins} Coins
+                    {user.games_coins} Coins
                 </div>
                 </div>
             </div>
             <div className="more-info">
-                <h3>{name}</h3>
+                <h3>{user.name}</h3>
                 <div className="coords">
                     <span>Category :</span>
-                    <span>Joined January 2019</span>
+                    <span>{"saofg"}</span>
                 </div>
                 <div className="coords">
-                    <span>Position/Role</span>
+                    <span>Language: {user.language}</span>
                 </div>
                 <div className="stats row">
                     <div>
-                        <div className="titleUser">Awards</div>
-                            <i className="fa fa-trophy"></i>
+                        <div className="titleUser">Likes</div>
+                        <FcLike className=' display-6 '/>
                         <div className="value">2</div>
                     </div>
                     <div>
                         <div className="titleUser">Matches</div>
-                            <i className="fa fa-gamepad"></i>
-                        <div className="value">27</div>
+                            <CgGames className=' display-6 '/>
+                        <div className="value">{user.gamesPlayed}</div>
                     </div>
                     <div id='icon-card'>
-                        <div className="titleUser" id="title-add">concepts add</div>
-                            <i className="fa fa-group"></i>
-                        <div className="value">{added_concepts}</div>
+                        <div className="titleUser  mb-0" id="title-add">concepts add</div>
+                            {/* <i className="fa fa-group"></i> */}
+                            <TbPlaylistAdd className=' display-6 '/>
+                        <div className="value">{user.added_concepts}</div>
                     </div>
 
                 </div>
             </div>
             </div>
             <div className="general">
-                <h3>{name}</h3>
-                <p>{email}</p>
+                <h3>{user.name}</h3>
+                <p>{user.email}</p>
                 <span id="more">Mouse over the card for more info</span>
             </div>
         </div>

@@ -190,6 +190,22 @@ export const getTop5Users=createAsyncThunk(
      }
 
 )
+// get Users By Text Search for admin 
+export const getUsersByTextSearch=createAsyncThunk(
+    'get/users',
+     async(textSearch,thunkAPI)=>{
+      
+        try { 
+            return await authService.getUsersByTextSearch(textSearch)
+        } catch (error) {
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
 
 
 export  const authSlice=createSlice({
@@ -347,6 +363,19 @@ export  const authSlice=createSlice({
         .addCase(getTop5Users.fulfilled,(state,action)=>{
             state.isLoading=false
             state.top5=action.payload
+        })
+        .addCase(getUsersByTextSearch.pending,(state)=>{
+            state.isLoading=true
+        })
+        .addCase(getUsersByTextSearch.rejected,(state,action)=>{
+            state.isLoading=false
+            state.message=action.payload
+            state.usersByAdmin=null
+
+        })
+        .addCase(getUsersByTextSearch.fulfilled,(state,action)=>{
+            state.isLoading=false
+            state.usersByAdmin=action.payload
         })
     }
 

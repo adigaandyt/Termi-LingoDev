@@ -121,7 +121,7 @@
   }
   
   .cardUser .additional .stats {
-    font-size: 2rem;
+    /* font-size: 2rem; */
     display: flex;
     position: absolute;
     bottom: 1rem;
@@ -162,9 +162,9 @@
   } 
   
   .cardUser .additional .stats div.value {
-    font-size: 1.5rem;
+    /* font-size: 1.5rem; */
     font-weight: bold;
-    line-height: 1.5rem;
+    line-height: 1.2rem;
   }
   
   .cardUser .general {

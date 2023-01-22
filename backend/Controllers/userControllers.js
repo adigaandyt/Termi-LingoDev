@@ -369,6 +369,80 @@ const getTop5Users=asyncHandler( async (req,res)=>{
          throw new Error(error)
      }
   })
+//@desc get users by textSearch for admin settings
+//@route GET /api/users/get/users/:textSearch
+//@access public
+    
+const getUsersForAdmin=asyncHandler( async (req,res)=>{
+    console.log(req.params)
+    try {
+       const text=req.params.textSearch;
+    //    const users=await User.find({"name":{ $regex:new RegExp(text), "$options" : "iu"}})
+    const users=await User.aggregate([
+        {
+          $match: {
+              name:{ $regex:new RegExp(text), "$options" : "iu"}
+          }
+        },
+        {
+          $lookup: {
+            from: "guesstheterms",
+            localField: "_id",
+            foreignField: "userId",
+            as: "guessTheTerm"
+          }
+        },
+        {
+            $lookup: {
+              from: "transmes",
+              localField: "_id",
+              foreignField: "userId",
+              as: "transMe"
+            }
+        },
+        {
+            $lookup: {
+              from: "categories",
+              localField: "categoryId",
+              foreignField: "_id",
+              as: "category"
+            }
+        },
+
+
+        {
+          $group: {
+            _id: "$_id",
+            gamesPlayed: { $sum: { $size: {$concatArrays:["$guessTheTerm","$transMe"]} } },
+            categoryName:{$first:"$category.categoryName"},
+            user: { $first: "$$ROOT" }
+          }
+        },
+        {
+          $project: {
+            _id: "$_id",
+            gamesPlayed: "$gamesPlayed",
+            categoryName: "$categoryName",
+            name: "$user.name",
+            email: "$user.email",
+            language:"$user.language",
+            profile_image:"$user.profile_image",
+            games_coins:"$user.games_coins",
+            phoneNumber:"$user.phoneNumber",
+            added_concepts:"$user.added_concepts",
+            gender:"$user.gender"
+
+
+          }
+        }
+      ])
+    res.json(users)
+
+    } catch (error) {
+        res.status(500)
+        throw new Error(error)
+    }
+ })
 module.exports={
     registrUser,
     loginUser,
@@ -379,5 +453,6 @@ module.exports={
     updateUserImage,
     verifyUser,
     setCoinsOnFinishedGame,
-    getTop5Users
+    getTop5Users,
+    getUsersForAdmin
 }

@@ -6,7 +6,6 @@ import Spinner from "../Spinner"
 
 const AdminPrivateRoute=()=>{
     const {IsAdmin,checkingStatus}=useAdminStatus()
-    console.log(IsAdmin)
     if(checkingStatus){
         return <Spinner/>
     }

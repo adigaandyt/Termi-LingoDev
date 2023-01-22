@@ -36,18 +36,18 @@ function UserCard({user}){
                 <div className="stats row">
                     <div>
                         <div className="titleUser">Likes</div>
-                        <FcLike className=' display-6 '/>
+                        <FcLike className=' display-4 '/>
                         <div className="value">2</div>
                     </div>
                     <div>
                         <div className="titleUser">Matches</div>
-                            <CgGames className=' display-6 '/>
+                            <CgGames className=' display-4 '/>
                         <div className="value">{user.gamesPlayed}</div>
                     </div>
                     <div id='icon-card'>
                         <div className="titleUser  mb-0" id="title-add">concepts add</div>
                             {/* <i className="fa fa-group"></i> */}
-                            <TbPlaylistAdd className=' display-6 '/>
+                            <TbPlaylistAdd className=' display-4 '/>
                         <div className="value">{user.added_concepts}</div>
                     </div>
 

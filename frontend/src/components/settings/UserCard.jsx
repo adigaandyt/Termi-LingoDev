@@ -28,7 +28,7 @@ function UserCard({user}){
                 <h3>{user.name}</h3>
                 <div className="coords">
                     <span>Category :</span>
-                    <span>{"saofg"}</span>
+                    <span>{user.categoryName.length>0&&user.categoryName[0].english}</span>
                 </div>
                 <div className="coords">
                     <span>Language: {user.language}</span>

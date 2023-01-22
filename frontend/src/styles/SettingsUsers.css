@@ -172,10 +172,10 @@
     height: 100%;
     position: absolute;
     top: 0;
-    right: 0;
+    right: 10px;
     z-index: 1;
     box-sizing: border-box;
-    padding: 1rem;
+    /* padding: 1rem; */
     padding-top: 0;
   }
   

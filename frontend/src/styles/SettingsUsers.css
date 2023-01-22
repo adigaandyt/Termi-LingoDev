@@ -181,7 +181,7 @@
   
   .cardUser .general #more {
     position: absolute;
-    bottom: 1rem;
+    bottom: 0.5rem;
     right: 1rem;
     font-size: 0.9em;
   }
@@ -221,6 +221,9 @@
     /*border: red solid; */
     width: 35%;
   }
+  .cardUser .general p{
+        margin: 20px 0px 0px 40px;
+  }
   @media(max-width:500px){
     #inputUser{
       max-width: 60%;
@@ -232,7 +235,7 @@
     }
     #buttonUser{
       /*border: red solid;*/
-      width: 50px !important;
+      width: 50px;
       
     }
   }

@@ -34,17 +34,17 @@ function UserCard({user}){
                     <span>Language: {user.language}</span>
                 </div>
                 <div className="stats row d-flex justify-content-between">
-                    <div>
+                    <div className="flex-item">
                         <div className="titleUser">Likes</div>
                         <FcLike className=' display-4 '/>
                         <div className="value">0</div>
                     </div>
-                    <div>
+                    <div className="flex-item">
                         <div className="titleUser">Matches</div>
                             <CgGames className=' display-4 '/>
                         <div className="value">{user.gamesPlayed}</div>
                     </div>
-                    <div id='icon-card'>
+                    <div id='icon-card' className="flex-item">
                         <div className="titleUser  mb-0" id="title-add">concepts add</div>
                             {/* <i className="fa fa-group"></i> */}
                             <TbPlaylistAdd className=' display-4 '/>

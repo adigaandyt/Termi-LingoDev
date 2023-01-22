@@ -135,7 +135,7 @@ function Question({languages,onNextQuestion,questionNumber,onNewQuestResult}){
         
         <div dir='ltr' className="text-center">
         <div class="cloud-bar" id="cloud-q">
-        <div class="cloud top"><h1 className="mt-4" style={{"zIndex":"1"}}>{getRelevanteLang(concept_names[questionNumber].conceptName,questLanguage)}</h1>
+        <div class="cloud top"><h2 className="mt-1" style={{"zIndex":"1"}}>{getRelevanteLang(concept_names[questionNumber].conceptName,questLanguage)}</h2>
         </div>
         </div>
         {/* dasdasdasdsa */}

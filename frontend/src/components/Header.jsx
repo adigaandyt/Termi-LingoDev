@@ -74,7 +74,7 @@ function Header(){
         <div className="space"></div>
             <div className="content">
                 <div className="text">
-                    <Link to='/' id='titlestyle' className="navbar-brand text-secondary mx-3"> <BsTranslate className='text-light display-3' /></Link>
+                    <Link to='/' id='titlestyle' className="navbar-brand text-secondary mx-3"> <BsTranslate className='text-light display-1' size="60" /></Link>
                 </div>
                 <div className={`btnb ${active ? 'active' : ''}`} onClick={optionsClick}><span></span></div>
 

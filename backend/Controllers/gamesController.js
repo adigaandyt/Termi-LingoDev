@@ -43,7 +43,9 @@ const setGuessTheTermGame=asyncHandler( async(req,res)=>{
 
 })
 
-
+//@desc set the result of TrasMe game in the DB
+//@route POST /api/games/set/game/transme
+//@access private
 const setTransMeGame=asyncHandler( async(req,res)=>{
     const user=req.user;
     const data=req.body;
@@ -70,6 +72,7 @@ const setTransMeGame=asyncHandler( async(req,res)=>{
     }
 
 })
+
 
 
 

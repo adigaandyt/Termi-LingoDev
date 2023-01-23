@@ -443,6 +443,189 @@ const getUsersForAdmin=asyncHandler( async (req,res)=>{
         throw new Error(error)
     }
  })
+
+
+//@desc get the results of the trans me game for profile page
+//@route GET /api/users/get/results/transMe
+//@access private    
+const getUserTransMeGameResults=asyncHandler( async (req,res)=>{
+    console.log(req.user)
+    try {
+    //    const users=await User.find({"name":{ $regex:new RegExp(text), "$options" : "iu"}})
+    const results=await User.aggregate([
+        {
+          $match: {
+              _id:req.user._id
+          }
+        },
+        {
+          $lookup: {
+            from: "transmes",
+            localField: "_id",
+            foreignField: "userId",
+            as: "transme"
+          }
+        },
+        {
+            $unwind: "$transme"
+          },
+        {
+          $group: {
+            _id: "$_id",
+            totalScore:{$sum:"$transme.score"},
+            totalGames:{$sum: 1 },
+            user: { $first: "$$ROOT" }
+          }
+        },
+        {
+          $project: {
+            _id: "$_id",
+            totalScore:"$totalScore",
+            totalGames:"$totalGames"
+
+          }
+        }
+      ])
+    res.json(results)
+
+    } catch (error) {
+        res.status(500)
+        throw new Error(error)
+    }
+ })
+ //@desc get the results of the guesstheterm game for profile page
+//@route GET /api/users/get/results/guesstheterm
+//@access private    
+const getUserGessTheTermGameResults=asyncHandler( async (req,res)=>{
+    console.log(req.user)
+    try {
+    //    const users=await User.find({"name":{ $regex:new RegExp(text), "$options" : "iu"}})
+    const results=await User.aggregate([
+        {
+          $match: {
+              _id:req.user._id
+          }
+        },
+        {
+          $lookup: {
+            from: "guesstheterms",
+            localField: "_id",
+            foreignField: "userId",
+            as: "guesstheterm"
+          }
+        },
+        {
+            $unwind: "$guesstheterm"
+          },
+        {
+          $group: {
+            _id: "$_id",
+            totalScore:{$sum:"$guesstheterm.score"},
+            totalGames:{$sum: 1 },
+            user: { $first: "$$ROOT" }
+          }
+        },
+        {
+          $project: {
+            _id: "$_id",
+            totalScore:"$totalScore",
+            totalGames:"$totalGames",
+
+
+          }
+        }
+      ])
+    res.json(results)
+
+    } catch (error) {
+        res.status(500)
+        throw new Error(error)
+    }
+ })
+  //@desc get the results of the both games  for recharts
+//@route GET /api/users/get/both/games/results
+//@access private    
+const getUserBothGamesResults=asyncHandler( async (req,res)=>{
+    console.log(req.user)
+    try {
+    //    const users=await User.find({"name":{ $regex:new RegExp(text), "$options" : "iu"}})
+    const results=await User.aggregate([
+        {
+          $match: {
+              _id:req.user._id
+          }
+        },
+        {
+          $lookup: {
+            from: "guesstheterms",
+            localField: "_id",
+            foreignField: "userId",
+            as: "guesstheterm"
+          }
+        },
+        {
+            $lookup: {
+              from: "transmes",
+              localField: "_id",
+              foreignField: "userId",
+              as: "transme"
+            }
+          },
+        // {
+        //     $unwind: "$guesstheterm"
+        // },
+        // {
+        //     $unwind: "$transme"
+        // },
+        // {$group:{
+        //     _id: "$_id",
+        //     // totalScore:{$sum:"$transme.score"},
+        //     // totalGames:{$sum: 1 },
+        //     guessTheTermScore:"$guesstheterm.score",
+        //     transMeScore:"$transme.score",
+        //     user: { $first: "$$ROOT" } 
+        // }},
+
+        {
+          $project: {
+            _id: "$_id",
+            guessTheTermScore:"$guesstheterm.score",
+            transMeScore:"$transme.score"
+            // totalScore:"$totalScore",
+            // totalGames:"$totalGames",
+
+
+        }
+        }
+      ])
+      let data;
+      if(results[0].guessTheTermScore.length<=results[0].transMeScore.length){
+         data=results[0].transMeScore.map((val,index)=>{
+            return{
+                name:`Game ${index+1}` ,
+                GuessTheTerm:results[0].guessTheTermScore[index],
+                TransMe:val,
+
+               
+            }
+        })
+      }else{
+        data=results[0].guessTheTermScore.map((val,index)=>{
+            return{
+                name:`Game ${index+1}` ,
+                GuessTheTerm:val,
+                TransMe:results[0].transMeScore[index],
+            }
+        })
+      }
+      
+    res.json(data)
+
+    } catch (error) {
+        res.status(500)
+        throw new Error(error)
+    }
+ })
 module.exports={
     registrUser,
     loginUser,
@@ -454,5 +637,8 @@ module.exports={
     verifyUser,
     setCoinsOnFinishedGame,
     getTop5Users,
-    getUsersForAdmin
+    getUsersForAdmin,
+    getUserTransMeGameResults,
+    getUserGessTheTermGameResults,
+    getUserBothGamesResults
 }

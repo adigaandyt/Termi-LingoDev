@@ -1,6 +1,6 @@
 const express=require('express')
 const router=express.Router()
-const {registrUser,loginUser,getMe,resetPassword,uploadImage,updateUserDetails,updateUserImage,verifyUser,setCoinsOnFinishedGame,getTop5Users,getUsersForAdmin}=require('../Controllers/userControllers')
+const {registrUser,loginUser,getMe,resetPassword,uploadImage,updateUserDetails,updateUserImage,verifyUser,setCoinsOnFinishedGame,getTop5Users,getUsersForAdmin,getUserTransMeGameResults,getUserGessTheTermGameResults,getUserBothGamesResults}=require('../Controllers/userControllers')
 const {protect}=require("../middleware/authMiddleware")
 const {upload} =require('../config/S3')
 
@@ -15,6 +15,10 @@ router.post('/update/user',protect,updateUserDetails)
 router.post('/update/image',upload.single("profileImage"),protect,updateUserImage)
 router.post('/verify',verifyUser)
 router.post('/set/coins',protect,setCoinsOnFinishedGame)
+router.get('/get/results/transMe',protect,getUserTransMeGameResults);
+router.get('/get/results/guesstheterm',protect,getUserGessTheTermGameResults)
+router.get('/get/both/games/results',protect,getUserBothGamesResults)
+
 
 
 

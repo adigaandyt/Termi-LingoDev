@@ -65,10 +65,80 @@ const createCategoryByUser=asyncHandler( async(req,res)=>{
     
 
 })
-
+//@desc get all categories that not accepted by admin .
+//@route GET /api/categories/get/categories/not/accepted
+//@access private
+const getCategoriesForAdmin=asyncHandler( async(req,res)=>{
+    try {
+        const response=await Category.find({accepted:false})
+        if(response){
+            res.status(200).json(response)
+        }
+    } catch (error) {
+      res.status(400);
+      throw new Error("Something went wrong")  
+    }
+        
+})
+//@desc update category by admin 
+//@route POST /api/categories/update/category/by/admin
+//@access private
+const updateCategoryByAdmin=asyncHandler( async(req,res)=>{
+    const data=req.body
+    console.log(data)
+    try {
+        const response=await Category.findByIdAndUpdate(data.categoryId,{
+            "categoryName.english":data.categoryNameEnglish,
+            "categoryName.hebrew":data.categoryNameHebrew,
+            "categoryName.arabic":data.categoryNameArabic,
+        },{new:true})
+        if(response){
+            res.status(200).json(response)
+        }
+    } catch (error) {
+      res.status(400);
+      throw new Error("Something went wrong")  
+    }
+        
+})
+//@desc delete category by admin 
+//@route DELETE /api/categories/update/category/by/admin/:categoryId
+//@access private
+const deleteCategoryByAdmin=asyncHandler( async(req,res)=>{
+    const data=req.params
+    try {
+        const response=await Category.findByIdAndDelete(data.categoryId)
+        if(response){
+            res.status(200).json(response)
+        }
+    } catch (error) {
+      res.status(400);
+      throw new Error("Something went wrong")  
+    }
+        
+})
+//@desc accept category by admin 
+//@route post /api/categories/accept/category/by/admin
+//@access private
+const acceptCategoryByAdmin=asyncHandler( async(req,res)=>{
+    const data=req.body
+    console.log(req.body)
+    try {
+        const response=await Category.findByIdAndUpdate(data.categoryId,{accepted:true},{new:true})
+        res.status(200).json(response)
+    } catch (error) {
+      res.status(400);
+      throw new Error("Something went wrong")  
+    }
+        
+})
 
 module.exports={
     testCategories,
     getAllCategories,
-    createCategoryByUser
+    createCategoryByUser,
+    getCategoriesForAdmin,
+    updateCategoryByAdmin,
+    deleteCategoryByAdmin,
+    acceptCategoryByAdmin
  }

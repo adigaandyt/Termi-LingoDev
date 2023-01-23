@@ -11,7 +11,7 @@ function AcceptCategoryModal({categoryId}){
 
     }
     return (<>
-<button type="button" className="btn btn-sm mx-1 text-danger" data-bs-toggle="modal" data-bs-target={`#exampleModal${categoryId}1`}>
+<button type="button" className="btn  mx-1 text-danger" data-bs-toggle="modal" data-bs-target={`#exampleModal${categoryId}1`}>
 <FcAcceptDatabase/>
 </button>
 

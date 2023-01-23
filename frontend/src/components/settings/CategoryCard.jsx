@@ -34,14 +34,17 @@ function CategoryCard({category,index}){
     </div>
     <div className="text-end my-0">
     {/* <button class="btn btn-sm mx-1 text-danger"><RiDeleteBin5Line /></button> */}
+    <div className='mt-2'>
+
     {isDisabled&&<>
     <DeleteCategoryModal categoryId={category._id} index={index}/>
-    <button onClick={onEdit}  className='btn btn-sm mx-1 text-end text-green'><FiEdit2/></button>
+    <button onClick={onEdit}  className='btn  mx-1 text-end text-green'><FiEdit2/></button>
     {/* <button onClick={onAccept}  className='btn btn-sm mx-1 text-end text-green'><FcAcceptDatabase/></button></> */}
     <AcceptCategoryModal categoryId={category._id}/></>
     }
-    {!isDisabled&&<><button onClick={onEdit}  className='btn btn-sm mx-1 text-end text-danger'><ImCancelCircle/></button>
-    <button onClick={onSave} className='btn btn-sm mx-1 text-end text-success'><TfiSave/></button></>}
+    {!isDisabled&&<><button onClick={onEdit}  className='btn  mx-1 text-end text-danger'><ImCancelCircle/></button>
+    <button onClick={onSave} className='btn  mx-1 text-end text-success'><TfiSave/></button></>}
+    </div>
     
 
 

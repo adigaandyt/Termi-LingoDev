@@ -20,7 +20,7 @@ function DeleteCategoryModal({index, categoryId}){
     return(<>
     {/* {isLoading&&<Spinner3/>} */}
 {/* <!-- Button trigger modal --> */}
-<button type="button" className="btn btn-sm mx-1 text-danger" data-bs-toggle="modal" data-bs-target={`#exampleModal${categoryId}`}>
+<button type="button" className="btn  mx-1 text-danger" data-bs-toggle="modal" data-bs-target={`#exampleModal${categoryId}`}>
 <RiDeleteBin5Line />
 </button>
 

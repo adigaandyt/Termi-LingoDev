@@ -1,10 +1,22 @@
 import '../../styles/SettingsUsers.css'
 import {TbPlaylistAdd} from 'react-icons/tb'
 import {CgGames} from 'react-icons/cg'
-import {FcLike} from 'react-icons/fc'
+import {FcLike} from 'react-icons/fc';
+import React, { useState } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import { getCategoryNameById } from '../../hooks/ExportsFunctions';
 function UserCard({user}){
+    const [isAdmin, setIsAdmin] = useState(false);
+
+    function handleChange(event) {
+        setIsAdmin(event.target.checked);
+        if(!isAdmin){
+            console.log("admin")
+        }
+        else{
+            console.log("not admin")
+        }
+    }
     const dispatch=useDispatch();
     const {categories} =useSelector(state=>state.category)
     return(<>
@@ -26,13 +38,9 @@ function UserCard({user}){
             </div>
             <div className="more-info">
                 <h3>{user.name}</h3>
-                <div className="coords">
-                    <span>Category :</span>
-                    <span>{user.categoryName.length>0&&user.categoryName[0].english}</span>
-                </div>
-                <div className="coords">
-                    <span>Language: {user.language}</span>
-                </div>
+                <span><label class="btn-onoff">
+		            <input type="checkbox" name="name" data-onoff="toggle" onChange={handleChange}/><span></span>
+	            </label></span>
                 <div className="stats row d-flex justify-content-between">
                     <div className="flex-item">
                         <div className="titleUser">Likes</div>
@@ -57,6 +65,13 @@ function UserCard({user}){
             <div className="general">
                 <h3>{user.name}</h3>
                 <p>{user.email}</p>
+                <div className="coords">
+                    <span>Category :</span>
+                    <span>{user.categoryName.length>0&&user.categoryName[0].english}</span>
+                </div>
+                <div className="coords">
+                    <span>Language: {user.language}</span>
+                </div>
                 <span id="more">Mouse over the card for more info</span>
             </div>
         </div>

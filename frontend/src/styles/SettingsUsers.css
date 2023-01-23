@@ -107,15 +107,16 @@
     color: #224C36;
   }
   
-  .cardUser .additional .coords {
-    margin: 0 1rem;
+  .coords {
+    margin: 0 2.3rem;
     color: #fff;
     font-size: 1rem;
-  }
-  
-  .cardUser.green .additional .coords {
     color: #325C46;
   }
+  
+  /*.coords {*/
+  /*  color: #325C46;*/
+  /*}*/
   
   .cardUser .additional .coords span + span {
     /* float: right; */
@@ -225,6 +226,86 @@
   .cardUser .general p{
         margin: 20px 0px 0px 40px;
   }
+  .btn-onoff{
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    left: 63%;
+    top: 3%;
+  }
+  .btn-onoff input{
+    display: block;
+    position: absolute;
+    opacity:0;
+  }
+  .btn-onoff span{
+    position: relative;
+    display: block;
+    width: 100px;
+    height: 34px;
+    border-radius: 40px;
+    background: #ccc;
+    border: 1px solid #ccc;
+    -webkit-transition: 400ms;
+    -moz-transition: 400ms;
+    -ms-transition: 400ms;
+    transition: 400ms;
+    
+  }
+  .btn-onoff input:checked ~ span{
+    border: 1px solid #4CAF50;
+    background: #4CAF50
+  }
+  .btn-onoff input ~ span:before{
+    content: 'not admin';
+    display: block;
+    width: 48px;
+    /* height: 10px; */
+    position: absolute;
+    right: 0px;
+    font-size: 14px;
+    font-family: "Arial";
+    font-weight: bold;
+  	line-height: 15px;
+    color: #444;
+    /* padding: 0px 8px; */
+  /* 	letter-spacing: 1px; */
+  /* 	text-transform: uppercase; */
+  	-webkit-transition: 500ms;
+  	-moz-transition: 500ms;
+  	-ms-transition: 500ms;
+  	transition: 500ms
+  }
+  .btn-onoff input:checked ~ span:before{
+    content: 'admin';
+    right: 35px;
+    top: 8px;
+    color: #fff
+  }
+  .btn-onoff input ~ span:after{
+    content: '';
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    top: 4px;
+    left: 4px;
+    background: #fff;
+    border-radius: 50%;
+    -webkit-transition: 400ms;
+    -moz-transition: 400ms;
+    -ms-transition: 400ms;
+    transition: 400ms
+  }
+  .btn-onoff:hover input ~ span:after{
+    -webkit-transform:scale(0.9);
+    -moz-transform:scale(0.9);
+    -ms-transform:scale(0.9);
+    transform:scale(0.9)
+  }
+  .btn-onoff input:checked ~ span:after{
+    content: '';
+    left: 71px;
+  }
   @media(max-width:500px){
     #inputUser{
       max-width: 60%;
@@ -278,7 +359,7 @@
         margin-left: 10px;
     }
     .cardUser .general p{
-        margin: 20px 0px 0px 100px;
+        margin: 20px 0px 0px 95px;
     }
     .cardUser .additional .stats div.titleUser {
         font-size: 0.75rem;
@@ -293,6 +374,17 @@
     .stats{
       /*border: red solid;*/
       width: 85%;
+    }
+    .coords {
+      /* margin: 0 3.5rem; */
+      margin-left: 95px;
+      color: #fff;
+      font-size: 1rem;
+      color: #325C46;
+    }
+    .btn-onoff{
+      left: 53%;
+      top: 10%;
     }
     /*.cardUser .additional .stats div.value {*/
     /*    font-size: 1.5rem;*/

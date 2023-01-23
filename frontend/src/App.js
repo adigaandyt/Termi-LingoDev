@@ -36,6 +36,7 @@ import Spinner from './components/Spinner';
 import Spinner3 from './components/Spinners/Spinner3';
 import UserCard from './components/UserCard';
 import UserList from './components/UserList';
+import GamesRecharts from './components/recharts/GamesRecharts';
 import AdminPrivateRoute from './components/PrivateRoutes/AdminPrivateRoute';
 
 function App() {
@@ -77,7 +78,7 @@ if(isCategorySuccess||isCategoryError){
             <Route path='/forgotpassword/verified' element={<VerifyPrivateRoute/>}>
                 <Route path='/forgotpassword/verified' element={<ResetPassword/>}/>
             </Route>
-            <Route path='/test' element={<TestComponent/>}/>
+            <Route path='/test' element={<GamesRecharts/>}/>
 
             <Route path='/new/concept' element={<PrivateRoute/>}>
               <Route path='/new/concept' element={<NewConcept/>}/>

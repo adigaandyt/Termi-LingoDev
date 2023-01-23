@@ -12,6 +12,9 @@ const  initialState={
     image_url:null,
     user_token:null,
     top5:null,
+    guessTheTermResults:0,
+    transMeResults:0,
+    GamesRechartData:null,
     usersByAdmin:null,
     isSuccess:false,
     isError:false,
@@ -206,7 +209,57 @@ export const getUsersByTextSearch=createAsyncThunk(
      }
 
 )
+//get the results of guess the term game
+export const getGuessTheTermResults=createAsyncThunk(
+    'get/user/results/guesstheterm',
+     async(formData,thunkAPI)=>{
+        try {
+            const token=thunkAPI.getState().auth.user.token 
+            console.log("tokebguesstheterm:" ,token)
 
+            return await authService.getGuessTheTermResults(token)
+        } catch (error) {
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
+//get the results of transme game
+export const getTransMeResults=createAsyncThunk(
+    'get/user/results/transme',
+     async(formData,thunkAPI)=>{
+        try {
+            const token=thunkAPI.getState().auth.user.token 
+            console.log("tokebtransme:" ,token)
+            return await authService.getTransMeResults(token)
+        } catch (error) {
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
+//get the results of transme game
+export const getGamesRechartData=createAsyncThunk(
+    'get/rechart/data',
+     async(formData,thunkAPI)=>{
+        try {
+            const token=thunkAPI.getState().auth.user.token 
+            return await authService.getGamesRechartData(token)
+        } catch (error) {
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
 
 export  const authSlice=createSlice({
     name:'auth',
@@ -376,6 +429,42 @@ export  const authSlice=createSlice({
         .addCase(getUsersByTextSearch.fulfilled,(state,action)=>{
             state.isLoading=false
             state.usersByAdmin=action.payload
+        })
+        .addCase(getGuessTheTermResults.pending,(state)=>{
+            state.isLoading=true
+            
+        })
+        .addCase(getGuessTheTermResults.fulfilled,(state,action)=>{
+            state.isLoading=false
+            state.guessTheTermResults=action.payload
+        })
+        .addCase(getGuessTheTermResults.rejected,(state,action)=>{
+            state.message=action.payload
+            state.isLoading=false
+        })  
+        .addCase(getTransMeResults.pending,(state)=>{
+            state.isLoading=true
+            
+        })
+        .addCase(getTransMeResults.fulfilled,(state,action)=>{
+            state.isLoading=false
+            state.transMeResults=action.payload
+        })
+        .addCase(getTransMeResults.rejected,(state,action)=>{
+            state.message=action.payload
+            state.isLoading=false
+        })
+        .addCase(getGamesRechartData.pending,(state)=>{
+            state.isLoading=true
+            
+        })
+        .addCase(getGamesRechartData.fulfilled,(state,action)=>{
+            state.isLoading=false
+            state.GamesRechartData=action.payload
+        })
+        .addCase(getGamesRechartData.rejected,(state,action)=>{
+            state.message=action.payload
+            state.isLoading=false
         })
     }
 

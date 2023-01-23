@@ -58,7 +58,7 @@
     "support":"Support for three languages for now : English , Hebrow , Arabic",
     "instant":"Instant translation of text and phrases",
     "ability_to":"Ability to save and organize favorite translations",
-    "my profile": "My Profile :",
+    "my profile": "My Profile ",
     "save": "Save",
     "details": "Details",
     "game_exit_title": "Are you sure to exit ?",
@@ -99,7 +99,9 @@
     "category_name" : "Category Name",
     "category_description": "Category Description",
     "excelant": "Excelant",
-    "good job": "good job - you can improve"
+    "good job": "good job - you can improve",
+    "games_graph":"Games Graph",
+    "added_concepts":"Added Concepts"
 
 
 

@@ -9,7 +9,7 @@ import {BsQuestionLg} from 'react-icons/bs'
 import {RiCoinsFill} from 'react-icons/ri'
 import '../../styles/Profile.css';
 import { useState,useEffect } from 'react';
-import { getGuessTheTermResults, getTransMeResults, updateUserImage,getGamesRechartData } from '../../features/auth/authSlice';
+import { getGuessTheTermResults, getTransMeResults, updateUserImage,getGamesRechartData, reset } from '../../features/auth/authSlice';
 import Spinner from '../../components/Spinner';
 import { useTranslation } from 'react-i18next';
 import TestComponent from '../TestComponent';
@@ -24,6 +24,7 @@ function Profile(){
     dispatch(getGuessTheTermResults())
     dispatch(getTransMeResults())
     dispatch(getGamesRechartData())
+    dispatch(reset())
   },[])
   const onselectImage=(event)=>{
     if(event.target.files[0]){
@@ -34,11 +35,11 @@ function Profile(){
       }
   }
   return(<> 
-  <div  className='mt-110' id="ppage">
+  <div   className='mt-110 text-center' id="ppage">
         {isLoading&&<Spinner/>}
     <h3 className='mx-2'>{t('my profile')}</h3>
     <div className="border-top row " id='profilePage'>
-      <div id="profile-image-and-detaile" className=" col-sm-4 border-start px-3 border-top py-2 ">
+      <div id="profile-image-and-detaile" className=" col-sm-4 border-start  border-top py-2   ">
       <ProfileImage  />  
       
 
@@ -69,8 +70,10 @@ function Profile(){
       </div>
       <div className=" col-sm-8 border-start border-top ">
         <h3 className='mt-2 mx-2'>{t('games_graph')}</h3>
+       
 
-        <GamesRecharts/>
+        <GamesRecharts />
+        
         <h3 className='mt-2 mx-2'>{t('details')}</h3>
         <button id="editbtn" disabled={isEdit} onClick={()=>setIsEdit(!isEdit)} className='btn btn-primary btn-sm  mx-2 '>{t('edit')}</button>
 

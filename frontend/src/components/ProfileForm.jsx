@@ -60,11 +60,11 @@ function ProfileForm({isEdit,setIsEdit}){
 
   
     return(<>
-<form onSubmit={onSave}>
-<div  className="row g-2 mt-3 container">
+<form onSubmit={onSave} className='' >
+<div  className="row g-2 mt-3 container  " style={{"margin":"auto"}}>
 
-  <div className="col-md-6">
-    <div className="form-floating">
+  <div className="col-md-6" >
+    <div className="form-floating " >
       <input disabled={!isEdit} onChange={onChange} name='newEmail' value={newEmail} type="email" className="form-control" id="floatingInputGrid" placeholder={newEmail} />
       <label htmlFor="floatingInputGrid">{t('email_adress')}</label>
     </div>

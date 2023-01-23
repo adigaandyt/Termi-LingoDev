@@ -99,7 +99,9 @@
     "category_name" : "اسم الفئة",
     "category_description": "وصف الفئة",
     "excelant": "احسنت",
-    "good job": "محاولة جيدة يمكنك التحسين"
+    "good job": "محاولة جيدة يمكنك التحسين",
+    "games_graph":"رسم بياني للالعاب",
+    "added_concepts":"المصطلحات التي اضيفت"
 
 
    

@@ -54,7 +54,7 @@ const data = [
 
  
     return(<>
-        <div dir='ltr' className=" mt-3 ">
+        <div dir='ltr' className=" mt-3 " style={{"margin":"auto"}}>
         <ResponsiveContainer width="100%" aspect={2}>
         <LineChart
           width={500}

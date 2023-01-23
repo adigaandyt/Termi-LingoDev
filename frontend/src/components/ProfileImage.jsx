@@ -31,7 +31,7 @@ function ProfileImage() {
     return (<>
     
 
-    <div id='comp-img2' className='text-center '>
+    <div id='comp-img2' className='text-center ' style={{"margin":"auto"}}>
       <div id='image2'style={{"backgroundImage":`url(${profile_image})`,"fontSize":"190%"}} >
       {isImageLoading&&<div className="spinner-border  text-light " id='spinner-grow' role="status">
               {<span className="sr-only">Loading...</span>}

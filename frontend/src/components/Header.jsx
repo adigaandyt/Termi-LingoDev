@@ -62,6 +62,7 @@ function Header(){
             document.body.dir='rtl';
 
         }
+        optionsClick();
         
        
     }

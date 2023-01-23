@@ -140,6 +140,41 @@ const getUsersByTextSearch =async (textSearch,token)=>{
 
     return response.data
 }
+//get the results of guesstheterm game
+const getGuessTheTermResults =async (token)=>{
+    const config ={
+        headers:{
+            authorization:`Bearer ${token}`
+        }
+    }
+    const response=await axios.get(API_URL+`/get/results/guesstheterm`,config)
+
+    return response.data
+}
+//get the results of TransMe game
+const getTransMeResults =async (token)=>{
+
+    const config ={
+        headers:{
+            authorization:`Bearer ${token}`
+        }
+    }
+    const response=await axios.get(API_URL+`/get/results/transMe`,config)
+
+    return response.data
+}
+//get games rechart data for the graph in profile page
+const getGamesRechartData =async (token)=>{
+
+    const config ={
+        headers:{
+            authorization:`Bearer ${token}`
+        }
+    }
+    const response=await axios.get(API_URL+`/get/both/games/results`,config)
+
+    return response.data
+}
 const authService={
     me,
     register,
@@ -150,10 +185,12 @@ const authService={
     updateUser,
     updateUserImage,
     verifyUser,
-    // me,
     setCoins,
     getTop5Users,
-    getUsersByTextSearch
+    getUsersByTextSearch,
+    getGuessTheTermResults,
+    getTransMeResults,
+    getGamesRechartData
     
 }
 

@@ -8,17 +8,23 @@ import {IoMdMale} from 'react-icons/io'
 import {BsQuestionLg} from 'react-icons/bs'
 import {RiCoinsFill} from 'react-icons/ri'
 import '../../styles/Profile.css';
-import { useState } from 'react';
-import { updateUserImage } from '../../features/auth/authSlice';
+import { useState,useEffect } from 'react';
+import { getGuessTheTermResults, getTransMeResults, updateUserImage,getGamesRechartData } from '../../features/auth/authSlice';
 import Spinner from '../../components/Spinner';
 import { useTranslation } from 'react-i18next';
 import TestComponent from '../TestComponent';
+import GamesRecharts from '../../components/recharts/GamesRecharts';
 function Profile(){
   const dispatch=useDispatch();
   const {t}=useTranslation();
   const {name,email,profile_image,games_coins,gender,added_concepts} =useSelector(state=>state.auth.user)
   const {isLoading,isImageLoading} =useSelector(state=>state.auth)
   const [isEdit,setIsEdit]=useState(false)
+  useEffect(()=>{
+    dispatch(getGuessTheTermResults())
+    dispatch(getTransMeResults())
+    dispatch(getGamesRechartData())
+  },[])
   const onselectImage=(event)=>{
     if(event.target.files[0]){
       const formdata=new FormData()
@@ -62,6 +68,9 @@ function Profile(){
 
       </div>
       <div className=" col-sm-8 border-start border-top ">
+        <h3 className='mt-2 mx-2'>{t('games_graph')}</h3>
+
+        <GamesRecharts/>
         <h3 className='mt-2 mx-2'>{t('details')}</h3>
         <button id="editbtn" disabled={isEdit} onClick={()=>setIsEdit(!isEdit)} className='btn btn-primary btn-sm  mx-2 '>{t('edit')}</button>
 

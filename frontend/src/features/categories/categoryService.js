@@ -23,13 +23,43 @@ const createNewCategoryByUser =async (data,token)=>{
     return response.data
 }
 
+//get unaccepted categories 
+const getUnAcceptedCategories=async (data,token)=>{
 
+    const response=await axios.get(API_URL+'/get/categories/not/accepted') 
+    
+    return response.data
+}
+//update unaccepted category by admin 
+const updateCategoryByAdmin=async (data,token)=>{
+
+    const response=await axios.post(API_URL+'/update/category/by/admin',data) 
+    
+    return response.data
+}
+//delete unaccepted category by admin 
+const deleteCategoryByAdmin=async (data,token)=>{
+    const response=await axios.delete(API_URL+`/delete/category/by/admin/${data}`) 
+    
+    return response.data
+}
+//accept unaccepted category by admin 
+const acceptCategoryByAdmin=async (data,token)=>{
+
+    const response=await axios.post(API_URL+'/accept/category/by/admin',{categoryId:data}) 
+    
+    return response.data
+}
 
 
 
 const categoryService={
     getCategories,
-    createNewCategoryByUser
+    createNewCategoryByUser,
+    getUnAcceptedCategories,
+    updateCategoryByAdmin,
+    deleteCategoryByAdmin,
+    acceptCategoryByAdmin
     
 }
 

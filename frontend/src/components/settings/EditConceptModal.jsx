@@ -167,7 +167,7 @@ function EditConceptModal({concept,index,basicModal,setBasicModal,toggleShow}){
             <input onChange={onChange} name='readMore' value={readMore} defaultValue={concept.readMore} disabled={!isDisabled} type="text" class="form-control" id="recipient-name"/>
           </div>
           <div className="text-start">
-          <label for="recipient-name" class="col-form-label">URL Link:</label>
+          <label for="recipient-name" class="col-form-label">Category:</label>
       <select onChange={onChange} name='categoryId' disabled={!isDisabled} className="form-select"   defaultValue={getCategoryNameById(categories,categoryId)} id="floatingSelectGrid"  aria-label="Floating label select example">
         <option >{getCategoryNameById(categories,categoryId)}</option>
         {(categories)&&

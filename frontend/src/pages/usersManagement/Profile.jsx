@@ -35,7 +35,7 @@ function Profile(){
       }
   }
   return(<> 
-  <div   className='mt-110 text-center' id="ppage">
+  <div dir='ltr'  className='mt-110 text-center' id="ppage">
         {isLoading&&<Spinner/>}
     <h3 className='mx-2'>{t('my profile')}</h3>
     <div className="border-top row " id='profilePage'>

@@ -23,6 +23,10 @@ import Saleh from '../components/Saleh'
 
 function Home(){
     const {t}=useTranslation()
+    //back office
+    const [conceptSearch,setConceptSearch]=useState('');
+    const [categoryId,setCategoryId]=useState('639e49f8dfabd615c821584f')
+
     const [languageChoosed,setLanguageChoosed]=useState({
         english:true,
         hebrew:false,
@@ -35,7 +39,7 @@ function Home(){
     const {user} =useSelector(state=>state.auth)
     const {concepts,names,concept,isLoading}=useSelector(state=>state.concept)
     const {categories}=useSelector(state=>state.category)
-    const [categoryId,setCategoryId]=useState('639e49f8dfabd615c821584f')
+    // const [categoryId,setCategoryId]=useState('639e49f8dfabd615c821584f')
 
 
     useEffect(()=>{
@@ -85,14 +89,14 @@ function Home(){
               
             
           
-                <SearchForm/>
+                <SearchForm conceptSearch={conceptSearch} setConceptSearch={setConceptSearch} categoryId={categoryId} setCategoryId={setCategoryId}/> 
                 {concept&&<CarouselAnimationDefinitions/>}
                 {concepts&&<div  className='center '>
                 <hr className=' mb-3  '/>
                 <h3>{t('suggestions_for_you')}:</h3>
                 </div>}
                 
-                <ConceptCardsList languageChoosed={languageChoosed}/>
+                <ConceptCardsList languageChoosed={languageChoosed} conceptSearch={conceptSearch} categoryId={categoryId}/>
            
 
                

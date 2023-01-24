@@ -128,6 +128,21 @@ export const deleteConceptByAdmin=createAsyncThunk(
      }
 
 )
+//setConcept search for back office 
+export const setConceptSearch=createAsyncThunk(
+    'setconcept/search/for/backoffice',
+     async(data,thunkAPI)=>{ 
+        try {
+            return await conceptService.setConceptSearch(data)
+        } catch (error) {
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
 
 
 

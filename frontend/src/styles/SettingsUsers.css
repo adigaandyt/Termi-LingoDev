@@ -101,6 +101,8 @@
   .cardUser .additional .more-info h3 {
     color: #fff;
     margin-bottom: 0;
+    margin-left: -38px
+    /*border: red solid;*/
   }
   
   .cardUser.green .additional .more-info h3 {
@@ -347,10 +349,12 @@
         display: none;
     }
     .general h3{
-        margin-left: 70px
+        margin-left: 68px
     }
     .more-info h3{
-        margin-left: -30px;
+      width: auto;
+      /*margin-left: 50px;*/
+      /*border: red solid;*/
     }
     .cardUser .additional .more-info{
         left: 100px;
@@ -359,7 +363,7 @@
         margin-left: 10px;
     }
     .cardUser .general p{
-        margin: 20px 0px 0px 95px;
+        margin: 20px 0px 0px 93px;
     }
     .cardUser .additional .stats div.titleUser {
         font-size: 0.75rem;
@@ -377,7 +381,9 @@
     }
     .coords {
       /* margin: 0 3.5rem; */
-      margin-left: 95px;
+      /*border: red solid;*/
+      width: 100%;
+      margin-left: 90px;
       color: #fff;
       font-size: 1rem;
       color: #325C46;

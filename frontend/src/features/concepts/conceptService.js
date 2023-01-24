@@ -65,7 +65,7 @@ const deleteConceptByAdmin =async (conceptId)=>{
 
 //set concept search for back office 
 const setConceptSearch =async (data)=>{
-    const response=await axios.delete(`/api/searches/set/conceptsearch`,data) 
+    const response=await axios.post(`/api/searches/set/conceptsearch`,data) 
     
     return response.data
 }

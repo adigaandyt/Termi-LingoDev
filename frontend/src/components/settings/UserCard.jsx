@@ -5,19 +5,21 @@ import {FcLike} from 'react-icons/fc';
 import React, { useState } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import { getCategoryNameById } from '../../hooks/ExportsFunctions';
+import { setUserAdminByAdmin } from '../../features/auth/authSlice';
 function UserCard({user}){
-    const [isAdmin, setIsAdmin] = useState(false);
-
-    function handleChange(event) {
-        setIsAdmin(event.target.checked);
-        if(!isAdmin){
-            console.log("admin")
-        }
-        else{
-            console.log("not admin")
-        }
-    }
     const dispatch=useDispatch();
+    const [isAdmin, setIsAdmin] = useState(user.isAdmin);
+
+    function handleChange(e) {
+        setIsAdmin(e.target.checked)
+        const data={
+            userId:user._id,
+            isAdmin:e.target.checked
+        }
+        dispatch(setUserAdminByAdmin(data))
+        
+    }
+    
     const {categories} =useSelector(state=>state.category)
     return(<>
         <div className='userContainer  ' style={{"margin":"auto"}}>
@@ -39,7 +41,7 @@ function UserCard({user}){
             <div className="more-info">
                 <h3>{user.name}</h3>
                 <span><label class="btn-onoff">
-		            <input type="checkbox" name="name" data-onoff="toggle" onChange={handleChange}/><span></span>
+		            <input type="checkbox" checked={isAdmin} name="name" data-onoff="toggle" onChange={handleChange}/><span></span>
 	            </label></span>
                 <div className="stats row d-flex justify-content-between">
                     <div className="flex-item">

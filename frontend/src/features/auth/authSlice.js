@@ -292,6 +292,21 @@ export const getGamesRechartData=createAsyncThunk(
      }
 
 )
+//set admin by admin 
+export const setUserAdminByAdmin=createAsyncThunk(
+    'set/admin',
+     async(data,thunkAPI)=>{
+        try {
+            return await authService.setUserAdminByAdmin(data)
+        } catch (error) {
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
 
 export  const authSlice=createSlice({
     name:'auth',
@@ -517,6 +532,17 @@ export  const authSlice=createSlice({
             state.GamesRechartData=action.payload
         })
         .addCase(getGamesRechartData.rejected,(state,action)=>{
+            state.message=action.payload
+            state.isLoading=false
+        })
+        .addCase(setUserAdminByAdmin.pending,(state)=>{
+            state.isLoading=true
+            
+        })
+        .addCase(setUserAdminByAdmin.fulfilled,(state,action)=>{
+            state.isLoading=false
+        })
+        .addCase(setUserAdminByAdmin.rejected,(state,action)=>{
             state.message=action.payload
             state.isLoading=false
         })

@@ -3,6 +3,7 @@ const bcrypt=require('bcryptjs')
 const User=require('../Models/usersModel')
 const Category=require('../Models/categoriesModel')
 const jwt =require('jsonwebtoken')
+const { response } = require('express')
 
 
 const generateToken=(id)=>{
@@ -550,7 +551,8 @@ const getUsersForAdmin=asyncHandler( async (req,res)=>{
             games_coins:"$user.games_coins",
             phoneNumber:"$user.phoneNumber",
             added_concepts:"$user.added_concepts",
-            gender:"$user.gender"
+            gender:"$user.gender",
+            isAdmin:"$user.isAdmin"
 
 
           }
@@ -727,6 +729,22 @@ const getUserBothGamesResults=asyncHandler( async (req,res)=>{
         throw new Error(error)
     }
  })
+ //@desc set user isAdmin or not by admin 
+//@route POST /api/users/set/user/admin
+//@access private  
+ const setUserAdminByAdmin=asyncHandler( async(req,res)=>{
+  // console.log("salhdhdsds")
+  const data=req.body
+  console.log(data)
+  try {
+    const response=await User.findByIdAndUpdate({_id:data.userId},{isAdmin:data.isAdmin},{new:true})
+    res.status(200).json()
+
+  } catch (error) {
+    res.status(500)
+    throw new Error(error.message)
+  }
+ })
 module.exports={
     registrUser,
     loginUser,
@@ -743,5 +761,6 @@ module.exports={
     getUserGessTheTermGameResults,
     getUserBothGamesResults,
     getTop5UsersForGuessTheTerm,
-    getTop5UsersForTransMe
+    getTop5UsersForTransMe,
+    setUserAdminByAdmin
 }

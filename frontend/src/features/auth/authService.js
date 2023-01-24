@@ -187,6 +187,14 @@ const getGamesRechartData =async (token)=>{
 
     return response.data
 }
+//set user isAdmin by Admin
+const setUserAdminByAdmin =async (data)=>{
+
+
+    const response=await axios.post(API_URL+`/set/user/admin`,data)
+
+    return response.data
+}
 const authService={
     me,
     register,
@@ -204,7 +212,8 @@ const authService={
     getTransMeResults,
     getGamesRechartData,
     getTop5UsersForTransMe,
-    getTop5UsersForGuessTheTerm
+    getTop5UsersForGuessTheTerm,
+    setUserAdminByAdmin
     
 }
 

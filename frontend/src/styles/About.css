@@ -132,11 +132,9 @@
 
 .procard {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-  float: left;
-  width: auto;
-  padding: auto;
+  max-width: 200px;
   margin: auto;
+  display: block;
   text-align: center;
 }
 
@@ -151,18 +149,20 @@
   color: black;
 }
 
-#procards {
-  display: flex;
-  
-}
 
+.Profile-pic{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
 @media (max-width: 600px) {
   .procard {
     /* Add styles for small screens here */
     width: 100%;
     display: block;
     margin-bottom: 20px;
-    flex-direction: column;
+    margin: auto;
+    /* flex-direction: column; */
   }
   
 }

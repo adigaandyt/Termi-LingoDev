@@ -38,15 +38,10 @@ function About(){
       </ul>
       <p className="about-credits">Created by LingoDev team</p>
     </div>
-    <div className="container mt-5 py-5 text-center">
-        <div className="container">
-  
-</div>
 
-    </div>
-    <div className='text-center' id='procards'>
-      <div className="procard">
-                <img src= "khaled.jpg" className="Profile-pic" alt="profile" />
+    <div className='text-center  row w-100  ' id='procards' style={{"--mdb-gutter-x":"0"}}>
+                <div className="procard  col-sm-6 col-md-6 col-lg-4 my-5  text-center" style={{"margin":"auto"}}>
+                <img src= {require('../images/andy.jpg')} className="Profile-pic" alt="profile" />
                 <h4>Andy Thaok</h4>
                 <p className="protitle"> Product Owner</p>
                 <p>contact : andy@gmail.com</p>
@@ -55,8 +50,8 @@ function About(){
                 <a href="https://il.linkedin.com/"><i><BsLinkedin/></i></a>
                 
               </div>
-              <div className="procard">
-                <img src= "khaled.jpg" className="Profile-pic" alt="profile" />
+              <div className="procard  col-sm-6 col-md-6 col-lg-4 my-5  text-center">
+                <img src= {require('../images/saleh.jpg')} className="Profile-pic" alt="profile" />
                 <h4>Saleh Fares</h4>
                 <p className="protitle"> Scram Master <br></br> BackEnd Developer</p>
                 <p>contact : saleh@gmail.com</p>
@@ -65,8 +60,8 @@ function About(){
                 <a href="https://il.linkedin.com/"><i><BsLinkedin/></i></a>
                 
               </div>
-              <div className="procard">
-                <img src= "khaled.jpg" className="Profile-pic" alt="profile" />
+              <div className="procard  col-sm-6 col-md-6 col-lg-4 my-5  text-center">
+                <img src= {require('../images/yahia.jpg')} className="Profile-pic" alt="profile" />
                 <h4>Yahia Bdarne</h4>
                 <p className="protitle"> FrontEnd Developer</p>
                 <p>contact : yahia@gmail.com</p>
@@ -75,8 +70,8 @@ function About(){
                 <a href="https://il.linkedin.com/"><i><BsLinkedin/></i></a>
                 
               </div>
-              <div className="procard">
-                <img src= "khaled.jpg" className="Profile-pic" alt="profile" />
+              <div className="procard  col-sm-6 col-md-6 col-lg-4  my-5  text-center">
+                <img src={require('../images/nimer.jpg')} className="Profile-pic" alt="profile" />
                 <h4>Nemer Naamneh</h4>
                 <p className="protitle"> BackEnd Developer</p>
                 <p>contact : nemer@gmail.com</p>
@@ -85,8 +80,8 @@ function About(){
                 <a href="https://il.linkedin.com/"><i><BsLinkedin/></i></a>
                 
               </div>
-              <div className="procard">
-                <img src= "khaled.jpg" className="Profile-pic" alt="profile" />
+              <div className="procard  col-sm-6 col-md-6 col-lg-4 my-5  text-center">
+                <img src= {require('../images/khalid.jpg')} className="Profile-pic" alt="profile" />
                 <h4>Khaled Alomari</h4>
                 <p className="protitle"> QA <br/> Scrip Tester</p>
                 <p>contact : khaled@gmail.com</p>

@@ -24,6 +24,7 @@ app.use('/api/loging',require('./Routes/logingRoutes'))
 
 app.use('/api/activity',require('./Routes/activityRoute')) 
  
+app.use('/api/searches',require('./Routes/ConceptSearchRoute')) 
 
 
 // use the errorHandler function for manage error events 

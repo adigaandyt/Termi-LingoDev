@@ -1,10 +1,10 @@
+const {updateUserActivity, setUserActivity} = require("./UserActivityController");
 const asyncHandler =require('express-async-handler')
 const bcrypt=require('bcryptjs')
 const User=require('../Models/usersModel')
 const Category=require('../Models/categoriesModel')
 const jwt =require('jsonwebtoken')
 const { response } = require('express')
-
 
 const generateToken=(id)=>{
     return jwt.sign({id},process.env.JWT_SECRET,{
@@ -67,6 +67,8 @@ const registrUser=asyncHandler( async (req,res)=>{
             password:hashPassword
         })
         if(user){
+            const token = generateToken(user._id);
+            setUserActivity(user,token);
             res.status(201)
             res.json({
                 _id:user._id,
@@ -80,7 +82,7 @@ const registrUser=asyncHandler( async (req,res)=>{
                 games_coins:user.games_coins,
                 profile_image:user.profile_image,
                 added_concepts:user.added_concepts,
-                token:generateToken(user._id)
+                token:token
     
 
 
@@ -102,8 +104,9 @@ const loginUser=asyncHandler( async (req,res)=>{
    const {email,password}=req.body
     try {
         const user =await User.findOne({email})
-        
         if(user && (await bcrypt.compare(password,user.password))){
+          const token = generateToken(user._id);
+          setUserActivity(user,token);
           const  userData={ _id:user._id,
                 name:user.name,
                 isAdmin:user.isAdmin,
@@ -115,7 +118,7 @@ const loginUser=asyncHandler( async (req,res)=>{
                 gender:user.gender,
                 profile_image:user.profile_image,
                 added_concepts:user.added_concepts,
-                token:generateToken(user._id)}
+                token:token}
             res.status(200).json(userData)
         }else{
             res.status(401)
@@ -132,8 +135,10 @@ const loginUser=asyncHandler( async (req,res)=>{
  //@desc get a current user 
 //@route GET /api/users/me
 //@access private
-const getMe=asyncHandler( async(req,res)=>{
+const getMe=asyncHandler( async (req,res)=>{
     const user=req.user
+    const token = generateToken(user._id);
+    setUserActivity(user,token);
     res.status(200).json({
         _id:user._id,
         name:user.name,
@@ -146,7 +151,7 @@ const getMe=asyncHandler( async(req,res)=>{
         added_concepts:user.added_concepts,
         gender:user.gender,
         isAdmin:user.isAdmin,
-        token:generateToken(user._id)
+        token:token
     })
 })
 
@@ -211,6 +216,8 @@ const updateUserImage =asyncHandler(async(req,res)=>{
     try{
         const newUser=await User.findByIdAndUpdate(req.user.id,{profile_image:req.file.location},{new:true})
         console.log(newUser)
+        const token = generateToken(newUser._id);
+        setUserActivity(newUser,token);
         res.status(200).json({
             _id:newUser._id,
             name:newUser.name,
@@ -223,7 +230,7 @@ const updateUserImage =asyncHandler(async(req,res)=>{
             added_concepts:newUser.added_concepts,
             gender:newUser.gender,
             isAdmin:newUser.isAdmin,
-            token:generateToken(newUser._id)
+            token:token
         })
     }catch(err){
             res.status(500)
@@ -261,6 +268,8 @@ try {
 }
 
 if(newUser){
+    const token = generateToken(newUser._id);
+    setUserActivity(newUser,token);
     res.status(200).json({
         _id:newUser._id,
         name:newUser.name,
@@ -273,7 +282,7 @@ if(newUser){
         gender:newUser.gender,
         added_concepts:newUser.added_concepts,
         isAdmin:newUser.isAdmin,
-        token:generateToken(newUser._id)
+        token:token
     })
 }else{
     throw new Error('Somthing is Wrong, try to Logout and login again')
@@ -291,14 +300,15 @@ const verifyUser=asyncHandler(async (req,res)=>{
     }
     try {
         const emailExist=await User.findOne({email:email})
-
+        console.log(emailExist)
+        const token = generateToken(emailExist._id);
         if(!emailExist){
         res.status(401)
         throw new Error("Your email is not exist in our database")
         }else{
             if(emailExist.favorite_pet===favorite_pet){
                 res.status(200).json({
-                    token:generateToken(emailExist._id)
+                    token:token
                 })
             }else{
                 res.status(404)
@@ -322,6 +332,8 @@ const setCoinsOnFinishedGame=asyncHandler( async (req,res)=>{
     console.log(data)
      try {
         const newUser=await User.findByIdAndUpdate({_id:user._id},{games_coins:user.games_coins+data.score},{new:true})
+        const token = generateToken(newUser._id);
+        setUserActivity(newUser,token);
         const  userData={ 
                 _id:newUser._id,
                 name:newUser.name,
@@ -334,7 +346,7 @@ const setCoinsOnFinishedGame=asyncHandler( async (req,res)=>{
                 added_concepts:newUser.added_concepts,
                 gender:newUser.gender,
                 profile_image:newUser.profile_image,
-                token:generateToken(newUser._id)}
+                token:token}
              res.status(200).json(userData)
      } catch (error) {
          res.status(500)

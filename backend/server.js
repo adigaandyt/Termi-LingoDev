@@ -21,7 +21,11 @@ app.use('/api/categories',require('./Routes/categoryRoutes'))
 app.use('/api/games',require('./Routes/gamesRoutes'))
 app.use('/api/loging',require('./Routes/logingRoutes')) 
 
+
+app.use('/api/activity',require('./Routes/activityRoute')) 
  
+
+
 // use the errorHandler function for manage error events 
 app.use(errorHandler)
 

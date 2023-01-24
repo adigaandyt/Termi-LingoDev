@@ -3,6 +3,26 @@ import axios from 'axios'
 
 const API_URL='/api/users'
 
+export const  updateActivity=async ()=>{
+
+    try {
+        const token =JSON.parse(localStorage.getItem('token'))
+        console.log(token)
+        const config ={
+            headers:{
+                authorization:`Bearer ${token}`
+            }
+        }
+        await axios.get('/api/activity/set/useractive',config)
+
+    } catch (error) {
+        // console.log(error)
+    }
+
+}
+
+
+
 export const  me=async (token)=>{
     console.log(token)
     const config ={

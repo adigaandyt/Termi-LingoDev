@@ -129,7 +129,7 @@ export const deleteConceptByAdmin=createAsyncThunk(
 
 )
 //setConcept search for back office 
-export const setConceptSearch=createAsyncThunk(
+export const setConceptSearchLog=createAsyncThunk(
     'setconcept/search/for/backoffice',
      async(data,thunkAPI)=>{ 
         try {

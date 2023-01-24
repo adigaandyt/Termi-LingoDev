@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next"
 import { useEffect, useState } from "react"
 import { useSelector,useDispatch } from "react-redux"
-import { getConcept ,resetConcept, setConceptSearch } from "../features/concepts/conceptSlice"
+import { getConcept ,resetConcept, setConceptSearchLog } from "../features/concepts/conceptSlice"
 import { getConceptName,getCategoryName1,getConceptNameCookies,getCategoryName } from "../hooks/ExportsFunctions"
 
 import '../styles/SearchForm.css'
@@ -31,7 +31,7 @@ function ConceptCard({concept,languageChoosed,conceptSearch,categoryId}){
      SearchCategoryID:categoryId,
      conceptID:concept._id
     }
-    dispatch(setConceptSearch(backOfficeData))
+    dispatch(setConceptSearchLog(backOfficeData))
     dispatch(getConcept({textSearch:concept.conceptName.english,categoryId:concept.categories[0]}));
     dispatch(resetConcept());
 

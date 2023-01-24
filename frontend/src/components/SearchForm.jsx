@@ -1,9 +1,9 @@
 import * as mdb from 'mdb-ui-kit'; // lib
 import { Input } from 'mdb-ui-kit'; // module
-import { useEffect,useState } from 'react';
+import { useEffect,useState,useLayoutEffect } from 'react';
 import {useSelector,useDispatch} from 'react-redux'
 import {getCategories} from '../features/categories/categorySlice'
-import {getConcept,getConceptsNames,resetConcept,getConcepts} from '../features/concepts/conceptSlice'
+import {getConcept,getConceptsNames,resetConcept,getConcepts,setConceptSearchLog} from '../features/concepts/conceptSlice'
 import {useTranslation} from 'react-i18next'
 import {getCategoryName} from '../hooks/ExportsFunctions'
 import NoConceptResultModal from './NoConceptResultModal'
@@ -27,9 +27,26 @@ import '../styles/CircleBar.css'
     useEffect(()=>{
         dispatch(getConceptsNames())
     },[]);
+    useLayoutEffect(()=>{
+        if(concept){
+            if(conceptSearch===concept.conceptName.english||conceptSearch===concept.conceptName.arabic||conceptSearch===concept.conceptName.hebrew){
+
+                const backOfficeData={
+                    correctSearched:true, 
+                    SearchString:conceptSearch,
+                    SearchCategoryID:categoryId,
+                    conceptID:concept._id
+                }
+                dispatch(setConceptSearchLog(backOfficeData))
+                console.log(backOfficeData)
+            }
+        }
+    },[concept])
+
     const onSearchClick=(e)=>{
         e.preventDefault()
         if(conceptSearch.length>3){
+
           dispatch(getConcept({textSearch:conceptSearch,categoryId:categoryId}))
           dispatch(getConcepts({data:conceptSearch}))
           setIsStart(false)

@@ -129,3 +129,40 @@
   margin-top: 2em;
   font-style: italic;
 }
+
+.procard {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  float: left;
+  width: auto;
+  padding: auto;
+  margin: auto;
+  text-align: center;
+}
+
+.protitle {
+  color: grey;
+  font-size: 18px;
+}
+
+.procard a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+#procards {
+  display: flex;
+  
+}
+
+@media (max-width: 600px) {
+  .procard {
+    /* Add styles for small screens here */
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+    flex-direction: column;
+  }
+  
+}

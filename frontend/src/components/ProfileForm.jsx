@@ -61,7 +61,7 @@ function ProfileForm({isEdit,setIsEdit}){
   
     return(<>
 <form onSubmit={onSave} className='' >
-<div  className="row g-2 mt-3 container  " style={{"margin":"auto"}}>
+<div  className="row g-2 mt-3 container " style={{"margin":"auto"}}>
 
   <div className="col-md-6" >
     <div className="form-floating " >

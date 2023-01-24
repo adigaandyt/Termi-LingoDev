@@ -38,7 +38,7 @@ function Profile(){
   <div dir='ltr'  className='mt-110 text-center' id="ppage">
         {isLoading&&<Spinner/>}
     <h3 className='mx-2'>{t('my profile')}</h3>
-    <div className="border-top row " id='profilePage'>
+    <div className="border-top row w-100 " id='profilePage'>
       <div id="profile-image-and-detaile" className=" col-sm-4 border-sm-start  border-top py-2   ">
       <ProfileImage  />  
       
@@ -68,7 +68,7 @@ function Profile(){
        
 
       </div>
-      <div className=" col-sm-8 border-sm-start border-top ">
+      <div className=" col-sm-8 border-sm-start border-top   ">
         <h3 className='mt-2 mx-2'>{t('games_graph')}</h3>
        
 

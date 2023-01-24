@@ -14,15 +14,15 @@ import '../styles/CircleBar.css'
 
  
 
- function SearchForm(){
+ function SearchForm({conceptSearch,setConceptSearch,categoryId,setCategoryId}){ 
     const {t}=useTranslation()
     const dispatch =useDispatch();
     const [isStart,setIsStart]=useState(true);
     const {concepts,names,concept,isLoading}=useSelector(state=>state.concept);
     const {categories}=useSelector(state=>state.category);
 
-    const [conceptSearch,setConceptSearch]=useState('');
-    const [categoryId,setCategoryId]=useState('639e49f8dfabd615c821584f')
+    // const [conceptSearch,setConceptSearch]=useState('');
+    // const [categoryId,setCategoryId]=useState('639e49f8dfabd615c821584f')
 
     useEffect(()=>{
         dispatch(getConceptsNames())

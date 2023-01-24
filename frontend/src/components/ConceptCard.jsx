@@ -1,14 +1,15 @@
 import { useTranslation } from "react-i18next"
 import { useEffect, useState } from "react"
 import { useSelector,useDispatch } from "react-redux"
-import { getConcept ,resetConcept } from "../features/concepts/conceptSlice"
+import { getConcept ,resetConcept, setConceptSearch } from "../features/concepts/conceptSlice"
 import { getConceptName,getCategoryName1,getConceptNameCookies,getCategoryName } from "../hooks/ExportsFunctions"
 
 import '../styles/SearchForm.css'
 
-function ConceptCard({concept,languageChoosed}){
+function ConceptCard({concept,languageChoosed,conceptSearch,categoryId}){
     const {t} =useTranslation();
     const {categories}=useSelector(state=>state.category);
+    const {user}=useSelector(state=>state.auth);
     const dispatch=useDispatch();
     const [category,setCategory]=useState('');
     // useEffect(()=>{
@@ -24,9 +25,16 @@ function ConceptCard({concept,languageChoosed}){
         
     }
     const onChoose=()=>{
-    
+    const backOfficeData={
+     correctSearched:false, 
+     SearchString:conceptSearch,
+     SearchCategoryID:categoryId,
+     conceptID:concept._id
+    }
+    dispatch(setConceptSearch(backOfficeData))
     dispatch(getConcept({textSearch:concept.conceptName.english,categoryId:concept.categories[0]}));
     dispatch(resetConcept());
+
     }
     
     return(<>

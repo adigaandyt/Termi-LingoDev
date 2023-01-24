@@ -20,7 +20,7 @@ function Header(){
     const {user}=useSelector(state=>state.auth);
     const dispatch=useDispatch();
     const navigate=useNavigate();
-    const [show,toggleShow]=useState(true)
+    const [show,toggleShow]=useState(false)
     
     const [active, setActive] = useState(false);
     const optionsClick = () => {

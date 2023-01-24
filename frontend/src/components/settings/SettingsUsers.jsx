@@ -25,7 +25,7 @@ function SettingsUsers(){
         <form onSubmit={onSubmit}>
             <input value={textSearch} onChange={onChange} class="" id="inputUser" type="text"/>
             <button id="buttonUser" class="fa fa-3x fa-search" type="submit"></button>
-            <p class="article"><strong>User not found !</strong></p>
+            {/*<p class="article"><strong>User not found !</strong></p>*/}
         </form>
         </div> 
         <UsersList/>

@@ -6,6 +6,9 @@ import { SiGoogletranslate } from 'react-icons/si';
 import {AiFillFacebook} from'react-icons/ai'
 import {BsTwitter} from'react-icons/bs'
 import {BsLinkedin} from'react-icons/bs'
+import {IoLogoGameControllerB} from'react-icons/io'
+import {AiOutlineFileAdd} from'react-icons/ai'
+import {MdStarRate} from'react-icons/md'
 import '../styles/About.css'
 // warning success danger dark light primary
 function About(){
@@ -32,11 +35,19 @@ function About(){
           <span className="about-feature-text">{t('instant')}</span>
         </li>
         <li className="about-feature">
-          <MdFavorite className='text-danger' />
-          <span className="about-feature-text">{t('ability_to')}</span>
+          <IoLogoGameControllerB className='text-success'/>
+          <span className="about-feature-text">{t('about-game')}</span>
+        </li>
+        <li className="about-feature">
+          <MdStarRate className='text-warning'/>
+          <span className="about-feature-text">{t('about-rate')}</span>
+        </li>
+        <li className="about-feature">
+          <AiOutlineFileAdd className='text-about-add'/>
+          <span className="about-feature-text">{t('about-add')}</span>
         </li>
       </ul>
-      <p className="about-credits">Created by LingoDev team</p>
+      <p className="about-credits"><h5>Created by LingoDev team</h5></p>
     </div>
 
     <div className='text-center  row w-100  ' id='procards' style={{"--mdb-gutter-x":"0"}}>

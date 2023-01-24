@@ -102,7 +102,11 @@
     "good job": "good job - you can improve",
     "games_graph":"Games Graph",
     "added_concepts":"Added Concepts",
-    "logout_desc":"Are you sure you want to logout ?"
+    "logout_desc":"Are you sure you want to logout ?",
+    "about-game": "Test your knowledge of languages through games.",
+    "about-add": "Add new concept and phrases to our database.",
+    "about-rate": "Rate each translate, so we can know the accuracy of the translate."
+
 
 
 

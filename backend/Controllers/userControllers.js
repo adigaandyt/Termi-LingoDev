@@ -343,8 +343,8 @@ const setCoinsOnFinishedGame=asyncHandler( async (req,res)=>{
   
   })
   
- //@desc get the top 5 in the games by there coins ....
-//@route POST /api/users/get/top5
+//@desc get the top 5 in the games by there coins ....
+//@route GET /api/users/get/top5
 //@access public
     
 const getTop5Users=asyncHandler( async (req,res)=>{
@@ -369,6 +369,126 @@ const getTop5Users=asyncHandler( async (req,res)=>{
          throw new Error(error)
      }
   })
+//@desc get the top 5 in guess the term  by it coins ....
+//@route GET /api/users/get/top5/guesstheterm
+//@access public
+const getTop5UsersForGuessTheTerm=asyncHandler( async (req,res)=>{
+
+  try {
+     // const users=await User.find({},).sort({games_coins: -1}).limit(5)
+    //  const users=await User.aggregate([
+    //      { $sort:{games_coins:-1}},
+    //      {$limit:5},
+    //      {$project:{_id:0,favorite_pet:0,added_concepts:0,password:0,phoneNumber:0}}
+    //  ])
+    const users=await User.aggregate([
+      {$lookup:{
+        from:"guesstheterms",
+        localField:"_id",
+        foreignField:"userId",
+        as:"guessthetermTop5"
+        }
+      },
+      {
+        $unwind: "$guessthetermTop5"
+      },
+      {
+          $group: {
+            _id: "$_id",
+            totalScores: {$sum:"$guessthetermTop5.score"},
+            user: { $first: "$$ROOT" }
+          }
+        
+      },
+      {$sort:{totalScore:-1}},
+      {$limit:5},
+      {
+        $project:{
+          "_id":"$_id",
+          email:"$user.email",
+          name:"$user.name",
+          language:"$user.language",
+          categoryId:"$user.categoryId",
+          profile_image:"$user.profile_image",
+          games_coins:"$user.games_coins",
+          gender:"$user.gender",
+          totalScores:"$totalScores",
+        }
+      }
+    ])
+
+
+     users.sort(function(a, b) {
+         return b.totalScores - a.totalScores;
+     });
+     
+  res.json(users)
+
+  } catch (error) {
+      res.status(500)
+      throw new Error(error)
+  }
+})
+//@desc get the top 5 in transme  by it coins ....
+//@route GET /api/users/get/top5/transme
+//@access public
+const getTop5UsersForTransMe=asyncHandler( async (req,res)=>{
+
+  try {
+     // const users=await User.find({},).sort({games_coins: -1}).limit(5)
+    //  const users=await User.aggregate([
+    //      { $sort:{games_coins:-1}},
+    //      {$limit:5},
+    //      {$project:{_id:0,favorite_pet:0,added_concepts:0,password:0,phoneNumber:0}}
+    //  ])
+    const users=await User.aggregate([
+      {$lookup:{
+        from:"transmes",
+        localField:"_id",
+        foreignField:"userId",
+        as:"transmeTop5"
+        }
+      },
+      {
+        $unwind: "$transmeTop5"
+      },
+      {
+          $group: {
+            _id: "$_id",
+            totalScores: {$sum:"$transmeTop5.score"},
+            user: { $first: "$$ROOT" }
+          }
+        
+      },
+      {$sort:{totalScore:-1}},
+      {$limit:5},
+      {
+        $project:{
+          "_id":"$_id",
+          email:"$user.email",
+          name:"$user.name",
+          language:"$user.language",
+          categoryId:"$user.categoryId",
+          profile_image:"$user.profile_image",
+          games_coins:"$user.games_coins",
+          gender:"$user.gender",
+          totalScores:"$totalScores",
+        }
+      }
+    ])
+
+
+     users.sort(function(a, b) {
+         return b.totalScores - a.totalScores;
+     });
+     
+  res.json(users)
+
+  } catch (error) {
+      res.status(500)
+      throw new Error(error)
+  }
+})
 //@desc get users by textSearch for admin settings
 //@route GET /api/users/get/users/:textSearch
 //@access public
@@ -571,30 +691,11 @@ const getUserBothGamesResults=asyncHandler( async (req,res)=>{
               as: "transme"
             }
           },
-        // {
-        //     $unwind: "$guesstheterm"
-        // },
-        // {
-        //     $unwind: "$transme"
-        // },
-        // {$group:{
-        //     _id: "$_id",
-        //     // totalScore:{$sum:"$transme.score"},
-        //     // totalGames:{$sum: 1 },
-        //     guessTheTermScore:"$guesstheterm.score",
-        //     transMeScore:"$transme.score",
-        //     user: { $first: "$$ROOT" } 
-        // }},
-
         {
           $project: {
             _id: "$_id",
             guessTheTermScore:"$guesstheterm.score",
             transMeScore:"$transme.score"
-            // totalScore:"$totalScore",
-            // totalGames:"$totalGames",
-
-
         }
         }
       ])
@@ -640,5 +741,7 @@ module.exports={
     getUsersForAdmin,
     getUserTransMeGameResults,
     getUserGessTheTermGameResults,
-    getUserBothGamesResults
+    getUserBothGamesResults,
+    getTop5UsersForGuessTheTerm,
+    getTop5UsersForTransMe
 }

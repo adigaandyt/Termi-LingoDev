@@ -10,6 +10,7 @@ import {ImExit,ImUserPlus, ImProfile} from 'react-icons/im';
 import {GoSignIn} from 'react-icons/go';
 import {BsTranslate} from 'react-icons/bs'
 import "../styles/Header.css";
+import LogoutModal from './LogoutModal';
 
 
 
@@ -19,6 +20,7 @@ function Header(){
     const {user}=useSelector(state=>state.auth);
     const dispatch=useDispatch();
     const navigate=useNavigate();
+    const [show,toggleShow]=useState(true)
     
     const [active, setActive] = useState(false);
     const optionsClick = () => {
@@ -70,7 +72,7 @@ function Header(){
         
         <>
         
-        
+        <LogoutModal show={show} toggleShow={toggleShow}/>
         <div dir='ltr' className="nav1">
         <div className="space"></div>
             <div className="content">
@@ -100,7 +102,8 @@ function Header(){
                     </>
                 ):(
                     <>
-                    <i className="exit"><button onClick={onLogout} type="button"><ImExit/></button></i>
+                    <i className="exit"><button onClick={()=>toggleShow(!show)} type="button"><ImExit/></button></i>
+
                     <i className="prof " onClick={onProfile}><img src={user.profile_image}/></i>
                     </>
                 )}

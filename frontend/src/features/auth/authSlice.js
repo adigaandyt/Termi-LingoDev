@@ -12,6 +12,8 @@ const  initialState={
     image_url:null,
     user_token:null,
     top5:null,
+    top5ForTransMe:null,
+    top5ForGuessTheTerm:null,
     guessTheTermResults:0,
     transMeResults:0,
     GamesRechartData:null,
@@ -177,13 +179,43 @@ export const setCoins=createAsyncThunk(
      }
 
 )
-// set coins after the game play
+// get the top5 user by coins
 export const getTop5Users=createAsyncThunk(
     'get/top5',
      async(thunkAPI)=>{
       
         try { 
             return await authService.getTop5Users()
+        } catch (error) {
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
+export const getTop5UsersForGuessTheTerm=createAsyncThunk(
+    'get/top5/guesstheTerm',
+     async(thunkAPI)=>{
+      
+        try { 
+            return await authService.getTop5UsersForGuessTheTerm()
+        } catch (error) {
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
+export const getTop5UsersForTransMe=createAsyncThunk(
+    'get/top5/transme',
+     async(thunkAPI)=>{
+      
+        try { 
+            return await authService.getTop5UsersForTransMe()
         } catch (error) {
             const message=(error.response&&error.response.data&&error.response.data.message)
             ||error.message
@@ -416,6 +448,28 @@ export  const authSlice=createSlice({
         .addCase(getTop5Users.fulfilled,(state,action)=>{
             state.isLoading=false
             state.top5=action.payload
+        })
+        .addCase(getTop5UsersForGuessTheTerm.pending,(state)=>{
+            state.isLoading=true
+        })
+        .addCase(getTop5UsersForGuessTheTerm.rejected,(state,action)=>{
+            state.isLoading=false
+            state.message=action.payload
+        })
+        .addCase(getTop5UsersForGuessTheTerm.fulfilled,(state,action)=>{
+            state.isLoading=false
+            state.top5ForGuessTheTerm=action.payload
+        })
+        .addCase(getTop5UsersForTransMe.pending,(state)=>{
+            state.isLoading=true
+        })
+        .addCase(getTop5UsersForTransMe.rejected,(state,action)=>{
+            state.isLoading=false
+            state.message=action.payload
+        })
+        .addCase(getTop5UsersForTransMe.fulfilled,(state,action)=>{
+            state.isLoading=false
+            state.top5ForTransMe=action.payload
         })
         .addCase(getUsersByTextSearch.pending,(state)=>{
             state.isLoading=true

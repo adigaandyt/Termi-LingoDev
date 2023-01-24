@@ -18,7 +18,7 @@ import UserList from '../../components/UserList';
 function TransMe({path}){
     const dispatch =useDispatch();
     const {t}=useTranslation();
-    const {user}=useSelector(state=>state.auth);
+    const {user,top5ForTransMe}=useSelector(state=>state.auth);
     const {concept_names,isGamesLoading}=useSelector(state=>state.games);
     const [questionNumber,setQuestionNumber]=useState(0);
     const [startGameTime,setStartGameTime]=useState()
@@ -180,7 +180,7 @@ const onEndGame=()=>{
         </div>
         </div>  
         <div className='mt-80'></div>
-        <UserList color={" rgba(219,87,5,1)"}/>
+        <UserList color={" rgba(219,87,5,1)"} users={top5ForTransMe}/> 
         </>}
         {path=='settings'&&<>
             <Settings  setCategoryChanged={setCategoryChanged} languages={languages}  setLanguages={setLanguages} getCategoryId={getCategoryId}/>

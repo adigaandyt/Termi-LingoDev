@@ -133,6 +133,18 @@ const getTop5Users =async (data,token)=>{
 
     return response.data
 }
+const getTop5UsersForTransMe =async (data,token)=>{
+  
+    const response=await axios.get(API_URL+'/get/top5/transme')
+
+    return response.data
+}
+const getTop5UsersForGuessTheTerm =async (data,token)=>{
+  
+    const response=await axios.get(API_URL+'/get/top5/guesstheterm')
+
+    return response.data
+}
 //get the top5 users by coins count
 const getUsersByTextSearch =async (textSearch,token)=>{
   
@@ -190,7 +202,9 @@ const authService={
     getUsersByTextSearch,
     getGuessTheTermResults,
     getTransMeResults,
-    getGamesRechartData
+    getGamesRechartData,
+    getTop5UsersForTransMe,
+    getTop5UsersForGuessTheTerm
     
 }
 

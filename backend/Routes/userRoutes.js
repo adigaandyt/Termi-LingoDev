@@ -1,12 +1,30 @@
 const express=require('express')
 const router=express.Router()
-const {registrUser,loginUser,getMe,resetPassword,uploadImage,updateUserDetails,updateUserImage,verifyUser,setCoinsOnFinishedGame,getTop5Users,getUsersForAdmin,getUserTransMeGameResults,getUserGessTheTermGameResults,getUserBothGamesResults}=require('../Controllers/userControllers')
+const {
+    registrUser,
+    loginUser,
+    getMe,
+    resetPassword,
+    uploadImage,
+    updateUserDetails,
+    updateUserImage,
+    verifyUser,
+    setCoinsOnFinishedGame,
+    getTop5Users,
+    getUsersForAdmin,
+    getUserTransMeGameResults,
+    getUserGessTheTermGameResults,
+    getUserBothGamesResults,
+    getTop5UsersForGuessTheTerm,
+    getTop5UsersForTransMe}=require('../Controllers/userControllers')
 const {protect}=require("../middleware/authMiddleware")
 const {upload} =require('../config/S3')
 
 router.post('/register/:categoryId',registrUser)
 router.get('/me',protect,getMe)
-router.get('/get/top5',getTop5Users) 
+router.get('/get/top5',getTop5Users)
+router.get('/get/top5/guesstheterm',getTop5UsersForGuessTheTerm)
+router.get('/get/top5/transme',getTop5UsersForTransMe)
 router.get('/get/users/:textSearch',getUsersForAdmin)
 router.post('/login',loginUser)
 router.post('/upload/image',upload.single("profileImage"), uploadImage)

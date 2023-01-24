@@ -2,7 +2,7 @@ import { useRef,useEffect,useState,useContext ,useLayoutEffect } from "react";
 import AnimationTitle from "../../components/Animation/AnimationTitle";
 import Spinner2 from "../../components/Spinners/Spinner2";
 import { getConcepts4GuessTerm,setGuessTheTermGameResult } from "../../features/Games/gamesSlice";
-import {setCoins,reset, getTop5Users} from '../../features/auth/authSlice'
+import {setCoins,reset, getTop5UsersForGuessTheTerm} from '../../features/auth/authSlice'
 import {getConceptsNames} from '../../features/concepts/conceptSlice'
 import {getConcepts4GuessTermByCategoryId} from '../../features/Games/gamesSlice'
 import { useDispatch , useSelector } from "react-redux";
@@ -50,7 +50,7 @@ function GuessTheTerm({page}){
     const dispatch=useDispatch()
     const navigate=useNavigate();
     const {isGamesLoading,user_concepts}= useSelector(state=>state.games)
-    const {user} =useSelector(state=>state.auth)
+    const {user,top5ForGuessTheTerm} =useSelector(state=>state.auth)
     const {categories} =useSelector(state=>state.category)
     const {names}=useSelector(state=>state.concept)
     const [languageChoosed,setLanguageChoosed]=useState(user.language)
@@ -278,7 +278,7 @@ console.log(categoryId)
 
 </div>
        
-<UserList/>
+<UserList users={top5ForGuessTheTerm}/>
 </div>
 <div className="text-center">
 </div>

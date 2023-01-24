@@ -14,7 +14,6 @@ import '../styles/About.css'
 function About(){
   const {t}=useTranslation();
     return (<>
-    
     <div className="about-container bg-darks">
       <div className="about-header">
         <h1 className="about-title">{t('about_app')}</h1>

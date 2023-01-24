@@ -38,6 +38,7 @@ import UserCard from './components/UserCard';
 import UserList from './components/UserList';
 import GamesRecharts from './components/recharts/GamesRecharts';
 import AdminPrivateRoute from './components/PrivateRoutes/AdminPrivateRoute';
+import { updateActivity } from './features/auth/authService';
 
 function App() {
   const {user,isLoading}=useSelector(state=>state.auth)
@@ -48,6 +49,9 @@ function App() {
     dispatch(getConceptsNames())
     dispatch(getCategories())
     dispatch(checkme())
+    setInterval(updateActivity, 5000);
+
+
 },[])
 useLayoutEffect(()=>{
 if(isCategorySuccess||isCategoryError){

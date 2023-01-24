@@ -11,7 +11,7 @@ import {GoSignIn} from 'react-icons/go';
 import {BsTranslate} from 'react-icons/bs'
 import "../styles/Header.css";
 import LogoutModal from './LogoutModal';
-
+import {sendLanguageChange} from '../features/logging/appLanguageChangeSlice'
 
 
 
@@ -53,10 +53,19 @@ function Header(){
         navigate('/profile')
         optionsClick()
     }
-    
+      const languagechange=(change)=>{
+        const data={
+          newLanguage:change
+        }
+        dispatch(sendLanguageChange(data))
+    }
     const onLanguageChange=(e)=>{
         e.preventDefault()
+        languagechange(e.target.name)
+        // from here we need to send that the language changed
+
         i18n.changeLanguage(e.target.name)
+        console.log(e.target.name)
         if(cookies.get('i18next')==='en'){
             document.body.dir='ltr';
         }

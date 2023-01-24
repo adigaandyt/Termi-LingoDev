@@ -64,8 +64,13 @@ const deleteConceptByAdmin =async (conceptId)=>{
 }
 
 //set concept search for back office 
-const setConceptSearch =async (data)=>{
-    const response=await axios.post(`/api/searches/set/conceptsearch`,data) 
+const setConceptSearch =async (data,token)=>{
+    const config ={
+        headers:{
+            authorization:`Bearer ${token}`
+        }
+    }
+    const response=await axios.post(`/api/searches/set/conceptsearch`,data,config) 
     
     return response.data
 }

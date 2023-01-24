@@ -133,7 +133,9 @@ export const setConceptSearch=createAsyncThunk(
     'setconcept/search/for/backoffice',
      async(data,thunkAPI)=>{ 
         try {
-            return await conceptService.setConceptSearch(data)
+        const token=thunkAPI.getState().auth.user.token 
+        
+            return await conceptService.setConceptSearch(data,token)
         } catch (error) {
             const message=(error.response&&error.response.data&&error.response.data.message)
             ||error.message

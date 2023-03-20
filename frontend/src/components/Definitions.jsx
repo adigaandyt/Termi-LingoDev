@@ -128,7 +128,7 @@ function Definitions({concept,languageChoosed}){
           
           </MDBCollapse>
         </MDBCol>
-        {/*<table>
+        <table>
                 <tr>
                     <td>Rating</td>
                     <td>
@@ -148,7 +148,7 @@ function Definitions({concept,languageChoosed}){
                     
                 </tr>
                 
-            </table>*/}
+            </table>
         </div>
         <div className=''>
             {showLongDefinition&&<MDBCol className='scroll' id="scroll-style">

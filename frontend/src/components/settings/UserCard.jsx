@@ -2,14 +2,17 @@ import '../../styles/SettingsUsers.css'
 import {TbPlaylistAdd} from 'react-icons/tb'
 import {CgGames} from 'react-icons/cg'
 import {FcLike} from 'react-icons/fc';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import { getCategoryNameById } from '../../hooks/ExportsFunctions';
 import { setUserAdminByAdmin } from '../../features/auth/authSlice';
 function UserCard({user}){
     const dispatch=useDispatch();
     const [isAdmin, setIsAdmin] = useState(user.isAdmin);
-
+    const {categories} =useSelector(state=>state.category);
+    useEffect(()=>{
+        setIsAdmin(user.isAdmin)
+    },[user])
     function handleChange(e) {
         setIsAdmin(e.target.checked)
         const data={
@@ -20,7 +23,8 @@ function UserCard({user}){
         
     }
     
-    const {categories} =useSelector(state=>state.category)
+    
+   
     return(<>
         <div className='userContainer  ' style={{"margin":"auto"}}>
 

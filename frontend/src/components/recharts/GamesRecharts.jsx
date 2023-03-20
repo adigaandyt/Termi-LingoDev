@@ -73,8 +73,8 @@ const data = [
           <YAxis scale="pow" exponent={0} domain={[0, 10]}/>
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="TransMe" stroke="#8884d8" activeDot={{ r: 1 }} />
-          <Line type="monotone" dataKey="GuessTheTerm" stroke="#82ca9d" />
+          <Line type="monotone" strokeWidth={5} dataKey="TransMe" stroke="#8884d8" activeDot={{ r: 1 }} />
+          <Line type="monotone" strokeWidth={5} dataKey="GuessTheTerm" stroke="#82ca9d" />
         </LineChart>
       </ResponsiveContainer>
         </div>

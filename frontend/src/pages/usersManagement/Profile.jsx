@@ -63,21 +63,24 @@ function Profile(){
           <p className="d-inline-block">{t('coins')}: </p>
           <h6 className="d-inline-block">{games_coins} <RiCoinsFill className='' style={{color:"#FFD700"}}/></h6>
         </div>
-       
-
+        <div className='border-top mt-2'>
+         <h3 className='mt-2 mx-2'>{t('games_graph')}</h3>
+        <GamesRecharts />
+        </div>
        
 
       </div>
       <div className=" col-sm-8 border-sm-start border-top   ">
-        <h3 className='mt-2 mx-2'>{t('games_graph')}</h3>
+       
        
 
-        <GamesRecharts />
+        
         
         <h3 className='mt-2 mx-2'>{t('details')}</h3>
         <button id="editbtn" disabled={isEdit} onClick={()=>setIsEdit(!isEdit)} className='btn btn-primary btn-sm  mx-2 '>{t('edit')}</button>
 
         <ProfileForm isEdit={isEdit} setIsEdit={setIsEdit} />
+
       </div>
 
     </div>

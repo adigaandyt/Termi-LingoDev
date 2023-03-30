@@ -80,7 +80,7 @@ function Definitions({concept,languageChoosed}){
             {languageChoosed.arabic&&<img className='mt-2' src={require('../flags/saudi-arabia-xs.gif')}/>}
         </div>
         <div className='col-11 text-end'>
-            <h3 className="text-dark mb-3 mt-2 ">{concept&&getConceptName(languageChoosed,concept)}</h3> 
+            <h3 className="text-dark mb-3 mt-2" id="conceptName">{concept&&getConceptName(languageChoosed,concept)}</h3> 
             <h5>{concept&&categoryById(concept.categories[0],languageChoosed,categories)}</h5>
         </div>        
         </div>

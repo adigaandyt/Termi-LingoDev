@@ -9,13 +9,35 @@ import {MdLanguage} from 'react-icons/md';
 import {ImExit,ImUserPlus, ImProfile} from 'react-icons/im';
 import {GoSignIn} from 'react-icons/go';
 import {BsTranslate} from 'react-icons/bs'
+import {HiSwitchHorizontal} from 'react-icons/hi'
 import "../styles/Header.css";
 import LogoutModal from './LogoutModal';
 import {sendLanguageChange} from '../features/logging/appLanguageChangeSlice'
 
+function switchLanguage(currentLanguage){
+    switch(currentLanguage){
+        case 'ar':{
+            return 'en';
+            break;
+        }
+        case 'en':{
+            return 'hb';
+            break;
+        }
+        case 'hb':{
+            return 'ar';
+            break;
+        }
+        default:{
+            break;
+        }
+    }
+    
+}
 
 
 function Header(){
+    // let lan=cookies.get('i18next')
     const {t,i18n}=useTranslation();
     const {user}=useSelector(state=>state.auth);
     const dispatch=useDispatch();
@@ -60,20 +82,35 @@ function Header(){
         dispatch(sendLanguageChange(data))
     }
     const onLanguageChange=(e)=>{
-        e.preventDefault()
-        languagechange(e.target.name)
-        // from here we need to send that the language changed
+       const nextLanguage= switchLanguage(cookies.get('i18next'))
+       e.preventDefault()
+       languagechange(nextLanguage)
+       // from here we need to send that the language changed
 
-        i18n.changeLanguage(e.target.name)
-        console.log(e.target.name)
-        if(cookies.get('i18next')==='en'){
-            document.body.dir='ltr';
-        }
-        else{
-            document.body.dir='rtl';
+       i18n.changeLanguage(nextLanguage)
+       console.log(nextLanguage)
+       if(cookies.get('i18next')==='en'){
+           document.body.dir='ltr';
+       }
+       else{
+           document.body.dir='rtl';
 
-        }
-        optionsClick();
+       }
+    //    optionsClick();
+        // e.preventDefault()
+        // languagechange(e.target.name)
+        // // from here we need to send that the language changed
+
+        // i18n.changeLanguage(e.target.name)
+        // console.log(e.target.name)
+        // if(cookies.get('i18next')==='en'){
+        //     document.body.dir='ltr';
+        // }
+        // else{
+        //     document.body.dir='rtl';
+
+        // }
+        // optionsClick();
         
        
     }
@@ -86,7 +123,13 @@ function Header(){
         <div className="space"></div>
             <div className="content">
                 <div className="text">
-                    <Link to='/' id='titlestyle' className="navbar-brand text-secondary mx-3"> <BsTranslate className='text-light display-1' size="60" /></Link>
+                {/* <Link to='/' id='titlestyle' className="navbar-brand text-secondary mx-3"> <BsTranslate className='text-light display-1' size="60" /></Link> */}
+                    <div className='d-flex' onClick={onLanguageChange}>
+                     <BsTranslate   id='titlestyle' className='navbar-brand text-secondary text-light display-2' size="60" />
+                    {/* <img src={require('../flags/saudi-arabia-xs.gif')}/> */}
+                    
+                    <h3 style={{"marginLeft":"-10px"}} className='mt-3 text-light'><HiSwitchHorizontal className='text-warning mx-2'/>{cookies.get('i18next')==='en'? 'English':(cookies.get('i18next')==='ar'?'العربية':'עברית')}</h3>
+                    </div>
                 </div>
                 <div className={`btnb ${active ? 'active' : ''}`} onClick={optionsClick}><span></span></div>
 

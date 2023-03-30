@@ -4,6 +4,7 @@ import "../styles/Footer.css";
 import {CgGames} from 'react-icons/cg';
 import {AiOutlineHome, AiOutlineSetting} from 'react-icons/ai';
 import {FcAbout} from 'react-icons/fc';
+import {FaSearch} from 'react-icons/fa';
 import {TbPlaylistAdd} from 'react-icons/tb';
 import {VscQuestion} from 'react-icons/vsc';
 import { useSelector } from 'react-redux';
@@ -26,7 +27,7 @@ export default function Footer(){
                 </div>
 
                 <div className=' flex-item' id={location.pathname==='/' ? 'input-clicked' : undefined}>
-                    <input type= "radio" name="nav-item" id="m-home"/><label onClick={() => navigate('/')} id="l1"><AiOutlineHome/></label>
+                    <input type= "radio" name="nav-item" id="m-home"/><label onClick={() => navigate('/')} id="l1"><FaSearch/></label>
                 </div>
 
                 <div className=' flex-item' id={location.pathname==='/about' ? 'input-clicked': undefined}>

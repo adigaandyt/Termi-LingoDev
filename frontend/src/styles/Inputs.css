@@ -301,3 +301,8 @@
 width: 400px;
 }
 } */
+
+/*concept name in definition*/
+#conceptName{
+  font-weight: bold;
+}

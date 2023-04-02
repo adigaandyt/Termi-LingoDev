@@ -2,7 +2,7 @@ import {React,useContext} from 'react'
 import { useState,useEffect,useLayoutEffect } from "react"
 import {useNavigate,Link} from 'react-router-dom'
 import {useSelector ,useDispatch} from 'react-redux'
-import {register ,reset,uploadImage} from '../../features/auth/authSlice'
+import {register ,reset,uploadImage,sendValidationMail} from '../../features/auth/authSlice'
 import { getCategories,Categoryreset } from '../../features/categories/categorySlice'
 import Spinner from "../../components/Spinner"
 import { toast } from "react-toastify"
@@ -16,6 +16,7 @@ import axios from 'axios'
 import RegisterImage from '../../components/RegisterImage'
 import "../../styles/Inputs.css"
 import '../../styles/Images.css'
+import RegisterStepper from './RegisterStepper'
 
 
 
@@ -24,11 +25,23 @@ function Register(){
     const {isCategorySuccess,isCategoryError}=useSelector(state=>state.category)
 
     const dispatch=useDispatch()
-    const {user,isLoading,isSuccess,isError,message,image_url,isImageLoading}=useSelector((state)=>state.auth)
+    const {
+        user,
+        isLoading,
+        isSuccess,
+        isError,
+        message,
+        image_url,
+        isImageLoading,
+        isValidationSuccess,
+        isValidationLoading,
+        isValidationError,
+        code
+        }=useSelector((state)=>state.auth)
     const {categories}=useSelector(state=>state.category)
     const [categoryId,setCategoryId]=useState('639e49f8dfabd615c821584f')
-
-
+    const [isInvalid,setIsInvalid]=useState(false)
+    const [activeStep,setActiveStep]=useState(0)
     const navigate=useNavigate()
     const [formData,setFormData,]=useState({
         name:'',
@@ -41,6 +54,7 @@ function Register(){
         profile_image:'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png',
         language:'English',
     })
+    const [userCode,setUserCode]=useState()
     useEffect(()=>{
         dispatch(getCategories())
         if(user){
@@ -93,13 +107,29 @@ function Register(){
         }
         },[isCategorySuccess,isCategoryError])
     const {name,email,password,password2,phoneNumber,favorite_pet,gender,profile_image}=formData;
+    useLayoutEffect(()=>{
+        if(isValidationError){
+        toast.warning("Error sending, make sure your email is correct.") 
+        setIsInvalid(true) 
+        dispatch(reset())
 
+        }
+        if(isValidationSuccess){
+        setActiveStep(1)
+        setIsInvalid(false) 
+        dispatch(reset())
+        }
+        },[isValidationError,isValidationSuccess,code])
 
     const onSubmit=(e)=>{
         e.preventDefault()
         dispatch(register({formData:formData,categoryId:categoryId}))
     }
     const onChange=(e)=>{
+        if(e.target.name==='email'||e.target.name==='password'||e.target.name==='password2')
+        {
+            setIsInvalid(false)
+        }
         setFormData((prevState)=>{
             return({
                 ...prevState,
@@ -107,52 +137,104 @@ function Register(){
             })
         })
        }
- 
-        // const onUploadImage = event => {
-        //     if(event.target.files[0]){
-        //     const formdata=new FormData()
-        //     formdata.append('profileImage',event.target.files[0])
-        //     dispatch(uploadImage(formdata))
-
-        //     }
-                
-        //     }
-       if(isLoading){
-        return (<Spinner/> )
+       const onCodeChange=(e)=>{
+        setUserCode(e.target.value)
+        setIsInvalid(false)
        }
+       const onStep1Submit=(e)=>{
+        e.preventDefault()
+        //send email
+        dispatch(sendValidationMail({to:formData.email,name:formData.name}))
+
+    }
+    const onStep2Submit=(e)=>{
+        e.preventDefault()
+        // validate the code 
+        if(userCode==code){
+            setIsInvalid(false)
+            setActiveStep(2)
+        }else{
+            toast.warning("The code is incorrect")
+            setIsInvalid(true)
+        }
+    }
+    const onStep3Submit=(e)=>{
+        e.preventDefault()
+
+        if(formData.password===formData.password2){
+            setIsInvalid(false)
+            setActiveStep(3)
+        }else{
+            setIsInvalid(true)
+            if(formData.password.length<6||formData.password.length<6){
+                toast.warn("The passwords must contain 6 digits or more");
+                return
+            }
+            toast.warn("The passwords must be the same ")
+
+
+        }
+
+    }
+
+
     return (
         <>
+        {isLoading||isValidationLoading&&<Spinner/>}
         <div className=' mt-130 mb-5' id="regpage" style={{"textAlign":"center"}} >
+        <RegisterStepper activeStep={activeStep}/>
+        <div className="form1">
 
-        <form className="form1" onSubmit={onSubmit}>
+                {activeStep===0&&(<>
+                    <form onSubmit={onStep1Submit}>
+                        <div className="form-group mt-2"> 
+                            <input className="form-control" type="name" placeholder={t('name')}  name="name" id="name"  value={name} onChange={onChange} required/>
+                        </div>
+                        <div className="form-group mt-2"> 
+                            <input className={isInvalid ?'form-control is-invalid': "form-control" } type='email' placeholder={t('email')} id='email' name='email' value={email} onChange={onChange} required/>
+                        </div>
+                        <div className='text-end mt-3'>
+                            <button type='submit' className='btn '>Submit</button>
+                        </div>
+                    </form>
+                </>)}
 
-            {/* <div className='form-group mt-2'>
-            <img  className='register-image ' src={image_url?image_url:'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png'}></img>
-            </div> */}
-            <div className='text-center'>
-            <RegisterImage/>
-            </div>
-            
-            {/* <div className='form-group' >
-                <label className='btn btn-sm btn-secondary mt-2  ml-5 ' > 
-                {isImageLoading&&(<div class="spinner-grow spinner-grow-sm" role="status">
-                <span class="sr-only">Loading...</span>
-                </div>)} {t('select_image')}
-                <input   style={{"position":"relative" ,"left":"15%","display":"none"}} onChange={onUploadImage}  type="file" accept="image/*"/>
-            </label>
-            </div> */}
-            <div className="form-group mt-2"> 
-                <input className="form-control" type="name" placeholder={t('name')}  name="name" id="name"  value={name} onChange={onChange} required/>
-            </div>
-            <div className="form-group mt-2"> 
-                <input className="form-control" type='email' placeholder={t('email')} id='email' name='email' value={email} onChange={onChange} required/>
-            </div>
-            <div className="form-group mt-2"> 
-                <input className="form-control" type='password' placeholder={t('password')} id='password' name='password' value={password} onChange={onChange} required/>
-            </div>
-            <div className="form-group mt-2"> 
-                <input className="form-control" type='password' placeholder={t('confirm_password')} id='password2' name='password2' value={password2} onChange={onChange} required/>
-            </div>
+                {activeStep==1&&(<>
+                    {/* validation */}
+                    <form onSubmit={onStep2Submit}>
+                    <label>
+                        <h5>Enter the code that you get in your email adrress <span className='text-primary'>{formData.email}</span></h5>
+                        <p>If you don't see the message, check your spam.</p>
+                    </label>
+                    <div className="form-group mt-2"> 
+                        <input className={isInvalid ?'form-control is-invalid': "form-control" } type='code' placeholder={t('code')} id='code' onChange={onCodeChange} value={userCode}   required/>  
+                    </div>
+                    <div className='text-end mt-3'>
+                        <button type='submit'  className='btn '>Submit</button>
+                    </div>
+                    </form>
+                </>)}
+
+                {activeStep===2&&(<>
+                    <form onSubmit={onStep3Submit}>
+                        <div className="form-group mt-2"> 
+                            <input className={isInvalid ?'form-control is-invalid': "form-control" }  type='password' placeholder={t('password')} id='password' name='password' value={password} onChange={onChange} required/>
+                        </div>
+                        <div className="form-group mt-2"> 
+                            <input className={isInvalid ?'form-control is-invalid': "form-control" }  type='password' placeholder={t('confirm_password')} id='password2' name='password2' value={password2} onChange={onChange} required/>
+                        </div>
+                        <div className='text-end mt-3'>
+                            <button type='submit'  className='btn '>Next</button>
+                        </div>
+                    </form>
+                </>)}
+
+                {activeStep==3&&(<>
+                    <form onSubmit={onSubmit}>
+                    <div className='text-center'>
+                        <RegisterImage/>
+                    </div>
+
             <div className="form-group mt-2"> 
                 <input className="form-control" type='phoneNumber' placeholder={t('phone')} id='phoneNumber' name='phoneNumber' value={phoneNumber} onChange={onChange} required/>  
             </div>
@@ -187,17 +269,28 @@ function Register(){
                                             return(category.accepted&&<option value={category._id}>{getCategoryName(category.categoryName)}</option>)
                                     })
                                 }
-                                {/* <option value='639e49f8dfabd615c821584f'>{t('other')}</option> */}
+                               
                 </select>
             </div>
 
-            <button id="rgbtn" className='btn btn-dark mt-3' type='submit'>
+            {/* <button id="rgbtn" className='btn btn-dark mt-3'  type='submit'>
             <span></span>
             <span></span>
             <span></span>
             <span></span>
-            {t('register')}</button>
-        </form>
+            {t('register')}</button> */}
+            <div dir='ltr' className='d-flex justify-content-between mt-3'>
+            <button className='btn' type='button' onClick={()=>setActiveStep(2)}>Back</button>
+            <button className='btn '  type='submit'>{t('register')}</button>
+
+            </div>
+            <div className='mt-4'>
+                <Link to='/login' className='text-primary text-decoration-underline'><h4>Login</h4></Link>
+            </div>
+
+            </form>
+            </>)}
+        </div>
         
         
             </div>

@@ -21,7 +21,13 @@ const  initialState={
     isSuccess:false,
     isError:false,
     isLoading:false,
-    isImageLoading:false, 
+    isImageLoading:false,
+    //validation
+    code:null,
+    isValidationSuccess:false, 
+    isValidationError:false, 
+    isValidationLoading:false,
+    validationMessage:'', 
     message:''
 }
 // check me 
@@ -84,6 +90,7 @@ export const updateUserImage=createAsyncThunk(
 export const logout=createAsyncThunk('auth/logout', async()=>{
     await authService.logout()
 })
+
 
 //Register user 
 export const register=createAsyncThunk(
@@ -307,6 +314,21 @@ export const setUserAdminByAdmin=createAsyncThunk(
      }
 
 )
+// send message to mail adress for mail validation
+export const sendValidationMail=createAsyncThunk(
+    'validation/mail',
+     async(formdata,thunkAPI)=>{
+        try { 
+            return await authService.sendValidationMail(formdata)
+        } catch (error) {
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
 
 export  const authSlice=createSlice({
     name:'auth',
@@ -317,6 +339,9 @@ export  const authSlice=createSlice({
             state.isError=false
             state.isSuccess=false
             state.isImageLoading=false
+            state.isValidationError=false
+            state.isValidationSuccess=false
+            state.isValidationLoading=false
             state.message=''
         }
     },
@@ -545,6 +570,21 @@ export  const authSlice=createSlice({
         .addCase(setUserAdminByAdmin.rejected,(state,action)=>{
             state.message=action.payload
             state.isLoading=false
+        })
+        .addCase(sendValidationMail.pending,(state)=>{
+            state.isValidationLoading=true
+        })
+        .addCase(sendValidationMail.fulfilled,(state,action)=>{
+            state.isValidationLoading=false
+            state.isValidationSuccess=true
+            console.log("noew",action.payload)
+            state.code=action.payload.code
+        })
+        .addCase(sendValidationMail.rejected,(state,action)=>{
+            state.isValidationLoading=false
+            state.isValidationError=true
+            state.validationMessage=action.payload
+            
         })
     }
 

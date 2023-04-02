@@ -17,7 +17,9 @@ const {
     getUserBothGamesResults,
     getTop5UsersForGuessTheTerm,
     getTop5UsersForTransMe,
-    setUserAdminByAdmin}=require('../Controllers/userControllers')
+    setUserAdminByAdmin,
+    sendValidationEmail
+    }=require('../Controllers/userControllers')
 const {protect}=require("../middleware/authMiddleware")
 const {upload} =require('../config/S3')
 
@@ -38,6 +40,8 @@ router.get('/get/results/transMe',protect,getUserTransMeGameResults);
 router.get('/get/results/guesstheterm',protect,getUserGessTheTermGameResults)
 router.get('/get/both/games/results',protect,getUserBothGamesResults);
 router.post('/set/user/admin',setUserAdminByAdmin)
+router.post('/email/validation',sendValidationEmail)
+
 
 
 module.exports=router

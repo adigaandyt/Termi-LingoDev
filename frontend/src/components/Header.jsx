@@ -96,23 +96,6 @@ function Header(){
            document.body.dir='rtl';
 
        }
-    //    optionsClick();
-        // e.preventDefault()
-        // languagechange(e.target.name)
-        // // from here we need to send that the language changed
-
-        // i18n.changeLanguage(e.target.name)
-        // console.log(e.target.name)
-        // if(cookies.get('i18next')==='en'){
-        //     document.body.dir='ltr';
-        // }
-        // else{
-        //     document.body.dir='rtl';
-
-        // }
-        // optionsClick();
-        
-       
     }
     return (
         
@@ -123,10 +106,8 @@ function Header(){
         <div className="space"></div>
             <div className="content">
                 <div className="text">
-                {/* <Link to='/' id='titlestyle' className="navbar-brand text-secondary mx-3"> <BsTranslate className='text-light display-1' size="60" /></Link> */}
-                    <div className='d-flex' onClick={onLanguageChange}>
+                 <div className='d-flex' onClick={onLanguageChange}>
                      <BsTranslate   id='titlestyle' className='navbar-brand text-secondary text-light display-2' size="60" />
-                    {/* <img src={require('../flags/saudi-arabia-xs.gif')}/> */}
                     
                     <h3 style={{"marginLeft":"-10px"}} className='mt-3 text-light'><HiSwitchHorizontal className='text-warning mx-2'/>{cookies.get('i18next')==='en'? 'English':(cookies.get('i18next')==='ar'?'العربية':'עברית')}</h3>
                     </div>

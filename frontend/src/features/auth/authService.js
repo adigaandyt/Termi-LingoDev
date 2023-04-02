@@ -72,6 +72,7 @@ const updateUserImage =async (formdata,token)=>{
     return response.data
 }
 
+
 //register user
 const register =async (Data)=>{
     const response=await axios.post(API_URL+`/register/${Data.categoryId}`,Data.formData)
@@ -215,6 +216,12 @@ const setUserAdminByAdmin =async (data)=>{
 
     return response.data
 }
+//send message to mail adrress for validation
+const sendValidationMail =async (data)=>{
+    const response=await axios.post(API_URL+`/email/validation`,data)
+    return response.data
+}
+
 const authService={
     me,
     register,
@@ -233,7 +240,8 @@ const authService={
     getGamesRechartData,
     getTop5UsersForTransMe,
     getTop5UsersForGuessTheTerm,
-    setUserAdminByAdmin
+    setUserAdminByAdmin,
+    sendValidationMail
     
 }
 

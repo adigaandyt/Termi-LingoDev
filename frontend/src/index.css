@@ -81,7 +81,7 @@ li {
   width: 64px;
   height: 64px;
   border: 8px solid;
-  border-color: rgb(248, 216, 12) transparent rgb(207, 218, 153) transparent;
+  border-color: rgb(7, 129, 105) transparent rgb(159, 242, 174) transparent;
   border-radius: 50%;
   animation: spin 1.2s linear infinite;
 }

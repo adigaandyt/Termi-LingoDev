@@ -5,12 +5,63 @@ const User=require('../Models/usersModel')
 const Category=require('../Models/categoriesModel')
 const jwt =require('jsonwebtoken')
 const { response } = require('express')
+const nodemailer = require('nodemailer');
 
 const generateToken=(id)=>{
     return jwt.sign({id},process.env.JWT_SECRET,{
         		expiresIn:'30d'
  		   })
          }
+
+//@desc send message with code to email address for validation
+//@route POST /api/users/email/validation
+//@access public
+const sendValidationEmail=asyncHandler( async (req,res)=> {
+  const { to ,name} = req.body;
+  const subject='Termi Validation'
+  const randomCode = Math.floor(100000 + Math.random() * 900000);
+  const message =`Hello ${name}, welcome to Termi App, your code is G-${randomCode.toString()} `
+
+  try {
+    // const userExist=await User.findOne({to})
+    // //check if the user is exists by email
+    // if(userExist){
+    //   console.log(userExist)
+    //     res.status(400)
+    //     throw new Error('Email already exist!')
+    // }else{
+
+    // }
+    const transporter = nodemailer.createTransport({
+      service: 'hotmail',
+      auth: {
+        user: process.env.EMAIL_ACCOUNT,
+        pass: process.env.PASSWORD,
+      },
+    });
+  
+    const mailOptions = {
+      from: process.env.EMAIL_ACCOUNT,
+      to,
+      subject,
+      text: message,
+    };
+  
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        res.status(401).send({message:"errorrrr"})
+        // throw new Error("Error sending, make sure your email is correct.")
+      } else {
+        console.log('Email sent: ' + info.response);
+        res.status(200).json({message:'successfuly',code:randomCode});
+      }
+    });
+  } catch (error) {
+    res.status(400)
+    throw new Error(error)
+  }
+
+})
 
 
 //@desc register a new user
@@ -774,5 +825,6 @@ module.exports={
     getUserBothGamesResults,
     getTop5UsersForGuessTheTerm,
     getTop5UsersForTransMe,
-    setUserAdminByAdmin
+    setUserAdminByAdmin,
+    sendValidationEmail
 }

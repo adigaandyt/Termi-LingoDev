@@ -49,7 +49,7 @@ const sendValidationEmail=asyncHandler( async (req,res)=> {
   
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
-        res.status(401).send({message:"errorrrr"})
+        res.status(401).send(error)
         // throw new Error("Error sending, make sure your email is correct.")
       } else {
         console.log('Email sent: ' + info.response);

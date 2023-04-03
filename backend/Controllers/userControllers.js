@@ -69,7 +69,7 @@ const sendValidationEmail=asyncHandler( async (req,res)=> {
 //@access public
 const registrUser=asyncHandler( async (req,res)=>{
     const categoryId=req.params.categoryId
-    const {email, password ,password2 ,name, phoneNumber ,language,profile_image,favorite_pet,gender}=req.body;
+    const {email, password ,password2 ,name, phoneNumber ,language,profile_image,status,gender}=req.body;
 
     if(categoryId==='639e49f8dfabd615c821584f'){
         res.status(500)
@@ -113,7 +113,7 @@ const registrUser=asyncHandler( async (req,res)=>{
             language,
             gender, 
             categoryId,
-            favorite_pet,
+            status,
             profile_image:profile_image,
             password:hashPassword
         })
@@ -127,7 +127,7 @@ const registrUser=asyncHandler( async (req,res)=>{
                 email:user.email,
                 phoneNumber:user.phone_number,
                 language:user.language,
-                favorite_pet:user.favorite_pet,
+                status:user.status,
                 categoryId:user.categoryId,
                 gender:user.gender,
                 games_coins:user.games_coins,
@@ -167,6 +167,7 @@ const loginUser=asyncHandler( async (req,res)=>{
                 phoneNumber:user.phoneNumber,
                 games_coins:user.games_coins,
                 gender:user.gender,
+                status:user.status,
                 profile_image:user.profile_image,
                 added_concepts:user.added_concepts,
                 token:token}
@@ -201,6 +202,7 @@ const getMe=asyncHandler( async (req,res)=>{
         profile_image:user.profile_image,
         added_concepts:user.added_concepts,
         gender:user.gender,
+        status:user.status,
         isAdmin:user.isAdmin,
         token:token
     })
@@ -262,8 +264,6 @@ const uploadImage =asyncHandler(async(req,res)=>{
 //@route post /api/users/update/image
 //@access private 
 const updateUserImage =asyncHandler(async(req,res)=>{ 
-    // console.log(req.user.id)
-    // console.log(req.file.location) 
     try{
         const newUser=await User.findByIdAndUpdate(req.user.id,{profile_image:req.file.location},{new:true})
         console.log(newUser)
@@ -280,6 +280,7 @@ const updateUserImage =asyncHandler(async(req,res)=>{
             profile_image:newUser.profile_image,
             added_concepts:newUser.added_concepts,
             gender:newUser.gender,
+            status:user.status,
             isAdmin:newUser.isAdmin,
             token:token
         })
@@ -331,6 +332,7 @@ if(newUser){
         profile_image:newUser.profile_image,
         games_coins:newUser.games_coins,
         gender:newUser.gender,
+        status:newUser.status,
         added_concepts:newUser.added_concepts,
         isAdmin:newUser.isAdmin,
         token:token
@@ -396,6 +398,7 @@ const setCoinsOnFinishedGame=asyncHandler( async (req,res)=>{
                 games_coins:newUser.games_coins,
                 added_concepts:newUser.added_concepts,
                 gender:newUser.gender,
+                status:newUser.status,
                 profile_image:newUser.profile_image,
                 token:token}
              res.status(200).json(userData)

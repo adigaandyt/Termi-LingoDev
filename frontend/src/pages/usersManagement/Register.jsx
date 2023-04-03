@@ -49,7 +49,7 @@ function Register(){
         password:'',
         password2:'',
         phoneNumber:'',
-        favorite_pet:'',
+        status:'student',
         gender:null,
         profile_image:'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png',
         language:'English',
@@ -106,7 +106,7 @@ function Register(){
           dispatch(Categoryreset())
         }
         },[isCategorySuccess,isCategoryError])
-    const {name,email,password,password2,phoneNumber,favorite_pet,gender,profile_image}=formData;
+    const {name,email,password,password2,phoneNumber,status,favorite_pet,gender,profile_image}=formData;
     useLayoutEffect(()=>{
         if(isValidationError){
         toast.warning("Error sending, make sure your email is correct.") 
@@ -238,9 +238,9 @@ function Register(){
             <div className="form-group mt-2"> 
                 <input className="form-control" type='phoneNumber' placeholder={t('phone')} id='phoneNumber' name='phoneNumber' value={phoneNumber} onChange={onChange} required/>  
             </div>
-            <div className="form-group mt-2"> 
+            {/* <div className="form-group mt-2"> 
                 <input className="form-control" type='favorit_pet' placeholder={t('favorite_pet')} id='favorite_pet' name='favorite_pet' value={favorite_pet} onChange={onChange} required/>  
-            </div>
+            </div> */}
             
             <div className="form-group mt-2" id="reg-dropdown">
                 <select className="select-input" defaultValue={t('Language')} name='language' onChange={onChange}>
@@ -251,15 +251,7 @@ function Register(){
                     <option value="עברית">עברית</option>
                 </select>
             </div>
-            <div className="form-group mt-2" id="reg-dropdown">
-                <select className="select-input" defaultValue={t('gender')} name='gender' onChange={onChange}>
-                    <option disabled>{t('gender')}</option>
-                    <hr className='text-secondary'/>
-                    <option value="female">{t('female')}</option> 
-                    <option value="male">{t('male')}</option>
-                    <option value="other">{t('other')}</option>
-                </select>
-            </div>
+
             <div className="form-group mt-2" id="reg-dropdown">
                 <select className="select-input  mt-2" defaultValue={t('category')} name='categoryId' onChange={(e)=>{setCategoryId(e.target.value)}}>
                                 <option disabled value={t('category')}>{t('category')}</option>
@@ -270,6 +262,22 @@ function Register(){
                                     })
                                 }
                                
+                </select>
+            </div>
+            <div className="form-group mt-2" id="reg-dropdown">
+                <select className="select-input" name='status' onChange={onChange}>
+                    <option value="student">Student</option> 
+                    <option value="employee">Employee</option>
+                    <option value="both">Student & Employee</option>
+                </select>
+            </div>
+            <div className="form-group mt-2" id="reg-dropdown">
+                <select className="select-input" defaultValue={t('gender')} name='gender' onChange={onChange}>
+                    <option disabled>{t('gender')}</option>
+                    <hr className='text-secondary'/>
+                    <option value="female">{t('female')}</option> 
+                    <option value="male">{t('male')}</option>
+                    <option value="other">{t('other')}</option>
                 </select>
             </div>
 

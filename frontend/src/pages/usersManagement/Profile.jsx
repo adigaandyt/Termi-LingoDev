@@ -17,7 +17,7 @@ import GamesRecharts from '../../components/recharts/GamesRecharts';
 function Profile(){
   const dispatch=useDispatch();
   const {t}=useTranslation();
-  const {name,email,profile_image,games_coins,gender,added_concepts} =useSelector(state=>state.auth.user)
+  const {name,email,profile_image,status,games_coins,gender,added_concepts} =useSelector(state=>state.auth.user)
   const {isLoading,isImageLoading} =useSelector(state=>state.auth)
   const [isEdit,setIsEdit]=useState(false)
   useEffect(()=>{
@@ -54,6 +54,10 @@ function Profile(){
         <div className='mx-3 ' style={{"height":"23px"}} >
           <p className="d-inline-block">{t('gender')}: </p>
           <h6 className="d-inline-block"> {gender==='female'?<IoMdFemale style={{color:"#f103c9"}}/>:(gender==='male'?<IoMdMale className='text-success'/>:<BsQuestionLg className='text-warning'/>)}</h6>
+        </div>
+        <div className='mx-3 ' style={{"height":"23px"}} >
+          <p className="d-inline-block">Status: </p>
+          <h6 className="d-inline-block"> {status==='student'?(<p> Student</p>):(status==='employee'?<p> Employee</p>:<p> Student & Employee</p>)}</h6>
         </div>
         <div className='mx-3 ' style={{"height":"23px"}} >
           <p className="d-inline-block">{t('added_concepts')}: </p>

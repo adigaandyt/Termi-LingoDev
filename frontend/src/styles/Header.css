@@ -1,13 +1,16 @@
 
 
 #titlestyle{
-    /*font-family: georgia;*/
-    /*font-size: 2.1rem;*/
-    /*font-weight: bold;*/
     margin-top: 5px;
     width: 100px;
     transform: perspective(200px) rotateY(35deg);
     /*border: red solid;*/
+    margin-left: -15px;
+    background: none;
+    border: none;
+}
+#titlestyle:active {
+  transform: scale(0.98);
 }
 .headers{
   margin-bottom: 70px;

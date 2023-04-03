@@ -107,9 +107,11 @@ function Header(){
             <div className="content">
                 <div className="text">
                  <div className='d-flex' onClick={onLanguageChange}>
-                     <BsTranslate   id='titlestyle' className='navbar-brand text-secondary text-light display-2' size="60" />
+                     <button id='titlestyle'>
+                        <BsTranslate className='navbar-brand text-secondary text-light display-2' size="60" />
+                     </button>
                     
-                    <h3 style={{"marginLeft":"-10px"}} className='mt-3 text-light'><HiSwitchHorizontal className='text-warning mx-2'/>{cookies.get('i18next')==='en'? 'English':(cookies.get('i18next')==='ar'?'العربية':'עברית')}</h3>
+                    <h3 style={{"marginLeft":"-25px"}} className='mt-3 text-light'><HiSwitchHorizontal className='text-warning mx-2'/>{cookies.get('i18next')==='en'? 'English':(cookies.get('i18next')==='ar'?'العربية':'עברית')}</h3>
                     </div>
                 </div>
                 <div className={`btnb ${active ? 'active' : ''}`} onClick={optionsClick}><span></span></div>

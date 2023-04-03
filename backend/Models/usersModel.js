@@ -26,6 +26,11 @@ const userSchema=mongoose.Schema({
         enum:['English','עברית', 'العربية' ],
         default:'English'
        },
+       status:{
+        type:String,
+        required:[true,'Please select a status'],
+        enum:['student','employee','both'],
+       },   
        gender:{
         type:String,
         required:[true,'Please select a gender'],
@@ -44,10 +49,6 @@ const userSchema=mongoose.Schema({
     profile_image:{
         type:String,
         default:'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png'
-    },
-    favorite_pet:{
-        type:String,
-        required:[true,"please add favorite pet  "]
     },
     added_concepts:{
     type:Number,

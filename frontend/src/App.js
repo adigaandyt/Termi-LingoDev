@@ -69,12 +69,12 @@ if(isCategorySuccess||isCategoryError){
         <div className='mb-150'>
         <Header/>
           <Routes>
-            <Route path='/' element={<PrivateRoute/>}>
-              <Route path='/' element={<Home/>}/>
+            <Route path='/home' element={<PrivateRoute/>}>
+              <Route path='/home' element={<Home/>}/>
             </Route>
             <Route path='/login' element={<Login/>} />
             <Route path='/register' element={<Register/>} />
-            <Route path='/about' element={<About/>} />
+            <Route path='/' element={<About/>} />
             
             <Route path='/profile' element={<PrivateRoute/>}>
               <Route path='/profile' element={<Profile/>}/>

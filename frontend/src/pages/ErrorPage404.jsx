@@ -1,6 +1,7 @@
 import '../styles/ErrorPage404.css'
 import {useEffect} from 'react'
 import {useTranslation} from 'react-i18next'
+import { Link } from 'react-router-dom'
 
 function ErrorPage404(){
     const {t}=useTranslation()
@@ -118,8 +119,8 @@ function ErrorPage404(){
 </svg>
 <h4>{t('error_title')}</h4>
 <p>{t('error_discreption')}</p>
-<a className="homepage" href="http://dir.y2022.kinneret.cc:7090/"><i className="fas fa-home"></i>
-Home</a>
+<Link className="homepage" to='/home/'><i className="fas fa-home"></i>
+Home</Link>
 </div>
     </div>)
 }

@@ -72,6 +72,9 @@ if(isCategorySuccess||isCategoryError){
             <Route path='/' element={<PrivateRoute/>}>
               <Route path='/' element={<Home/>}/>
             </Route>
+            <Route path='/search/:textSearch/:categoryID' element={<PrivateRoute/>}>
+              <Route path='/search/:textSearch/:categoryID' element={<Home/>}/>
+            </Route>
             <Route path='/login' element={<Login/>} />
             <Route path='/register' element={<Register/>} />
             <Route path='/about' element={<About/>} />

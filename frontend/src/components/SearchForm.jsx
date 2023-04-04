@@ -1,6 +1,7 @@
 import * as mdb from 'mdb-ui-kit'; // lib
 import { Input } from 'mdb-ui-kit'; // module
 import { useEffect,useState,useLayoutEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {useSelector,useDispatch} from 'react-redux'
 import {getCategories} from '../features/categories/categorySlice'
 import {getConcept,getConceptsNames,resetConcept,getConcepts,setConceptSearchLog} from '../features/concepts/conceptSlice'
@@ -17,6 +18,7 @@ import '../styles/CircleBar.css'
  function SearchForm({conceptSearch,setConceptSearch,categoryId,setCategoryId}){ 
     const {t}=useTranslation()
     const dispatch =useDispatch();
+    const navigate=useNavigate()
     const [isStart,setIsStart]=useState(true);
     const {concepts,names,concept,isLoading}=useSelector(state=>state.concept);
     const {categories}=useSelector(state=>state.category);
@@ -45,6 +47,8 @@ import '../styles/CircleBar.css'
 
     const onSearchClick=(e)=>{
         e.preventDefault()
+        navigate(`/search/${conceptSearch}/${categoryId}`)
+
         if(conceptSearch.length>3){
 
           dispatch(getConcept({textSearch:conceptSearch,categoryId:categoryId}))

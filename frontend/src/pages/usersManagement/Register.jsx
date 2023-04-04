@@ -194,7 +194,7 @@ function Register(){
                             <input className={isInvalid ?'form-control is-invalid': "form-control" } type='email' placeholder={t('email')} id='email' name='email' value={email} onChange={onChange} required/>
                         </div>
                         <div className='text-end mt-3'>
-                            <button type='submit' className='btn '>Submit</button>
+                            <button type='submit' className='btn' style={{"marginRight":"20px"}}>{t('submit')}</button>
                         </div>
                     </form>
                 </>)}
@@ -203,14 +203,14 @@ function Register(){
                     {/* validation */}
                     <form onSubmit={onStep2Submit}>
                     <label>
-                        <h5>Enter the code that you get in your email adrress <span className='text-primary'>{formData.email}</span></h5>
-                        <p>If you don't see the message, check your spam.</p>
+                        <h5>{t('validation_explain')} <span className='text-primary'>{formData.email}</span></h5>
+                        <p>{t('validation_explain1')}</p>
                     </label>
                     <div className="form-group mt-2"> 
                         <input className={isInvalid ?'form-control is-invalid': "form-control" } type='code' placeholder={t('code')} id='code' onChange={onCodeChange} value={userCode}   required/>  
                     </div>
                     <div className='text-end mt-3'>
-                        <button type='submit'  className='btn '>Submit</button>
+                        <button type='submit'  className='btn' style={{"marginRight":"20px"}}>{t('submit')}</button>
                     </div>
                     </form>
                 </>)}
@@ -224,7 +224,7 @@ function Register(){
                             <input className={isInvalid ?'form-control is-invalid': "form-control" }  type='password' placeholder={t('confirm_password')} id='password2' name='password2' value={password2} onChange={onChange} required/>
                         </div>
                         <div className='text-end mt-3'>
-                            <button type='submit'  className='btn '>Next</button>
+                            <button type='submit'  className='btn' style={{"marginRight":"20px"}}>{t("next")}</button>
                         </div>
                     </form>
                 </>)}
@@ -288,8 +288,8 @@ function Register(){
             <span></span>
             {t('register')}</button> */}
             <div dir='ltr' className='d-flex justify-content-between mt-3'>
-            <button className='btn' type='button' onClick={()=>setActiveStep(2)}>Back</button>
-            <button className='btn '  type='submit'>{t('register')}</button>
+            <button className='btn' type='button' onClick={()=>setActiveStep(2)} style={{"z-index": "0"}}>{t('back')}</button>
+            <button className='btn'  type='submit' style={{"z-index": "0"}}>{t('register')}</button>
 
             </div>
             <div className='mt-4'>

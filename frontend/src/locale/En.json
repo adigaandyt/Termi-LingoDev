@@ -105,7 +105,15 @@
     "logout_desc":"Are you sure you want to logout ?",
     "about-game": "Test your knowledge of languages through games.",
     "about-add": "Add new concept and phrases to our database.",
-    "about-rate": "Rate each translate, so we can know the accuracy of the translate."
+    "about-rate": "Rate each translate, so we can know the accuracy of the translate.",
+    "e-mail": "E-mail",
+    "validation": "Validation",
+    "submit": "Submit",
+    "validation_explain":"Enter the code that you get in your email adrress",
+    "validation_explain1": "If you don't see the message, check your spam.",
+    "next": "Next",
+    "back": "Back",
+    "code": "Code"
 
 
 

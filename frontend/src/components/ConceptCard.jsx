@@ -5,9 +5,11 @@ import { getConcept ,resetConcept, setConceptSearchLog } from "../features/conce
 import { getConceptName,getCategoryName1,getConceptNameCookies,getCategoryName } from "../hooks/ExportsFunctions"
 
 import '../styles/SearchForm.css'
+import { useNavigate } from "react-router-dom"
 
 function ConceptCard({concept,languageChoosed,conceptSearch,categoryId}){
     const {t} =useTranslation();
+    const navigate=useNavigate()
     const {categories}=useSelector(state=>state.category);
     const {user}=useSelector(state=>state.auth);
     const dispatch=useDispatch();
@@ -31,6 +33,7 @@ function ConceptCard({concept,languageChoosed,conceptSearch,categoryId}){
      SearchCategoryID:categoryId,
      conceptID:concept._id
     }
+    navigate(`/search/${concept.conceptName.english}/${concept.categories[0]}`)
     dispatch(setConceptSearchLog(backOfficeData))
     dispatch(getConcept({textSearch:concept.conceptName.english,categoryId:concept.categories[0]}));
     dispatch(resetConcept());

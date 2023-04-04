@@ -1,4 +1,4 @@
-import { useNavigate , Link } from 'react-router-dom'
+import { useNavigate , Link,useParams } from 'react-router-dom'
 import {useSelector,useDispatch} from 'react-redux'
 import { useEffect, useState,useLayoutEffect } from 'react'
 import {getConcept,getConceptsNames,resetConcept} from '../features/concepts/conceptSlice'
@@ -23,6 +23,7 @@ import Saleh from '../components/Saleh'
 
 function Home(){
     const {t}=useTranslation()
+    const {textSearch,categoryID}=useParams()
     //back office
     const [conceptSearch,setConceptSearch]=useState('');
     const [categoryId,setCategoryId]=useState('639e49f8dfabd615c821584f')
@@ -53,7 +54,12 @@ function Home(){
     }
     },[isCategorySuccess,isCategoryError])
 
-    
+    useLayoutEffect(()=>{
+        //fetch data for sharing , get a textsearch and categoryid params from a url
+        if(textSearch&&categoryID){
+          dispatch(getConcept({textSearch:textSearch,categoryId:categoryID}))
+        }
+        },[])
 
     const onChangeLanguage=(e)=>{
         setLanguageChoosed((prev)=>{
@@ -67,16 +73,6 @@ function Home(){
     }
   
     return (<>
-    {/* <div>
-    
-    <div>
-
-
-
-
-    </div>
-    
-    </div> */}
          <div  className=' mt-150' > 
         <div className='  mt-5 '>
           {isLoading&&<Spinner/>}
@@ -95,13 +91,7 @@ function Home(){
                 <hr className=' mb-3  '/>
                 <h3>{t('suggestions_for_you')}:</h3>
                 </div>}
-                
                 <ConceptCardsList languageChoosed={languageChoosed} conceptSearch={conceptSearch} categoryId={categoryId}/>
-           
-
-               
-
-           
         </div>
 
         </div>

@@ -87,9 +87,9 @@ function Home(){
             
           
                 <SearchForm conceptSearch={conceptSearch} setConceptSearch={setConceptSearch} categoryId={categoryId} setCategoryId={setCategoryId}/> 
-                {concept&&<><CarouselAnimationDefinitions/>
-
+                {concept&&<>
                 <ShareConcepts/>
+                <CarouselAnimationDefinitions/>
                  </>}
                 {concepts&&<div  className='center '>
                 <hr className=' mb-3  '/>

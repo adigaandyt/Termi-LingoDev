@@ -18,6 +18,7 @@ import Spinner from '../components/Spinner'
 import CarouselAnimationDefinitions from '../components/CarouselAnimationDefinitions'
 import UserCard from '../components/UserCard'
 import Saleh from '../components/Saleh'
+import ShareConcepts from '../components/ShareConcepts'
 
 
 
@@ -86,7 +87,10 @@ function Home(){
             
           
                 <SearchForm conceptSearch={conceptSearch} setConceptSearch={setConceptSearch} categoryId={categoryId} setCategoryId={setCategoryId}/> 
-                {concept&&<CarouselAnimationDefinitions/>}
+                {concept&&<><CarouselAnimationDefinitions/>
+
+                <ShareConcepts/>
+                 </>}
                 {concepts&&<div  className='center '>
                 <hr className=' mb-3  '/>
                 <h3>{t('suggestions_for_you')}:</h3>

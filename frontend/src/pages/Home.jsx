@@ -87,10 +87,12 @@ function Home(){
             
           
                 <SearchForm conceptSearch={conceptSearch} setConceptSearch={setConceptSearch} categoryId={categoryId} setCategoryId={setCategoryId}/> 
-                {concept&&<>
+                {concept&&<div className='mt-2'>
                 <ShareConcepts/>
                 <CarouselAnimationDefinitions/>
-                 </>}
+
+                
+                 </div>}
                 {concepts&&<div  className='center '>
                 <hr className=' mb-3  '/>
                 <h3>{t('suggestions_for_you')}:</h3>

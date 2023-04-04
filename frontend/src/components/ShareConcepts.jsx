@@ -27,7 +27,7 @@ import {
   } from "react-share";
 function ShareConcepts(){
     const {concept}=useSelector(state=>state.concept)
-    const URL=`dir.y2022.kinneret.cc:7090/search/${encodeURIComponent(concept.conceptName.english)}/${encodeURIComponent(concept.categories[0])}`
+    const URL=`dir.y2022.kinneret.cc:7090/search/${concept.conceptName.english}/${concept.categories[0]}`
     return(<>
     <div className="text-center">
         <WhatsappShareButton className="mx-1" url={URL}  openShareDialogOnClick>

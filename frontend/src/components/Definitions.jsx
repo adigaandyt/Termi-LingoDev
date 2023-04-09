@@ -8,7 +8,7 @@ import "../styles/Inputs.css"
 import {GrTextAlignCenter} from 'react-icons/gr'
 import {RxTextAlignCenter} from 'react-icons/rx'
 import {MdMoreHoriz} from 'react-icons/md';
-
+import AddToFavorites from './AddToFavorites';
 
 
 function Definitions({concept,languageChoosed}){
@@ -79,9 +79,11 @@ function Definitions({concept,languageChoosed}){
             {languageChoosed.english&&<img className=' mt-2 ' src={require('../flags/united-states-xs.gif')}/>}
             {languageChoosed.arabic&&<img className='mt-2' src={require('../flags/saudi-arabia-xs.gif')}/>}
         </div>
+        <AddToFavorites/>
         <div className='col-11 text-end'>
             <h3 className="text-dark mb-3 mt-2" id="conceptName">{concept&&getConceptName(languageChoosed,concept)}</h3> 
             <h5>{concept&&categoryById(concept.categories[0],languageChoosed,categories)}</h5>
+
         </div>        
         </div>
 

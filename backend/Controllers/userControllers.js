@@ -13,7 +13,59 @@ const generateToken=(id)=>{
  		   })
          }
 
-//@desc send message with code to email address for validation
+//@desc send message with code to email address for validation (Rest Password)
+//@route POST /api/users/email/validation/rest/password
+//@access public
+const sendValidationEmailForRestPassword=asyncHandler( async (req,res)=>{
+  const { to } = req.body;
+  const subject='Termi Validation'
+  const randomCode = Math.floor(100000 + Math.random() * 900000);
+  const message =`Hello, this message from Termi App , your code is G-${randomCode.toString()} `;
+
+    try {
+      const userExist=await User.findOne({email:to})
+      //check if the user is exists by email
+      if(!userExist){
+        res.status(400)
+        throw new Error("Your Email is not exist in owr data base")
+      }else{
+        const transporter = nodemailer.createTransport({
+          service: 'hotmail',
+          auth: {
+            user: process.env.EMAIL_ACCOUNT,
+            pass: process.env.PASSWORD,
+          },
+        });
+      
+        const mailOptions = {
+          from: process.env.EMAIL_ACCOUNT,
+          to,
+          subject,
+          text: message,
+        };
+      
+        transporter.sendMail(mailOptions, (error, info) => {
+          if (error) {
+            res.status(401).send(error)
+            // throw new Error("Error sending, make sure your email is correct.")
+          } else {
+            console.log('Email sent: ' + info.response);
+            res.status(200).json({message:'successfuly',code:randomCode});
+          }
+        });
+      }
+
+    } catch (error) {
+      res.status(400)
+      throw new Error(error)
+    }
+
+
+
+  
+  
+})
+//@desc send message with code to email address for validation (Register)
 //@route POST /api/users/email/validation
 //@access public
 const sendValidationEmail=asyncHandler( async (req,res)=> {
@@ -216,12 +268,12 @@ const resetPassword=asyncHandler(async (req,res)=>{
     
     
 
-    const {password,password1,password2} =req.body
-    const userId=req.user.id
+    const {to,password1,password2} =req.body
+    // const userId=req.user.id
 
     
     try {
-        const user=await User.findById(userId)
+        // const user=await User.findById(userId)
         //check if the user is exit and the current password that user included is correct 
         // if(user && (await bcrypt.compare(password,user.password))){
             if(password1!==password2){
@@ -233,7 +285,7 @@ const resetPassword=asyncHandler(async (req,res)=>{
             const hashPassword = await bcrypt.hash(password1,salt) 
 
             //change  password in the database
-            const isSuccess= await  User.updateOne({_id:user._id} ,{password:hashPassword})
+            const isSuccess= await  User.updateOne({email:to} ,{password:hashPassword})
             res.status(200).json(isSuccess)
             
         
@@ -829,5 +881,6 @@ module.exports={
     getTop5UsersForGuessTheTerm,
     getTop5UsersForTransMe,
     setUserAdminByAdmin,
-    sendValidationEmail
+    sendValidationEmail,
+    sendValidationEmailForRestPassword
 }

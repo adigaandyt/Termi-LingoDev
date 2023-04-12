@@ -128,8 +128,7 @@ export const resetPassword=createAsyncThunk(
     'password/reset',
      async(formData,thunkAPI)=>{
         try {
-            const token=thunkAPI.getState().auth.user_token.token 
-            return await authService.resetPassword(formData ,token)
+            return await authService.resetPassword(formData)
         } catch (error) {
             const message=(error.response&&error.response.data&&error.response.data.message)
             ||error.message
@@ -329,6 +328,21 @@ export const sendValidationMail=createAsyncThunk(
      }
 
 )
+// send message to mail adress for Reset password
+export const sendValidationMailForResetPassword=createAsyncThunk(
+    'validation/mail/reset/password',
+     async(formdata,thunkAPI)=>{
+        try { 
+            return await authService.sendValidationMailForResetPassword(formdata)
+        } catch (error) {
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
 
 export  const authSlice=createSlice({
     name:'auth',
@@ -342,6 +356,7 @@ export  const authSlice=createSlice({
             state.isValidationError=false
             state.isValidationSuccess=false
             state.isValidationLoading=false
+            state.validationMessage=''
             state.message=''
         }
     },
@@ -581,6 +596,20 @@ export  const authSlice=createSlice({
             state.code=action.payload.code
         })
         .addCase(sendValidationMail.rejected,(state,action)=>{
+            state.isValidationLoading=false
+            state.isValidationError=true
+            state.validationMessage=action.payload
+            
+        })
+        .addCase(sendValidationMailForResetPassword.pending,(state)=>{
+            state.isValidationLoading=true
+        })
+        .addCase(sendValidationMailForResetPassword.fulfilled,(state,action)=>{
+            state.isValidationLoading=false
+            state.isValidationSuccess=true
+            state.code=action.payload.code
+        })
+        .addCase(sendValidationMailForResetPassword.rejected,(state,action)=>{
             state.isValidationLoading=false
             state.isValidationError=true
             state.validationMessage=action.payload

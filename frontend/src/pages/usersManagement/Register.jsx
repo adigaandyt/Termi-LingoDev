@@ -34,6 +34,7 @@ function Register(){
         image_url,
         isImageLoading,
         isValidationSuccess,
+        validationMessage,
         isValidationLoading,
         isValidationError,
         code
@@ -109,7 +110,7 @@ function Register(){
     const {name,email,password,password2,phoneNumber,status,favorite_pet,gender,profile_image}=formData;
     useLayoutEffect(()=>{
         if(isValidationError){
-        toast.warning("Error sending, make sure your email is correct.") 
+        toast.warning(validationMessage) 
         setIsInvalid(true) 
         dispatch(reset())
 

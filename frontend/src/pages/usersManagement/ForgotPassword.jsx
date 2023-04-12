@@ -87,8 +87,10 @@ function ForgotPassword(){
                         <div className="form-floating  mb-3 ">
                             <input onChange={onChange}  type="email" className="form-control " id="floatingInput" name='to' placeholder="name@example.com" />
                              <label for="floatingInput">{t('email_adress')}</label>
+                        </div>                       
+                         <div className='text-end mt-3'>
+                        <button type='submit' className='btn' style={{"marginRight":"20px"}}>{t('next')}</button>
                         </div>
-                    <button type='submit' className='btn btn-outline-dark mt-3'>{t('verify')}</button>
                     </div>
                 </div>
             </form>
@@ -103,7 +105,9 @@ function ForgotPassword(){
                             <input onChange={(e)=>setUserCode(e.target.value)} value={userCode} type="text" className="form-control " id="floatingInput" name='code' placeholder="Your Code" />
                              <label for="floatingInput">{t('code')}</label>
                         </div>
-                    {/* <button type='submit' className='btn btn-outline-dark mt-3'>{t('verify')}</button> */}
+                        <div className='text-end mt-3'>
+                        <button type='submit' className='btn' style={{"marginRight":"20px"}}>{t('next')}</button>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -120,7 +124,9 @@ function ForgotPassword(){
                             <input onChange={onChange} value={formData.password2} type="password" className="form-control " id="floatingInput" name='password2' placeholder="Confirm password" />
                              <label for="floatingInput">{t('confirm_password')}</label>
                         </div>
-                    <button type='submit' className='btn btn-outline-dark mt-3'>{t('verify')}</button>
+                        <div className='text-end mt-3'>
+                        <button type='submit' className='btn' style={{"marginRight":"20px"}}>{t('next')}</button>
+                        </div>
                     </div>
                 </div>
             </form>

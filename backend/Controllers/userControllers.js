@@ -75,15 +75,13 @@ const sendValidationEmail=asyncHandler( async (req,res)=> {
   const message =`Hello ${name}, welcome to Termi App, your code is G-${randomCode.toString()} `
 
   try {
-    // const userExist=await User.findOne({to})
-    // //check if the user is exists by email
-    // if(userExist){
-    //   console.log(userExist)
-    //     res.status(400)
-    //     throw new Error('Email already exist!')
-    // }else{
-
-    // }
+    const userExist=await User.findOne({email:to})
+    //check if the user is exists by email
+    if(userExist){
+      console.log(userExist)
+        res.status(400)
+        throw new Error('Email already exist!')
+    }
     const transporter = nodemailer.createTransport({
       service: 'hotmail',
       auth: {
@@ -279,6 +277,10 @@ const resetPassword=asyncHandler(async (req,res)=>{
             if(password1!==password2){
                 res.status(400)
                 throw new Error("You must to include a same passwords !")
+            }
+            if(password1.length<6){
+              res.status(400)
+              throw new Error("The passwords must contain 6 digits or more")
             }
             //hash the new password
             const salt=await bcrypt.genSalt(10)

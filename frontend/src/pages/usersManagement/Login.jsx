@@ -106,13 +106,8 @@ function Login(){
                          />
                     </div>
                     {/* <button className='btn btn-dark text-light btn-profile btn-profile-login mt-5' type='submit'>{t('login')}</button> */}
-<<<<<<< HEAD
-                    <button id="rgbtn" className="custom-btn btn-r mt-3" type='submit'><span></span><span></span><span></span><span></span>{t('login')}</button>
-                    <Link to='/validation' className="text-primary d-block mt-2">{t('forgot')}</Link>
-=======
                     <button id="rgbtn" className="btn btn-dark mt-3" type='submit'><span></span><span></span><span></span><span></span>{t('login')}</button>
                     <Link to='/reset/password' className="text-primary d-block mt-2">{t('forgot')}</Link>
->>>>>>> 78881f7457b5ba9433d8c3cf5240957c571ab4db
                 
                 </form>
             </div>

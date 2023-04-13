@@ -102,13 +102,9 @@ const logout=()=>{
 }
 
 //reset password
-const resetPassword =async (formData,token)=>{
-    const config ={
-        headers:{
-            authorization:`Bearer ${token}`
-        }
-    }
-    const response=await axios.post(API_URL+'/reset/password',formData ,config)
+const resetPassword =async (formData)=>{
+  
+    const response=await axios.post(API_URL+'/reset/password',formData)
     
     return response.data
 }
@@ -221,6 +217,11 @@ const sendValidationMail =async (data)=>{
     const response=await axios.post(API_URL+`/email/validation`,data)
     return response.data
 }
+//send message to mail adrress for validation
+const sendValidationMailForResetPassword =async (data)=>{
+    const response=await axios.post(API_URL+`/email/validation/rest/password`,data)
+    return response.data
+}
 
 const authService={
     me,
@@ -241,7 +242,8 @@ const authService={
     getTop5UsersForTransMe,
     getTop5UsersForGuessTheTerm,
     setUserAdminByAdmin,
-    sendValidationMail
+    sendValidationMail,
+    sendValidationMailForResetPassword
     
 }
 

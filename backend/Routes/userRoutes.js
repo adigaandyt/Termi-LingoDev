@@ -18,7 +18,8 @@ const {
     getTop5UsersForGuessTheTerm,
     getTop5UsersForTransMe,
     setUserAdminByAdmin,
-    sendValidationEmail
+    sendValidationEmail,
+    sendValidationEmailForRestPassword
     }=require('../Controllers/userControllers')
 const {protect}=require("../middleware/authMiddleware")
 const {upload} =require('../config/S3')
@@ -31,7 +32,7 @@ router.get('/get/top5/transme',getTop5UsersForTransMe)
 router.get('/get/users/:textSearch',getUsersForAdmin)
 router.post('/login',loginUser)
 router.post('/upload/image',upload.single("profileImage"), uploadImage)
-router.post('/reset/password',protect,resetPassword) 
+router.post('/reset/password',resetPassword) 
 router.post('/update/user',protect,updateUserDetails)
 router.post('/update/image',upload.single("profileImage"),protect,updateUserImage)
 router.post('/verify',verifyUser)
@@ -41,6 +42,7 @@ router.get('/get/results/guesstheterm',protect,getUserGessTheTermGameResults)
 router.get('/get/both/games/results',protect,getUserBothGamesResults);
 router.post('/set/user/admin',setUserAdminByAdmin)
 router.post('/email/validation',sendValidationEmail)
+router.post('/email/validation/rest/password',sendValidationEmailForRestPassword)
 
 
 

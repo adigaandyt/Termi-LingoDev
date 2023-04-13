@@ -11,7 +11,7 @@ import {GoSignIn} from 'react-icons/go';
 import {BsTranslate} from 'react-icons/bs'
 import {HiSwitchHorizontal} from 'react-icons/hi'
 import "../styles/Header.css";
-import LogoutModal from './LogoutModal';
+import LogoutModal from './modals/LogoutModal';
 import {sendLanguageChange} from '../features/logging/appLanguageChangeSlice'
 
 function switchLanguage(currentLanguage){

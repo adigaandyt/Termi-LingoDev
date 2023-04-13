@@ -2,7 +2,7 @@ import {useDispatch} from 'react-redux'
 import {FcAcceptDatabase,FcCheckmark} from 'react-icons/fc'
 import {ImExit,ImCancelCircle} from 'react-icons/im'
 import { useNavigate,Link } from "react-router-dom"
-import { logout } from "../features/auth/authSlice"
+import { logout } from "../../features/auth/authSlice"
 import {useState} from 'react'
 import {useTranslation} from 'react-i18next'
 

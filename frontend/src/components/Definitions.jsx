@@ -11,7 +11,7 @@ import {MdMoreHoriz} from 'react-icons/md';
 
 
 
-function Definitions({concept,languageChoosed}){
+function Definitions({concept,languageChoosed,alertShow,alertToggleShow}){
     const {categories}=useSelector(state=>state.category)
     const { t }=useTranslation();
     const getDefinition=(isLong)=>{
@@ -72,6 +72,7 @@ function Definitions({concept,languageChoosed}){
   
  
     return(<>
+        
     <div className='text-center' dir='ltr' id="slide">
         <div className='row '>
         <div className='col-1 text-start'>
@@ -81,7 +82,10 @@ function Definitions({concept,languageChoosed}){
         </div>
         <div className='col-11 text-end'>
             <h3 className="text-dark mb-3 mt-2" id="conceptName">{concept&&getConceptName(languageChoosed,concept)}</h3> 
-            <h5>{concept&&categoryById(concept.categories[0],languageChoosed,categories)}</h5>
+            <div className=''>
+                <h5 className=''>{concept&&categoryById(concept.categories[0],languageChoosed,categories)}</h5>
+                <button className='btn' onClick={()=>alertToggleShow(!alertShow)}>sake</button>
+            </div>
         </div>        
         </div>
 
@@ -128,7 +132,7 @@ function Definitions({concept,languageChoosed}){
           
           </MDBCollapse>
         </MDBCol>
-        <table>
+        {/* <table>
                 <tr>
                     <td>Rating</td>
                     <td>
@@ -148,7 +152,7 @@ function Definitions({concept,languageChoosed}){
                     
                 </tr>
                 
-            </table>
+            </table> */}
         </div>
         <div className=''>
             {showLongDefinition&&<MDBCol className='scroll' id="scroll-style">

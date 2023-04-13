@@ -3,7 +3,7 @@ import { useState } from "react"
 import Modal from 'react-modal'
 import {Link} from 'react-router-dom'
 import {BiError} from 'react-icons/bi'
-import '../styles/NoConceptResultModal.css'
+import '../../styles/NoConceptResultModal.css'
 import {
     MDBBtn,
     MDBModal,

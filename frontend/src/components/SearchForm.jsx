@@ -7,7 +7,7 @@ import {getCategories} from '../features/categories/categorySlice'
 import {getConcept,getConceptsNames,resetConcept,getConcepts,setConceptSearchLog} from '../features/concepts/conceptSlice'
 import {useTranslation} from 'react-i18next'
 import {getCategoryName} from '../hooks/ExportsFunctions'
-import NoConceptResultModal from './NoConceptResultModal'
+import NoConceptResultModal from './modals/NoConceptResultModal'
 import '../styles/CircleBar.css'
 
 

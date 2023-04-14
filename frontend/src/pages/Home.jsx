@@ -11,7 +11,7 @@ import SearchForm from '../components/SearchForm'
 import ConceptCard from '../components/ConceptCard'
 import "../styles/home.css"
 import "/node_modules/flag-icons/css/flag-icons.min.css";
-import NoConceptResultModal from '../components/NoConceptResultModal'
+import NoConceptResultModal from '../components/modals/NoConceptResultModal'
 import ConceptCardsList from '../components/ConceptCardsList'
 import CatouselDefinition from '../components/CaroselDefinition'
 import Spinner from '../components/Spinner'
@@ -19,10 +19,12 @@ import CarouselAnimationDefinitions from '../components/CarouselAnimationDefinit
 import UserCard from '../components/UserCard'
 import Saleh from '../components/Saleh'
 import ShareConcepts from '../components/ShareConcepts'
+import EditConceptAlertByUserModal from '../components/modals/EditConceptAlertByUserModal'
 
 
 
 function Home(){
+    const [alertShow,alertToggleShow]=useState(false)
     const {t}=useTranslation()
     const {textSearch,categoryID}=useParams()
     //back office
@@ -74,6 +76,7 @@ function Home(){
     }
   
     return (<>
+    <EditConceptAlertByUserModal alertShow={alertShow} alertToggleShow={alertToggleShow}/>
          <div  className=' mt-150' > 
         <div className='  mt-5 '>
           {isLoading&&<Spinner/>}
@@ -89,7 +92,7 @@ function Home(){
                 <SearchForm conceptSearch={conceptSearch} setConceptSearch={setConceptSearch} categoryId={categoryId} setCategoryId={setCategoryId}/> 
                 {concept&&<div className='mt-2'>
                 <ShareConcepts/>
-                <CarouselAnimationDefinitions/>
+                <CarouselAnimationDefinitions alertShow={alertShow} alertToggleShow={alertToggleShow}/>
 
                 
                  </div>}

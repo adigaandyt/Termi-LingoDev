@@ -39,6 +39,7 @@ import UserList from './components/UserList';
 import GamesRecharts from './components/recharts/GamesRecharts';
 import AdminPrivateRoute from './components/PrivateRoutes/AdminPrivateRoute';
 import { updateActivity } from './features/auth/authService';
+import ForgotPassword from './pages/usersManagement/ForgotPassword';
 
 function App() {
   const {user,isLoading}=useSelector(state=>state.auth)
@@ -115,6 +116,7 @@ if(isCategorySuccess||isCategoryError){
               <Route path='/games/transme/settings' element={<TransMe path='settings'/>}/>
             </Route>
             <Route path='/validation' element={<Validation/>}/>
+            <Route path='/reset/password' element={<ForgotPassword/>}/>
             {/* <Route path='/forgotpassword/verified' element={<ResetPassword/>}/> */}
             <Route path='*' element={<ErrorPage404/>}/>
 

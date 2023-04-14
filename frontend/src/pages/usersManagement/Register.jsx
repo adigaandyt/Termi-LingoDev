@@ -34,6 +34,7 @@ function Register(){
         image_url,
         isImageLoading,
         isValidationSuccess,
+        validationMessage,
         isValidationLoading,
         isValidationError,
         code
@@ -109,7 +110,7 @@ function Register(){
     const {name,email,password,password2,phoneNumber,status,favorite_pet,gender,profile_image}=formData;
     useLayoutEffect(()=>{
         if(isValidationError){
-        toast.warning("Error sending, make sure your email is correct.") 
+        toast.warning(validationMessage) 
         setIsInvalid(true) 
         dispatch(reset())
 
@@ -194,7 +195,7 @@ function Register(){
                             <input className={isInvalid ?'form-control is-invalid': "form-control" } type='email' placeholder={t('email')} id='email' name='email' value={email} onChange={onChange} required/>
                         </div>
                         <div className='text-end mt-3'>
-                            <button type='submit' className='btn' style={{"marginRight":"20px"}}>{t('submit')}</button>
+                            <button type='submit' className='custom-btn btn-r' style={{"marginRight":"20px"}}>{t('submit')}</button>
                         </div>
                     </form>
                 </>)}
@@ -210,7 +211,7 @@ function Register(){
                         <input className={isInvalid ?'form-control is-invalid': "form-control" } type='code' placeholder={t('code')} id='code' onChange={onCodeChange} value={userCode}   required/>  
                     </div>
                     <div className='text-end mt-3'>
-                        <button type='submit'  className='btn' style={{"marginRight":"20px"}}>{t('submit')}</button>
+                        <button type='submit'  className='custom-btn btn-r' style={{"marginRight":"20px"}}>{t('submit')}</button>
                     </div>
                     </form>
                 </>)}
@@ -224,7 +225,7 @@ function Register(){
                             <input className={isInvalid ?'form-control is-invalid': "form-control" }  type='password' placeholder={t('confirm_password')} id='password2' name='password2' value={password2} onChange={onChange} required/>
                         </div>
                         <div className='text-end mt-3'>
-                            <button type='submit'  className='btn' style={{"marginRight":"20px"}}>{t("next")}</button>
+                            <button type='submit'  className='custom-btn btn-r' style={{"marginRight":"20px"}}>{t("next")}</button>
                         </div>
                     </form>
                 </>)}
@@ -288,8 +289,8 @@ function Register(){
             <span></span>
             {t('register')}</button> */}
             <div dir='ltr' className='d-flex justify-content-between mt-3'>
-            <button className='btn' type='button' onClick={()=>setActiveStep(2)} style={{"z-index": "0"}}>{t('back')}</button>
-            <button className='btn'  type='submit' style={{"z-index": "0"}}>{t('register')}</button>
+            <button className='custom-btn btn-r' type='button' onClick={()=>setActiveStep(2)} style={{"z-index": "0"}}>{t('back')}</button>
+            <button className='custom-btn btn-r'  type='submit' style={{"z-index": "0"}}>{t('register')}</button>
 
             </div>
             <div className='mt-4'>

@@ -1,35 +1,22 @@
-//this model holds the id of the favorited item, the id of the user who favorited it, and the type of the item (product, category, etc) and the date of the favoriting
-//
+//this model holds the id of the favorite item, user id and date of creation
 
-// Path: backend\Models\myFavoritiesModel.js
-// Compare this snippet from backend\Models\categoriesModel.js:
-const mongoose=require('mongoose')
+const mongoose = require('mongoose');
 
-const categorySchema=mongoose.Schema({
-    categoryName:{
-        english:{
-            type:String,
-            require:true
-        },
-        arabic:{
-            type:String,
-            require:true
-        },
-        hebrew:{
-            type:String,
-            require:true
-        }
+const favoriteSchema = new mongoose.Schema({
+    userId: {
+        type: String,
+        required: true,
     },
-    accepted:{
-        type:Boolean,
-        default:false
+    itemId: {
+        type: String,
+        required: true,
     },
-    suggestBy:{
-        type:mongoose.Schema.Types.ObjectId,
-        required:true,
-        ref:'User',
-    }
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    },
+});
 
-})
+const Favorite = mongoose.model('Favorite', favoriteSchema);
 
-module.exports=mongoose.model('Category',categorySchema)
+module.exports = Favorite;

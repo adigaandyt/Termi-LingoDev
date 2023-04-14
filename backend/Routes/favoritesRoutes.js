@@ -4,9 +4,9 @@ const {protect}=require("../middleware/authMiddleware")
 const {addFavorite,removeFavorite,getFavorites}=require("../Controllers/AddFavController")
 
 
-router.post('/fav/add',protect,addFavorite)
-router.post('/fav/remove',protect,removeFavorite)
-router.get('/fav/get',protect,getFavorites)
+router.post('/add',protect,addFavorite)
+router.delete('/remove/:conceptId',protect,removeFavorite)
+router.get('/get',protect,getFavorites)
 
 
 module.exports=router

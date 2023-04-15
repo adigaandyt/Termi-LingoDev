@@ -57,6 +57,17 @@ const updateConceptByAdmin =async (data,token)=>{
     return response.data
 }
 //updateConceptByAdmin
+const updateConceptByUser =async (data,token)=>{
+    const config ={
+        headers:{
+            authorization:`Bearer ${token}`
+        }
+    }
+    const response=await axios.post(API_URL+"/update/concept/by/user",data,config) 
+    
+    return response.data
+}
+//updateConceptByAdmin
 const deleteConceptByAdmin =async (conceptId)=>{
     const response=await axios.delete(API_URL+`/delete/comcept/by/admin/${conceptId}`) 
     
@@ -83,6 +94,7 @@ const conceptService={
     getConcepts,createNewConceptByUser,
     getUnAcceptedConcepts,
     updateConceptByAdmin,
+    updateConceptByUser,
     deleteConceptByAdmin,
     setConceptSearch
     

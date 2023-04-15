@@ -2,6 +2,7 @@ const asyncHandler =require('express-async-handler');
 const Concept=require('../Models/conceptsModel')
 const Category =require('../Models/categoriesModel')
 const User=require('../Models/usersModel')
+const UpdatedConcept=require('../Models/updatedConceptByUserModel')
 const _ = require('lodash');
 const { findById } = require('../Models/conceptsModel');
 
@@ -332,6 +333,7 @@ const getUnAcceptedConcepts=asyncHandler( async(req,res)=>{
 
     
     })
+
 //@desc update concept by admin in the settings page 
 //@route POST /update/concept/by/admin
 //@access private
@@ -371,6 +373,50 @@ const updateConceptByAdmin=asyncHandler( async(req,res)=>{
 
     
     })
+//@desc update concept by user in the Home/Search page 
+//@route POST /update/concept/by/user
+//@access private
+const updateConceptByUser=asyncHandler( async(req,res)=>{
+    // user details for back office !
+    const user=req.user
+    const data=req.body
+
+        try {
+            const currentConcept=await Concept.findById({_id:data.conceptId})
+            if(!currentConcept){
+                res.status(400)
+                throw new Error('Something is Wrong!')
+            }
+            const newConcept=await UpdatedConcept.create({
+
+                conceptName:{
+                    english:data.conceptName_english?data.conceptName_english:"N/A",
+                    hebrew:data.conceptName_hebrew?data.conceptName_hebrew:"N/A",
+                    arabic:data.conceptName_arabic?data.conceptName_arabic:"N/A"
+                },
+                longDefinition:{
+                    english:data.longDefinition_english?data.longDefinition_english:"N/A",
+                    hebrew:data.longDefinition_hebrew?data.longDefinition_hebrew:"N/A",
+                    arabic:data.longDefinition_arabic?data.longDefinition_arabic:"N/A"
+                },
+                shortDefinition:{
+                    english:data.shortDefinition_english?data.shortDefinition_english:"N/A",
+                    hebrew:data.shortDefinition_hebrew?data.shortDefinition_hebrew:"N/A",
+                    arabic:data.shortDefinition_arabic?data.shortDefinition_arabic:"N/A"
+                },
+                readMore:data.readMore?data.readMore:"N/A",
+                updatedBy:user.id,
+                conceptId:currentConcept.id
+            })
+            res.json(newConcept)
+        } catch (error) {
+            res.status(500)
+            throw new Error(error.message)
+
+        }
+
+    
+    })
 //@desc deleteConceptByAdmin 
 //@route DELETE /delete/comcept/by/admin
 //@access private
@@ -403,5 +449,6 @@ module.exports={
    creactNewConceptByUser,
    getUnAcceptedConcepts,
    updateConceptByAdmin,
+   updateConceptByUser,
    deleteConceptByAdmin
 }

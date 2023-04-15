@@ -20,11 +20,13 @@ import UserCard from '../components/UserCard'
 import Saleh from '../components/Saleh'
 import ShareConcepts from '../components/ShareConcepts'
 import EditConceptAlertByUserModal from '../components/modals/EditConceptAlertByUserModal'
+import EditConceptFormByUserModal from '../components/modals/EditConceptFormByUserModal'
 
 
 
 function Home(){
     const [alertShow,alertToggleShow]=useState(false)
+    const [formShow,toggleFormShow]=useState(false)
     const {t}=useTranslation()
     const {textSearch,categoryID}=useParams()
     //back office
@@ -76,7 +78,10 @@ function Home(){
     }
   
     return (<>
-    <EditConceptAlertByUserModal alertShow={alertShow} alertToggleShow={alertToggleShow}/>
+    {concept&&
+    <EditConceptFormByUserModal concept={concept} index={concept._id} formShow={formShow} toggleFormShow={toggleFormShow} />
+    }
+    <EditConceptAlertByUserModal alertShow={alertShow} alertToggleShow={alertToggleShow} toggleFormShow={toggleFormShow}/>
          <div  className=' mt-150' > 
         <div className='  mt-5 '>
           {isLoading&&<Spinner/>}

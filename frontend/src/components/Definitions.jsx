@@ -1,6 +1,7 @@
 import { MDBCollapse, MDBBtn, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import { useSelector } from 'react-redux';
 import { useTranslation } from "react-i18next"
+import {FiEdit2} from 'react-icons/fi'
 import {BiShow,BiHide} from 'react-icons/bi'
 import React, { useState } from 'react';
 import { getConceptName,categoryById } from '../hooks/ExportsFunctions';
@@ -84,7 +85,7 @@ function Definitions({concept,languageChoosed,alertShow,alertToggleShow}){
             <h3 className="text-dark mb-3 mt-2" id="conceptName">{concept&&getConceptName(languageChoosed,concept)}</h3> 
             <div className=''>
                 <h5 className=''>{concept&&categoryById(concept.categories[0],languageChoosed,categories)}</h5>
-                <button className='btn' onClick={()=>alertToggleShow(!alertShow)}>sake</button>
+                <button className='' onClick={()=>alertToggleShow(!alertShow)} id="editButtonConcept" ><FiEdit2 className='text-success'/></button>
             </div>
         </div>        
         </div>

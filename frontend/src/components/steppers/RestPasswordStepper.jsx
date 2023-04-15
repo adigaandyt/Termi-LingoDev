@@ -20,7 +20,7 @@ function RestPasswordStepper({activeStep}){
         <Stepper activeStep={activeStep}  styleConfig={defaultStepStyle}>
             <Step circleFontSize='2rem' label={t('e-mail')}  ><MdAlternateEmail/></Step>
             <Step label={t('validation')} ><GrValidate/></Step>
-            <Step label={t('rest-password')} ><RiLockPasswordLine/></Step>
+            <Step label={t('reset_password')} ><RiLockPasswordLine/></Step>
         </Stepper>
         </div>
     </>)

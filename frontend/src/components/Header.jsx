@@ -1,4 +1,4 @@
-import {Link,useNavigate} from 'react-router-dom';
+import {Link,useNavigate, useLocation} from 'react-router-dom';
 import {useSelector,useDispatch} from 'react-redux';
 import {useState,useEffect} from 'react';
 import {logout} from '../features/auth/authSlice';
@@ -10,6 +10,7 @@ import {ImExit,ImUserPlus, ImProfile} from 'react-icons/im';
 import {GoSignIn} from 'react-icons/go';
 import {BsTranslate} from 'react-icons/bs'
 import {HiSwitchHorizontal} from 'react-icons/hi'
+import {AiOutlineSetting} from 'react-icons/ai';
 import "../styles/Header.css";
 import LogoutModal from './modals/LogoutModal';
 import {sendLanguageChange} from '../features/logging/appLanguageChangeSlice'
@@ -38,6 +39,7 @@ function switchLanguage(currentLanguage){
 
 function Header(){
     // let lan=cookies.get('i18next')
+    const location = useLocation();
     const {t,i18n}=useTranslation();
     const {user}=useSelector(state=>state.auth);
     const dispatch=useDispatch();
@@ -119,7 +121,7 @@ function Header(){
             </div>
             <div className={`box ${active ? 'open' : ''}`}>
                 <i className="lan">
-                    <div className="dropdown dropleft">
+                    {/*<div className="dropdown dropleft">
                         <button className="lan" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <MdLanguage />
                         </button>
@@ -128,7 +130,15 @@ function Header(){
                             <a className="dropdown-item" name='hb' onClick={onLanguageChange}><span className="fi fi-il"></span> עברית</a>
                             <a className="dropdown-item" name='ar' onClick={onLanguageChange}><span className="fi fi-sa"></span> العربية</a>
                         </div>
-                    </div>
+                    </div>*/}
+                    {user&&
+                    user.isAdmin ? (
+                    <div>
+                        <button id='setting-btn' name="nav-item" onClick={() => {navigate('/settings'); optionsClick()}}><AiOutlineSetting/></button>
+                    </div>) : (<div>
+                        <button disabled="disabled" name="nav-item" onClick={() => navigate('/settings')}><AiOutlineSetting/></button>
+                    </div>)
+                    }
                 </i>
                 {!user?(
                     <>

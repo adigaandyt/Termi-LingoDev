@@ -42,7 +42,7 @@
     "suggestions_for_you":"اقتراحات من اجلك",
     "search_for_concept":"ابحث عن مصطلح",
     "select_image":"أختر صوره",
-    "email_adress":"البريد الالكتروني",
+    "email_adrress":"البريد الالكتروني",
     "language1":"اللغة",
     "context":"تخصص",
     "edit":"تعديل",
@@ -113,7 +113,10 @@
     "validation_explain1": "إذا كنت لا ترى الرسالة ، فتحقق من البريد العشوائي.",
     "next": "التالي",
     "back": "رجوع",
-    "code": "رمز الدخول"
+    "code": "رمز الدخول",
+    "emailForValidation": "أدخل عنوان بريدك الإلكتروني للتحقق",
+    "verifyData": "تحقق من بياناتك",
+    "verify": "التحقق"
 
    
 

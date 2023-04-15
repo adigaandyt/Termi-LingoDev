@@ -43,7 +43,7 @@
     "suggestions_for_you":"הצעות בשבילך",
     "search_for_concept":"חפש מושג",
     "select_image":"בחר תמונה",
-    "email_adress":"דואר אלקטרוני",
+    "email_adrress":"דואר אלקטרוני",
     "language1":"שפה",
     "context":"קטיגוריה",
     "edit":"עריכה",
@@ -113,6 +113,9 @@
     "validation_explain1": "אם אינך רואה את ההודעה, בדוק את הספאם שלך.",
     "next": "הבא",
     "back": "חזור",
-    "code": "קוד"
+    "code": "קוד",
+    "emailForValidation": "הזן את כתובת האימייל שלך לאימות",
+    "verifyData": "אמת את הנתונים שלך",
+    "verify": "אימות"
     
 }

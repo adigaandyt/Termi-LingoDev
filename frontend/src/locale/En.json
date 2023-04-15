@@ -44,7 +44,7 @@
     "suggestions_for_you":"Suggestions for you",
     "search_for_concept":"Search For Concept",
     "select_image":"Select Image",
-    "email_adress":"Email Adress",
+    "email_adrress":"Email Adress",
     "language1":"Language",
     "context":"Category",
     "edit":"Edit profile",
@@ -113,7 +113,10 @@
     "validation_explain1": "If you don't see the message, check your spam.",
     "next": "Next",
     "back": "Back",
-    "code": "Code"
+    "code": "Code",
+    "emailForValidation": "Enter your Email Address for validation",
+    "verifyDara": "Verify your data",
+    "verify": "Verify"
 
 
 

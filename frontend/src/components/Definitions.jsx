@@ -50,7 +50,7 @@ function Definitions({concept,languageChoosed,alertShow,alertToggleShow}){
 
     const [showShortDefinition, setShowShortDefinition] = useState(false);
     const [showLongDefinition, setShowLongDefinition] = useState(false);
-  
+    const {user}=useSelector(state=>state.auth);
     const toggleLongDefinition = () =>{
          setShowShortDefinition(!showShortDefinition)
          setShowLongDefinition(false)
@@ -80,7 +80,7 @@ function Definitions({concept,languageChoosed,alertShow,alertToggleShow}){
             {languageChoosed.english&&<img className=' mt-2 ' src={require('../flags/united-states-xs.gif')}/>}
             {languageChoosed.arabic&&<img className='mt-2' src={require('../flags/saudi-arabia-xs.gif')}/>}
         </div>
-        <AddToFavorites/>
+        <AddToFavorites userId={user._id} cardId={concept._id}/>
         <div className='col-11 text-end'>
             <h3 className="text-dark mb-3 mt-2" id="conceptName">{concept&&getConceptName(languageChoosed,concept)}</h3> 
             <div className=''>

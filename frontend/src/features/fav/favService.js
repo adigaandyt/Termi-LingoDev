@@ -4,7 +4,7 @@ const API_URL='/api/favorites'
 
 //get single fav by  search text
 const getFav =async (data)=>{
-    const response=await axios.post(API_URL+`/add/${data.categoryId}`,data)
+    const response=await axios.post(API_URL+`/get/${data.categoryId}`,data)
     return response.data
 }
 
@@ -22,7 +22,7 @@ const createNewFavByUser =async (data,token)=>{
             authorization:`Bearer ${token}`
         }
     }
-    const response=await axios.post(API_URL+"/get",data,config)
+    const response=await axios.post(API_URL+"/add",data,config)
     return response.data
 }
 

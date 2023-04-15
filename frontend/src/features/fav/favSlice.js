@@ -12,18 +12,7 @@ const initialState={
 }
 
 //get favorite by user id
-export const getFav =createAsyncThunk('fav/getFav',async (data,thunkAPI)=>{
-    try {
-        const response=await favService.getFav(data)
-        return response
-    } catch (error) {
-        return thunkAPI.rejectWithValue(error.response.data)
-    }
-}
-)
-
-// Add new favorite
-export const addFav =createAsyncThunk('fav/addFav',async (data,thunkAPI)=>{
+export const getFav =createAsyncThunk('get',async (data,thunkAPI)=>{
     try {
         const response=await favService.createNewFavByUser(data)
         return response
@@ -32,8 +21,20 @@ export const addFav =createAsyncThunk('fav/addFav',async (data,thunkAPI)=>{
     }
 }
 )
+
+// Add new favorite
+export const addFav =createAsyncThunk('add',async (data,thunkAPI)=>{
+    try {
+        const response=await favService.createNewFavByUser(data)
+        console.log(response)
+        return response
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response.data)
+    }
+}
+)
 //remove favorite by item id
-export const removeFav =createAsyncThunk('fav/removeFav',async (data,thunkAPI)=>{
+export const removeFav =createAsyncThunk('remove',async (data,thunkAPI)=>{
     try {
         const response=await favService.removeFav(data)
         return response
@@ -43,7 +44,7 @@ export const removeFav =createAsyncThunk('fav/removeFav',async (data,thunkAPI)=>
 }
 )
 //get all favorites by user id
-export const getFavorites =createAsyncThunk('fav/getFavorites',async (data,thunkAPI)=>{
+export const getFavorites =createAsyncThunk('get',async (data,thunkAPI)=>{
     try {
         const response=await favService.getFavorites(data)
         return response

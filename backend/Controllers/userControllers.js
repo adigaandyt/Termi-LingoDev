@@ -74,6 +74,7 @@ const sendValidationEmail=asyncHandler( async (req,res)=> {
   const randomCode = Math.floor(100000 + Math.random() * 900000);
   const message =`Hello ${name}, welcome to Termi App, your code is G-${randomCode.toString()} `
 
+
   try {
     const userExist=await User.findOne({email:to})
     //check if the user is exists by email

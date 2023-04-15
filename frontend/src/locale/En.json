@@ -114,6 +114,8 @@
     "next": "Next",
     "back": "Back",
     "code": "Code",
+    "edit_concept":"Edit Concept",
+    "edit_desc":"Are you sure you want to Edit this concept ?",
     "emailForValidation": "Enter your Email Address for validation",
     "verifyDara": "Verify your data",
     "verify": "Verify"

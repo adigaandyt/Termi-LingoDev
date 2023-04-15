@@ -3,6 +3,7 @@ import conceptService from './conceptService'
 const initialState={ 
     concepts:null,
     concept:null,
+    updatedConcept:null,
     unAcceptedConcepts:null,
     names:null,
     isSuccess:false,
@@ -144,6 +145,7 @@ export const deleteConceptByAdmin=createAsyncThunk(
      }
 
 )
+
 //setConcept search for back office 
 export const setConceptSearchLog=createAsyncThunk(
     'setconcept/search/for/backoffice',
@@ -173,6 +175,7 @@ export const conceptSlice=createSlice({
             state.isLoading=false
             state.isError=false
             state.isSuccess=false
+            state.updatedConcept=null
             state.message=''
         }
     },
@@ -270,6 +273,7 @@ export const conceptSlice=createSlice({
         })
         .addCase(updateConceptByUser.fulfilled,(state,action)=>{
             state.isLoading=false
+            state.updatedConcept=action.payload
             state.isSuccess=true
         })
         .addCase(deleteConceptByAdmin.pending,(state)=>{

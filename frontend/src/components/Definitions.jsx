@@ -9,6 +9,9 @@ import "../styles/Inputs.css"
 import {GrTextAlignCenter} from 'react-icons/gr'
 import {RxTextAlignCenter} from 'react-icons/rx'
 import {MdMoreHoriz} from 'react-icons/md';
+import Rating from 'react-rating'
+import {AiOutlineStar,AiFillStar} from 'react-icons/ai'
+import ShareConcepts from '../components/ShareConcepts'
 
 
 
@@ -85,7 +88,20 @@ function Definitions({concept,languageChoosed,alertShow,alertToggleShow}){
             <h3 className="text-dark mb-3 mt-2" id="conceptName">{concept&&getConceptName(languageChoosed,concept)}</h3> 
             <div className=''>
                 <h5 className=''>{concept&&categoryById(concept.categories[0],languageChoosed,categories)}</h5>
+                <div className='row'>
+
+                
+                <Rating className='col-10'
+                    placeholderRating={2.5}
+                    readonly={true}
+                    emptySymbol={<AiOutlineStar id="AiOutlineStar" className='icon display-4'/>}
+                    placeholderSymbol={<AiFillStar id="AiOutlineStar" className='icon text-warning display-4'/>}
+                    fullSymbol={<AiFillStar id="AiOutlineStar" className='icon text-warning display-4'/>}
+                />
                 <button className='' onClick={()=>alertToggleShow(!alertShow)} id="editButtonConcept" ><FiEdit2 className='text-success'/></button>
+                </div>
+                <ShareConcepts/>
+
             </div>
         </div>        
         </div>
@@ -133,6 +149,14 @@ function Definitions({concept,languageChoosed,alertShow,alertToggleShow}){
           
           </MDBCollapse>
         </MDBCol>
+        {/* https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSk5p5qP4ic47Lxm6QkkVE_BfL_-0Yt7SmFDp0m67s&s */}
+        {/* <Rating
+            placeholderRating={3.5}
+            emptySymbol={<AiOutlineStar id="AiOutlineStar" className='icon display-4'/>}
+            placeholderSymbol={<AiFillStar id="AiOutlineStar" className='icon text-danger display-4'/>}
+            fullSymbol={<AiFillStar id="AiOutlineStar" className='icon text-warning display-4'/>}
+        /> */}
+
         {/* <table>
                 <tr>
                     <td>Rating</td>

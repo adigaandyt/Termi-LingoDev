@@ -20,7 +20,7 @@ function EditConceptFormByUserModal({concept,index,formShow,toggleFormShow}){
     const {t}=useTranslation()
     const dispatch=useDispatch()
     const {categories} =useSelector(state=>state.category)
-    const {isLoading,isSuccess,isError,message} =useSelector(state=>state.concept)
+    const {isLoading,isSuccess,isError,message,updatedConcept} =useSelector(state=>state.concept)
     const [formData,setFormData]=useState({
         conceptId:concept._id,
         conceptName_english:concept.conceptName.english,
@@ -57,7 +57,7 @@ function EditConceptFormByUserModal({concept,index,formShow,toggleFormShow}){
     const {hebrew,arabic,english} =flag
 
     useEffect(()=>{
-        if(isSuccess){
+        if(isSuccess&&updatedConcept){
             toast.success("The changes have been saved, and are moving to a test phase")
             toggleFormShow(false)
             dispatch(reset())
@@ -67,7 +67,7 @@ function EditConceptFormByUserModal({concept,index,formShow,toggleFormShow}){
             toast.error(message)
             dispatch(reset())
         }
-      },[isSuccess,isError])
+      },[isSuccess,isError,updatedConcept])
       const onChange=(e)=>{
         e.preventDefault()
         setFormData((preventState)=>{
@@ -83,6 +83,7 @@ function EditConceptFormByUserModal({concept,index,formShow,toggleFormShow}){
       
       }
     return (<>
+    <div dir='ltr'>
 <MDBModal show={formShow} setShow={toggleFormShow} tabIndex='-1'>
 <MDBModalDialog>
           <MDBModalContent>
@@ -188,6 +189,7 @@ function EditConceptFormByUserModal({concept,index,formShow,toggleFormShow}){
           </MDBModalContent>
         </MDBModalDialog>
 </MDBModal>
+</div>
     </>)
 }
 export default EditConceptFormByUserModal

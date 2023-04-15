@@ -16,7 +16,9 @@ import ConceptCardsList from '../components/ConceptCardsList'
 import CatouselDefinition from '../components/CaroselDefinition'
 import Spinner from '../components/Spinner'
 import CarouselAnimationDefinitions from '../components/CarouselAnimationDefinitions'
-import UserCard from '../components/UserCard'
+import UserCard from '../components/UserCard' 
+import Rating from 'react-rating'
+import {AiOutlineStar, AiFillStar} from 'react-icons/ai'
 import Saleh from '../components/Saleh'
 import ShareConcepts from '../components/ShareConcepts'
 import EditConceptAlertByUserModal from '../components/modals/EditConceptAlertByUserModal'
@@ -96,8 +98,9 @@ function Home(){
           
                 <SearchForm conceptSearch={conceptSearch} setConceptSearch={setConceptSearch} categoryId={categoryId} setCategoryId={setCategoryId}/> 
                 {concept&&<div className='mt-2'>
-                <ShareConcepts/>
+
                 <CarouselAnimationDefinitions alertShow={alertShow} alertToggleShow={alertToggleShow}/>
+
 
                 
                  </div>}

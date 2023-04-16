@@ -3,6 +3,7 @@ import conceptService from './conceptService'
 const initialState={ 
     concepts:null,
     concept:null,
+    conceptRating:null,
     updatedConcept:null,
     unAcceptedConcepts:null,
     names:null,
@@ -194,7 +195,8 @@ export const conceptSlice=createSlice({
         .addCase(getConcept.fulfilled,(state,action)=>{
             state.isLoading=false
             state.isSuccess=true
-            state.concept=action.payload
+            state.concept=action.payload.concept
+            state.conceptRating=action.payload.rating
         })
         .addCase(getConceptsNames.fulfilled,(state,action)=>{
             state.names=action.payload

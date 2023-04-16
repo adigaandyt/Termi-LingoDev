@@ -17,6 +17,8 @@ import ShareConcepts from '../components/ShareConcepts'
 
 function Definitions({concept,languageChoosed,alertShow,alertToggleShow}){
     const {categories}=useSelector(state=>state.category)
+    const {conceptRating}=useSelector(state=>state.concept)
+
     const { t }=useTranslation();
     const getDefinition=(isLong)=>{
         let definition="" 
@@ -92,7 +94,7 @@ function Definitions({concept,languageChoosed,alertShow,alertToggleShow}){
 
                 
                 <Rating className='col-10'
-                    placeholderRating={2.5}
+                    placeholderRating={conceptRating}
                     readonly={true}
                     emptySymbol={<AiOutlineStar id="AiOutlineStar" className='icon display-4'/>}
                     placeholderSymbol={<AiFillStar id="AiOutlineStar" className='icon text-warning display-4'/>}

@@ -83,10 +83,10 @@ function ForgotPassword(){
             <form onSubmit={onStep1Submit}>
                 <div className="mt-5 text-center">
                     <div className='container mt-3 text-center '>
-                    <h6 className="m-3">Enter your Email Address for validation</h6>
+                    <h6 className="m-3">{t('emailForValidation')}</h6>
                         <div className="form-floating  mb-3 ">
                             <input onChange={onChange}  type="email" className="form-control " id="floatingInput" name='to' placeholder="name@example.com" />
-                             <label for="floatingInput">{t('email_adress')}</label>
+                             <label for="floatingInput">{t('email_adrress')}</label>
                         </div>                       
                          <div className='text-end mt-3'>
                         <button type='submit' className='btn' style={{"marginRight":"20px"}}>{t('next')}</button>

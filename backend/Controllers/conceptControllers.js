@@ -2,6 +2,8 @@ const asyncHandler =require('express-async-handler');
 const Concept=require('../Models/conceptsModel')
 const Category =require('../Models/categoriesModel')
 const User=require('../Models/usersModel')
+const UpdatedConcept=require('../Models/updatedConceptByUserModel')
+const ConceptSearch=require('../Models/conceptSearchModel')
 const _ = require('lodash');
 const { findById } = require('../Models/conceptsModel');
 
@@ -40,12 +42,14 @@ const testConcept=asyncHandler( async(req,res)=>{
 
 
  //@desc get single concept
-//@route GET /api/concepts/get/concept
+//@route GET api/concepts/get/concept/:categoryId
 //@access private
 const getConcept=asyncHandler( async(req,res)=>{
     let concept
+    let rating;
     const textSearch=req.body.textSearch
     try {
+
         const category=await Category.findById(req.params.categoryId)
         if(!category){
             res.status(404)
@@ -57,18 +61,67 @@ const getConcept=asyncHandler( async(req,res)=>{
             {categories: {$all:[category.id]},"conceptName.english":textSearch},
             {categories: {$all:[category.id]},"conceptName.hebrew":textSearch}
         ],accepted:true})
+
+        // get rating for the specific concept 
+        if(concept){
+            const collectionLength= await ConceptSearch.find({})
+            const conceptSearchById=await ConceptSearch.find({conceptID:concept._id})
+            const ratio=conceptSearchById.length/collectionLength.length
+            switch(true){
+                case ratio>=0.15:{
+                    rating=5
+                    break;
+                }
+                case ratio<0.15&&ratio>=0.13:{
+                    rating=4.5
+                    break;
+                }
+                case ratio<0.13&&ratio>=0.11:{
+                    rating=4
+                    break;
+                }
+                case ratio<0.11&&ratio>=0.09:{
+                    rating=3.5
+                    break;
+                }
+                case ratio<0.09&&ratio>=0.07:{
+                    rating=3
+                    break;
+                }
+                case ratio<0.07&&ratio>=0.05:{
+                    rating=2.5
+                    break;
+                }
+                case ratio<0.05&&ratio>=0.03:{
+                    rating=2
+                    break;
+                }
+                case ratio<0.03&&ratio>=0.02:{
+                    rating=2
+                    break;
+                }
+                case ratio<0.02&&ratio>=0.01:{
+                    rating=1.5
+                    break;
+                }
+                case ratio<0.01&&ratio>0:{
+                    rating=1
+                    break;
+                }
+                default:
+                    break;
+
+            }
+            // res.json({ratio})
+        }
         }
          
     } catch (error) {
         res.status(500)
         throw new Error("Some thing is wrong !" )
     }
-    console.log("searched for concept" + concept)
-     res.status(200).json(concept)
 
-
-   
-    
+     res.status(200).json({concept,rating})
     })
 
 
@@ -332,6 +385,7 @@ const getUnAcceptedConcepts=asyncHandler( async(req,res)=>{
 
     
     })
+
 //@desc update concept by admin in the settings page 
 //@route POST /update/concept/by/admin
 //@access private
@@ -371,6 +425,50 @@ const updateConceptByAdmin=asyncHandler( async(req,res)=>{
 
     
     })
+//@desc update concept by user in the Home/Search page 
+//@route POST /update/concept/by/user
+//@access private
+const updateConceptByUser=asyncHandler( async(req,res)=>{
+    // user details for back office !
+    const user=req.user
+    const data=req.body
+
+        try {
+            const currentConcept=await Concept.findById({_id:data.conceptId})
+            if(!currentConcept){
+                res.status(400)
+                throw new Error('Something is Wrong!')
+            }
+            const newConcept=await UpdatedConcept.create({
+
+                conceptName:{
+                    english:data.conceptName_english?data.conceptName_english:"N/A",
+                    hebrew:data.conceptName_hebrew?data.conceptName_hebrew:"N/A",
+                    arabic:data.conceptName_arabic?data.conceptName_arabic:"N/A"
+                },
+                longDefinition:{
+                    english:data.longDefinition_english?data.longDefinition_english:"N/A",
+                    hebrew:data.longDefinition_hebrew?data.longDefinition_hebrew:"N/A",
+                    arabic:data.longDefinition_arabic?data.longDefinition_arabic:"N/A"
+                },
+                shortDefinition:{
+                    english:data.shortDefinition_english?data.shortDefinition_english:"N/A",
+                    hebrew:data.shortDefinition_hebrew?data.shortDefinition_hebrew:"N/A",
+                    arabic:data.shortDefinition_arabic?data.shortDefinition_arabic:"N/A"
+                },
+                readMore:data.readMore?data.readMore:"N/A",
+                updatedBy:user.id,
+                conceptId:currentConcept.id
+            })
+            res.json(newConcept)
+        } catch (error) {
+            res.status(500)
+            throw new Error(error.message)
+
+        }
+
+    
+    })
 //@desc deleteConceptByAdmin 
 //@route DELETE /delete/comcept/by/admin
 //@access private
@@ -403,5 +501,6 @@ module.exports={
    creactNewConceptByUser,
    getUnAcceptedConcepts,
    updateConceptByAdmin,
+   updateConceptByUser,
    deleteConceptByAdmin
 }

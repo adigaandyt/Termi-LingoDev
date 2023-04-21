@@ -3,6 +3,8 @@ import conceptService from './conceptService'
 const initialState={ 
     concepts:null,
     concept:null,
+    conceptRating:null,
+    updatedConcept:null,
     unAcceptedConcepts:null,
     names:null,
     isSuccess:false,
@@ -113,6 +115,22 @@ export const updateConceptByAdmin=createAsyncThunk(
      }
 
 )
+//update concept by admin 
+export const updateConceptByUser=createAsyncThunk(
+    'update/concept/byUser',
+     async(data,thunkAPI)=>{ 
+        const token=thunkAPI.getState().auth.user.token 
+        try {
+            return await conceptService.updateConceptByUser(data,token)
+        } catch (error) {
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
 //delete Concept By Admin
 export const deleteConceptByAdmin=createAsyncThunk(
     'delete/concept',
@@ -128,6 +146,7 @@ export const deleteConceptByAdmin=createAsyncThunk(
      }
 
 )
+
 //setConcept search for back office 
 export const setConceptSearchLog=createAsyncThunk(
     'setconcept/search/for/backoffice',
@@ -157,6 +176,7 @@ export const conceptSlice=createSlice({
             state.isLoading=false
             state.isError=false
             state.isSuccess=false
+            state.updatedConcept=null
             state.message=''
         }
     },
@@ -175,7 +195,8 @@ export const conceptSlice=createSlice({
         .addCase(getConcept.fulfilled,(state,action)=>{
             state.isLoading=false
             state.isSuccess=true
-            state.concept=action.payload
+            state.concept=action.payload.concept
+            state.conceptRating=action.payload.rating
         })
         .addCase(getConceptsNames.fulfilled,(state,action)=>{
             state.names=action.payload
@@ -241,6 +262,20 @@ export const conceptSlice=createSlice({
         })
         .addCase(updateConceptByAdmin.fulfilled,(state,action)=>{
             state.isLoading=false
+            state.isSuccess=true
+        })
+        .addCase(updateConceptByUser.pending,(state)=>{
+            state.isLoading=true
+        })
+        .addCase(updateConceptByUser.rejected,(state,action)=>{
+            state.isLoading=false
+            state.isError=true
+            state.message=action.payload
+            
+        })
+        .addCase(updateConceptByUser.fulfilled,(state,action)=>{
+            state.isLoading=false
+            state.updatedConcept=action.payload
             state.isSuccess=true
         })
         .addCase(deleteConceptByAdmin.pending,(state)=>{

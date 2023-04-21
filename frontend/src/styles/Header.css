@@ -220,7 +220,7 @@
         /*height: 70px;*/
       }
       .nav1 .box.open i:nth-of-type(1) {                                  
-        transform: rotate(190deg) translateX(150px) rotate(170deg);
+        transform: rotate(190deg) translateX(150px) rotate(60deg);   /*setting button*/
         transition-delay: 0.2s;
         
       }
@@ -231,6 +231,12 @@
       .nav1 .box.open i:nth-of-type(3) {
         transform: rotate(160deg) translateX(110px) rotate(-160deg);
         transition-delay: 0.4s;
+      }
+      #setting-btn{
+        /*border: solid red;*/
+        /*margin-bottom: 8px;*/
+        margin-left: -6px;
+        background: none
       }
       
       

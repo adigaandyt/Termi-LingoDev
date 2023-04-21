@@ -16,15 +16,19 @@ import ConceptCardsList from '../components/ConceptCardsList'
 import CatouselDefinition from '../components/CaroselDefinition'
 import Spinner from '../components/Spinner'
 import CarouselAnimationDefinitions from '../components/CarouselAnimationDefinitions'
-import UserCard from '../components/UserCard'
+import UserCard from '../components/UserCard' 
+import Rating from 'react-rating'
+import {AiOutlineStar, AiFillStar} from 'react-icons/ai'
 import Saleh from '../components/Saleh'
 import ShareConcepts from '../components/ShareConcepts'
 import EditConceptAlertByUserModal from '../components/modals/EditConceptAlertByUserModal'
+import EditConceptFormByUserModal from '../components/modals/EditConceptFormByUserModal'
 
 
 
 function Home(){
     const [alertShow,alertToggleShow]=useState(false)
+    const [formShow,toggleFormShow]=useState(false)
     const {t}=useTranslation()
     const {textSearch,categoryID}=useParams()
     //back office
@@ -76,7 +80,10 @@ function Home(){
     }
   
     return (<>
-    <EditConceptAlertByUserModal alertShow={alertShow} alertToggleShow={alertToggleShow}/>
+    {concept&&
+    <EditConceptFormByUserModal concept={concept} index={concept._id} formShow={formShow} toggleFormShow={toggleFormShow} />
+    }
+    <EditConceptAlertByUserModal alertShow={alertShow} alertToggleShow={alertToggleShow} toggleFormShow={toggleFormShow}/>
          <div  className=' mt-150' > 
         <div className='  mt-5 '>
           {isLoading&&<Spinner/>}
@@ -91,8 +98,9 @@ function Home(){
           
                 <SearchForm conceptSearch={conceptSearch} setConceptSearch={setConceptSearch} categoryId={categoryId} setCategoryId={setCategoryId}/> 
                 {concept&&<div className='mt-2'>
-                <ShareConcepts/>
+
                 <CarouselAnimationDefinitions alertShow={alertShow} alertToggleShow={alertToggleShow}/>
+
 
                 
                  </div>}

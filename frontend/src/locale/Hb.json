@@ -43,7 +43,7 @@
     "suggestions_for_you":"הצעות בשבילך",
     "search_for_concept":"חפש מושג",
     "select_image":"בחר תמונה",
-    "email_adress":"דואר אלקטרוני",
+    "email_adrress":"דואר אלקטרוני",
     "language1":"שפה",
     "context":"קטיגוריה",
     "edit":"עריכה",
@@ -108,11 +108,15 @@
     "about-rate":"דרג כל תרגום, כדי שנוכל לדעת את דיוק התרגום.",
     "e-mail": "דואר אלקטרוני",
     "validation": "אימות" ,
-    "submit": "שלח",
     "validation_explain": "הזן את הקוד שקיבלת בכתובת המייל שלך",
     "validation_explain1": "אם אינך רואה את ההודעה, בדוק את הספאם שלך.",
     "next": "הבא",
     "back": "חזור",
-    "code": "קוד"
+    "code": "קוד",
+    "edit_concept":"עריכת מושג",
+    "edit_desc":"האם אתה בטוח שברצונך לערוך את המושג הזה?",
+    "emailForValidation": "הזן את כתובת האימייל שלך לאימות",
+    "verifyData": "אמת את הנתונים שלך",
+    "verify": "אימות"
     
 }

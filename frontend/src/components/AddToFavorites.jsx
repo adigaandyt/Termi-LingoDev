@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector,useDispatch } from "react-redux";
 import { addFav, removeFav, getFav } from "../features/fav/favSlice";
 const AddToFavorites = ({ cardId, userId }) => {
+const { isLoading } = useSelector((state) => state.fav);
   const [isFavorite, setIsFavorite] = useState(false);
   const dispatch=useDispatch();
   const handleAddToFavorites = () => {
@@ -9,11 +10,12 @@ const AddToFavorites = ({ cardId, userId }) => {
     console.log(cardId,userId);
     console.log(isFavorite);
     console.log("add to fav");
-    dispatch(addFav({cardId,userId}))
+    dispatch(addFav({itemId:cardId}))
   };
 
   return (
     <button
+      disabled={isLoading}
       onClick={handleAddToFavorites}
       
       className={`add-to-favorites ${isFavorite ? "favorite" : ""}`}

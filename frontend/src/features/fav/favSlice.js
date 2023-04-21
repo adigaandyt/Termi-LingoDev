@@ -4,11 +4,7 @@ const initialState={
     isLoading:false,
     isError:false,
     isSuccess:false,
-    message:'',
-    concept:null,
-    concepts:null,
-    conceptsNames:null,
-    unAcceptedConcepts:null
+    message:''
 }
 
 //get favorite by user id
@@ -21,11 +17,11 @@ export const getFav =createAsyncThunk('get',async (data,thunkAPI)=>{
     }
 }
 )
-
 // Add new favorite
 export const addFav =createAsyncThunk('add',async (data,thunkAPI)=>{
+    const token =JSON.parse(localStorage.getItem('token'));
     try {
-        const response=await favService.createNewFavByUser(data)
+        const response=await favService.createNewFavByUser(data,token)
         console.log(response)
         return response
     } catch (error) {
@@ -60,10 +56,9 @@ export const favSlice=createSlice({
     initialState,
     reducers:{
         resetFav:(state)=>{
-            state.concept=null
-            state.concepts=null
-            state.conceptsNames=null
-            state.unAcceptedConcepts=null
+
+   
+            state.isLoading=false
             state.isSuccess=false
             state.isError=false
             state.message=''
@@ -77,7 +72,6 @@ export const favSlice=createSlice({
         [getFav.fulfilled]:(state,action)=>{
             state.isLoading=false
             state.isSuccess=true
-            state.concept=action.payload
         }
         ,
         [getFav.rejected]:(state,action)=>{
@@ -93,7 +87,6 @@ export const favSlice=createSlice({
         [addFav.fulfilled]:(state,action)=>{
             state.isLoading=false
             state.isSuccess=true
-            state.concept=action.payload
         }
         ,
         [addFav.rejected]:(state,action)=>{
@@ -109,7 +102,6 @@ export const favSlice=createSlice({
         [removeFav.fulfilled]:(state,action)=>{
             state.isLoading=false
             state.isSuccess=true
-            state.concept=action.payload
         }
         ,
         [removeFav.rejected]:(state,action)=>{
@@ -125,7 +117,6 @@ export const favSlice=createSlice({
         [getFavorites.fulfilled]:(state,action)=>{
             state.isLoading=false
             state.isSuccess=true
-            state.concepts=action.payload
         }
         ,
         [getFavorites.rejected]:(state,action)=>{
@@ -135,3 +126,5 @@ export const favSlice=createSlice({
         }
     }
 })
+export const {resetFav}=favSlice.actions
+export default favSlice.reducer

@@ -22,6 +22,8 @@ const createNewFavByUser =async (data,token)=>{
             authorization:`Bearer ${token}`
         }
     }
+    console.log("----------****-----YONORSERVICE-----****----------");
+    console.log(token);
     const response=await axios.post(API_URL+"/add",data,config)
     return response.data
 }

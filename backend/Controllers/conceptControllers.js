@@ -6,6 +6,12 @@ const UpdatedConcept=require('../Models/updatedConceptByUserModel')
 const ConceptSearch=require('../Models/conceptSearchModel')
 const _ = require('lodash');
 const { findById } = require('../Models/conceptsModel');
+const { Configuration, OpenAIApi }=require("openai") ;
+const configuration = new Configuration({
+    apiKey: process.env.OPENAI_API_KEY,
+    // apiKey: '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',
+});
+const openai = new OpenAIApi(configuration);
 
 //add "639d8f0987cdf6706e335db9" to all arrays in the database
     //    concept=await Concept.updateMany(
@@ -23,16 +29,112 @@ const { findById } = require('../Models/conceptsModel');
 //@route POST /api/concepts/test 
 //@access private
 const testConcept=asyncHandler( async(req,res)=>{
-    
 
+
+
+    const {textSearch}=req.body
+    const {categoryId}=req.params
+    // res.send({x:textSearch,c:categoryId})
 
     try {
-    //    concept=await Concept.updateMany({}, { $set: { accepted: true } });
-    // const user=await User.updateMany({},{added_concepts:0},{new:true})
-    // res.status(200).json(user)
+        const category=await Category.findById({_id:categoryId})
+        
+        
+            const conceptName_english = await openai.createCompletion({
+            model: "text-davinci-003",
+            prompt: `Translate this into English, Hebrew and Arabic:"${textSearch}" , please return it with json frame?`,
+            max_tokens: 200,
+          });
+          res.json(conceptName_english.data)
+ 
+
+    //       const shortDefinition = await openai.createCompletion({
+    //         model: "text-davinci-002",
+    //         prompt: "Give me 1 sentence about loop in Software Engineeer",
+    //         max_tokens: 200,
+    //       });
+    //       const longDefinition = await openai.createCompletion({
+    //         model: "text-davinci-002",
+    //         prompt: "Give me a description of two sentence about loop in Software Engineeer",
+    //         max_tokens: 200,
+    //       });
+    //     //   translate the short definition
+        
+    //         const shortDefinition_arabic = await openai.createCompletion({
+    //             model: "text-davinci-003",
+    //             prompt: `Translate this into  Arabic:\n\n${shortDefinition.data.choices[0].text}\n\n1.`,
+    //             temperature: 0.3,
+    //             max_tokens: 200,
+    //             top_p: 1.0,
+    //             frequency_penalty: 0.0,
+    //             presence_penalty: 0.0,
+    //           });
+    //           const shortDefinition_hebrew = await openai.createCompletion({
+    //             model: "text-davinci-003",
+    //             prompt: `Translate this into  Hebrew:\n\n${shortDefinition.data.choices[0].text}\n\n1.`,
+    //             temperature: 0.3,
+    //             max_tokens: 200,
+    //             top_p: 1.0,
+    //             frequency_penalty: 0.0,
+    //             presence_penalty: 0.0,
+    //           });
+    //           const shortDefinition_english = await openai.createCompletion({
+    //             model: "text-davinci-003",
+    //             prompt: `Translate this into  English:\n\n${shortDefinition.data.choices[0].text}\n\n1.`,
+    //             temperature: 0.3,
+    //             max_tokens: 200,
+    //             top_p: 1.0,
+    //             frequency_penalty: 0.0,
+    //             presence_penalty: 0.0,
+    //           });
+        
+    //             //   translate the long definition
+      
+    //                 const longDefinition_arabic = await openai.createCompletion({
+    //                     model: "text-davinci-003",
+    //                     prompt: `Translate this into  Arabic:\n\n${longDefinition.data.choices[0].text}\n\n1.`,
+    //                     temperature: 0.3,
+    //                     max_tokens: 200,
+    //                     top_p: 1.0,
+    //                     frequency_penalty: 0.0,
+    //                     presence_penalty: 0.0,
+    //                   });
+    //                   const longDefinition_hebrew = await openai.createCompletion({
+    //                     model: "text-davinci-003",
+    //                     prompt: `Translate this into  Hebrew:\n\n${longDefinition.data.choices[0].text}\n\n1.`,
+    //                     temperature: 0.3,
+    //                     max_tokens: 200,
+    //                     top_p: 1.0,
+    //                     frequency_penalty: 0.0,
+    //                     presence_penalty: 0.0,
+    //                   });
+    //                   const longDefinition_english = await openai.createCompletion({
+    //                     model: "text-davinci-003",
+    //                     prompt: `Translate this into  English:\n\n${longDefinition.data.choices[0].text}\n\n1.`,
+    //                     temperature: 0.3,
+    //                     max_tokens:200,
+    //                     top_p: 1.0,
+    //                     frequency_penalty: 0.0,
+    //                     presence_penalty: 0.0,
+    //                   });
+                
+
+    //  console.log(longDefinition_hebrew)
+    //     res.json({
+    //         shortDefinition:{
+    //             english:shortDefinition_english.data.choices[0].text,
+    //             hebrew:shortDefinition_hebrew.data.choices[0].text,
+    //             arabic:shortDefinition_arabic.data.choices[0].text
+    //         },
+    //         longDefintion:{
+    //             english:longDefinition_english.data.choices[0].text,
+    //             hebrew:longDefinition_hebrew.data.choices[0].text,
+    //             arabic:longDefinition_arabic.data.choices[0].text
+    //         }
+    //     } )
     } catch (error) {
         res.status(500)
-        throw new Error("Some thing is wrong !" )
+        throw new Error(error )
     }
     
 

@@ -25,7 +25,7 @@ const { Configuration, OpenAIApi }=require("openai") ;
 //@route POST /api/concepts/openai/api/:categoryId
 //@access private
 const getConceptByOpenAi=asyncHandler( async(req,res)=>{
-
+// pull request and push test
 
 
     const {textSearch}=req.body

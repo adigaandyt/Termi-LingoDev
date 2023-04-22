@@ -19,10 +19,12 @@ import CarouselAnimationDefinitions from '../components/CarouselAnimationDefinit
 import UserCard from '../components/UserCard' 
 import Rating from 'react-rating'
 import {AiOutlineStar, AiFillStar} from 'react-icons/ai'
+import {SiOpenai} from 'react-icons/si'
 import Saleh from '../components/Saleh'
 import ShareConcepts from '../components/ShareConcepts'
 import EditConceptAlertByUserModal from '../components/modals/EditConceptAlertByUserModal'
 import EditConceptFormByUserModal from '../components/modals/EditConceptFormByUserModal'
+import { getConceptByOpenAiAPIRequest } from '../features/openAi/openAiSlice'
 
 
 
@@ -78,7 +80,10 @@ function Home(){
             })
         })
     }
-  
+  const getOpenAiConcept=(e)=>{
+    e.preventDefault()
+    dispatch(getConceptByOpenAiAPIRequest({textSearch:textSearch,categoryId:categoryID}))
+  }
     return (<>
     {concept&&
     <EditConceptFormByUserModal concept={concept} index={concept._id} formShow={formShow} toggleFormShow={toggleFormShow} />
@@ -97,6 +102,7 @@ function Home(){
             
           
                 <SearchForm conceptSearch={conceptSearch} setConceptSearch={setConceptSearch} categoryId={categoryId} setCategoryId={setCategoryId}/> 
+                <button onClick={getOpenAiConcept} className='btn display-3 ' style={{backgroundColor:"#353740",color:"#acacbe"}}><SiOpenai className='display-3 '/></button>
                 {concept&&<div className='mt-2'>
 
                 <CarouselAnimationDefinitions alertShow={alertShow} alertToggleShow={alertToggleShow}/>

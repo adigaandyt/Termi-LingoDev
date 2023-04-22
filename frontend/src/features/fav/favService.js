@@ -4,6 +4,7 @@ const API_URL='/api/favorites'
 
 //get single fav by  search text
 const getFav =async (data)=>{
+    //add token and sent it with the request.
     const response=await axios.post(API_URL+`/get/${data.categoryId}`,data)
     return response.data
 }

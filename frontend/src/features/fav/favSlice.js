@@ -1,6 +1,7 @@
 import {createSlice,createAsyncThunk} from '@reduxjs/toolkit'
 import favService from './favService'
 const initialState={
+    favs:null,
     isLoading:false,
     isError:false,
     isSuccess:false,
@@ -71,6 +72,7 @@ export const favSlice=createSlice({
         ,
         [getFav.fulfilled]:(state,action)=>{
             state.isLoading=false
+            state.favs=action.payload
             state.isSuccess=true
         }
         ,

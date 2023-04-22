@@ -5,6 +5,7 @@ const router = require('../Routes/userRoutes');
 const addFavorite = asyncHandler(async (req,res)=>{ 
     const user=req.user;
     const data=req.body;
+    // check if the userid && cardId is exist in the data base
     console.log("----------****----------")
     console.log(data)
     console.log("----------****----------")
@@ -48,8 +49,9 @@ const getFavorites = asyncHandler(async (req,res)=>{
     console.log("----------****----------")
     try {
         const response=await Favorite.find({
-            userId:user._id
+            userId:user.id
         })
+
         res.status(200).json(response)
     } catch (error) {
         console.log(error)

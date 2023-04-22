@@ -36,7 +36,8 @@ const getConceptByOpenAi=asyncHandler( async(req,res)=>{
         const category=await Category.findById({_id:categoryId})
         
         const configuration = new Configuration({
-            apiKey: process.env.OPENAI_API_KEY,
+            apiKey: process.env.OPENAI_API_KEY, 
+            
         });
         const openai = new OpenAIApi(configuration);
 

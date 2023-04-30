@@ -11,6 +11,10 @@ const favoriteSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    isFavorite: {
+        type: Boolean,
+        default: true,
+    },
     createdAt: {
         type: Date,
         default: Date.now,

@@ -28,12 +28,24 @@ const createNewFavByUser =async (data,token)=>{
     const response=await axios.post(API_URL+"/add",data,config)
     return response.data
 }
-
+const removeFav = async (data, token) => {
+    const config = {
+      headers: {
+        authorization: `Bearer ${token}`
+      }
+    }
+    console.log("----------****-----YONORSERVICEREMOVE>>>-----****----------");
+    console.log(token);
+    console.log("sending request to remove favorite: " + `${API_URL}/remove/${data}`)
+    const response = await axios.delete( `${API_URL}/remove/${data.itemId}/${data.userId}`, config)
+    return response.data
+  }
 
 const favService={
     getFav,
     getFavorites,
-    createNewFavByUser
+    createNewFavByUser,
+    removeFav
 }
 
 export default favService

@@ -6,12 +6,27 @@ const AddToFavorites = ({ cardId, userId }) => {
 const { isLoading } = useSelector((state) => state.fav);
   const [isFavorite, setIsFavorite] = useState(false);
   const dispatch=useDispatch();
+  // const handleAddToFavorites = () => {
+  //   setIsFavorite(!isFavorite);
+  //   console.log(cardId,userId);
+  //   console.log(isFavorite);
+  //   console.log("add to fav");
+  //   dispatch(addFav({itemId:cardId}))
+  // };
   const handleAddToFavorites = () => {
-    setIsFavorite(!isFavorite);
-    console.log(cardId,userId);
-    console.log(isFavorite);
-    console.log("add to fav");
-    dispatch(addFav({itemId:cardId}))
+    if (isFavorite) {
+      setIsFavorite(false);
+      console.log(cardId, userId);
+      console.log(isFavorite);
+      console.log("remove from fav");
+      dispatch(removeFav({ itemId: cardId }));
+    } else {
+      setIsFavorite(true);
+      console.log(cardId, userId);
+      console.log(isFavorite);
+      console.log("add to fav");
+      dispatch(addFav({ itemId: cardId }));
+    }
   };
 
   return (

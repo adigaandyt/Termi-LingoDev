@@ -33,6 +33,23 @@ export const getConceptByOpenAiAPIRequest=createAsyncThunk(
 
 )
 
+
+// Reset  openAi concept 
+export const resetOpenAiConcept=createAsyncThunk(
+    'Reset/openaiConcept',
+     async(thunkAPI)=>{
+        try { 
+            console.log("reset openAi concept (openAiSlice.js)")
+        } catch (error) {
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
+
 export  const openAiSlice=createSlice({
     name:'openAi',
     initialState,
@@ -64,9 +81,13 @@ export  const openAiSlice=createSlice({
         })
         .addCase(getConceptByOpenAiAPIRequest.pending,(state)=>{
             state.isOpenAiLoading=true;
+            state.openAiConcept=null;
             state.isOpenAiSuccess=false;
             state.isOpenAiError=false;
 
+        })
+        .addCase(resetOpenAiConcept.fulfilled,(state)=>{
+            state.openAiConcept=null
         })
 
     }

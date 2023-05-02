@@ -25,26 +25,13 @@ const { Configuration, OpenAIApi }=require("openai") ;
 //@route POST /api/concepts/openai/api/:categoryId
 //@access private
 const getConceptByOpenAi=asyncHandler( async(req,res)=>{
-// pull request and push test
-console.log("openaijjjjjjjjj")
-// merge Test
-
-
     const {textSearch}=req.body
     const {categoryId}=req.params
-    console.log('<--------***textSearch,categoryId***------------->')
-    console.log(textSearch,categoryId)
-    console.log('<--------******------------->')
-
-    // res.send({x:textSearch,c:categoryId})
+    // console.log('<--------***textSearch,categoryId***------------->')
+    // console.log(textSearch,categoryId)
+    // console.log('<--------******------------->')
 
     try {
-        // console.log("miising data , textSearch OR categoryId",textSearch,category )
-
-        // if(!textSearch||!categoryId){
-        //     res.status(400)
-        //     throw new Error("miising data , textSearch OR categoryId",textSearch,category )
-        // }
         const category=await Category.findById({_id:categoryId})
         const configuration = new Configuration({
             apiKey: process.env.OPENAI_API_KEY, 
@@ -247,6 +234,11 @@ const getConceptsNames=asyncHandler( async(req,res)=>{
     
     })
 
+
+
+
+
+
 //@desc get concepts that user search for 
 //@route GET /api/concepts/get/concepts/:textsearch
 //@access private
@@ -420,7 +412,14 @@ if(
     ||
     (!data.categoryId)
     ){
+        console.log(data.conceptName_hebrew)
         console.log(" missing details")
+        console.log(data)
+
+
+        
+
+
         res.status(400)
         throw new Error("Missing details")
     }
@@ -456,6 +455,7 @@ shortDefinition:{
 categories:[data.categoryId,'639e49f8dfabd615c821584f'],
 suggestedBy:user.name,
 suggestedBy_userId:user._id,
+isOpenAi:data.isOpenAi?true:false,
 readMore:data.readMore?data.readMore:"N/A",
 
 

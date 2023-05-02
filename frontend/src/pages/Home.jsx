@@ -24,7 +24,7 @@ import Saleh from '../components/Saleh'
 import ShareConcepts from '../components/ShareConcepts'
 import EditConceptAlertByUserModal from '../components/modals/EditConceptAlertByUserModal'
 import EditConceptFormByUserModal from '../components/modals/EditConceptFormByUserModal'
-import { getConceptByOpenAiAPIRequest } from '../features/openAi/openAiSlice'
+import { getConceptByOpenAiAPIRequest, resetOpenAiConcept } from '../features/openAi/openAiSlice'
 
 
 
@@ -102,7 +102,7 @@ function Home(){
                 </div>
               
             
-          
+                    {/* <button onClick={()=>{dispatch(resetOpenAiConcept())}}>reset</button> */}
                 <SearchForm conceptSearch={conceptSearch} setConceptSearch={setConceptSearch} categoryId={categoryId} setCategoryId={setCategoryId}/> 
                 {concept?<div className='mt-2'>
 

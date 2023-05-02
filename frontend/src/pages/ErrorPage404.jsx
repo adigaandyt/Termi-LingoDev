@@ -119,7 +119,7 @@ function ErrorPage404(){
 </svg>
 <h4>{t('error_title')}</h4>
 <p>{t('error_discreption')}</p>
-<Link className="homepage" to='/home/'><i className="fas fa-home"></i>
+<Link className="homepage" to='/'><i className="fas fa-home"></i>
 Home</Link>
 </div>
     </div>)

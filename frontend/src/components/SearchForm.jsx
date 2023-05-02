@@ -4,11 +4,12 @@ import { useEffect,useState,useLayoutEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {useSelector,useDispatch} from 'react-redux'
 import {getCategories} from '../features/categories/categorySlice'
-import {getConcept,getConceptsNames,resetConcept,getConcepts,setConceptSearchLog} from '../features/concepts/conceptSlice'
+import {getConcept,getConceptsNames,resetConcept,getConcepts,setConceptSearchLog, reset} from '../features/concepts/conceptSlice'
 import {useTranslation} from 'react-i18next'
 import {getCategoryName} from '../hooks/ExportsFunctions'
 import NoConceptResultModal from './modals/NoConceptResultModal'
 import '../styles/CircleBar.css'
+import { getConceptByOpenAiAPIRequest,resetOpenAi } from '../features/openAi/openAiSlice';
 
 
 
@@ -20,8 +21,13 @@ import '../styles/CircleBar.css'
     const dispatch =useDispatch();
     const navigate=useNavigate()
     const [isStart,setIsStart]=useState(true);
-    const {concepts,names,concept,isLoading}=useSelector(state=>state.concept);
+    const {concepts,names,concept,isLoading,isSuccess,isError,
+        isSingleConceptError,
+        isSingleConceptLoading,
+        isSingleConceptSuccess,
+        singleConceptMessage}=useSelector(state=>state.concept);
     const {categories}=useSelector(state=>state.category);
+    const {isOpenAiLoading,isOpenAiSuccess,isOpenAiError,openAiConcept}=useSelector(state=>state.openAi);
 
     // const [conceptSearch,setConceptSearch]=useState('');
     // const [categoryId,setCategoryId]=useState('639e49f8dfabd615c821584f')
@@ -44,13 +50,25 @@ import '../styles/CircleBar.css'
             }
         }
     },[concept])
+    useLayoutEffect(()=>{
+        if(isSingleConceptSuccess&&!concept){
+            dispatch(getConceptByOpenAiAPIRequest({textSearch:conceptSearch,categoryId:categoryId}))
+            // dispatch(getConceptByOpenAiAPIRequest({textSearch:conceptSearch,categoryId:categoryId}))
+        }
+        dispatch(reset())
+    },[isSingleConceptError,isSingleConceptSuccess])
+    useLayoutEffect(()=>{
+        console.log('error',isOpenAiError ,'success',isOpenAiSuccess)
+        if(isOpenAiError||isOpenAiSuccess){
+            dispatch(resetOpenAi())
+        }
 
+    },[isOpenAiSuccess,isOpenAiError])
     const onSearchClick=(e)=>{
         e.preventDefault()
         navigate(`/search/${conceptSearch}/${categoryId}`)
 
-        if(conceptSearch.length>3){
-
+        if(conceptSearch.length>2){
           dispatch(getConcept({textSearch:conceptSearch,categoryId:categoryId}))
           dispatch(getConcepts({data:conceptSearch}))
           setIsStart(false)
@@ -67,7 +85,7 @@ import '../styles/CircleBar.css'
     }
 
     return(<>
-       {(!isStart&&!concept&&!isLoading)&&<NoConceptResultModal/>}
+       {(!isStart&&!concept&&!isLoading&&!isSingleConceptLoading&&!isOpenAiLoading&&!openAiConcept)&&<NoConceptResultModal/>}
         <form onSubmit={onSearchClick}>
         <div dir='ltr' className='container ' id='formsearch'>
             <div className='' id='formSearch-item'>

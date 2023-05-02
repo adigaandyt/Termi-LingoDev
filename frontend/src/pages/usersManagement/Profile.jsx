@@ -67,8 +67,18 @@ function Profile(){
           <p className="d-inline-block">{t('coins')}: </p>
           <h6 className="d-inline-block">{games_coins} <RiCoinsFill className='' style={{color:"#FFD700"}}/></h6>
         </div>
+        {/* Shuorook  */}
+        {/* <div className='text-start bg-secondary'> concepts</div>
+        <div className='bg-success w-50 text-start  mt-5'>
+          <p>concept name</p>
+          <p>concept  category</p>
+          <p>concept date added</p>
+          <button>more</button>
+        </div> */}
+        
         <div className='border-top mt-2'>
          <h3 className='mt-2 mx-2'>{t('games_graph')}</h3>
+         
         <GamesRecharts />
         </div>
        

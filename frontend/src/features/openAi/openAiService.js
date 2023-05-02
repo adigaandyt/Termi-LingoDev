@@ -5,7 +5,7 @@ const API_URL='/api/concepts'
 
 export const  getConceptByOpenAiAPIRequest=async (data,token)=>{
 
-    try {
+ 
         console.log("salehhatgpt",data ,token)
         const config ={
             headers:{
@@ -16,9 +16,7 @@ export const  getConceptByOpenAiAPIRequest=async (data,token)=>{
         return response.data
 
 
-    } catch (error) {
-        // console.log(error)
-    }
+  
 
 }
 

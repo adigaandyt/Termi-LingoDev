@@ -87,6 +87,7 @@ function Definitions({concept,languageChoosed,alertShow,alertToggleShow}){
             {languageChoosed.english&&<img className=' mt-2 ' src={require('../flags/united-states-xs.gif')}/>}
             {languageChoosed.arabic&&<img className='mt-2' src={require('../flags/saudi-arabia-xs.gif')}/>}
         </div>
+        {/* check if i need add to favorit , when open ai response  */}
         <AddToFavorites userId={user._id} cardId={concept._id}/>
         <div className='col-11 text-end'>
             <h3 className="text-dark mb-3 mt-2" id="conceptName">{concept&&getConceptName(languageChoosed,concept)}</h3> 
@@ -96,7 +97,7 @@ function Definitions({concept,languageChoosed,alertShow,alertToggleShow}){
 
                 
                 <Rating className='col-10'
-                    placeholderRating={conceptRating}
+                    placeholderRating={conceptRating||0}
                     readonly={true}
                     emptySymbol={<AiOutlineStar id="AiOutlineStar" className='icon display-4'/>}
                     placeholderSymbol={<AiFillStar id="AiOutlineStar" className='icon text-warning display-4'/>}
@@ -104,7 +105,7 @@ function Definitions({concept,languageChoosed,alertShow,alertToggleShow}){
                 />
                 <button className='' onClick={()=>alertToggleShow(!alertShow)} id="editButtonConcept" ><FiEdit2 className='text-success'/></button>
                 </div>
-                <ShareConcepts/>
+                <ShareConcepts concept={concept}/>
 
             </div>
         </div>        

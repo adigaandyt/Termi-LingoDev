@@ -156,3 +156,11 @@ border-radius: 50%;
     height: auto;
     margin: 0;
   }
+#gpt_spinner{
+  display:inlne-block;
+  animation: spingpt 1.5s linear infinite;
+}
+@keyframes spingpt {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

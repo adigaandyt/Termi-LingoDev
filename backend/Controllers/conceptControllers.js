@@ -26,15 +26,25 @@ const { Configuration, OpenAIApi }=require("openai") ;
 //@access private
 const getConceptByOpenAi=asyncHandler( async(req,res)=>{
 // pull request and push test
-
+console.log("openaijjjjjjjjj")
 // merge Test
 
 
     const {textSearch}=req.body
     const {categoryId}=req.params
+    console.log('<--------***textSearch,categoryId***------------->')
+    console.log(textSearch,categoryId)
+    console.log('<--------******------------->')
+
     // res.send({x:textSearch,c:categoryId})
 
     try {
+        // console.log("miising data , textSearch OR categoryId",textSearch,category )
+
+        // if(!textSearch||!categoryId){
+        //     res.status(400)
+        //     throw new Error("miising data , textSearch OR categoryId",textSearch,category )
+        // }
         const category=await Category.findById({_id:categoryId})
         const configuration = new Configuration({
             apiKey: process.env.OPENAI_API_KEY, 
@@ -44,14 +54,18 @@ const getConceptByOpenAi=asyncHandler( async(req,res)=>{
 
         const conceptName_languages = await openai.createCompletion({
             model: "text-davinci-003",
-            prompt: `Translate this into Arabic, Hebrew and English:\n\n${textSearch}\n\n ,return the result in json format with the names english ,hebrew and arabic `,
+            prompt: `Translate this word Arabic, Hebrew and English:\n\n${textSearch}\n\n ,return the result in json format with the names english ,hebrew and arabic `,
             temperature: 1,
             max_tokens: 300,
             top_p: 1.0,
             frequency_penalty: 0.0,
             presence_penalty: 0.0,
         });
-        console.log( conceptName_languages.data.choices[0].text)
+    console.log('<--------***conceptName_languages***------------->')
+    console.log( conceptName_languages.data.choices[0].text)
+    console.log('<--------******------------->')
+
+
         const conceptNameText = conceptName_languages.data.choices[0].text.trim();
         const parsedConceptNamesResponse = JSON.parse(conceptNameText);
         // res.json(parsedConceptNamesResponse)
@@ -64,7 +78,7 @@ const getConceptByOpenAi=asyncHandler( async(req,res)=>{
         });
         const responseText = response.data.choices[0].text.trim();
         const parsedResponse = JSON.parse(responseText);
-        console.log(parsedResponse)
+        // console.log(parsedResponse)
         //   res.json(parsedResponse)
 
         const shortDefinition_languages = await openai.createCompletion({
@@ -88,11 +102,11 @@ const getConceptByOpenAi=asyncHandler( async(req,res)=>{
             frequency_penalty: 0.0,
             presence_penalty: 0.0,
         });
-        console.log(longDefinition_languages.data.choices[0].text)
+        // console.log(longDefinition_languages.data.choices[0].text)
         const longDefintionText = longDefinition_languages.data.choices[0].text.trim();
         const parsedLongDefintionResponse = JSON.parse(longDefintionText);
         // res.send(parsedLongDefintionResponse )
-        res.json({
+        const finalResponse={
             conceptName:{
                 english:parsedConceptNamesResponse.English||parsedConceptNamesResponse.english,
                 hebrew:parsedConceptNamesResponse.Hebrew||parsedConceptNamesResponse.hebrew,
@@ -107,8 +121,14 @@ const getConceptByOpenAi=asyncHandler( async(req,res)=>{
                 english:parsedLongDefintionResponse.English||parsedLongDefintionResponse.english,
                 hebrew:parsedLongDefintionResponse.Hebrew||parsedLongDefintionResponse.hebrew,
                 arabic:parsedLongDefintionResponse.Arabic||parsedLongDefintionResponse.arabic
-            }
-        })
+            },
+            categories:[categoryId]
+        }
+        console.log('<--------***final response***------------->')
+        console.log('final response',finalResponse)
+        console.log('<--------******------------->')
+
+        res.json(finalResponse)
 
         
     } catch (error) {

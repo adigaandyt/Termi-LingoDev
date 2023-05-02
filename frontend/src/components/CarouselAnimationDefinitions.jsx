@@ -39,10 +39,10 @@ const Card = ({title,concept,alertShow,alertToggleShow}) => {
   )}
 };
 
-const Carousel = ({children}) => {
+const Carousel = ({children,concept}) => {
   const dispatch =useDispatch();
 
-  const {concept}=useSelector(state=>state.concept)
+  // const {concept}=useSelector(state=>state.concept)
   const [active, setActive] = useState(2);
   const count = React.Children.count(children);
   const [position, setPosition] = useState(0);
@@ -135,9 +135,9 @@ const Carousel = ({children}) => {
   );
 };
 
-const CarouselAnimationDefinitions= ({alertShow,alertToggleShow}) => {
+const CarouselAnimationDefinitions= ({alertShow,alertToggleShow,concept}) => {
   
-    const {concept}= useSelector(state=>state.concept)
+    // const {concept}= useSelector(state=>state.concept)
   
     return(
     <div className=' row' id='body'>

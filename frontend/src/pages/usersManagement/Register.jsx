@@ -293,9 +293,7 @@ function Register(){
             <button className='custom-btn btn-r'  type='submit' style={{"z-index": "0"}}>{t('register')}</button>
 
             </div>
-            <div className='mt-4'>
-                <Link to='/login' className='text-primary text-decoration-underline'><h4>Login</h4></Link>
-            </div>
+
 
             </form>
             </>)}

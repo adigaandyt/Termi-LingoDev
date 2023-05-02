@@ -50,6 +50,7 @@ export  const openAiSlice=createSlice({
             state.isOpenAiLoading=false;
             state.isOpenAiSuccess=true;
             state.openAiMessage='';
+            console.log("slice openai openAiConcept",action.payload)
             state.openAiConcept=action.payload
 
         })
@@ -63,6 +64,8 @@ export  const openAiSlice=createSlice({
         })
         .addCase(getConceptByOpenAiAPIRequest.pending,(state)=>{
             state.isOpenAiLoading=true;
+            state.isOpenAiSuccess=false;
+            state.isOpenAiError=false;
 
         })
 

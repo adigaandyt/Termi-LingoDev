@@ -77,18 +77,26 @@ function Profile(){
           <button>more</button>
         </div> */}
         
-        <div className='border-top mt-2'>
-         <h3 className='mt-2 mx-2'>{t('games_graph')}</h3>
-         
-        <GamesRecharts />
-        </div>
+     
        
 
       </div>
       <div className=" col-sm-8 border-sm-start border-top   ">
-       <AddedConceptsRechart/>
-       
+        <div className='row'>
 
+      
+      <div className='col-sm-6 mt-2'>
+         <h3 className='mt-2 mx-2'>{t('games_graph')}</h3>
+         
+        <GamesRecharts />
+        </div>
+
+      <div className='col-sm-6 mt-2'>
+        <h3 className='mt-2 mx-2'>{t('conceptsAdded_graph')}</h3>
+        <AddedConceptsRechart/>
+      </div>
+       
+      </div>
         
         
         <h3 className='mt-2 mx-2'>{t('details')}</h3>

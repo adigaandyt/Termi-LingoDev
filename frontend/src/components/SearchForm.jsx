@@ -84,6 +84,7 @@ import { getConceptByOpenAiAPIRequest,resetOpenAi } from '../features/openAi/ope
                 shortDefinition_arabic:openAiConcept.shortDefinition.arabic,
                 shortDefinition_hebrew:openAiConcept.shortDefinition.hebrew,
                 categoryId:openAiConcept.categories[0],
+                isOpenAi:true,
                 readMore:null
             }
             dispatch(createNewConceptByUser(data))

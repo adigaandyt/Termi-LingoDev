@@ -6,6 +6,7 @@ import gamesReducer from '../features/Games/gamesSlice'
 import loggingReducer from '../features/logging/loggingSlice'
 import favReducer from '../features/fav/favSlice'
 import openAiReducer from '../features/openAi/openAiSlice'
+import conceptProfileReducer from '../features/conceptsProfile/conceptProfileSlice'
 
 export const store = configureStore({
   reducer: {
@@ -15,7 +16,8 @@ export const store = configureStore({
     games:gamesReducer,
     log:loggingReducer,
     fav:favReducer,
-    openAi:openAiReducer
+    openAi:openAiReducer,
+    conceptsProfile:conceptProfileReducer
   },
     
 });

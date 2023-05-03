@@ -1,13 +1,14 @@
 import { MDBCollapse, MDBBtn, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import { useSelector } from 'react-redux';
 import { useTranslation } from "react-i18next"
-import {FiEdit2} from 'react-icons/fi'
-import {BiShow,BiHide} from 'react-icons/bi'
+import {FiEdit2} from 'react-icons/fi';
+import {BiShow,BiHide, BiLink} from 'react-icons/bi';
 import React, { useState } from 'react';
 import { getConceptName,categoryById } from '../hooks/ExportsFunctions';
 import "../styles/Inputs.css"
 import {GrTextAlignCenter} from 'react-icons/gr'
 import {RxTextAlignCenter} from 'react-icons/rx'
+import {HiOutlineBars2, HiOutlineBars3} from 'react-icons/hi2'
 import {MdMoreHoriz} from 'react-icons/md';
 import Rating from 'react-rating'
 import {AiOutlineStar,AiFillStar} from 'react-icons/ai'
@@ -116,7 +117,7 @@ function Definitions({concept,languageChoosed,alertShow,alertToggleShow}){
                     <div className="button">
                     <div className="button-text">
                     <a  target='_blank' href={concept&&concept.readMore} >
-                    <MdMoreHoriz  className='mx-3 m-1 text-primary' style={{"fontSize":"200%"}}>{t('show_both_definitions')} </MdMoreHoriz>
+                    <BiLink  className='mx-3 m-1 text-primary' style={{"fontSize":"200%"}}>{t('show_both_definitions')} </BiLink>
                     </a>
                     </div>
                     </div>
@@ -125,7 +126,7 @@ function Definitions({concept,languageChoosed,alertShow,alertToggleShow}){
             <div className="button-container">
                     <div className={showShortDefinition?"button button-clicked":"button"} onClick={toggleLongDefinition}>
                     <div className="button-text" >
-                    <RxTextAlignCenter  className=' ' style={{"fontSize":"180%"}}/>
+                    <HiOutlineBars2  className=' ' style={{"fontSize":"180%"}}/>
                     </div>
                     </div>
                     <div className="button-outline"></div>
@@ -133,7 +134,7 @@ function Definitions({concept,languageChoosed,alertShow,alertToggleShow}){
             <div className="button-container">
                     <div className={showLongDefinition?"button button-clicked":"button"} onClick={toggleShortDefinition}>
                     <div className="button-text" >
-                    <GrTextAlignCenter id='icon-clicked'  className='mx-3 m-1' style={{"fontSize":"180%"}}/> 
+                    <HiOutlineBars3 id='icon-clicked'  className='mx-3 m-1' style={{"fontSize":"180%"}}/> 
                     </div>
                     </div>
                     <div className="button-outline"></div>

@@ -1,7 +1,7 @@
 const express=require('express')
 const {
      getConcept ,
-     testConcept,
+     getConceptByOpenAi,
       getConceptsNames,
       getConcepts,
       getConceptsByUserId,
@@ -11,13 +11,14 @@ const {
       creactNewConceptByUser,
       getUnAcceptedConcepts,
       updateConceptByAdmin,
-      deleteConceptByAdmin
+      deleteConceptByAdmin,
+      updateConceptByUser
     } = require('../Controllers/conceptControllers')
 const router=express.Router()
 const {protect}=require("../middleware/authMiddleware")
 
 router.post('/get/concept/:categoryId',getConcept)
-router.post('/test',testConcept)
+router.post('/get/concept/openai/api/:categoryId',getConceptByOpenAi)
 router.get('/get/concepts/:textsearch',getConcepts)
 router.get('/get/names',getConceptsNames)
 router.get('/get/concepts/not/accepted',protect,getUnAcceptedConcepts)
@@ -27,6 +28,7 @@ router.get('/get/concepts/games/game1/guesstheterm/:categoryId',protect,getConce
 router.get('/get/concepts/games/game2/transme',protect,getConceptsNamesByUserId)
 router.get('/get/concepts/games/game2/transme/:categoryid',protect,getConceptNamesBycategoryId)
 router.post('/update/concept/by/admin',protect,updateConceptByAdmin)
+router.post('/update/concept/by/user',protect,updateConceptByUser)
 router.delete('/delete/comcept/by/admin/:conceptId',deleteConceptByAdmin)
 
 

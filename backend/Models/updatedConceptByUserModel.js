@@ -1,12 +1,6 @@
 const mongoose=require('mongoose')
 
-const conceptSchema=mongoose.Schema({
-    categories:[{
-        type:mongoose.Schema.Types.ObjectId,
-        required:true,
-        ref:'Category'
-    }],
-
+const updatedConceptSchema=mongoose.Schema({
     shortDefinition:{
         type:Object,
         // required:[true,'Please add short definition'],
@@ -46,30 +40,19 @@ const conceptSchema=mongoose.Schema({
             type:String
         }
     },
-    suggestedBy:{
-        type:String
-    },
-    suggestedBy_userId:{
+    updatedBy:{
         type:mongoose.Schema.Types.ObjectId,
         required:true,
         ref:'User'
     },
-    isOpenAi:{
-        type:Boolean,
-        default:false
+    conceptId:{
+        type:mongoose.Schema.Types.ObjectId,
+        required:true,
+        ref:'Concept'
     },
 
     readMore:{
         type:String,
-
     },
-    accepted:{
-        type:Boolean,
-        default:false
-    }
-    
-    
-
-})
-conceptSchema.index({ 'conceptName.english': 'text'});
-module.exports=mongoose.model('Concept',conceptSchema)
+},{ timestamps: true })
+module.exports=mongoose.model('UpdatedConcept',updatedConceptSchema)

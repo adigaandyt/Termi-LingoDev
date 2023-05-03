@@ -39,10 +39,10 @@ const Card = ({title,concept,alertShow,alertToggleShow}) => {
   )}
 };
 
-const Carousel = ({children}) => {
+const Carousel = ({children,concept}) => {
   const dispatch =useDispatch();
 
-  const {concept}=useSelector(state=>state.concept)
+  // const {concept}=useSelector(state=>state.concept)
   const [active, setActive] = useState(2);
   const count = React.Children.count(children);
   const [position, setPosition] = useState(0);
@@ -135,18 +135,21 @@ const Carousel = ({children}) => {
   );
 };
 
-const CarouselAnimationDefinitions= ({alertShow,alertToggleShow}) => {
+const CarouselAnimationDefinitions= ({alertShow,alertToggleShow,concept}) => {
   
-    const {concept}= useSelector(state=>state.concept)
+    // const {concept}= useSelector(state=>state.concept)
   
     return(
-    <div className=' ' id='body'>
+    <div className=' row' id='body'>
+         
+
       <Carousel concept={concept}>
         {[...new Array(CARDS)].map((_, i) => (
           <Card alertShow={alertShow} alertToggleShow={alertToggleShow} concept={concept} title={ (i + 1)} content='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'/>
         ))}
   
       </Carousel>
+
     </div>
   )};
   

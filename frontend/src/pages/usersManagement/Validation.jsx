@@ -43,11 +43,11 @@ function Validation(){
     {isLoading&&<Spinner/>}
     <div className="mt-150 text-center">
         <MdVerifiedUser className='text-success display-2'/>
-        <h3>Verify your data</h3>
+        <h3>{t('verifyData')}</h3>
         <div className='container mt-3 text-center '>
         <div className="form-floating  mb-3 ">
             <input  type="email" className="form-control " id="floatingInput" name='email' value={email} placeholder="name@example.com" onChange={onChange}/>
-            <label for="floatingInput">{t('email_adress')}</label>
+            <label for="floatingInput">{t('email_adrress')}</label>
         </div>
         <div className="form-floating">
             <input type="text" className="form-control" id="floatingtext" name='favorite_pet' value={favorite_pet} placeholder={t('favorite_pet')} onChange={onChange}/>

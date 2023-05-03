@@ -16,15 +16,21 @@ import ConceptCardsList from '../components/ConceptCardsList'
 import CatouselDefinition from '../components/CaroselDefinition'
 import Spinner from '../components/Spinner'
 import CarouselAnimationDefinitions from '../components/CarouselAnimationDefinitions'
-import UserCard from '../components/UserCard'
+import UserCard from '../components/UserCard' 
+import Rating from 'react-rating'
+import {AiOutlineStar, AiFillStar} from 'react-icons/ai'
+import {SiOpenai} from 'react-icons/si'
 import Saleh from '../components/Saleh'
 import ShareConcepts from '../components/ShareConcepts'
 import EditConceptAlertByUserModal from '../components/modals/EditConceptAlertByUserModal'
+import EditConceptFormByUserModal from '../components/modals/EditConceptFormByUserModal'
+import { getConceptByOpenAiAPIRequest, resetOpenAiConcept } from '../features/openAi/openAiSlice'
 
 
 
 function Home(){
     const [alertShow,alertToggleShow]=useState(false)
+    const [formShow,toggleFormShow]=useState(false)
     const {t}=useTranslation()
     const {textSearch,categoryID}=useParams()
     //back office
@@ -39,9 +45,11 @@ function Home(){
 
     const {english,hebrew,arabic}=languageChoosed
     const {isCategorySuccess,isCategoryError}=useSelector(state=>state.category)
+    const {isOpenAiLoading}=useSelector(state=>state.openAi)
     const dispatch=useDispatch()
     const {user} =useSelector(state=>state.auth)
     const {concepts,names,concept,isLoading}=useSelector(state=>state.concept)
+    const {openAiConcept}=useSelector(state=>state.openAi)
     const {categories}=useSelector(state=>state.category)
     // const [categoryId,setCategoryId]=useState('639e49f8dfabd615c821584f')
 
@@ -74,9 +82,15 @@ function Home(){
             })
         })
     }
-  
+//   const getOpenAiConcept=(e)=>{
+//     e.preventDefault()
+//     dispatch(getConceptByOpenAiAPIRequest({textSearch:textSearch,categoryId:categoryID}))
+//   }
     return (<>
-    <EditConceptAlertByUserModal alertShow={alertShow} alertToggleShow={alertToggleShow}/>
+    {concept&&
+    <EditConceptFormByUserModal concept={concept} index={concept._id} formShow={formShow} toggleFormShow={toggleFormShow} />
+    }
+    <EditConceptAlertByUserModal alertShow={alertShow} alertToggleShow={alertToggleShow} toggleFormShow={toggleFormShow}/>
          <div  className=' mt-150' > 
         <div className='  mt-5 '>
           {isLoading&&<Spinner/>}
@@ -88,14 +102,25 @@ function Home(){
                 </div>
               
             
-          
+                    {/* <button onClick={()=>{dispatch(resetOpenAiConcept())}}>reset</button> */}
                 <SearchForm conceptSearch={conceptSearch} setConceptSearch={setConceptSearch} categoryId={categoryId} setCategoryId={setCategoryId}/> 
-                {concept&&<div className='mt-2'>
-                <ShareConcepts/>
-                <CarouselAnimationDefinitions alertShow={alertShow} alertToggleShow={alertToggleShow}/>
+                {concept?<div className='mt-2'>
+
+                <CarouselAnimationDefinitions concept={concept} alertShow={alertShow} alertToggleShow={alertToggleShow}/>
+
 
                 
+                 </div>:(openAiConcept&&<>
+                <CarouselAnimationDefinitions concept={openAiConcept} alertShow={alertShow} alertToggleShow={alertToggleShow}/>
+
+                 </>)}
+                 {isOpenAiLoading&&<div className='text-center mt-2'>
+
+                <button id='gpt-button' disabled className='btn display-3 display-inlne-block ' style={{backgroundColor:"#353740",color:"#acacbe"}}><SiOpenai className='display-5 mx-2' id='gpt_spinner'/>  Typing...</button>
                  </div>}
+                {/* <Spinner_GPT/> */}
+
+                 
                 {concepts&&<div  className='center '>
                 <hr className=' mb-3  '/>
                 <h3>{t('suggestions_for_you')}:</h3>

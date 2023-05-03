@@ -1,6 +1,7 @@
 import { MDBCollapse, MDBBtn, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import { useSelector } from 'react-redux';
 import { useTranslation } from "react-i18next"
+import {FiEdit2} from 'react-icons/fi'
 import {BiShow,BiHide} from 'react-icons/bi'
 import React, { useState } from 'react';
 import { getConceptName,categoryById } from '../hooks/ExportsFunctions';
@@ -8,11 +9,17 @@ import "../styles/Inputs.css"
 import {GrTextAlignCenter} from 'react-icons/gr'
 import {RxTextAlignCenter} from 'react-icons/rx'
 import {MdMoreHoriz} from 'react-icons/md';
+import AddToFavorites from './AddToFavorites';
+import Rating from 'react-rating'
+import {AiOutlineStar,AiFillStar} from 'react-icons/ai'
+import ShareConcepts from '../components/ShareConcepts'
 
 
 
 function Definitions({concept,languageChoosed,alertShow,alertToggleShow}){
     const {categories}=useSelector(state=>state.category)
+    const {conceptRating}=useSelector(state=>state.concept)
+
     const { t }=useTranslation();
     const getDefinition=(isLong)=>{
         let definition="" 
@@ -50,7 +57,7 @@ function Definitions({concept,languageChoosed,alertShow,alertToggleShow}){
 
     const [showShortDefinition, setShowShortDefinition] = useState(false);
     const [showLongDefinition, setShowLongDefinition] = useState(false);
-  
+    const {user}=useSelector(state=>state.auth);
     const toggleLongDefinition = () =>{
          setShowShortDefinition(!showShortDefinition)
          setShowLongDefinition(false)
@@ -80,11 +87,26 @@ function Definitions({concept,languageChoosed,alertShow,alertToggleShow}){
             {languageChoosed.english&&<img className=' mt-2 ' src={require('../flags/united-states-xs.gif')}/>}
             {languageChoosed.arabic&&<img className='mt-2' src={require('../flags/saudi-arabia-xs.gif')}/>}
         </div>
+        {/* check if i need add to favorit , when open ai response  */}
+        <AddToFavorites userId={user._id} cardId={concept._id}/>
         <div className='col-11 text-end'>
             <h3 className="text-dark mb-3 mt-2" id="conceptName">{concept&&getConceptName(languageChoosed,concept)}</h3> 
             <div className=''>
                 <h5 className=''>{concept&&categoryById(concept.categories[0],languageChoosed,categories)}</h5>
-                <button className='btn' onClick={()=>alertToggleShow(!alertShow)}>sake</button>
+                <div className='row'>
+
+                
+                <Rating className='col-10'
+                    placeholderRating={conceptRating||0}
+                    readonly={true}
+                    emptySymbol={<AiOutlineStar id="AiOutlineStar" className='icon display-4'/>}
+                    placeholderSymbol={<AiFillStar id="AiOutlineStar" className='icon text-warning display-4'/>}
+                    fullSymbol={<AiFillStar id="AiOutlineStar" className='icon text-warning display-4'/>}
+                />
+                {concept.accepted&&<button className='' onClick={()=>alertToggleShow(!alertShow)} id="editButtonConcept" ><FiEdit2 className='text-success'/></button>}
+                </div>
+                <ShareConcepts concept={concept}/>
+
             </div>
         </div>        
         </div>
@@ -132,27 +154,9 @@ function Definitions({concept,languageChoosed,alertShow,alertToggleShow}){
           
           </MDBCollapse>
         </MDBCol>
-        {/* <table>
-                <tr>
-                    <td>Rating</td>
-                    <td>
-                        <div class="rate">
-                            <input type="radio" id="star5" name="rate" value="5" />
-                            <label for="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4" />
-                            <label for="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3" />
-                            <label for="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2" />
-                            <label for="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1" />
-                            <label for="star1" title="text">1 star</label>
-                        </div>
-                    </td>
-                    
-                </tr>
-                
-            </table> */}
+
+
+    
         </div>
         <div className=''>
             {showLongDefinition&&<MDBCol className='scroll' id="scroll-style">

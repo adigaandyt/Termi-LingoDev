@@ -6,6 +6,7 @@ import { getConceptName,getCategoryName1,getConceptNameCookies,getCategoryName }
 
 import '../styles/SearchForm.css'
 import { useNavigate } from "react-router-dom"
+import { resetOpenAiConcept } from "../features/openAi/openAiSlice"
 
 function ConceptCard({concept,languageChoosed,conceptSearch,categoryId}){
     const {t} =useTranslation();
@@ -37,6 +38,7 @@ function ConceptCard({concept,languageChoosed,conceptSearch,categoryId}){
     dispatch(setConceptSearchLog(backOfficeData))
     dispatch(getConcept({textSearch:concept.conceptName.english,categoryId:concept.categories[0]}));
     dispatch(resetConcept());
+    dispatch(resetOpenAiConcept());
 
     }
     

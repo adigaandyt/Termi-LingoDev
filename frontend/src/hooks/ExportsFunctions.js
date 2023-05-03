@@ -98,8 +98,11 @@ export const getCategoryName1=(categoryNames,languageChoosed)=>{
 
     
     }
-    
 
+    // Pass concept and return concept Id.
+    export const getConceptId=(concept)=>{
+        return concept._id
+    }
 
 
 

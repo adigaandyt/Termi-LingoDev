@@ -14,6 +14,7 @@ import Spinner from '../../components/Spinner';
 import { useTranslation } from 'react-i18next';
 import TestComponent from '../TestComponent';
 import GamesRecharts from '../../components/recharts/GamesRecharts';
+import AddedConceptsRechart from '../../components/recharts/AddedConceptsRechart';
 function Profile(){
   const dispatch=useDispatch();
   const {t}=useTranslation();
@@ -85,7 +86,7 @@ function Profile(){
 
       </div>
       <div className=" col-sm-8 border-sm-start border-top   ">
-       
+       <AddedConceptsRechart/>
        
 
         

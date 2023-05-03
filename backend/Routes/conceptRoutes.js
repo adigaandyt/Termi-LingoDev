@@ -14,6 +14,7 @@ const {
       deleteConceptByAdmin,
       updateConceptByUser
     } = require('../Controllers/conceptControllers')
+    const {getConceptsAddedByUser,getUsersAddedConceptRating}=require('../Controllers/conceptsProfileUserController')
 const router=express.Router()
 const {protect}=require("../middleware/authMiddleware")
 
@@ -30,6 +31,10 @@ router.get('/get/concepts/games/game2/transme/:categoryid',protect,getConceptNam
 router.post('/update/concept/by/admin',protect,updateConceptByAdmin)
 router.post('/update/concept/by/user',protect,updateConceptByUser)
 router.delete('/delete/comcept/by/admin/:conceptId',deleteConceptByAdmin)
+
+//Routes for the profile page about concepts that added / liked(favorite) / last 3 searched
+router.get('/get/concepts/added/by/user',protect,getConceptsAddedByUser);
+router.get('/get/users/addedConcept/rating',protect,getUsersAddedConceptRating);
 
 
 

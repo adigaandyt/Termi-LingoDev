@@ -225,7 +225,7 @@ const loginUser=asyncHandler( async (req,res)=>{
             res.status(200).json(userData)
         }else{
             res.status(401)
-            throw new Error('validation faild')
+            throw new Error('validation failed')
         }
     } catch (error) {
         res.status(500)

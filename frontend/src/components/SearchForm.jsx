@@ -3,12 +3,12 @@ import { Input } from 'mdb-ui-kit'; // module
 import { useEffect,useState,useLayoutEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {useSelector,useDispatch} from 'react-redux'
-import {getCategories} from '../features/categories/categorySlice'
-import {getConcept,getConceptsNames,resetConcept,getConcepts,setConceptSearchLog} from '../features/concepts/conceptSlice'
+import {getConcept,getConceptsNames,resetConcept,getConcepts,setConceptSearchLog, reset, createNewConceptByUser} from '../features/concepts/conceptSlice'
 import {useTranslation} from 'react-i18next'
 import {getCategoryName} from '../hooks/ExportsFunctions'
 import NoConceptResultModal from './modals/NoConceptResultModal'
 import '../styles/CircleBar.css'
+import { getConceptByOpenAiAPIRequest,resetOpenAi } from '../features/openAi/openAiSlice';
 
 
 
@@ -20,15 +20,22 @@ import '../styles/CircleBar.css'
     const dispatch =useDispatch();
     const navigate=useNavigate()
     const [isStart,setIsStart]=useState(true);
-    const {concepts,names,concept,isLoading}=useSelector(state=>state.concept);
+    const {concepts,names,concept,isLoading,isSuccess,isError,
+        isSingleConceptError,
+        isSingleConceptLoading,
+        isSingleConceptSuccess,
+        singleConceptMessage}=useSelector(state=>state.concept);
     const {categories}=useSelector(state=>state.category);
+    const {isOpenAiLoading,openAiMessage,isOpenAiSuccess,isOpenAiError,openAiConcept}=useSelector(state=>state.openAi);
 
-    // const [conceptSearch,setConceptSearch]=useState('');
-    // const [categoryId,setCategoryId]=useState('639e49f8dfabd615c821584f')
 
     useEffect(()=>{
         dispatch(getConceptsNames())
     },[]);
+    useLayoutEffect(()=>{
+        if(isError||isSuccess)
+        dispatch(reset());
+    },[isSuccess,isError])
     useLayoutEffect(()=>{
         if(concept){
             if(conceptSearch===concept.conceptName.english||conceptSearch===concept.conceptName.arabic||conceptSearch===concept.conceptName.hebrew){
@@ -44,13 +51,50 @@ import '../styles/CircleBar.css'
             }
         }
     },[concept])
+    useLayoutEffect(()=>{
+        if(isSingleConceptSuccess&&!concept){
+            dispatch(getConceptByOpenAiAPIRequest({textSearch:conceptSearch,categoryId:categoryId}))
+            // dispatch(getConceptByOpenAiAPIRequest({textSearch:conceptSearch,categoryId:categoryId}))
+        }
+        dispatch(reset())
+    },[isSingleConceptError,isSingleConceptSuccess])
+    useLayoutEffect(()=>{
+        console.log('error',isOpenAiError ,'success',isOpenAiSuccess)
+        if(isOpenAiError||isOpenAiSuccess){
+            dispatch(resetOpenAi())
+        }
+        if(isError){
+            console.log(openAiMessage)
+        }
 
+
+    },[isOpenAiSuccess,isOpenAiError])
+    useLayoutEffect(()=>{
+
+        if(openAiConcept){
+            // Todo : add the concept tot the database with status unAccepted
+            const data={
+                conceptName_english:openAiConcept.conceptName.english,
+                conceptName_arabic:openAiConcept.conceptName.arabic,
+                conceptName_hebrew:openAiConcept.conceptName.hebrew,
+                longDefinition_english:openAiConcept.longDefinition.english,
+                longDefinition_arabic:openAiConcept.longDefinition.arabic,
+                longDefinition_hebrew:openAiConcept.longDefinition.hebrew,
+                shortDefinition_english:openAiConcept.shortDefinition.english,
+                shortDefinition_arabic:openAiConcept.shortDefinition.arabic,
+                shortDefinition_hebrew:openAiConcept.shortDefinition.hebrew,
+                categoryId:openAiConcept.categories[0],
+                readMore:null
+            }
+            dispatch(createNewConceptByUser(data))
+        }
+
+    },[openAiConcept])
     const onSearchClick=(e)=>{
         e.preventDefault()
         navigate(`/search/${conceptSearch}/${categoryId}`)
 
-        if(conceptSearch.length>3){
-
+        if(conceptSearch.length>2){
           dispatch(getConcept({textSearch:conceptSearch,categoryId:categoryId}))
           dispatch(getConcepts({data:conceptSearch}))
           setIsStart(false)
@@ -67,7 +111,7 @@ import '../styles/CircleBar.css'
     }
 
     return(<>
-       {(!isStart&&!concept&&!isLoading)&&<NoConceptResultModal/>}
+       {(!isStart&&!concept&&!isLoading&&!isSingleConceptLoading&&!isOpenAiLoading&&!openAiConcept)&&<NoConceptResultModal/>}
         <form onSubmit={onSearchClick}>
         <div dir='ltr' className='container ' id='formsearch'>
             <div className='' id='formSearch-item'>

@@ -6,6 +6,8 @@ const UpdatedConcept=require('../Models/updatedConceptByUserModel')
 const ConceptSearch=require('../Models/conceptSearchModel')
 const _ = require('lodash');
 const { findById } = require('../Models/conceptsModel');
+const { Configuration, OpenAIApi }=require("openai") ;
+
 
 //add "639d8f0987cdf6706e335db9" to all arrays in the database
     //    concept=await Concept.updateMany(
@@ -19,21 +21,110 @@ const { findById } = require('../Models/conceptsModel');
     
 
 
- //@desc testing in postman !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//@route POST /api/concepts/test 
+ //@desc get concept by open ai api request 
+//@route POST /api/concepts/openai/api/:categoryId
 //@access private
-const testConcept=asyncHandler( async(req,res)=>{
-    
-
+const getConceptByOpenAi=asyncHandler( async(req,res)=>{
+    const {textSearch}=req.body
+    const {categoryId}=req.params
+    // console.log('<--------***textSearch,categoryId***------------->')
+    // console.log(textSearch,categoryId)
+    // console.log('<--------******------------->')
 
     try {
-    //    concept=await Concept.updateMany({}, { $set: { accepted: true } });
-    // const user=await User.updateMany({},{added_concepts:0},{new:true})
-    // res.status(200).json(user)
+        const category=await Category.findById({_id:categoryId})
+        const configuration = new Configuration({
+            apiKey: process.env.OPENAI_API_KEY, 
+            
+        });
+        const openai = new OpenAIApi(configuration);
+
+        const conceptName_languages = await openai.createCompletion({
+            model: "text-davinci-003",
+            prompt: `Translate this word Arabic, Hebrew and English:\n\n${textSearch}\n\n ,return the result in json format with the names english ,hebrew and arabic `,
+            temperature: 1,
+            max_tokens: 300,
+            top_p: 1.0,
+            frequency_penalty: 0.0,
+            presence_penalty: 0.0,
+        });
+    console.log('<--------***conceptName_languages***------------->')
+    console.log( conceptName_languages.data.choices[0].text)
+    console.log('<--------******------------->')
+
+
+        const conceptNameText = conceptName_languages.data.choices[0].text.trim();
+        const parsedConceptNamesResponse = JSON.parse(conceptNameText);
+        // res.json(parsedConceptNamesResponse)
+
+        const response = await openai.createCompletion({
+            model: "text-davinci-003",
+            prompt: `Give me short description of 1 sentence and short description of 30 words max,  about ${textSearch} in ${category.categoryName.english},return the result in json format with the names shortDefinition and longDefinition. `,
+            max_tokens: 200,
+            temperature:1
+        });
+        const responseText = response.data.choices[0].text.trim();
+        const parsedResponse = JSON.parse(responseText);
+        // console.log(parsedResponse)
+        //   res.json(parsedResponse)
+
+        const shortDefinition_languages = await openai.createCompletion({
+            model: "text-davinci-003",
+            prompt: `Translate this into Arabic, Hebrew and English:\n\n${parsedResponse.shortDefinition}\n\n ,return the result with json format with the names english ,hebrew and arabic `,
+            temperature: 0.3,
+            max_tokens: 300,
+            top_p: 1.0,
+            frequency_penalty: 0.0,
+            presence_penalty: 0.0,
+        });
+        const shortDefintionText = shortDefinition_languages.data.choices[0].text.trim();
+        const parsedShortDefintionResponse = JSON.parse(shortDefintionText);
+        // res.json(parsedShortDefintionResponse)
+        const longDefinition_languages = await openai.createCompletion({
+            model: "text-davinci-003",
+            prompt: `Translate this into Arabic, Hebrew and English:\n\n${parsedResponse.longDefinition}\n\n ,return the result with json format with the names english ,hebrew and arabic `,
+            temperature: 1,
+            max_tokens:1000,
+            top_p: 1.0,
+            frequency_penalty: 0.0,
+            presence_penalty: 0.0,
+        });
+        // console.log(longDefinition_languages.data.choices[0].text)
+        const longDefintionText = longDefinition_languages.data.choices[0].text.trim();
+        const parsedLongDefintionResponse = JSON.parse(longDefintionText);
+        // res.send(parsedLongDefintionResponse )
+        const finalResponse={
+            conceptName:{
+                english:parsedConceptNamesResponse.English||parsedConceptNamesResponse.english,
+                hebrew:parsedConceptNamesResponse.Hebrew||parsedConceptNamesResponse.hebrew,
+                arabic:parsedConceptNamesResponse.Arabic||parsedConceptNamesResponse.arabic
+            },
+            shortDefinition: {
+                english:parsedShortDefintionResponse.English||parsedShortDefintionResponse.english,
+                hebrew:parsedShortDefintionResponse.Hebrew||parsedShortDefintionResponse.hebrew,
+                arabic:parsedShortDefintionResponse.Arabic||parsedShortDefintionResponse.arabic
+            },
+            longDefinition: {
+                english:parsedLongDefintionResponse.English||parsedLongDefintionResponse.english,
+                hebrew:parsedLongDefintionResponse.Hebrew||parsedLongDefintionResponse.hebrew,
+                arabic:parsedLongDefintionResponse.Arabic||parsedLongDefintionResponse.arabic
+            },
+            categories:[categoryId]
+        }
+        console.log('<--------***final response***------------->')
+        console.log('final response',finalResponse)
+        console.log('<--------******------------->')
+
+        res.json(finalResponse)
+
+        
     } catch (error) {
         res.status(500)
-        throw new Error("Some thing is wrong !" )
+        throw new Error(error)
     }
+    // res.send("longDefinition_hebrew",process.env.OPENAI_API_KEY)
+
+
     
 
 })
@@ -42,7 +133,7 @@ const testConcept=asyncHandler( async(req,res)=>{
 
 
  //@desc get single concept
-//@route GET api/concepts/get/concept/:categoryId
+//@route GET api/concepts/get/concept/openai/api/:categoryId
 //@access private
 const getConcept=asyncHandler( async(req,res)=>{
     let concept
@@ -142,6 +233,11 @@ const getConceptsNames=asyncHandler( async(req,res)=>{
      res.status(200).json(conceptsNames)
     
     })
+
+
+
+
+
 
 //@desc get concepts that user search for 
 //@route GET /api/concepts/get/concepts/:textsearch
@@ -316,7 +412,14 @@ if(
     ||
     (!data.categoryId)
     ){
+        console.log(data.conceptName_hebrew)
         console.log(" missing details")
+        console.log(data)
+
+
+        
+
+
         res.status(400)
         throw new Error("Missing details")
     }
@@ -352,6 +455,7 @@ shortDefinition:{
 categories:[data.categoryId,'639e49f8dfabd615c821584f'],
 suggestedBy:user.name,
 suggestedBy_userId:user._id,
+isOpenAi:data.isOpenAi?true:false,
 readMore:data.readMore?data.readMore:"N/A",
 
 
@@ -491,7 +595,7 @@ const deleteConceptByAdmin=asyncHandler( async(req,res)=>{
 
 module.exports={
    getConcept,
-   testConcept,
+   getConceptByOpenAi,
    getConceptsNames,
    getConcepts,
    getConceptsByUserId,

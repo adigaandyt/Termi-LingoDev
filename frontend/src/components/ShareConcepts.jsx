@@ -25,8 +25,8 @@ import {
     LinkedinIcon,
     TwitterIcon
   } from "react-share";
-function ShareConcepts(){
-    const {concept}=useSelector(state=>state.concept)
+function ShareConcepts({concept}){
+    // const {concept}=useSelector(state=>state.concept)
     const URL=`dir.y2022.kinneret.cc:7090/search/${encodeURIComponent(concept.conceptName.english)}/${encodeURIComponent(concept.categories[0])}`
     return(<>
     <div className="text-center m-2">

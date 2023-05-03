@@ -199,7 +199,7 @@ if(isCategorySuccess){
                 </div>
                 
                 <div dir='ltr' className="container-fluid">
-                <button type="button" class="btn btn-warning pull-right mt-3"   onClick={onSubmitClick} >{t('submit')}</button>
+                <button type="button" class="btn btn-success pull-right mt-3"   onClick={onSubmitClick} >{t('submit')}</button>
             
                 <div  className="form-group mt-2 col-5 " id="reg-dropdown">
                 

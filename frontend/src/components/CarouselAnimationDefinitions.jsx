@@ -140,7 +140,7 @@ const CarouselAnimationDefinitions= ({alertShow,alertToggleShow,concept}) => {
     // const {concept}= useSelector(state=>state.concept)
   
     return(
-    <div className=' row' id='body'>
+    <div  dir='ltr' className=' row' id='body'>
          
 
       <Carousel concept={concept}>

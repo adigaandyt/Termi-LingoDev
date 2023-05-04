@@ -15,8 +15,10 @@ import { useTranslation } from 'react-i18next';
 import TestComponent from '../TestComponent';
 import GamesRecharts from '../../components/recharts/GamesRecharts';
 import ConceptsAddedCard from '../../components/ConceptsAddedCard';
+import ConceptsAddedList from '../../components/ConceptsAddedList';
 import AddedConceptsRechart from '../../components/recharts/AddedConceptsRechart';
 function Profile(){
+  const [showConceptsAdded,setShowConceptsAdded]=useState(false)
   const dispatch=useDispatch();
   const {t}=useTranslation();
   const {name,email,profile_image,status,games_coins,gender,added_concepts} =useSelector(state=>state.auth.user)
@@ -96,20 +98,7 @@ function Profile(){
       <div className='bg-secondary my-1'>last searches </div>  
       <div className='bg-secondary my-1'>concepts favorite </div>  
       <div className='bg-secondary my-1'>concepts added </div>  
-      <div className="row w-100 text-center" style={{"margin":"auto"}}>
-      <div className=' col-sm-8 col-md-6 col-lg-4 my-1'>
-      <ConceptsAddedCard/>
-      </div>
-      <div className=' col-sm-8 col-md-6 col-lg-4 my-1'>
-      <ConceptsAddedCard/>
-      </div>
-      <div className=' col-sm-8 col-md-6 col-lg-4 my-1'>
-      <ConceptsAddedCard/>
-      </div>
-      <div className=' col-sm-8 col-md-6 col-lg-4 my-1'>
-      <ConceptsAddedCard/>
-      </div>
-      </div>
+      <ConceptsAddedList/>
  
        
       </div>

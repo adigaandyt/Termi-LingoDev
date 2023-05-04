@@ -14,6 +14,7 @@ import Spinner from '../../components/Spinner';
 import { useTranslation } from 'react-i18next';
 import TestComponent from '../TestComponent';
 import GamesRecharts from '../../components/recharts/GamesRecharts';
+import ConceptsAddedCard from '../../components/ConceptsAddedCard';
 function Profile(){
   const dispatch=useDispatch();
   const {t}=useTranslation();
@@ -75,6 +76,7 @@ function Profile(){
           <p>concept date added</p>
           <button>more</button>
         </div> */}
+       
         
         <div className='border-top mt-2'>
          <h3 className='mt-2 mx-2'>{t('games_graph')}</h3>
@@ -88,8 +90,23 @@ function Profile(){
        
        
 
-        
-        
+      <div className='bg-secondary my-1'>last searches </div>  
+      <div className='bg-secondary my-1'>concepts favorite </div>  
+      <div className='bg-secondary my-1'>concepts added </div>  
+      <div className="row w-100 text-center" style={{"margin":"auto"}}>
+      <div className=' col-sm-8 col-md-6 col-lg-4 my-1'>
+      <ConceptsAddedCard/>
+      </div>
+      <div className=' col-sm-8 col-md-6 col-lg-4 my-1'>
+      <ConceptsAddedCard/>
+      </div>
+      <div className=' col-sm-8 col-md-6 col-lg-4 my-1'>
+      <ConceptsAddedCard/>
+      </div>
+      <div className=' col-sm-8 col-md-6 col-lg-4 my-1'>
+      <ConceptsAddedCard/>
+      </div>
+      </div>
         <h3 className='mt-2 mx-2'>{t('details')}</h3>
         <button id="editbtn" disabled={isEdit} onClick={()=>setIsEdit(!isEdit)} className='btn btn-primary btn-sm  mx-2 '>{t('edit')}</button>
 

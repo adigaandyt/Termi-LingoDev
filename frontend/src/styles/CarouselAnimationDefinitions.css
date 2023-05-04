@@ -20,12 +20,12 @@
   .carousel {
     position: relative;
     width: 21rem;
-    height: 23rem;
+    height: 33rem;
     perspective: 500px;
     transform-style: preserve-3d;
   }
 
-  
+   
   .card-container {
     /* background-color: aqua; */ 
     position: absolute;

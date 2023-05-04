@@ -14,6 +14,7 @@ import Spinner from '../../components/Spinner';
 import { useTranslation } from 'react-i18next';
 import TestComponent from '../TestComponent';
 import GamesRecharts from '../../components/recharts/GamesRecharts';
+import ConceptsAddedCard from '../../components/ConceptsAddedCard';
 import AddedConceptsRechart from '../../components/recharts/AddedConceptsRechart';
 function Profile(){
   const dispatch=useDispatch();
@@ -60,10 +61,7 @@ function Profile(){
           <p className="d-inline-block">Status: </p>
           <h6 className="d-inline-block"> {status==='student'?(<p> Student</p>):(status==='employee'?<p> Employee</p>:<p> Student & Employee</p>)}</h6>
         </div>
-        <div className='mx-3 ' style={{"height":"23px"}} >
-          <p className="d-inline-block">{t('added_concepts')}: </p>
-          <h6 className="d-inline-block">{added_concepts}</h6>
-        </div>
+
         <div className='mx-3' style={{"height":"23px"}}>
           <p className="d-inline-block">{t('coins')}: </p>
           <h6 className="d-inline-block">{games_coins} <RiCoinsFill className='' style={{color:"#FFD700"}}/></h6>
@@ -76,7 +74,18 @@ function Profile(){
           <p>concept date added</p>
           <button>more</button>
         </div> */}
-        
+       
+             
+      <div className='border-bottom border-top mt-2'>
+         <h3 className='mt-2 mx-2'>{t('games_graph')}</h3>
+         
+        <GamesRecharts />
+        </div>
+
+      <div className='border-bottom mt-2'>
+        <h3 className='mt-2 mx-2'>{t('conceptsAdded_graph')}</h3>
+        <AddedConceptsRechart/>
+      </div>
      
        
 
@@ -84,17 +93,24 @@ function Profile(){
       <div className=" col-sm-8 border-sm-start border-top   ">
         <div className='row'>
 
-      
-      <div className='col-sm-6 mt-2'>
-         <h3 className='mt-2 mx-2'>{t('games_graph')}</h3>
-         
-        <GamesRecharts />
-        </div>
-
-      <div className='col-sm-6 mt-2'>
-        <h3 className='mt-2 mx-2'>{t('conceptsAdded_graph')}</h3>
-        <AddedConceptsRechart/>
+      <div className='bg-secondary my-1'>last searches </div>  
+      <div className='bg-secondary my-1'>concepts favorite </div>  
+      <div className='bg-secondary my-1'>concepts added </div>  
+      <div className="row w-100 text-center" style={{"margin":"auto"}}>
+      <div className=' col-sm-8 col-md-6 col-lg-4 my-1'>
+      <ConceptsAddedCard/>
       </div>
+      <div className=' col-sm-8 col-md-6 col-lg-4 my-1'>
+      <ConceptsAddedCard/>
+      </div>
+      <div className=' col-sm-8 col-md-6 col-lg-4 my-1'>
+      <ConceptsAddedCard/>
+      </div>
+      <div className=' col-sm-8 col-md-6 col-lg-4 my-1'>
+      <ConceptsAddedCard/>
+      </div>
+      </div>
+ 
        
       </div>
         
@@ -110,4 +126,4 @@ function Profile(){
 </div>
   </>)
 }
-export default Profile
+export default Profile

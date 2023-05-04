@@ -104,14 +104,16 @@ function Home(){
             
                     {/* <button onClick={()=>{dispatch(resetOpenAiConcept())}}>reset</button> */}
                 <SearchForm conceptSearch={conceptSearch} setConceptSearch={setConceptSearch} categoryId={categoryId} setCategoryId={setCategoryId}/> 
-                {concept?<div className='mt-2'>
+                {concept?
 
-                <CarouselAnimationDefinitions concept={concept} alertShow={alertShow} alertToggleShow={alertToggleShow}/>
+                <div dir='ltr' className='mt-2'>
+                    <CarouselAnimationDefinitions concept={concept} alertShow={alertShow} alertToggleShow={alertToggleShow}/>
+                </div>
+                :(openAiConcept&&<>
 
-
-                
-                 </div>:(openAiConcept&&<>
-                <CarouselAnimationDefinitions concept={openAiConcept} alertShow={alertShow} alertToggleShow={alertToggleShow}/>
+                <div  dir='ltr' className='mt-2'>
+                    <CarouselAnimationDefinitions concept={openAiConcept} alertShow={alertShow} alertToggleShow={alertToggleShow}/>
+                </div>
 
                  </>)}
                  {isOpenAiLoading&&<div className='text-center mt-2'>

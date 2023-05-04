@@ -30,6 +30,10 @@ const getConceptByOpenAi=asyncHandler( async(req,res)=>{
     // console.log('<--------***textSearch,categoryId***------------->')
     // console.log(textSearch,categoryId)
     // console.log('<--------******------------->')
+    if(categoryId=='639e49f8dfabd615c821584f'||!categoryId){
+        res.status(400)
+        throw new Error("Missing Category");
+    }
 
     try {
         const category=await Category.findById({_id:categoryId})

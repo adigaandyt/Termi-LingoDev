@@ -23,7 +23,8 @@ const getConceptsAddedByUser=asyncHandler( async(req,res)=>{
 const getUsersAddedConceptRating=asyncHandler( async(req,res)=>{
     const userID=req.user.id;
     try {
-       const data=await Concept.aggregate([
+      const usersIDes=await User.find().select("_id name")
+      const data=await Concept.aggregate([
         {
             $match: {
               suggestedBy_userId: { $exists: true }

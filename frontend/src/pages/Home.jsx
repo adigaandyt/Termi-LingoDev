@@ -24,7 +24,7 @@ import Saleh from '../components/Saleh'
 import ShareConcepts from '../components/ShareConcepts'
 import EditConceptAlertByUserModal from '../components/modals/EditConceptAlertByUserModal'
 import EditConceptFormByUserModal from '../components/modals/EditConceptFormByUserModal'
-import { getConceptByOpenAiAPIRequest } from '../features/openAi/openAiSlice'
+import { getConceptByOpenAiAPIRequest, resetOpenAiConcept } from '../features/openAi/openAiSlice'
 
 
 
@@ -45,9 +45,11 @@ function Home(){
 
     const {english,hebrew,arabic}=languageChoosed
     const {isCategorySuccess,isCategoryError}=useSelector(state=>state.category)
+    const {isOpenAiLoading}=useSelector(state=>state.openAi)
     const dispatch=useDispatch()
     const {user} =useSelector(state=>state.auth)
     const {concepts,names,concept,isLoading}=useSelector(state=>state.concept)
+    const {openAiConcept}=useSelector(state=>state.openAi)
     const {categories}=useSelector(state=>state.category)
     // const [categoryId,setCategoryId]=useState('639e49f8dfabd615c821584f')
 
@@ -80,10 +82,10 @@ function Home(){
             })
         })
     }
-  const getOpenAiConcept=(e)=>{
-    e.preventDefault()
-    dispatch(getConceptByOpenAiAPIRequest({textSearch:textSearch,categoryId:categoryID}))
-  }
+//   const getOpenAiConcept=(e)=>{
+//     e.preventDefault()
+//     dispatch(getConceptByOpenAiAPIRequest({textSearch:textSearch,categoryId:categoryID}))
+//   }
     return (<>
     {concept&&
     <EditConceptFormByUserModal concept={concept} index={concept._id} formShow={formShow} toggleFormShow={toggleFormShow} />
@@ -100,16 +102,25 @@ function Home(){
                 </div>
               
             
-          
+                    {/* <button onClick={()=>{dispatch(resetOpenAiConcept())}}>reset</button> */}
                 <SearchForm conceptSearch={conceptSearch} setConceptSearch={setConceptSearch} categoryId={categoryId} setCategoryId={setCategoryId}/> 
-                <button onClick={getOpenAiConcept} className='btn display-3 ' style={{backgroundColor:"#353740",color:"#acacbe"}}><SiOpenai className='display-3 '/></button>
-                {concept&&<div className='mt-2'>
+                {concept?<div className='mt-2'>
 
-                <CarouselAnimationDefinitions alertShow={alertShow} alertToggleShow={alertToggleShow}/>
+                <CarouselAnimationDefinitions concept={concept} alertShow={alertShow} alertToggleShow={alertToggleShow}/>
 
 
                 
+                 </div>:(openAiConcept&&<>
+                <CarouselAnimationDefinitions concept={openAiConcept} alertShow={alertShow} alertToggleShow={alertToggleShow}/>
+
+                 </>)}
+                 {isOpenAiLoading&&<div className='text-center mt-2'>
+
+                <button id='gpt-button' disabled className='btn display-3 display-inlne-block ' style={{backgroundColor:"#353740",color:"#acacbe"}}><SiOpenai className='display-5 mx-2' id='gpt_spinner'/>  Typing...</button>
                  </div>}
+                {/* <Spinner_GPT/> */}
+
+                 
                 {concepts&&<div  className='center '>
                 <hr className=' mb-3  '/>
                 <h3>{t('suggestions_for_you')}:</h3>

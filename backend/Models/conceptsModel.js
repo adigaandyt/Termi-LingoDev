@@ -54,6 +54,10 @@ const conceptSchema=mongoose.Schema({
         required:true,
         ref:'User'
     },
+    isOpenAi:{
+        type:Boolean,
+        default:false
+    },
 
     readMore:{
         type:String,

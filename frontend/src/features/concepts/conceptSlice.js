@@ -10,6 +10,10 @@ const initialState={
     isSuccess:false,
     isError:false,
     isLoading:false,
+    isSingleConceptSuccess:false,
+    isSingleConceptLoading:false,
+    isSingleConceptError:false,
+    singleConceptMessage:'',
     message:''
 }
 //reset concept
@@ -178,23 +182,32 @@ export const conceptSlice=createSlice({
             state.isSuccess=false
             state.updatedConcept=null
             state.message=''
+            state.isSingleConceptError=false
+            state.isSingleConceptLoading=false
+            state.isSingleConceptSuccess=false
+            state.singleConceptMessage=''
         }
     },
     extraReducers:(builder)=>{
         builder
         .addCase(getConcept.pending,(state)=>{
             state.isLoading=true
+            state.isSingleConceptLoading=true
         })
         .addCase(getConcept.rejected,(state,action)=>{
             state.isLoading=false
             state.isError=true
             state.concept=null
             state.message=action.payload
+            state.isSingleConceptLoading=false
+            state.isSingleConceptError=true
+            state.singleConceptMessage=action.payload
+
             
         })
         .addCase(getConcept.fulfilled,(state,action)=>{
-            state.isLoading=false
-            state.isSuccess=true
+            state.isSingleConceptLoading=false
+            state.isSingleConceptSuccess=true
             state.concept=action.payload.concept
             state.conceptRating=action.payload.rating
         })

@@ -35,8 +35,6 @@ const updateUserActivity=( async(req,res)=>{
         })
         return res.status(200).json({})
     } catch (error) {
-        // console.log(error)
-        // throw new Error(error)
         console.log(token)
         return res.status(500).json({})
     }

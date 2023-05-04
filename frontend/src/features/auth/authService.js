@@ -5,19 +5,19 @@ const API_URL='/api/users'
 
 export const  updateActivity=async ()=>{
 
-    try {
-        const token =JSON.parse(localStorage.getItem('token'))
-        console.log(token)
-        const config ={
-            headers:{
-                authorization:`Bearer ${token}`
-            }
-        }
-        await axios.get('/api/activity/set/useractive',config)
+    // try {
+    //     const token =JSON.parse(localStorage.getItem('token'))
+    //     console.log(token)
+    //     const config ={
+    //         headers:{
+    //             authorization:`Bearer ${token}`
+    //         }
+    //     }
+    //     await axios.get('/api/activity/set/useractive',config)
 
-    } catch (error) {
-        // console.log(error)
-    }
+    // } catch (error) {
+    //     // console.log(error)
+    // }
 
 }
 

@@ -36,8 +36,6 @@ export const removeFav =createAsyncThunk('remove',async (data,thunkAPI)=>{
     try {
         const token =JSON.parse(localStorage.getItem('token'));
         const response=await favService.removeFav(data,token)
-        console.log(token)
-        console.log(response)
         return response
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response.data)

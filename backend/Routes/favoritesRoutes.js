@@ -5,7 +5,7 @@ const {addFavorite,removeFavorite,getFavorites}=require("../Controllers/AddFavCo
 
 
 router.post('/add',protect,addFavorite)
-router.delete('/remove/:conceptId',protect,removeFavorite)
+router.delete('/remove/:itemId',protect,removeFavorite)
 router.get('/get',protect,getFavorites)
 
 

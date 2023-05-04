@@ -6,31 +6,36 @@ const AddToFavorites = ({ cardId, userId }) => {
 const { isLoading } = useSelector((state) => state.fav);
   const [isFavorite, setIsFavorite] = useState(false);
   const dispatch=useDispatch();
+  
   const handleAddToFavorites = () => {
-    setIsFavorite(!isFavorite);
-    console.log(cardId,userId);
-    console.log(isFavorite);
-    console.log("add to fav");
-    dispatch(addFav({itemId:cardId}))
+    if (isFavorite) {
+      // show confirmation popup before removing the favorite
+      if (window.confirm("Are you sure you want to remove this from favorites?")) {
+        setIsFavorite(false);
+        console.log(cardId, userId);
+        console.log(isFavorite);
+        console.log("remove from fav");
+        dispatch(removeFav({ itemId: cardId}));
+      }
+    } else {
+      setIsFavorite(true);
+      console.log(cardId, userId);
+      console.log(isFavorite);
+      console.log("add to fav");
+      dispatch(addFav({ itemId: cardId, isFavorite: true }));
+    }
   };
+  
 
   return (
-    <>
-    {isFavorite?(<MdOutlineFavorite 
-    className="text-danger"
-    
-    />):(<MdOutlineFavoriteBorder
-      onClick={handleAddToFavorites}/>)}</>
-    
-    // <button
-    //   disabled={isLoading}
-    //   onClick={handleAddToFavorites}
-      
-    //   className={`add-to-favorites ${isFavorite ? "favorite" : ""}`}
-    // >
-    //   {isFavorite ? "Remove from favorites" : "Add to favorites"}
-      
-    // </button>
+<button
+  disabled={isLoading}
+  onClick={handleAddToFavorites}
+  className={`add-to-favorites ${isFavorite ? "favorite" : ""}`}
+>
+  {isFavorite ? "Remove from favorites" : "Add to favorites"}
+</button>
+
   );
 };
 

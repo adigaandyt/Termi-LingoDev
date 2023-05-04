@@ -32,8 +32,10 @@ export const addFav =createAsyncThunk('add',async (data,thunkAPI)=>{
 )
 //remove favorite by item id
 export const removeFav =createAsyncThunk('remove',async (data,thunkAPI)=>{
+    
     try {
-        const response=await favService.removeFav(data)
+        const token =JSON.parse(localStorage.getItem('token'));
+        const response=await favService.removeFav(data,token)
         return response
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response.data)
@@ -63,6 +65,7 @@ export const favSlice=createSlice({
             state.isSuccess=false
             state.isError=false
             state.message=''
+            state.isFavorite=false
         }
     },
     extraReducers:{
@@ -89,6 +92,7 @@ export const favSlice=createSlice({
         [addFav.fulfilled]:(state,action)=>{
             state.isLoading=false
             state.isSuccess=true
+            state.isFavorite=action.payload.isFavorite
         }
         ,
         [addFav.rejected]:(state,action)=>{

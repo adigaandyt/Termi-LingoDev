@@ -70,6 +70,6 @@ const conceptSchema=mongoose.Schema({
     
     
 
-})
+}, { timestamps: true })
 conceptSchema.index({ 'conceptName.english': 'text'});
 module.exports=mongoose.model('Concept',conceptSchema)

@@ -105,7 +105,7 @@ function Home(){
             
                     {/* <button onClick={()=>{dispatch(resetOpenAiConcept())}}>reset</button> */}
                 <SearchForm conceptSearch={conceptSearch} setConceptSearch={setConceptSearch} categoryId={categoryId} setCategoryId={setCategoryId}/> 
-                <Test/>
+                {/* <Test/> */}
                 {concept?
 
                 <div dir='ltr' className='mt-2'>

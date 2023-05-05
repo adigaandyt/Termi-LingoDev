@@ -5,7 +5,8 @@ import conceptProfileService from './conceptProfileService'
 
 const  initialState={
     data:null,
-    userRating:null, 
+    userRating:null,
+    conceptsAdded:null, 
     isConceptsProfileLoading:false,
     isConceptsProfileSuccess:false,
     isConceptsProfileError:false,
@@ -21,6 +22,25 @@ export const getDataForConceptsAddedRechart=createAsyncThunk(
             const token=thunkAPI.getState().auth.user.token 
             // return await authService.uploadImage(formdata)
             return await conceptProfileService.getDataForConceptsAddedRechart(token)
+        } catch (error) {
+            console.log(error.message)
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
+// get the concepts that the user added
+export const getUserConceptsAdded=createAsyncThunk(
+    'addedConcepts/concept',
+     async(data,thunkAPI)=>{
+        try { 
+          
+            const token=thunkAPI.getState().auth.user.token 
+            // return await authService.uploadImage(formdata)
+            return await conceptProfileService.getUserConceptsAdded(token)
         } catch (error) {
             console.log(error.message)
             const message=(error.response&&error.response.data&&error.response.data.message)
@@ -59,6 +79,20 @@ export  const ConceptsProfileSlice=createSlice({
             state.isConceptsProfileError=true;
             state.data=null;
             state.userRating=null;
+            state.ConceptsProfileMessage=action.payload
+        })
+        .addCase(getUserConceptsAdded.fulfilled,(state,action)=>{
+            state.isConceptsProfileLoading=false;
+            state.isConceptsProfileSuccess=true;
+            state.conceptsAdded=action.payload.conceptsAddedByUser;
+        })
+        .addCase(getUserConceptsAdded.pending,(state)=>{
+            state.isConceptsProfileLoading=true;
+        })
+        .addCase(getUserConceptsAdded.rejected,(state,action)=>{
+            state.isConceptsProfileLoading=false;
+            state.isConceptsProfileError=true;
+            state.conceptsAdded=null;
             state.ConceptsProfileMessage=action.payload
         })
      }

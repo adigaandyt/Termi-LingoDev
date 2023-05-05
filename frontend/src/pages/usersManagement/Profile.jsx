@@ -17,6 +17,8 @@ import GamesRecharts from '../../components/recharts/GamesRecharts';
 import ConceptsAddedCard from '../../components/ConceptsAddedCard';
 import ConceptsAddedList from '../../components/ConceptsAddedList';
 import AddedConceptsRechart from '../../components/recharts/AddedConceptsRechart';
+import {getUserConceptsAdded} from '../../features/conceptsProfile/conceptProfileSlice'
+
 function Profile(){
   const [showConceptsAdded,setShowConceptsAdded]=useState(false)
   const dispatch=useDispatch();
@@ -24,7 +26,10 @@ function Profile(){
   const {name,email,profile_image,status,games_coins,gender,added_concepts} =useSelector(state=>state.auth.user)
   const {isLoading,isImageLoading} =useSelector(state=>state.auth)
   const [isEdit,setIsEdit]=useState(false)
+  const {conceptsAdded}=useSelector(state=>state.conceptsProfile)
+
   useEffect(()=>{
+    dispatch(getUserConceptsAdded())
     dispatch(getGuessTheTermResults())
     dispatch(getTransMeResults())
     dispatch(getGamesRechartData())
@@ -38,6 +43,7 @@ function Profile(){
 
       }
   }
+
   return(<> 
   <div dir='ltr'  className='mt-110 text-center' id="ppage">
         {isLoading&&<Spinner/>}
@@ -97,9 +103,8 @@ function Profile(){
 
       <div className='bg-secondary my-1'>last searches </div>  
       <div className='bg-secondary my-1'>concepts favorite </div>  
-      <div className='bg-secondary my-1'>concepts added </div>  
-      <ConceptsAddedList/>
- 
+      <div onClick={()=>{setShowConceptsAdded(!showConceptsAdded)}} className='bg-secondary my-1'>concepts added {conceptsAdded.length}</div>
+      {showConceptsAdded&&<ConceptsAddedList concepts={conceptsAdded}/>}
        
       </div>
         

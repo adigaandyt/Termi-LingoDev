@@ -118,6 +118,7 @@
     "emailForValidation": "הזן את כתובת האימייל שלך לאימות",
     "verifyData": "אמת את הנתונים שלך",
     "verify": "אימות",
-    "conceptsAdded_graph":"גרף מוסיפי מושגים"
+    "conceptsAdded_graph":"גרף מוסיפי מושגים",
+    "search_for":"חפש"
     
 }

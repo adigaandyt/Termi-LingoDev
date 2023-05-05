@@ -1,31 +1,23 @@
 import {Link} from 'react-router-dom'
+import {getCategoryNameById,getConceptNameCookies} from '../hooks/ExportsFunctions'
+import { useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
+import cookies from "js-cookie"
+// import getUserConceptsAdded from '../features/conceptsProfile/conceptProfileSlice'
 
-function ConceptsAddedCard(){
-    const concepts={
-        conceptName:{
-            english:'HR planning',
-            arabic:'دائرة',
-            hebrew:'לולאה',
-        },
-        categoryID:'639d8f0987cdf6706e335db9',
-        categoryname:{
-            english:'software',
-            arabic:'البرمجة',
-            hebrew:'תוכנה',
-        },
-        shortDefinition:{
-            english:'english_definition',
-            arabic:'arabic_definition',
-            hebrew:'hebrew_definition',
-        }
-    }
+function ConceptsAddedCard({concept}){
+    const {t}=useTranslation()
+const {categories}=useSelector(state=>state.category)
+const dateObj = new Date(concept.createdAt);
     return(<>
-    <div class="card w-100 text-start" >
+    <div class={cookies.get('i18next')=='en'?'card w-100 text-start':'card w-100 text-end'} >
   <div class="card-body">
-    <h5 class="card-title">{concepts.conceptName.english}</h5>
-    <h6 class="card-subtitle mb-2 text-body-secondary">{concepts.categoryname.english}</h6>
-    <p class="card-text">{concepts.shortDefinition.english}</p>
-    <Link to={`/search/${concepts.conceptName.english}/${concepts.categoryID}`}>more</Link>
+    <h5 class="card-title">{getConceptNameCookies(concept)}</h5>
+    <h6 class="card-subtitle mb-2 text-body-secondary">{getCategoryNameById(categories,concept.categories[0])}</h6>
+    <div className='row'>
+    <Link className='col' to={`/search/${concept.conceptName.english}/${concept.categories[0]}`}>{t('search_for')}</Link>
+    <p className='col'>{concept.createdAt&&dateObj.getDate()}</p>
+    </div>
   </div>
 </div>
     </>)

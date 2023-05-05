@@ -103,7 +103,7 @@ function Profile(){
 
       <div className='bg-secondary my-1'>last searches </div>  
       <div className='bg-secondary my-1'>concepts favorite </div>  
-      <div onClick={()=>{setShowConceptsAdded(!showConceptsAdded)}} className='bg-secondary my-1'>concepts added {conceptsAdded.length}</div>
+      <div onClick={()=>{setShowConceptsAdded(!showConceptsAdded)}} className='bg-secondary my-1'>concepts added {conceptsAdded&&conceptsAdded.length}</div>
       {showConceptsAdded&&<ConceptsAddedList concepts={conceptsAdded}/>}
        
       </div>

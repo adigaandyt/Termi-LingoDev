@@ -16,8 +16,21 @@ const getDataForConceptsAddedRechart =async (token)=>{
     return response.data
 }
 
+//get user concepts 
+const getUserConceptsAdded =async (token)=>{
+    const config ={
+        headers:{
+            authorization:`Bearer ${token}`
+        }
+    }
+    const response=await axios.get(API_URL+'/get/concepts/added/by/user',config)
+    
+    return response.data
+}
+
 const conceptProfileService={
-    getDataForConceptsAddedRechart
+    getDataForConceptsAddedRechart,
+    getUserConceptsAdded
     
 }
 export default conceptProfileService

@@ -8,9 +8,10 @@ const User=require('../Models/usersModel')
 const getConceptsAddedByUser=asyncHandler( async(req,res)=>{
     const userID=req.user._id;
     try {
+
         const count = await Concept.countDocuments({ suggestedBy_userId: { $exists: true } });
         const concepts=await Concept.find({suggestedBy_userId:userID,accepted:true}).select('conceptName categories _id isOpenAi')
-
+        
         res.json({allConcepts:count,conceptsAddedByUser:concepts,conceptAddedCount:concepts.length})
     } catch (error) {
         res.status(400)
@@ -27,7 +28,9 @@ const getUsersAddedConceptRating=asyncHandler( async(req,res)=>{
       const data=await Concept.aggregate([
         {
             $match: {
-              suggestedBy_userId: { $exists: true }
+              suggestedBy_userId: { $exists: true },
+              accepted:true
+
             }
           },
         {

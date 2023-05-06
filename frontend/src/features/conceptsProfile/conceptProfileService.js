@@ -10,7 +10,6 @@ const getDataForConceptsAddedRechart =async (token)=>{
             authorization:`Bearer ${token}`
         }
     }
-    console.log("dsssssssssssssssssssssssssssss")
     const response=await axios.get(API_URL+'/get/users/addedConcept/rating',config)
     
     return response.data
@@ -27,10 +26,22 @@ const getUserConceptsAdded =async (token)=>{
     
     return response.data
 }
+//get last 5 added
+const getConceptsSearchedByUser = async (token)=>{
+    const config ={
+        headers:{
+            authorization:`Bearer ${token}`
+        }
+    }
+    const response=await axios.get(API_URL+'/get/concepts/searched/by/user',config)
+    
+    return response.data
+}
 
 const conceptProfileService={
     getDataForConceptsAddedRechart,
-    getUserConceptsAdded
+    getUserConceptsAdded,
+    getConceptsSearchedByUser
     
 }
 export default conceptProfileService

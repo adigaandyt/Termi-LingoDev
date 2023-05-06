@@ -17,7 +17,7 @@ import GamesRecharts from '../../components/recharts/GamesRecharts';
 import ConceptsAddedCard from '../../components/ConceptsAddedCard';
 import ConceptsAddedList from '../../components/ConceptsAddedList';
 import AddedConceptsRechart from '../../components/recharts/AddedConceptsRechart';
-import {getUserConceptsAdded} from '../../features/conceptsProfile/conceptProfileSlice'
+import {getUserConceptsAdded,getConceptsSearchedByUser} from '../../features/conceptsProfile/conceptProfileSlice'
 
 function Profile(){
   const [showConceptsAdded,setShowConceptsAdded]=useState(false)
@@ -29,6 +29,7 @@ function Profile(){
   const {conceptsAdded}=useSelector(state=>state.conceptsProfile)
 
   useEffect(()=>{
+    dispatch(getConceptsSearchedByUser())
     dispatch(getUserConceptsAdded())
     dispatch(getGuessTheTermResults())
     dispatch(getTransMeResults())

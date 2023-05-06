@@ -1,6 +1,7 @@
 const asyncHandler =require('express-async-handler');
 const Concept=require('../Models/conceptsModel')
 const User=require('../Models/usersModel')
+const ConceptSearch = require('../Models/conceptSearchModel')
 
 //@desc get concepts that specific user added 
 //@route get /get/concepts/added/by/user
@@ -10,8 +11,9 @@ const getConceptsAddedByUser=asyncHandler( async(req,res)=>{
     try {
 
         const count = await Concept.countDocuments({ suggestedBy_userId: { $exists: true } });
+
         const concepts=await Concept.find({suggestedBy_userId:userID,accepted:true}).select('conceptName categories _id isOpenAi createdAt')
-        
+
         res.json({allConcepts:count,conceptsAddedByUser:concepts,conceptAddedCount:concepts.length})
     } catch (error) {
         res.status(400)
@@ -78,8 +80,24 @@ const getUsersAddedConceptRating=asyncHandler( async(req,res)=>{
         throw new Error(error.message)
     }
 })
+//@desc get concepts searched by user 
+//@route get /get/concepts/searched/by/user/categoryName
+//@access private
+const getConceptsSearchedByUser=asyncHandler( async(req,res)=>{
+  const email = req.user.email;
+  try {
+
+    const data = await ConceptSearch.find({userEmail:email}).sort({ createdAt: -1 }).limit(5);
+      
+    res.json(data)
+  } catch (error) {
+      res.status(400)
+      throw new Error(error.message)
+  }
+})
 
 module.exports={
     getConceptsAddedByUser,
-    getUsersAddedConceptRating
+    getUsersAddedConceptRating,
+    getConceptsSearchedByUser
  }

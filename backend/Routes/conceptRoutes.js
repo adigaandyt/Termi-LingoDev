@@ -12,9 +12,9 @@ const {
       getUnAcceptedConcepts,
       updateConceptByAdmin,
       deleteConceptByAdmin,
-      updateConceptByUser
+      updateConceptByUser,
     } = require('../Controllers/conceptControllers')
-    const {getConceptsAddedByUser,getUsersAddedConceptRating}=require('../Controllers/conceptsProfileUserController')
+    const {getConceptsAddedByUser,getUsersAddedConceptRating,getConceptsSearchedByUser}=require('../Controllers/conceptsProfileUserController')
 const router=express.Router()
 const {protect}=require("../middleware/authMiddleware")
 
@@ -35,6 +35,7 @@ router.delete('/delete/comcept/by/admin/:conceptId',deleteConceptByAdmin)
 //Routes for the profile page about concepts that added / liked(favorite) / last 3 searched
 router.get('/get/concepts/added/by/user',protect,getConceptsAddedByUser);
 router.get('/get/users/addedConcept/rating',protect,getUsersAddedConceptRating);
+router.get('/get/concepts/searched/by/user/',protect,getConceptsSearchedByUser);
 
 
 

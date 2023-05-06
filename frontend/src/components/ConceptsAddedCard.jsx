@@ -14,9 +14,9 @@ const dateObj = new Date(concept.createdAt);
   <div class="card-body">
     <h5 class="card-title">{getConceptNameCookies(concept)}</h5>
     <h6 class="card-subtitle mb-2 text-body-secondary">{getCategoryNameById(categories,concept.categories[0])}</h6>
-    <div className='row'>
-    <Link className='col' to={`/search/${concept.conceptName.english}/${concept.categories[0]}`}>{t('search_for')}</Link>
-    <p className='col'>{concept.createdAt&&dateObj.getDate()}</p>
+    <div className='row' dir='rtl'>
+    <Link className='col-4' to={`/search/${concept.conceptName.english}/${concept.categories[0]}`}>{t('search_for')}</Link>
+    <p className='col-8'>{concept.createdAt?`${dateObj.getDate()}/${dateObj.getMonth()+1}/${dateObj.getFullYear()}-${dateObj.getHours()}:${dateObj.getMinutes()}`:t('no_date_defined')}</p>
     </div>
   </div>
 </div>

@@ -54,16 +54,16 @@ const data = [
 
  
     return(<>
-        <div dir='ltr' className=" mt-3 " style={{"margin":"auto"}}>
-        <ResponsiveContainer width="100%" aspect={2}>
+        <div dir='ltr' className=" mt-3 text-center " style={{"margin":"auto"}}>
+        <ResponsiveContainer width="100%" aspect={2} >
         <LineChart
           width={500}
           height={300}
           data={GamesRechartData}
           margin={{
             top: 5,
-            right: 5,
-            left: 0,
+            right: 20,
+            left: -10,
             bottom: 5,
           }}
 

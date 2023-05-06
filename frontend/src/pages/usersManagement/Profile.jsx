@@ -46,10 +46,10 @@ function Profile(){
   }
 
   return(<> 
-  <div dir='ltr'  className='mt-110 text-center' id="ppage">
+  <div dir='ltr'  className='mt-110 text-center' id="ppage" style={{"marginLeft":"auto","marginRight":"auto"}}>
         {isLoading&&<Spinner/>}
     <h3 className='mx-2'>{t('my profile')}</h3>
-    <div className="border-top row w-100 " id='profilePage'>
+    <div className="border-top row w-100 " id='profilePage' style={{margin:"auto"}}>
       <div id="profile-image-and-detaile" className=" col-sm-4 border-sm-start  border-top py-2   ">
       <ProfileImage  />  
       
@@ -99,11 +99,11 @@ function Profile(){
        
 
       </div>
-      <div className=" col-sm-8 border-sm-start border-top   ">
-        <div className='row'>
+      <div className=" col-sm-8 border-sm-start border-top  mt-3 ">
+        {/* <div className='row'>
 
       
-      </div>
+      </div> */}
       <button type="button" class="btn btn-style">last searches <i class="fas fa-caret-down pl-2"></i></button>
       <button type="button" class="btn btn-style">concepts favorite <i class="fas fa-caret-down pl-2"></i></button>
       <button type="button" class="btn btn-style" onClick={()=>{setShowConceptsAdded(!showConceptsAdded)}}>

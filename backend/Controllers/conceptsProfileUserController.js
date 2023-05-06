@@ -10,7 +10,7 @@ const getConceptsAddedByUser=asyncHandler( async(req,res)=>{
     try {
 
         const count = await Concept.countDocuments({ suggestedBy_userId: { $exists: true } });
-        const concepts=await Concept.find({suggestedBy_userId:userID,accepted:true}).select('conceptName categories _id isOpenAi')
+        const concepts=await Concept.find({suggestedBy_userId:userID,accepted:true}).select('conceptName categories _id isOpenAi createdAt')
         
         res.json({allConcepts:count,conceptsAddedByUser:concepts,conceptAddedCount:concepts.length})
     } catch (error) {

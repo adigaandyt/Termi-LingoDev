@@ -56,16 +56,16 @@ function AddedConceptsRechart(){
     },[])
     return (
         <div dir='ltr' className=" mt-3 " style={{"margin":"auto"}}>
-         <ResponsiveContainer  width="100%" aspect={2}>
+         <ResponsiveContainer  dir='ltr' width="100%" aspect={2}>
     <BarChart
     //   className='w-100'
     width={500}
       height={300}
       data={data&&data}
       margin={{
-        top: 20,
-        right: 30,
-        left: 20,
+        top: 5,
+        right: 20,
+        left: -10,
         bottom: 5,
       }}
     >

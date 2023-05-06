@@ -101,13 +101,14 @@ function Profile(){
       <div className=" col-sm-8 border-sm-start border-top   ">
         <div className='row'>
 
-      <div className='bg-secondary my-1'>last searches </div>  
-      <div className='bg-secondary my-1'>concepts favorite </div>  
-      <div onClick={()=>{setShowConceptsAdded(!showConceptsAdded)}} className='bg-secondary my-1'>concepts added {conceptsAdded&&conceptsAdded.length}</div>
-      {showConceptsAdded&&<ConceptsAddedList concepts={conceptsAdded}/>}
-       
+      
       </div>
-        
+      <button type="button" class="btn btn-style">last searches <i class="fas fa-caret-down pl-2"></i></button>
+      <button type="button" class="btn btn-style">concepts favorite <i class="fas fa-caret-down pl-2"></i></button>
+      <button type="button" class="btn btn-style" onClick={()=>{setShowConceptsAdded(!showConceptsAdded)}}>
+      concepts added {conceptsAdded&&conceptsAdded.length} <i class="fas fa-caret-down pl-2"></i>
+      </button>
+      {showConceptsAdded&&<ConceptsAddedList concepts={conceptsAdded}/>}  
         
         <h3 className='mt-2 mx-2'>{t('details')}</h3>
         <button id="editbtn" disabled={isEdit} onClick={()=>setIsEdit(!isEdit)} className='btn btn-primary btn-sm  mx-2 '>{t('edit')}</button>

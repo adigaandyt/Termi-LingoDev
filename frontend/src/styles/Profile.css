@@ -38,6 +38,33 @@
 /*  border: red solid;*/
 /*  margin-left: 20px;*/
 /*}*/
+/*$color1: #000080;*/
+/*$color2: #ffffff;*/
+/*$color3: #e2e2ff;*/
+/*$color4: black;*/
+
+.btn-style {
+  font-weight: bold;
+  text-decoration: none;
+  background-color: #000080;
+  width: 70%;
+  padding: 5px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  border-radius: 15px;
+  color: #ffffff;
+}
+.btn-style:active { 
+    color: #e2e2ff;
+    background-color: black;
+  }
+.btn-style:hover { 
+    color: #000080;
+    background-color: #e2e2ff;
+  }
+.btn-style:visited { 
+    color: #ffffff;
+}
 
 
 

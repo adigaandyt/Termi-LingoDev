@@ -6,11 +6,13 @@ import conceptProfileService from './conceptProfileService'
 const  initialState={
     data:null,
     userRating:null,
-    conceptsAdded:null, 
+    conceptsAdded:null,
+    lastConceptsSearch:null, 
     isConceptsProfileLoading:false,
     isConceptsProfileSuccess:false,
     isConceptsProfileError:false,
     ConceptsProfileMessage:false,
+
 }
 
 // get the data  for the concepts added rechart
@@ -41,6 +43,25 @@ export const getUserConceptsAdded=createAsyncThunk(
             const token=thunkAPI.getState().auth.user.token 
             // return await authService.uploadImage(formdata)
             return await conceptProfileService.getUserConceptsAdded(token)
+        } catch (error) {
+            console.log(error.message)
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
+//last 5 concepts searched
+export const getConceptsSearchedByUser=createAsyncThunk(
+    'searchedConcepts',
+     async(data,thunkAPI)=>{
+        try { 
+          
+            const token=thunkAPI.getState().auth.user.token 
+            // return await authService.uploadImage(formdata)
+            return await conceptProfileService.getConceptsSearchedByUser(token)
         } catch (error) {
             console.log(error.message)
             const message=(error.response&&error.response.data&&error.response.data.message)
@@ -95,9 +116,24 @@ export  const ConceptsProfileSlice=createSlice({
             state.conceptsAdded=null;
             state.ConceptsProfileMessage=action.payload
         })
+        .addCase(getConceptsSearchedByUser.fulfilled,(state,action)=>{
+            state.isConceptsProfileLoading=false;
+            state.isConceptsProfileSuccess=true;
+            state.lastConceptsSearch=action.payload;
+        })
+        .addCase(getConceptsSearchedByUser.pending,(state)=>{
+            state.isConceptsProfileLoading=true;
+        })
+        .addCase(getConceptsSearchedByUser.rejected,(state,action)=>{
+            state.isConceptsProfileLoading=false;
+            state.isConceptsProfileError=true;
+            state.lastConceptsSearch=null;
+            state.ConceptsProfileMessage=action.payload
+        })
      }
 
 })
+
 
 export const {reset}=ConceptsProfileSlice.actions
 export default ConceptsProfileSlice.reducer

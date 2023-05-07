@@ -22,7 +22,7 @@ import AddedConceptsRechart from '../../components/recharts/AddedConceptsRechart
 
 import {getUserConceptsAdded,getConceptsSearchedByUser, getLastConceptsAddedAtLastLogin} from '../../features/conceptsProfile/conceptProfileSlice'
 import ConceptsSearchedList from '../../components/conceptsProfile/ConceptsSearchedList';
-
+import {getFavorites} from '../../features/fav/favSlice'
 
 function Profile(){
   // const [showConceptsAdded,setShowConceptsAdded]=useState(false)
@@ -41,6 +41,7 @@ function Profile(){
   const {isLoading,isImageLoading} =useSelector(state=>state.auth)
   const [isEdit,setIsEdit]=useState(false)
   const {conceptsAdded,lastConceptsSearch}=useSelector(state=>state.conceptsProfile)
+  const {favs}=useSelector(state=>state.fav)
 
   useEffect(()=>{
     dispatch(getConceptsSearchedByUser())
@@ -49,6 +50,7 @@ function Profile(){
     dispatch(getGuessTheTermResults())
     dispatch(getTransMeResults())
     dispatch(getGamesRechartData())
+    dispatch(getFavorites())
     dispatch(reset())
   },[])
   const onselectImage=(event)=>{
@@ -132,8 +134,8 @@ function Profile(){
       {showConceptsSearched&&<ConceptsSearchedList concepts={lastConceptsSearch}/>}
       <button name='showLastConceptsAdded' type="button" class="btn btn-style" onClick={onConceptsButtonsClick}>{t('last_added')} <MdNotificationAdd className='text-danger col-1' style={{"font-size":"22px"}}/></button>
       {showLastConceptsAdded&& <p>  last concepts Added</p>}
-      <button name='showConceptsFavorite' type="button" class="btn btn-style" onClick={onConceptsButtonsClick}>{t('concepts_favories')} <BsFillBookmarkStarFill className='text-warning col-1' style={{"font-size":"17px"}}/></button>
-      {showConceptsFavorite&& <p>concepts favories</p>}
+      <button name='showConceptsFavorite' value={showConcepts.showConceptsFavorite} type="button" class="btn btn-style" onClick={onConceptsButtonsClick}>Favorite Concepts {favs&&favs.length}<i class="fas fa-caret-down pl-2"></i></button>
+      {showConceptsFavorite&& <p>Favorite concepts</p>}
       <button name='showConceptsAdded' value={showConcepts.showConceptsAdded} type="button" class="btn btn-style" onClick={onConceptsButtonsClick}>
       {t('concepts_added')} {conceptsAdded&&conceptsAdded.length} <MdBookmarkAdd className='text-success col-1' style={{"font-size":"22px"}}/>  
       </button>

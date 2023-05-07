@@ -43,10 +43,11 @@ export const removeFav =createAsyncThunk('remove',async (data,thunkAPI)=>{
 }
 )
 //get all favorites by user id
-export const getFavorites =createAsyncThunk('get',async (data,thunkAPI)=>{
+export const getFavorites =createAsyncThunk('get/all',async (data,thunkAPI)=>{
     try {
-        const response=await favService.getFavorites(data)
-        return response
+        const token=thunkAPI.getState().auth.user.token 
+       
+        return await favService.getFavorites(token)
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response.data)
     }
@@ -123,6 +124,7 @@ export const favSlice=createSlice({
         [getFavorites.fulfilled]:(state,action)=>{
             state.isLoading=false
             state.isSuccess=true
+            state.favs=action.payload.favorites
         }
         ,
         [getFavorites.rejected]:(state,action)=>{

@@ -73,4 +73,25 @@ const getFavorites = asyncHandler(async (req,res)=>{
         throw new Error(error)
     }
 })
-module.exports={ addFavorite,removeFavorite,getFavorites}
+
+const getAllFavorites = asyncHandler(async (req,res)=>{
+    const user=req.user;
+    const data=req.body;
+    console.log("----------****----------")
+    console.log(data)
+    console.log("----------****----------")
+    try {
+      const count = await Favorite.countDocuments({ userId: { $exists: true } });
+
+        const response=await Favorite.find({
+            userId:user.id
+        })
+        res.json({allFavorites:count,favorites:response,favoritesCount:response.length})
+        res.status(200).json(response)
+    } catch (error) {
+        console.log(error)
+        res.status(500)
+        throw new Error(error)
+    }
+})
+module.exports={ addFavorite,removeFavorite,getFavorites,getAllFavorites}

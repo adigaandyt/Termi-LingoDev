@@ -14,10 +14,11 @@ import Spinner from '../../components/Spinner';
 import { useTranslation } from 'react-i18next';
 import TestComponent from '../TestComponent';
 import GamesRecharts from '../../components/recharts/GamesRecharts';
-import ConceptsAddedCard from '../../components/ConceptsAddedCard';
-import ConceptsAddedList from '../../components/ConceptsAddedList';
+import ConceptsAddedCard from '../../components/conceptsProfile/ConceptsAddedCard';
+import ConceptsAddedList from '../../components/conceptsProfile/ConceptsAddedList';
 import AddedConceptsRechart from '../../components/recharts/AddedConceptsRechart';
 import {getUserConceptsAdded,getConceptsSearchedByUser} from '../../features/conceptsProfile/conceptProfileSlice'
+import ConceptsSearchedList from '../../components/conceptsProfile/ConceptsSearchedList';
 
 function Profile(){
   // const [showConceptsAdded,setShowConceptsAdded]=useState(false)
@@ -35,7 +36,7 @@ function Profile(){
   const {name,email,profile_image,status,games_coins,gender,added_concepts} =useSelector(state=>state.auth.user)
   const {isLoading,isImageLoading} =useSelector(state=>state.auth)
   const [isEdit,setIsEdit]=useState(false)
-  const {conceptsAdded}=useSelector(state=>state.conceptsProfile)
+  const {conceptsAdded,lastConceptsSearch}=useSelector(state=>state.conceptsProfile)
 
   useEffect(()=>{
     dispatch(getConceptsSearchedByUser())
@@ -123,7 +124,7 @@ function Profile(){
       
       </div> */}
       <button name='showConceptsSearched' type="button" class="btn btn-style" onClick={onConceptsButtonsClick}>last searches <i class="fas fa-caret-down pl-2"></i></button>
-      {showConceptsSearched&& <p>concepts searched</p>}
+      {showConceptsSearched&&<ConceptsSearchedList concepts={lastConceptsSearch}/>}
       <button name='showLastConceptsAdded' type="button" class="btn btn-style" onClick={onConceptsButtonsClick}>last searches <i class="fas fa-caret-down pl-2"></i></button>
       {showLastConceptsAdded&& <p>  last concepts Added</p>}
       <button name='showConceptsFavorite' type="button" class="btn btn-style" onClick={onConceptsButtonsClick}>concepts favorite <i class="fas fa-caret-down pl-2"></i></button>

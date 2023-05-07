@@ -93,11 +93,13 @@ export const favSlice=createSlice({
             state.isLoading=false
             state.isSuccess=true
             state.isFavorite=action.payload.isFavorite
+            state.message=''
         }
         ,
         [addFav.rejected]:(state,action)=>{
             state.isLoading=false
             state.isError=true
+            state.isFavorite=null
             state.message=action.payload
         }
         ,

@@ -35,8 +35,6 @@ const removeFav = async (data, token) => {
       }
     }
     console.log("----------****-----YONORSERVICEREMOVE>>>-----****----------");
-    console.log(token);
-    console.log("sending request to remove favorite: " + `${API_URL}/remove/${data}`)
     const response = await axios.delete( `${API_URL}/remove/${data.itemId}/${data.userId}`, config)
     return response.data
   }

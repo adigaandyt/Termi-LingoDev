@@ -12,16 +12,10 @@ const { isLoading } = useSelector((state) => state.fav);
       // show confirmation popup before removing the favorite
       if (window.confirm("Are you sure you want to remove this from favorites?")) {
         setIsFavorite(false);
-        console.log(cardId, userId);
-        console.log(isFavorite);
-        console.log("remove from fav");
         dispatch(removeFav({ itemId: cardId}));
       }
     } else {
       setIsFavorite(true);
-      console.log(cardId, userId);
-      console.log(isFavorite);
-      console.log("add to fav");
       dispatch(addFav({ itemId: cardId, isFavorite: true }));
     }
   };
@@ -33,7 +27,7 @@ const { isLoading } = useSelector((state) => state.fav);
   onClick={handleAddToFavorites}
   className={`add-to-favorites ${isFavorite ? "favorite" : ""}`}
 >
-  {isFavorite ? "Remove from favorites" : "Add to favorites"}
+  {isFavorite ? <MdOutlineFavorite/> : <MdOutlineFavorite/>}
 </button>
 
   );

@@ -35,17 +35,15 @@ const addFavorite = asyncHandler(async (req, res) => {
   });
   
 const removeFavorite = asyncHandler(async (req,res)=>{
-    // const user=req.user;
-    const data=req.params;
-    console.log("----------***REMOVING*----------")
-    // console.log(user)
-    console.log(data)
-    console.log("----------***RE*----------")
-    res.json({message:"success"})
+  console.log(
+    'req.params')
+  
+  console.log(req.params)
+  console.log(req.user)
     try {
-        const response=await Favorite.deleteOne({
-            userId:user._id,
-            itemId:data.itemId
+        const response=await Favorite.findOne({
+            userId:req.user._id,
+            itemId:req.params.itemId
         })
         res.status(200).json(response)
     } catch (error) {

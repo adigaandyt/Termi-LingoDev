@@ -134,7 +134,7 @@ function Profile(){
       {showConceptsSearched&&<ConceptsSearchedList concepts={lastConceptsSearch}/>}
       <button name='showLastConceptsAdded' type="button" class="btn btn-style" onClick={onConceptsButtonsClick}>{t('last_added')} <MdNotificationAdd className='text-danger col-1' style={{"font-size":"22px"}}/></button>
       {showLastConceptsAdded&& <p>  last concepts Added</p>}
-      <button name='showConceptsFavorite' value={showConcepts.showConceptsFavorite} type="button" class="btn btn-style" onClick={onConceptsButtonsClick}>Favorite Concepts {favs&&favs.length}<i class="fas fa-caret-down pl-2"></i></button>
+      <button name='showConceptsFavorite' value={showConcepts.showConceptsFavorite} type="button" class="btn btn-style" onClick={onConceptsButtonsClick}>{t('concepts_favories')} {favs&&favs.length} <BsFillBookmarkStarFill style={{"font-size":"17px"}} className='text-warning'/></button>
       {showConceptsFavorite&& <p>Favorite concepts</p>}
       <button name='showConceptsAdded' value={showConcepts.showConceptsAdded} type="button" class="btn btn-style" onClick={onConceptsButtonsClick}>
       {t('concepts_added')} {conceptsAdded&&conceptsAdded.length} <MdBookmarkAdd className='text-success col-1' style={{"font-size":"22px"}}/>  

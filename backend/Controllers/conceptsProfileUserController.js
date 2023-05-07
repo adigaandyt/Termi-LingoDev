@@ -80,16 +80,23 @@ const getUsersAddedConceptRating=asyncHandler( async(req,res)=>{
         throw new Error(error.message)
     }
 })
+
+
 //@desc get concepts searched by user 
-//@route get /get/concepts/searched/by/user/categoryName
+//@route get /get/concepts/searched/by/user
 //@access private
 const getConceptsSearchedByUser=asyncHandler( async(req,res)=>{
   const email = req.user.email;
   try {
 
-    const data = await ConceptSearch.find({userEmail:email}).sort({ createdAt: -1 }).limit(5);
-      
-    res.json(data)
+    let conceptsResults=new Array;
+    const conceptIDs = await ConceptSearch.find({userEmail:email,correctSearched:true}).sort({ createdAt: -1 }).limit(5).select({conceptID:1,createdAt:1});
+    const idesArray=conceptIDs.map((concept)=>concept.conceptID)
+    for(let i=0;i<idesArray.length;i++){
+      console.log(idesArray[i])
+      conceptsResults.push({ concept:await Concept.findById(idesArray[i]).select({conceptName:1,categories:1}),createdAt:conceptIDs[i].createdAt})
+    }
+    res.json(conceptsResults)
   } catch (error) {
       res.status(400)
       throw new Error(error.message)

@@ -791,7 +791,6 @@ const getUserGessTheTermGameResults=asyncHandler( async (req,res)=>{
 const getUserBothGamesResults=asyncHandler( async (req,res)=>{
     console.log(req.user)
     try {
-    //    const users=await User.find({"name":{ $regex:new RegExp(text), "$options" : "iu"}})
     const results=await User.aggregate([
         {
           $match: {

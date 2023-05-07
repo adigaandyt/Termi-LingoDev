@@ -4,7 +4,11 @@ const mongoose=require('mongoose')
 
 
 const ConceptSearchSchema=mongoose.Schema({
-        
+     userID:{
+      type:mongoose.Schema.Types.ObjectId,
+      required:true,
+      ref:'User',
+     }  ,  
      userEmail:{
         type:String,
         required:[true,'YOU MUST TO contain email']
@@ -14,7 +18,9 @@ const ConceptSearchSchema=mongoose.Schema({
         required:[true,'YOU MUST TO contain categoryName']
      }, 
      userCategoryID:{
-        type:String,
+         type:mongoose.Schema.Types.ObjectId,
+         required:true,
+         ref:'Category',
         required:[true,'YOU MUST TO contain categoryName']
      },
      SearchString:{
@@ -22,12 +28,15 @@ const ConceptSearchSchema=mongoose.Schema({
         required:[true,'YOU MUST TO contain categoryName']
      },
      SearchCategoryID:{
-        type:String,
-        required:[true,'YOU MUST TO contain categoryName']
+         type:mongoose.Schema.Types.ObjectId,
+         required:true,
+         ref:'Category',
+         required:[true,'YOU MUST TO contain categoryName']
      },
      conceptID:{
-        type:String,
-        required:[true,'YOU MUST TO contain conceptName']
+         type:mongoose.Schema.Types.ObjectId,
+         ref:'Concept',
+         required:[true,'YOU MUST TO contain conceptName']
      }
   
       

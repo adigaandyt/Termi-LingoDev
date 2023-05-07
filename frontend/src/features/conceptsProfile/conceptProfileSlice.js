@@ -7,7 +7,8 @@ const  initialState={
     data:null,
     userRating:null,
     conceptsAdded:null,
-    lastConceptsSearch:null, 
+    lastConceptsSearch:null,
+    lastConceptsAddedAtLastLogin:null, 
     isConceptsProfileLoading:false,
     isConceptsProfileSuccess:false,
     isConceptsProfileError:false,
@@ -62,6 +63,25 @@ export const getConceptsSearchedByUser=createAsyncThunk(
             const token=thunkAPI.getState().auth.user.token 
             // return await authService.uploadImage(formdata)
             return await conceptProfileService.getConceptsSearchedByUser(token)
+        } catch (error) {
+            console.log(error.message)
+            const message=(error.response&&error.response.data&&error.response.data.message)
+            ||error.message
+            ||error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+     }
+
+)
+//last concepts searched at last login
+export const getLastConceptsAddedAtLastLogin=createAsyncThunk(
+    'searchedConceptsAtLastLogin',
+     async(data,thunkAPI)=>{
+        try { 
+          
+            const token=thunkAPI.getState().auth.user.token 
+            // return await authService.uploadImage(formdata)
+            return await conceptProfileService.getLastConceptsAddedAtLastLogin(token)
         } catch (error) {
             console.log(error.message)
             const message=(error.response&&error.response.data&&error.response.data.message)
@@ -128,6 +148,20 @@ export  const ConceptsProfileSlice=createSlice({
             state.isConceptsProfileLoading=false;
             state.isConceptsProfileError=true;
             state.lastConceptsSearch=null;
+            state.ConceptsProfileMessage=action.payload
+        })
+        .addCase(getLastConceptsAddedAtLastLogin.fulfilled,(state,action)=>{
+            state.isConceptsProfileLoading=false;
+            state.isConceptsProfileSuccess=true;
+            state.lastConceptsAddedAtLastLogin=action.payload;
+        })
+        .addCase(getLastConceptsAddedAtLastLogin.pending,(state)=>{
+            state.isConceptsProfileLoading=true;
+        })
+        .addCase(getLastConceptsAddedAtLastLogin.rejected,(state,action)=>{
+            state.isConceptsProfileLoading=false;
+            state.isConceptsProfileError=true;
+            state.lastConceptsAddedAtLastLogin=null;
             state.ConceptsProfileMessage=action.payload
         })
      }

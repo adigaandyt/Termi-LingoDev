@@ -121,7 +121,11 @@
     "verify": "Verify",
     "conceptsAdded_graph":"Concepts Added Graph",
     "search_for":"Search For",
-    "no_date_defined":"No date defined"
+    "no_date_defined":"No date defined",
+    "concepts_added": "concepts added",
+    "concepts_favories": "concepts favories",
+    "last_added": "last added",
+    "last_5_searches": "last 5 searches"
 
 
 

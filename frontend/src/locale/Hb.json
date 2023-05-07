@@ -120,6 +120,10 @@
     "verify": "אימות",
     "conceptsAdded_graph":"גרף מוסיפי מושגים",
     "search_for":"חפש",
-    "no_date_defined":"לא הוגדר תאריך"
+    "no_date_defined":"לא הוגדר תאריך",
+    "concepts_added": "מושגים שנוספו",
+    "concepts_favories": "מושגים מועדפים",
+    "last_added": "נוספו לאחרונה",
+    "last_5_searches": "ה 5 שחופשו לאחרונה"
     
 }

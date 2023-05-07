@@ -2,11 +2,13 @@ import { useSelector,useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ProfileForm from '../../components/ProfileForm';
 import ProfileImage from '../../components/ProfileImage';
-import {FcAddImage} from 'react-icons/fc';
+import {FcAddImage,FcSearch} from 'react-icons/fc';
 import {IoMdFemale} from 'react-icons/io'
 import {IoMdMale} from 'react-icons/io'
 import {BsQuestionLg} from 'react-icons/bs'
 import {RiCoinsFill} from 'react-icons/ri'
+import {BsFillBookmarkStarFill} from 'react-icons/bs'
+import {MdBookmarkAdd,MdNotificationAdd} from 'react-icons/md';
 import '../../styles/Profile.css';
 import { useState,useEffect } from 'react';
 import { getGuessTheTermResults, getTransMeResults, updateUserImage,getGamesRechartData, reset } from '../../features/auth/authSlice';
@@ -126,14 +128,14 @@ function Profile(){
 
       
       </div> */}
-      <button name='showConceptsSearched' type="button" class="btn btn-style" onClick={onConceptsButtonsClick}>last searches <i class="fas fa-caret-down pl-2"></i></button>
+      <button name='showConceptsSearched' type="button" class="btn btn-style" onClick={onConceptsButtonsClick}>{t('last_5_searches')}  <FcSearch className='col-1' style={{"font-size":"22px"}}/></button>
       {showConceptsSearched&&<ConceptsSearchedList concepts={lastConceptsSearch}/>}
-      <button name='showLastConceptsAdded' type="button" class="btn btn-style" onClick={onConceptsButtonsClick}>last searches <i class="fas fa-caret-down pl-2"></i></button>
+      <button name='showLastConceptsAdded' type="button" class="btn btn-style" onClick={onConceptsButtonsClick}>{t('last_added')} <MdNotificationAdd className='text-danger col-1' style={{"font-size":"22px"}}/></button>
       {showLastConceptsAdded&& <p>  last concepts Added</p>}
-      <button name='showConceptsFavorite' type="button" class="btn btn-style" onClick={onConceptsButtonsClick}>concepts favorite <i class="fas fa-caret-down pl-2"></i></button>
+      <button name='showConceptsFavorite' type="button" class="btn btn-style" onClick={onConceptsButtonsClick}>{t('concepts_favories')} <BsFillBookmarkStarFill className='text-warning col-1' style={{"font-size":"17px"}}/></button>
       {showConceptsFavorite&& <p>concepts favories</p>}
       <button name='showConceptsAdded' value={showConcepts.showConceptsAdded} type="button" class="btn btn-style" onClick={onConceptsButtonsClick}>
-      concepts added {conceptsAdded&&conceptsAdded.length} <i class="fas fa-caret-down pl-2"></i>
+      {t('concepts_added')} {conceptsAdded&&conceptsAdded.length} <MdBookmarkAdd className='text-success col-1' style={{"font-size":"22px"}}/>  
       </button>
       {showConceptsAdded&&<ConceptsAddedList concepts={conceptsAdded}/>}  
         

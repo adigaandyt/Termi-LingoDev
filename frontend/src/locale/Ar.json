@@ -120,7 +120,11 @@
     "verify": "التحقق",
     "conceptsAdded_graph":"رسم بياني لمضيفي المصطلحات",
     "search_for":"ابحث عن",
-    "no_date_defined":"لم يتم تحديد التاريخ"
+    "no_date_defined":"لم يتم تحديد التاريخ",
+    "concepts_added": "مصطلحات اضيفت",
+    "concepts_favories": "المصطلحات المفضلة ",
+    "last_added": "اخر اضافات",
+    "last_5_searches": "آخر 5 عمليات بحث"
 
    
 

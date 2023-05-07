@@ -26,7 +26,7 @@ const getUserConceptsAdded =async (token)=>{
     
     return response.data
 }
-//get last 5 added
+//get concepts Searched
 const getConceptsSearchedByUser = async (token)=>{
     const config ={
         headers:{

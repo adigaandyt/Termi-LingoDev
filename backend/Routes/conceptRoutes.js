@@ -14,7 +14,7 @@ const {
       deleteConceptByAdmin,
       updateConceptByUser,
     } = require('../Controllers/conceptControllers')
-    const {getConceptsAddedByUser,getUsersAddedConceptRating,getConceptsSearchedByUser}=require('../Controllers/conceptsProfileUserController')
+    const {getLastConceptsAddedAtLastLogin,getConceptsAddedByUser,getUsersAddedConceptRating,getConceptsSearchedByUser}=require('../Controllers/conceptsProfileUserController')
 const router=express.Router()
 const {protect}=require("../middleware/authMiddleware")
 
@@ -36,7 +36,7 @@ router.delete('/delete/comcept/by/admin/:conceptId',deleteConceptByAdmin)
 router.get('/get/concepts/added/by/user',protect,getConceptsAddedByUser);
 router.get('/get/users/addedConcept/rating',protect,getUsersAddedConceptRating);
 router.get('/get/concepts/searched/by/user/',protect,getConceptsSearchedByUser);
-
+router.get('/get/last/concepts/added/at/last/user/login',protect,getLastConceptsAddedAtLastLogin);
 
 
 

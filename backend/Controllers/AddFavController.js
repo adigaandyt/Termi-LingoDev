@@ -33,16 +33,13 @@ const addFavorite = asyncHandler(async (req, res) => {
       throw new Error(error);
     }
   });
-  
+//@desc remove favorite
+//@route GET /remove/:itemId/:userId
+//@access public
 const removeFavorite = asyncHandler(async (req,res)=>{
-  console.log(
-    'req.params')
-  
-  console.log(req.params)
-  console.log(req.user)
     try {
-        const response=await Favorite.findOne({
-            userId:req.user._id,
+        const response=await Favorite.findOneAndDelete({
+            userId:req.user.id,
             itemId:req.params.itemId
         })
         res.status(200).json(response)

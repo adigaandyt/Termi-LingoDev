@@ -103,8 +103,24 @@ const getConceptsSearchedByUser=asyncHandler( async(req,res)=>{
   }
 })
 
+
+//@desc get the last concepts added at the last user login 
+//@route get /get/last/concepts/added/at/last/user/login
+//@access private
+const getLastConceptsAddedAtLastLogin=asyncHandler( async(req,res)=>{
+  const email = req.user.email;
+  try {
+    res.json('success')
+  } catch (error) {
+      res.status(400)
+      throw new Error(error.message)
+  }
+})
+
+
 module.exports={
     getConceptsAddedByUser,
     getUsersAddedConceptRating,
-    getConceptsSearchedByUser
+    getConceptsSearchedByUser,
+    getLastConceptsAddedAtLastLogin
  }

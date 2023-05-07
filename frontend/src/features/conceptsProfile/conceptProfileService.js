@@ -37,11 +37,23 @@ const getConceptsSearchedByUser = async (token)=>{
     
     return response.data
 }
+//get last conceptes added at last login
+const getLastConceptsAddedAtLastLogin = async (token)=>{
+    const config ={
+        headers:{
+            authorization:`Bearer ${token}`
+        }
+    }
+    const response=await axios.get(API_URL+'/get/last/concepts/added/at/last/user/login',config)
+    
+    return response.data
+}
 
 const conceptProfileService={
     getDataForConceptsAddedRechart,
     getUserConceptsAdded,
-    getConceptsSearchedByUser
+    getConceptsSearchedByUser,
+    getLastConceptsAddedAtLastLogin
     
 }
 export default conceptProfileService

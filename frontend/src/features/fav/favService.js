@@ -11,8 +11,13 @@ const getFav =async (data)=>{
 
 
 //get all favorites 
-const getFavorites =async ()=>{
-    const response=await axios.get(API_URL+'/remove')
+const getFavorites =async (token)=>{
+    const config ={
+        headers:{
+            authorization:`Bearer ${token}`
+        }
+    }
+    const response=await axios.get(API_URL+'/get/all',config)
     return response.data
 }
 

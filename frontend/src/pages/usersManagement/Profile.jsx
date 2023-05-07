@@ -20,7 +20,16 @@ import AddedConceptsRechart from '../../components/recharts/AddedConceptsRechart
 import {getUserConceptsAdded,getConceptsSearchedByUser} from '../../features/conceptsProfile/conceptProfileSlice'
 
 function Profile(){
-  const [showConceptsAdded,setShowConceptsAdded]=useState(false)
+  // const [showConceptsAdded,setShowConceptsAdded]=useState(false)
+  const [showConcepts,setShowConcepts]=useState({
+    showConceptsAdded:false,
+    showConceptsSearched:false,
+    showConceptsFavorite:false,
+    showLastConceptsAdded:false,
+
+  })
+  const {showConceptsAdded,showConceptsSearched,showConceptsFavorite,showLastConceptsAdded}=showConcepts
+
   const dispatch=useDispatch();
   const {t}=useTranslation();
   const {name,email,profile_image,status,games_coins,gender,added_concepts} =useSelector(state=>state.auth.user)
@@ -45,6 +54,25 @@ function Profile(){
       }
   }
 
+  const onConceptsButtonsClick=(e)=>{
+    setShowConcepts((prevState)=>{
+      return({
+        ...prevState,
+        showConceptsAdded:[e.target.name]!='showConceptsAdded'?false:prevState[e.target.name],
+        showConceptsSearched:[e.target.name]!='showConceptsSearched'?false:prevState[e.target.name],
+        showConceptsFavorite:[e.target.name]!='showConceptsFavorite'?false:prevState[e.target.name],
+        showLastConceptsAdded:[e.target.name]!='showLastConceptsAdded'?false:prevState[e.target.name],
+
+      })
+    })
+ 
+    setShowConcepts((prevState)=>{
+      return({
+        ...prevState,
+        [e.target.name]:!prevState[e.target.name]
+      })
+    })
+  }
   return(<> 
   <div dir='ltr'  className='mt-110 text-center' id="ppage" style={{"marginLeft":"auto","marginRight":"auto"}}>
         {isLoading&&<Spinner/>}
@@ -104,9 +132,13 @@ function Profile(){
 
       
       </div> */}
-      <button type="button" class="btn btn-style">last searches <i class="fas fa-caret-down pl-2"></i></button>
-      <button type="button" class="btn btn-style">concepts favorite <i class="fas fa-caret-down pl-2"></i></button>
-      <button type="button" class="btn btn-style" onClick={()=>{setShowConceptsAdded(!showConceptsAdded)}}>
+      <button name='showConceptsSearched' type="button" class="btn btn-style" onClick={onConceptsButtonsClick}>last searches <i class="fas fa-caret-down pl-2"></i></button>
+      {showConceptsSearched&& <p>concepts searched</p>}
+      <button name='showLastConceptsAdded' type="button" class="btn btn-style" onClick={onConceptsButtonsClick}>last searches <i class="fas fa-caret-down pl-2"></i></button>
+      {showLastConceptsAdded&& <p>  last concepts Added</p>}
+      <button name='showConceptsFavorite' type="button" class="btn btn-style" onClick={onConceptsButtonsClick}>concepts favorite <i class="fas fa-caret-down pl-2"></i></button>
+      {showConceptsFavorite&& <p>concepts favories</p>}
+      <button name='showConceptsAdded' value={showConcepts.showConceptsAdded} type="button" class="btn btn-style" onClick={onConceptsButtonsClick}>
       concepts added {conceptsAdded&&conceptsAdded.length} <i class="fas fa-caret-down pl-2"></i>
       </button>
       {showConceptsAdded&&<ConceptsAddedList concepts={conceptsAdded}/>}  

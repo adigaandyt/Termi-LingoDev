@@ -20,6 +20,7 @@ const setConceptSearch=asyncHandler( async(req,res)=>{
         const response=await ConceptSearch.create({
             // userId:user._id,
             userEmail:user.email,
+            userID:user._id,
             conceptID:data.conceptID,
             userCategoryID:user.categoryId,
             SearchCategoryID:data.SearchCategoryID,

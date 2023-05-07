@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next"
+import cookies from "js-cookie"
 import { useEffect, useState } from "react"
 import { useSelector,useDispatch } from "react-redux"
 import { getConcept ,resetConcept, setConceptSearchLog } from "../features/concepts/conceptSlice"
@@ -29,11 +30,12 @@ function ConceptCard({concept,languageChoosed,conceptSearch,categoryId}){
     }
     const onChoose=()=>{
     const backOfficeData={
-     correctSearched:false, 
-     SearchString:conceptSearch,
+     correctSearched:true, 
+     SearchString:cookies.get('i18next')=='en'?concept.conceptName.english:(cookies.get('i18next')=='ar'?concept.conceptName.arabic:concept.conceptName.hebrew),
      SearchCategoryID:categoryId,
      conceptID:concept._id
     }
+    console.log("backOfficeData",backOfficeData)
     navigate(`/search/${concept.conceptName.english}/${concept.categories[0]}`)
     dispatch(setConceptSearchLog(backOfficeData))
     dispatch(getConcept({textSearch:concept.conceptName.english,categoryId:concept.categories[0]}));

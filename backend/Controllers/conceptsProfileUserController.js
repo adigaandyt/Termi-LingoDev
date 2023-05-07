@@ -2,6 +2,7 @@ const asyncHandler =require('express-async-handler');
 const Concept=require('../Models/conceptsModel')
 const User=require('../Models/usersModel')
 const ConceptSearch = require('../Models/conceptSearchModel')
+const UserActivity=require('../Models/UserActivityModel')
 
 //@desc get concepts that specific user added 
 //@route get /get/concepts/added/by/user
@@ -108,9 +109,18 @@ const getConceptsSearchedByUser=asyncHandler( async(req,res)=>{
 //@route get /get/last/concepts/added/at/last/user/login
 //@access private
 const getLastConceptsAddedAtLastLogin=asyncHandler( async(req,res)=>{
-  const email = req.user.email;
+  const user= req.user;
+  const currentDate = new Date();
+  const nextDate = new Date(currentDate.getTime() + 24 * 60 * 60 * 1000);
   try {
-    res.json('success')
+    // const query = {
+    //   userId:user._id,
+    //   createdAt: { $gte: nextDate }
+    // };
+    // const result=await UserActivity.findOne(query)
+    // // res.json(`${result.createdAt.getDate()}/${result.createdAt.getMonth()+1}/${result.createdAt.getFullYear()}`)
+    // res.json(result)
+    res.json("success")
   } catch (error) {
       res.status(400)
       throw new Error(error.message)

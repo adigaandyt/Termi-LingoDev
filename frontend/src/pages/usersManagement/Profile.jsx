@@ -37,7 +37,7 @@ function Profile(){
   const {t}=useTranslation();
   const {name,email,profile_image,status,games_coins,gender,added_concepts} =useSelector(state=>state.auth.user)
   const {isLoading,isImageLoading} =useSelector(state=>state.auth)
-  const [isEdit,setIsEdit]=useState(false)
+  // const [isEdit,setIsEdit]=useState(false)
   const {conceptsAdded,lastConceptsSearch}=useSelector(state=>state.conceptsProfile)
 
   useEffect(()=>{
@@ -77,7 +77,7 @@ function Profile(){
   return(<> 
   <div dir='ltr'  className='mt-110 text-center' id="ppage" style={{"marginLeft":"auto","marginRight":"auto"}}>
         {isLoading&&<Spinner/>}
-    <h3 className='mx-2'>{t('my profile')}</h3>
+    <h3 className='mx-2' id="profile-title">{t('my profile')}</h3>
     <div className="border-top row w-100 " id='profilePage' style={{margin:"auto"}}>
       <div id="profile-image-and-detaile" className=" col-sm-4 border-sm-start  border-top py-2   ">
       <ProfileImage  />  
@@ -85,7 +85,7 @@ function Profile(){
 
        
         
-          <div className='mt-3 mx-3 ' style={{"height":"23px"}}>
+        <div className='mt-3 mx-3 ' style={{"height":"23px"}}>
           <h6 className="d-inline-block">{name}</h6>
         </div>
         <div className='mx-3' style={{"height":"23px"}}>
@@ -103,6 +103,9 @@ function Profile(){
         <div className='mx-3' style={{"height":"23px"}}>
           <p className="d-inline-block">{t('coins')}: </p>
           <h6 className="d-inline-block">{games_coins} <RiCoinsFill className='' style={{color:"#FFD700"}}/></h6>
+        </div>
+        <div id="edit_dv">
+          <button id="editbtn" type="button" className="btn btn-info form-group btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">{t('edit')}</button>
         </div>
        
              
@@ -136,10 +139,33 @@ function Profile(){
       </button>
       {showConceptsAdded&&<ConceptsAddedList concepts={conceptsAdded}/>}  
         
-        <h3 className='mt-2 mx-2'>{t('details')}</h3>
-        <button id="editbtn" disabled={isEdit} onClick={()=>setIsEdit(!isEdit)} className='btn btn-primary btn-sm  mx-2 '>{t('edit')}</button>
+        {/* <h3 className='mt-2 mx-2'>{t('details')}</h3> */}
+        {/* <button id="editbtn" disabled={isEdit} onClick={()=>setIsEdit(!isEdit)} className='btn btn-primary btn-sm  mx-2 '>{t('edit')}</button> */}
 
-        <ProfileForm isEdit={isEdit} setIsEdit={setIsEdit} />
+        {/* <button id="editbtn" type="button" className="btn btn-info form-group btn-sm " data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">{t('edit')}</button> */}
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{t('edit')}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form>
+                  <div class="modal-body">          
+                    <ProfileForm/>
+                  </div>
+                  {/* <div class="modal-footer">
+                    <button id='closeButton' type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-warning">{t('submit')}</button>
+                  </div> */}
+                </form>
+              </div>
+          </div>
+        </div>           
+
+        {/* <ProfileForm isEdit={isEdit} setIsEdit={setIsEdit} /> */}
 
       </div>
 

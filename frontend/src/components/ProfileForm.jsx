@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next'
 import TestComponent from '../pages/TestComponent'
 
 
-function ProfileForm({isEdit,setIsEdit}){
+function ProfileForm(){
   const {t}=useTranslation()
   const dispatch=useDispatch();
     const {categories}=useSelector(state=>state.category)
@@ -44,11 +44,11 @@ function ProfileForm({isEdit,setIsEdit}){
     const onSave=(e)=>{
         e.preventDefault()
         dispatch(updateUser(formData))
-        setIsEdit(false)
+        // setIsEdit(false)
 
     }
     const onCanceled=()=>{
-        setIsEdit(!isEdit)
+        // setIsEdit(!isEdit)
         setFormData({
         newName:name,
         newEmail:email,
@@ -65,25 +65,25 @@ function ProfileForm({isEdit,setIsEdit}){
 
   <div className="col-md-6" >
     <div className="form-floating " >
-      <input disabled={true} onChange={onChange} name='newEmail' value={newEmail} type="email" className="form-control" id="floatingInputGrid" placeholder={newEmail} />
+      <input onChange={onChange} name='newEmail' value={newEmail} type="email" className="form-control" id="floatingInputGrid" placeholder={newEmail} />
       <label htmlFor="floatingInputGrid">{t('email_adress')}</label>
     </div>
   </div>
   <div className="col-md-6">
     <div className="form-floating">
-      <input disabled={!isEdit} onChange={onChange} name='newName' value={newName} type="text" className="form-control" id="floatingInputGrid" placeholder={newName} />
+      <input onChange={onChange} name='newName' value={newName} type="text" className="form-control" id="floatingInputGrid" placeholder={newName} />
       <label htmlFor="floatingInputGrid">{t('name')}</label>
     </div>
   </div>
   <div className="col-md-6">
     <div className="form-floating">
-      <input disabled={!isEdit} onChange={onChange} name='newPhoneNumber' value={newPhoneNumber} type="text" className="form-control" id="floatingInputGrid" placeholder={newPhoneNumber} />
+      <input onChange={onChange} name='newPhoneNumber' value={newPhoneNumber} type="text" className="form-control" id="floatingInputGrid" placeholder={newPhoneNumber} />
       <label htmlFor="floatingInputGrid">{t('phone')}</label>
     </div>
   </div>
   <div className="col-md">
     <div className="form-floating">
-      <select disabled={!isEdit} onChange={onChange} name='newLanguage' className="form-select" id="floatingSelectGrid" defaultValue={newLanguage} aria-label="Language">
+      <select onChange={onChange} name='newLanguage' className="form-select" id="floatingSelectGrid" defaultValue={newLanguage} aria-label="Language">
         <option value="English">English</option> 
         <option value="العربية">العربية</option>
         <option value="עברית">עברית</option>
@@ -93,7 +93,7 @@ function ProfileForm({isEdit,setIsEdit}){
   </div>
   <div className="col-md">
     <div className="form-floating">
-      <select disabled={!isEdit} className="form-select" name='newCategoryId' onChange={onChange} defaultValue={getCategoryNameById(categories,categoryId)} id="floatingSelectGrid"  aria-label="Floating label select example">
+      <select className="form-select" name='newCategoryId' onChange={onChange} defaultValue={getCategoryNameById(categories,categoryId)} id="floatingSelectGrid"  aria-label="Floating label select example">
         <option >{getCategoryNameById(categories,categoryId)}</option>
         {(categories)&&
             categories.map(category=>{
@@ -106,10 +106,8 @@ function ProfileForm({isEdit,setIsEdit}){
   </div>
 
   <div className="col-12">
-
-  {isEdit&&<><button type="submit" className="mt-5 mx-1 btn btn-primary col-3">{t('save')}</button>
-  <button type="button" onClick={onCanceled} className=" mt-2 mx-1 btn btn-secondary col-3">{t('cancel')}</button></>}
-
+    <button type="submit" className="mt-5 mx-1 btn btn-primary col-3">{t('save')}</button>
+    <button type="button" onClick={onCanceled} className=" mt-2 mx-1 btn btn-secondary col-3" data-dismiss="modal">{t('cancel')}</button>
   </div>
 
 </div>

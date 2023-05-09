@@ -40,7 +40,7 @@ const removeFav = async (data, token) => {
       }
     }
     console.log("----------****-----YONORSERVICEREMOVE>>>-----****----------");
-    const response = await axios.delete( `${API_URL}/remove/${data.itemId}/${data.userId}`, config)
+    const response = await axios.delete( `${API_URL}/remove/${data.itemId}`, config)
     return response.data
   }
 

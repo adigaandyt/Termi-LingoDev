@@ -3,8 +3,13 @@ import axios from 'axios'
 const API_URL='/api/concepts'
 
 //get single concept by  search text
-const getConcept =async (data)=>{
-    const response=await axios.post(API_URL+`/get/concept/${data.categoryId}`,data)
+const getConcept =async (data,token)=>{
+    const config ={
+        headers:{
+            authorization:`Bearer ${token}`
+        }
+    }
+    const response=await axios.post(API_URL+`/get/concept/${data.categoryId}`,data,config)
     return response.data
 }
 

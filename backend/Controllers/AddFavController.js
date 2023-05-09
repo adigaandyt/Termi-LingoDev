@@ -5,9 +5,9 @@ const router = require('../Routes/userRoutes');
 const addFavorite = asyncHandler(async (req, res) => {
     const user = req.user;
     const data = req.body;
-    console.log("----------***ADDING*----------")
-    console.log(data)
-    console.log("----------***ADDING*----------")
+    // console.log("----------***ADDING*----------")
+    // console.log(data)
+    // console.log("----------***ADDING*----------")
     try {
       // Check if the favorite already exists
       const favorite = await Favorite.findOne({
@@ -53,9 +53,9 @@ const removeFavorite = asyncHandler(async (req,res)=>{
 const getFavorites = asyncHandler(async (req,res)=>{
     const user=req.user;
     const data=req.body;
-    console.log("----------****----------")
-    console.log(data)
-    console.log("----------****----------")
+    // console.log("----------****----------")
+    // console.log(data)
+    // console.log("----------****----------")
     try {
         const response=await Favorite.find({
             userId:user.id
@@ -72,9 +72,9 @@ const getFavorites = asyncHandler(async (req,res)=>{
 const getAllFavorites = asyncHandler(async (req,res)=>{
     const user=req.user;
     const data=req.body;
-    console.log("----------****----------")
-    console.log(data)
-    console.log("----------****----------")
+    // console.log("----------****----------")
+    // console.log(data)
+    // console.log("----------****----------")
     try {
       const count = await Favorite.countDocuments({ userId: { $exists: true } });
 

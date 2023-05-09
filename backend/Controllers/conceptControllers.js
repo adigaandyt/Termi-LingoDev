@@ -4,6 +4,7 @@ const Category =require('../Models/categoriesModel')
 const User=require('../Models/usersModel')
 const UpdatedConcept=require('../Models/updatedConceptByUserModel')
 const ConceptSearch=require('../Models/conceptSearchModel')
+const Favorite=require('../Models/myFavoritiesModel')
 const _ = require('lodash');
 const { findById } = require('../Models/conceptsModel');
 const { Configuration, OpenAIApi }=require("openai") ;
@@ -140,8 +141,11 @@ const getConceptByOpenAi=asyncHandler( async(req,res)=>{
 //@route GET api/concepts/get/concept/openai/api/:categoryId
 //@access private
 const getConcept=asyncHandler( async(req,res)=>{
+    console.log("<<------------<<$$$saleh get single concept $$$>>---------------->>")
     let concept
     let rating;
+    let favorite
+    const user=req.user
     const textSearch=req.body.textSearch
     try {
 
@@ -208,6 +212,9 @@ const getConcept=asyncHandler( async(req,res)=>{
 
             }
             // res.json({ratio})
+            // console.log("conceptID from BE : ",concept.id)
+             favorite=await Favorite.findOne({itemId:concept.id,userId:user.id})
+            // res.json(isFavorite)
         }
         }
          
@@ -215,8 +222,9 @@ const getConcept=asyncHandler( async(req,res)=>{
         res.status(500)
         throw new Error("Some thing is wrong !" )
     }
-
-     res.status(200).json({concept,rating})
+    const isFavorite=favorite?true:false;
+    //  res.status(200).json({isFavorite:favorite.isFavorite})
+     res.status(200).json({concept,rating,isFavorite:isFavorite})
     })
 
 

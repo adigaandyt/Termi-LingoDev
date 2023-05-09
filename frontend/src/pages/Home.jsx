@@ -49,7 +49,7 @@ function Home(){
     const {isOpenAiLoading}=useSelector(state=>state.openAi)
     const dispatch=useDispatch()
     const {user} =useSelector(state=>state.auth)
-    const {concepts,names,concept,isLoading}=useSelector(state=>state.concept)
+    const {concepts,concept,isLoading}=useSelector(state=>state.concept)
     const {openAiConcept}=useSelector(state=>state.openAi)
     const {categories}=useSelector(state=>state.category)
     // const [categoryId,setCategoryId]=useState('639e49f8dfabd615c821584f')

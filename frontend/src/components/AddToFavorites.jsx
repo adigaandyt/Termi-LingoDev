@@ -1,19 +1,15 @@
 import React, { useState } from "react";
 import { useSelector,useDispatch } from "react-redux";
-import { MdOutlineFavorite, MdOutlineFavoriteBorder} from "react-icons/md";
+import {BsFillBookmarkStarFill} from "react-icons/bs";
 import { addFav, removeFav, getFav } from "../features/fav/favSlice";
-const AddToFavorites = ({ cardId, userId }) => {
+const AddToFavorites = ({ cardId, userId ,isFavorite,setIsFavorite }) => {
 const { isLoading } = useSelector((state) => state.fav);
-  const [isFavorite, setIsFavorite] = useState(false);
   const dispatch=useDispatch();
   
   const handleAddToFavorites = () => {
     if (isFavorite) {
-      // show confirmation popup before removing the favorite
-      if (window.confirm("Are you sure you want to remove this from favorites?")) {
         setIsFavorite(false);
         dispatch(removeFav({ itemId: cardId}));
-      }
     } else {
       setIsFavorite(true);
       dispatch(addFav({ itemId: cardId, isFavorite: true }));
@@ -22,13 +18,11 @@ const { isLoading } = useSelector((state) => state.fav);
   
 
   return (
-<button
+<BsFillBookmarkStarFill
   disabled={isLoading}
   onClick={handleAddToFavorites}
-  className={`add-to-favorites ${isFavorite ? "favorite" : ""}`}
->
-  {isFavorite ? <MdOutlineFavorite/> : <MdOutlineFavorite/>}
-</button>
+  className={`add-to-favorites display-6 m-3 ${isFavorite ? "text-warning" : "text-secondary"}`}
+/>
 
   );
 };

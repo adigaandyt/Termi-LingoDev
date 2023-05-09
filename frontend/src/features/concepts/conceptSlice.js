@@ -4,6 +4,7 @@ const initialState={
     concepts:null,
     concept:null,
     conceptRating:null,
+    conceptIsFavorite:null,
     updatedConcept:null,
     unAcceptedConcepts:null,
     names:null,
@@ -31,7 +32,8 @@ export const getConcept=createAsyncThunk(
     'concepts/get',
      async(data,thunkAPI)=>{
         try {
-            return await conceptService.getConcept(data)
+        const token=thunkAPI.getState().auth.user.token 
+            return await conceptService.getConcept(data,token)
         } catch (error) {
             const message=(error.response&&error.response.data&&error.response.data.message)
             ||error.message
@@ -210,6 +212,7 @@ export const conceptSlice=createSlice({
             state.isSingleConceptSuccess=true
             state.concept=action.payload.concept
             state.conceptRating=action.payload.rating
+            state.conceptIsFavorite=action.payload.isFavorite
         })
         .addCase(getConceptsNames.fulfilled,(state,action)=>{
             state.names=action.payload

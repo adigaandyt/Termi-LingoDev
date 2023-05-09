@@ -18,7 +18,7 @@ const {
 const router=express.Router()
 const {protect}=require("../middleware/authMiddleware")
 
-router.post('/get/concept/:categoryId',getConcept)
+router.post('/get/concept/:categoryId',protect,getConcept)
 router.post('/get/concept/openai/api/:categoryId',getConceptByOpenAi)
 router.get('/get/concepts/:textsearch',getConcepts)
 router.get('/get/names',getConceptsNames)

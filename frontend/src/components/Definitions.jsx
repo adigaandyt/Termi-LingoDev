@@ -17,7 +17,7 @@ import ShareConcepts from '../components/ShareConcepts'
 
 
 
-function Definitions({concept,languageChoosed,alertShow,alertToggleShow}){
+function Definitions({concept,languageChoosed,alertShow,alertToggleShow ,isFavorite ,setIsFavorite}){
     const {categories}=useSelector(state=>state.category)
     const {conceptRating}=useSelector(state=>state.concept)
 
@@ -83,13 +83,17 @@ function Definitions({concept,languageChoosed,alertShow,alertToggleShow}){
         
     <div className='text-center' dir='ltr' id="slide">
         <div className='row '>
-        <div className='col-1 text-start'>
+        <div className='d-flex justify-content-between'>
             {languageChoosed.hebrew&&<img className='mt-2 text-start ' src={require('../flags/israel-xs.gif')}/>}
             {languageChoosed.english&&<img className=' mt-2 ' src={require('../flags/united-states-xs.gif')}/>}
             {languageChoosed.arabic&&<img className='mt-2' src={require('../flags/saudi-arabia-xs.gif')}/>}
+
+        <AddToFavorites setIsFavorite={setIsFavorite} isFavorite={isFavorite}   userId={user._id} cardId={concept._id}/>
         </div>
+        {/* <div className='col-1 text-end'> */}
+
+        {/* </div> */}
         {/* check if i need add to favorit , when open ai response  */}
-        <AddToFavorites userId={user._id} cardId={concept._id}/>
         <div className='col-11 text-end'>
             <h3 className="text-dark mb-3 mt-2" id="conceptName">{concept&&getConceptName(languageChoosed,concept)}</h3> 
             <div className=''>

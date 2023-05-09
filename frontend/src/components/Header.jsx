@@ -136,7 +136,7 @@ function Header(){
                     <div>
                         <button id='setting-btn' name="nav-item" onClick={() => {navigate('/settings'); optionsClick()}}><AiOutlineSetting/></button>
                     </div>) : (<div>
-                        <button disabled="disabled" name="nav-item" onClick={() => navigate('/settings')}><AiOutlineSetting/></button>
+                        <button hidden name="nav-item" onClick={() => navigate('/settings')}><AiOutlineSetting/></button>
                     </div>)
                     }
                 </i>

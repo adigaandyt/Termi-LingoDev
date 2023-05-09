@@ -9,7 +9,7 @@ import {getCategoryName} from '../hooks/ExportsFunctions'
 import NoConceptResultModal from './modals/NoConceptResultModal'
 import '../styles/CircleBar.css'
 import { getConceptByOpenAiAPIRequest,resetOpenAi } from '../features/openAi/openAiSlice';
-
+import {toast} from 'react-toastify'
 
 
 
@@ -63,8 +63,8 @@ import { getConceptByOpenAiAPIRequest,resetOpenAi } from '../features/openAi/ope
         if(isOpenAiError||isOpenAiSuccess){
             dispatch(resetOpenAi())
         }
-        if(isError){
-            console.log(openAiMessage)
+        if(isOpenAiError){
+            toast.warning(openAiMessage=='missing_category'?t('missing_category'):openAiMessage)
         }
 
 

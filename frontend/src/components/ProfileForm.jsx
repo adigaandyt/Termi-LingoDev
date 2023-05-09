@@ -106,8 +106,10 @@ function ProfileForm(){
   </div>
 
   <div className="col-12">
-    <button type="submit" className="mt-5 mx-1 btn btn-primary col-3">{t('save')}</button>
-    <button type="button" onClick={onCanceled} className=" mt-2 mx-1 btn btn-secondary col-3" data-dismiss="modal">{t('cancel')}</button>
+
+  <><button type="submit" className="mt-5 mx-1 btn btn-primary col-3">{t('save')}</button>
+  <button type="button" onClick={onCanceled} className=" mt-2 mx-1 btn btn-secondary col-3" data-dismiss="modal">{t('cancel')}</button></>
+
   </div>
 
 </div>

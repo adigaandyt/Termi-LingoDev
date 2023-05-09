@@ -4,6 +4,7 @@ import { useSelector ,useDispatch} from 'react-redux';
 import {getCategoryName} from '../hooks/ExportsFunctions'
 import {createNewConceptByUser,reset} from '../features/concepts/conceptSlice'
 import {toast} from 'react-toastify' 
+import {AiFillCloseCircle} from 'react-icons/ai'
 import Spinner3 from '../components/Spinners/Spinner3'
 import "../styles/newConcept.css"
 import { Categoryreset, createNewCategoryByUser } from '../features/categories/categorySlice';
@@ -214,13 +215,14 @@ if(isCategorySuccess){
 
                     
                 <button type="button" class="btn btn-info form-group mt-2 " data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">{t('new_category')}</button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">{t('new_category')}</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                            <button type="button" style={{"background": "none", "border": "none", "font-size" : "30px"}} className="close" data-dismiss="modal" aria-label="Close">
+                                {/* <span aria-hidden="true">&times;</span> */}
+                                <AiFillCloseCircle/>
                             </button>
                         </div>
                         <form onSubmit={onCategorySubmitClick}>

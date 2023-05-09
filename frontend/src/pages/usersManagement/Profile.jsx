@@ -1,22 +1,22 @@
 import { useSelector,useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import ProfileForm from '../../components/ProfileForm';
 import ProfileImage from '../../components/ProfileImage';
-import {FcAddImage,FcSearch} from 'react-icons/fc';
+import {FcSearch} from 'react-icons/fc';
 import {IoMdFemale} from 'react-icons/io'
 import {IoMdMale} from 'react-icons/io'
 import {BsQuestionLg} from 'react-icons/bs'
 import {RiCoinsFill} from 'react-icons/ri'
 import {BsFillBookmarkStarFill} from 'react-icons/bs'
 import {MdBookmarkAdd,MdNotificationAdd} from 'react-icons/md';
+import {AiFillCloseCircle} from 'react-icons/ai'
 import '../../styles/Profile.css';
 import { useState,useEffect } from 'react';
 import { getGuessTheTermResults, getTransMeResults, updateUserImage,getGamesRechartData, reset } from '../../features/auth/authSlice';
 import Spinner from '../../components/Spinner';
 import { useTranslation } from 'react-i18next';
-import TestComponent from '../TestComponent';
 import GamesRecharts from '../../components/recharts/GamesRecharts';
-import ConceptsAddedCard from '../../components/conceptsProfile/ConceptsAddedCard';
+// import ConceptsAddedCard from '../../components/conceptsProfile/ConceptsAddedCard';
 import ConceptsAddedList from '../../components/conceptsProfile/ConceptsAddedList';
 import AddedConceptsRechart from '../../components/recharts/AddedConceptsRechart';
 import {getUserConceptsAdded,getConceptsSearchedByUser} from '../../features/conceptsProfile/conceptProfileSlice'
@@ -37,7 +37,7 @@ function Profile(){
   const {t}=useTranslation();
   const {name,email,profile_image,status,games_coins,gender,added_concepts} =useSelector(state=>state.auth.user)
   const {isLoading,isImageLoading} =useSelector(state=>state.auth)
-  // const [isEdit,setIsEdit]=useState(false)
+  const [isEdit,setIsEdit]=useState(true)
   const {conceptsAdded,lastConceptsSearch}=useSelector(state=>state.conceptsProfile)
 
   useEffect(()=>{
@@ -111,9 +111,9 @@ function Profile(){
              
       <div className='border-bottom border-top mt-2'>
          <h3 className='mt-2 mx-2'>{t('games_graph')}</h3>
-         
+
         <GamesRecharts />
-        </div>
+      </div>
 
       <div className='border-bottom mt-2'>
         <h3 className='mt-2 mx-2'>{t('conceptsAdded_graph')}</h3>
@@ -143,16 +143,16 @@ function Profile(){
         {/* <button id="editbtn" disabled={isEdit} onClick={()=>setIsEdit(!isEdit)} className='btn btn-primary btn-sm  mx-2 '>{t('edit')}</button> */}
 
         {/* <button id="editbtn" type="button" className="btn btn-info form-group btn-sm " data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">{t('edit')}</button> */}
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">{t('edit')}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
+                    <button style={{"background": "none", "border": "none", "font-size" : "30px"}} type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      {/* <span aria-hidden="true">&times;</span> */}
+                      <AiFillCloseCircle/>
                     </button>
                 </div>
-                <form>
                   <div class="modal-body">          
                     <ProfileForm/>
                   </div>
@@ -160,7 +160,6 @@ function Profile(){
                     <button id='closeButton' type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-warning">{t('submit')}</button>
                   </div> */}
-                </form>
               </div>
           </div>
         </div>           
